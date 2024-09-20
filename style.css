@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+  /* background: linear-gradient(#00eaff, transparent),
+    linear-gradient(-45deg, #e567fe, transparent),
+    linear-gradient(45deg, #0040ff, transparent);
+  background-blend-mode: sreen; */
+  -ms-overflow-style: none;
+  margin: 0px;
+}
+
+.MainLogo {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+
+}
+
+.SideWideAlign {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SignInUp {
+  color: black;
+  margin: 20px;
+  font-weight: normal;
+  font-family: 'Inter', sans-serif;
+}
+
+.SignInUp:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
