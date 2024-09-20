@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+.IDPWContainer{
+    background: linear-gradient(45deg, #007AFF, #D14FFF);
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+    text-align: right;
+    color: white;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+    /* background: linear-gradient(#00eaff, transparent),
+      linear-gradient(-45deg, #e567fe, transparent),
+      linear-gradient(45deg, #0040ff, transparent);
+    background-blend-mode: sreen; */
+    -ms-overflow-style: none;
+    margin: 0px;
+}
+
+.ContentContainer{
+    margin: 10px;
+}
+
+.InputSetting{
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+    font-size: 18px;
+    padding: 5px;
+    outline: none;
+}
+
+.TitleLabel{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(45deg, #009dff, #8000ff);
+    color: transparent;
+    font-weight: bold;
+    -webkit-background-clip: text;
+}
