@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
 /* 전체 페이지 기본 설정 */
 body {
     margin: 0;
@@ -21,6 +23,15 @@ body {
 /* 앨범 섹션 */
 .album-section {
     margin-bottom: 40px;
+}
+
+.section-title{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(45deg, #0077ff, #9500ff);
+    color: transparent;
+    font-weight: 500;
+    -webkit-background-clip: text;
+    user-select: none;
 }
 
 .album-container {

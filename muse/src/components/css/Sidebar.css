@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(45deg, #0077ff, #9500ff);
+    color: white;
+    padding: 20px;
+    z-index: 1000;
+    transition: transform 0.3s ease; /* 부드러운 슬라이드 애니메이션 */
+    transform: translateX(-340px);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0); /* 사이드바 열렸을 때 */
+  }
+  
+  .user-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu li {
+    margin: 10px 0;
+    cursor: pointer;
+  }
+  
+  .settings-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .toggle-btn{
+    position: fixed;
+    transform: translateX(320px) translateY(75px);
+    width: 25px;
+    height: 100px;
+    background: linear-gradient(45deg, #0077ff, #9500ff);
+    border: none;
+    border-radius: 0px 15px 15px 0px;
+  }
+  

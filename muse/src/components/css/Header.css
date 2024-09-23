@@ -52,9 +52,18 @@
 }
 
 .sign-out {
-    padding: 5px 15px;
-    background-color: white;
-    color: #D14FFF;
-    border-radius: 10px;
     font-family: 'Inter', sans-serif;
+    background-color: white;
+    color: #009dff;
+    font-weight: 400;
+    border: none;
+    border-radius: 15px;
+}
+
+.sign-out:hover{
+    cursor: pointer;
+    background: linear-gradient(45deg, #002fff, #00c3ff);
+    color: white;
+    transform: scale(1.1);
+    transition: 0.1s;
 }
