@@ -1,0 +1,138 @@
+/* 전체 페이지 기본 설정 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 상단 배너 스타일 */
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #007AFF, #D14FFF);
+    color: white;
+    height: 60px;
+    position: relative;
+    z-index: 2; /* 항상 다른 요소 위에 나타나도록 설정 */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 500;
+    user-select: none;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-bar button, .sign-out {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: white;
+    color: #4c8bf5;
+    margin-left: 5px;
+}
+
+.sign-out {
+    padding: 5px 15px;
+    background-color: white;
+    color: #D14FFF;
+    border-radius: 10px;
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    padding-top: 20px; /* 상단 배너와의 간격 */
+    overflow-y: auto;
+}
+
+/* 앨범 섹션 */
+.album-section {
+    margin-bottom: 40px;
+}
+
+.album-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* 앨범이 많을 때 가로 스크롤을 허용 */
+}
+
+.album-item {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    width: 150px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.album-cover-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transition: transform 0.2s; /* hover 시 이미지 확대 효과 */
+}
+
+.album-item:hover .album-cover-container {
+    transform: scale(1.05); /* 이미지 영역만 확대 */
+    z-index: 1;
+}
+
+.album-cover {
+    position: absolute;
+    border-radius: 5px;
+    transition: transform 0.2s;
+    width: 100%;
+    height: 100%;
+}
+
+.main-cover {
+    z-index: 2; /* main cover가 항상 위에 오도록 설정 */
+}
+
+.track-cover {
+    z-index: 1; /* track cover는 main cover 아래에 위치 */
+    opacity: 0.3;
+    width: 90%;
+    height: 90%;
+}
+
+.album-item:hover .track-cover {
+    transform: scale(1.05);
+    opacity: 0.5;
+}
+
+.album-title {
+    font-weight: bold;
+    color: black;
+    user-select: none;
+    margin-top: 20px; /* 이미지와 텍스트 간의 여백 */
+    text-align: center;
+}
