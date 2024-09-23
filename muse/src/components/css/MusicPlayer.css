@@ -9,9 +9,8 @@
 
 .progress-bar-container {
     width: 100%;
-    height: 8px; /* 높이 조정 */
+    height: 6px; /* 높이 조정 */
     background-color: #e0e0e0; /* 바탕색 */
-    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -19,6 +18,7 @@
     height: 100%;
     background: linear-gradient(45deg, #6a11cb, #2575fc); /* 그라데이션 색상 */
     transition: width 0.1s ease; /* 부드러운 진행 효과 */
+    border-radius: 4px;
 }
 
 .music-player {
@@ -28,7 +28,7 @@
     padding: 10px 20px;
     background: linear-gradient(45deg, #6a11cb, #2575fc);
     color: white;
-    height: 60px;
+    height: 40px;
 }
 
 .track-info {
