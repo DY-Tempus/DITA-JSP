@@ -5,6 +5,7 @@ import Artist from './components/Artist';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MusicPlayer from './components/MusicPlayer'; // 음악 플레이어 추가
+import Settings from './components/Settings';
 import './css/App.css';
 
 function App() {

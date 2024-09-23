@@ -9,7 +9,7 @@ const App = () => {
                 <div className="logo">MU:SE</div>
                 <div className="search-bar">
                     <input type="text" placeholder="Search..." />
-                    <button>🔍</button>
+                    <img src="/img/search.png" alt="Search"/>
                 </div>
                 <button className="sign-out">Sign Out</button>
             </header>

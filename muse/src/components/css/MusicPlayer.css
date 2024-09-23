@@ -58,7 +58,6 @@
 .controls {
     display: flex;
     gap: 15px; /* 버튼 간의 간격 */
-    margin-left: 15px;
     margin-right: 15px;
 }
 
