@@ -4,16 +4,6 @@ import './css/Home.css';
 const Home = () => {
     return (
         <div>
-            {/* 상단 배너 */}
-            <header className="top-banner">
-                <div className="logo">Logo</div>
-                <div className="search-bar">
-                    <input type="text" placeholder="Search..." />
-                    <button>🔍</button>
-                </div>
-                <button className="sign-out">Sign Out</button>
-            </header>
-
             {/* 메인 콘텐츠 영역 */}
             <main className="main-content">
                 {/* 앨범 섹션 예시 */}

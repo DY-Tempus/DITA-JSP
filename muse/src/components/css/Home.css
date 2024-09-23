@@ -10,58 +10,6 @@ body {
     overflow: hidden;
 }
 
-/* 상단 배너 스타일 */
-.top-banner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: linear-gradient(45deg, #007AFF, #D14FFF);
-    color: white;
-    height: 60px;
-    position: relative;
-    z-index: 2; /* 항상 다른 요소 위에 나타나도록 설정 */
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: 500;
-    user-select: none;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-}
-
-.search-bar input {
-    padding: 5px;
-    border: none;
-    border-bottom: 2px solid white;
-    background: transparent;
-    color: white;
-    outline: none;
-    font-size: 16px;
-}
-
-.search-bar button, .sign-out {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    background-color: white;
-    color: #4c8bf5;
-    margin-left: 5px;
-}
-
-.sign-out {
-    padding: 5px 15px;
-    background-color: white;
-    color: #D14FFF;
-    border-radius: 10px;
-}
-
 /* 메인 콘텐츠 영역 */
 .main-content {
     flex: 1;
