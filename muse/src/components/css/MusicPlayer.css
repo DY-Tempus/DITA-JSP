@@ -10,25 +10,24 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    z-index: 1000; /* 다른 요소 위에 나타나도록 설정 */
-  }
-  
-  .track-info {
+    z-index: 1000;
+}
+
+.track-info {
     display: flex;
     align-items: center;
-  }
-  
-  .track-info img {
+}
+
+.track-info img {
     width: 50px;
     height: 50px;
     margin-right: 10px;
-  }
-  
-  .controls button {
+}
+
+.controls button {
     background: none;
     border: none;
     color: white;
     font-size: 16px;
     cursor: pointer;
-  }
-  
+}
