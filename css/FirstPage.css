@@ -43,3 +43,11 @@ body {
   cursor: pointer;
   text-decoration: underline;
 }
+.TitleLabel{
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #009dff, #8000ff);
+  color: transparent;
+  font-weight: 500;
+  -webkit-background-clip: text;
+  user-select: none;
+}
