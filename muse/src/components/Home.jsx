@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/Home.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
@@ -12,13 +13,15 @@ const Home = () => {
                     <div className="album-container">
                         {/* 앨범 1 */}
                         <div className="album-item">
-                            <div className="album-cover-container">
-                                <img src="/img/main_album.jpg" alt="Main Album Cover" className="album-cover main-cover" />
-                                <img src="/img/track1.jpg" alt="Track 1" className="album-cover track-cover" style={{ top: '10px', left: '10px' }} />
-                                <img src="/img/track2.jpg" alt="Track 2" className="album-cover track-cover" style={{ top: '20px', left: '20px' }} />
-                                <img src="/img/track3.jpg" alt="Track 3" className="album-cover track-cover" style={{ top: '30px', left: '30px' }} />
-                            </div>
-                            <p className="album-title">HIGEDAN LIVE</p>
+                            <Link to="/artist">
+                                <div className="album-cover-container">
+                                    <img src="/img/main_album.jpg" alt="Main Album Cover" className="album-cover main-cover" />
+                                    <img src="/img/track1.jpg" alt="Track 1" className="album-cover track-cover" style={{ top: '10px', left: '10px' }} />
+                                    <img src="/img/track2.jpg" alt="Track 2" className="album-cover track-cover" style={{ top: '20px', left: '20px' }} />
+                                    <img src="/img/track3.jpg" alt="Track 3" className="album-cover track-cover" style={{ top: '30px', left: '30px' }} />
+                                </div>
+                                <p className="album-title">HIGEDAN LIVE</p>
+                            </Link>
                         </div>
 
                         {/* 앨범 2 */}

@@ -52,9 +52,9 @@
   }
 
   .toggle-btn{
-    position: fixed;
+    position: absolute;
     transform: translateX(320px) translateY(75px);
-    width: 25px;
+    width: 20px;
     height: 100px;
     background: linear-gradient(45deg, #0077ff, #9500ff);
     border: none;
