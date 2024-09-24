@@ -15,7 +15,7 @@ function Sidebar({ isOpen }) {
     return (
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}> {/* isOpen 값에 따라 클래스 추가 */}
                 <div className="user-info">
-                    <img src="/path-to-user-icon" alt="User Icon" className="user-icon" />
+                    <img src="./img/getsix.png" alt="User Icon" className="user-icon" />
                     <h2>User</h2>
                     <h3>My Page</h3>
                 </div>
