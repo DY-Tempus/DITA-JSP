@@ -1,11 +1,21 @@
-/* Settings 전체 컨테이너 스타일 */
-.settings-container {
-    width: 100%;
-    max-width: 60vh;
-    margin: 0 auto;
+/* Settings 패널 */
+.settings-panel {
+    position: fixed;
+    top: 0; 
+    left: 25%;
+    width: 50%;
+    height: 450px; 
     background: white;
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001; 
+    box-sizing: border-box;
+    transform: translateY(-105%); 
+    transition: transform 0.3s ease; 
+    border-radius: 0px 0px 10px 10px; /* 하단 모서리를 둥글게 설정 */
+}
+
+.settings-panel.open {
+    transform: translateY(0);
 }
 
 .settings-header {
@@ -14,7 +24,6 @@
     background: linear-gradient(45deg, #007AFF, #D14FFF);
     color: white;
     width: 100%; /* 상단 배너의 전체 화면 너비 비율 */
-    border-radius: 10px 10px 0 0;
 }
 
 .back {
@@ -40,6 +49,15 @@
     font-weight: bold;
     margin-left: 15px;
     color: #333;
+}
+
+.settings-btn {
+    position: fixed;
+    bottom: 0px;
+    right: 140px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 /* From Uiverse.io by lenin55 */
