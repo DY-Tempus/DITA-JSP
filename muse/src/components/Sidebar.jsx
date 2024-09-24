@@ -23,24 +23,21 @@ function Sidebar({ isOpen }) {
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}> {/* isOpen 값에 따라 클래스 추가 */}
                 <div className="user-info">
                     <img src="./img/getsix.png" alt="User Icon" className="user-icon" />
-                    <img src="./img/thumbs.png" alt="User Icon" className="user-icon" />
-                    <img src="./img/views.png" alt="User Icon" className="user-icon" />
-
                     <h2>User</h2>
                     <h3>My Page</h3>
                 </div>
                 <ul className="menu">
-                    <li>Profile</li>
-                    <li>Recently Played</li>
-                    <li>Favorite</li>
-                    <li>My Playlist</li>
-                    <li>My Music</li>
-                    <li>Upload Music</li>
+                    <li>● Profile</li>
+                    <li>● Recently Played</li>
+                    <li>● Favorite</li>
+                    <li>● My Playlist</li>
+                    <li>● My Music</li>
+                    <li>● Upload Music</li>
                 </ul>
-                <footer>
+                <div className='Sifoot'>
                     <img src="/img/settings.png" alt="Settings" className="settings-btn" 
                      onClick={openSettings} />
-                </footer>
+                </div>
                 <button className='toggle-btn' onClick={toggleSidebar}></button>
 
                 {/* Settings 컴포넌트 */}
