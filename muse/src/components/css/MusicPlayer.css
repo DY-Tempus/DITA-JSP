@@ -45,14 +45,31 @@
 }
 
 .track-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: relative;
+    /* width: 40%; 빨간 네모 영역의 너비 (원하는 값으로 조정) */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    white-space: nowrap; /* 텍스트를 한 줄로 */
 }
 
 .track-title {
     font-size: 14px;
     margin: 0;
+    display: inline-block;
+    white-space: nowrap; /* 한 줄로 유지 */
+}
+
+.track-title.marquee{
+    position: absolute;
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
 }
 
 .controls {

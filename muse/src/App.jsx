@@ -15,7 +15,7 @@ function App() {
         <Header />
         <Sidebar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/Home" element={<Home />} />
           <Route path="/artist" element={<Artist />} />
         </Routes>
         <MusicPlayer /> {/* 항상 하단에 고정된 음악 플레이어 */}

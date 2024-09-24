@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './css/MusicPlayer.css';
 
 const MusicPlayer = () => {
@@ -6,6 +6,28 @@ const MusicPlayer = () => {
     const currentTime = 0; // 현재 재생 시간 (초 단위)
     const duration = 240; // 총 재생 시간 (초 단위), 예를 들어 4분 = 240초
 
+    const [isOverflowing, setIsOverflowing] = useState(false);
+    const titleRef = useRef(null);
+    const containerRef = useRef(null);
+
+      // 텍스트가 넘치는지 확인하는 함수
+    const checkOverflow = () => {
+    if (titleRef.current && containerRef.current) {
+      const titleWidth = titleRef.current.scrollWidth;
+      const containerWidth = containerRef.current.offsetWidth;
+      setIsOverflowing(titleWidth > containerWidth); // 제목이 컨테이너보다 긴지 확인
+        }
+    };
+
+    useEffect(() => {
+        checkOverflow(); // 초기 로드 시 실행
+        window.addEventListener('resize', checkOverflow); // 윈도우 크기가 변경될 때마다 실행
+    
+        return () => {
+          window.removeEventListener('resize', checkOverflow); // 크기 변경 이벤트 리스너 해제
+        };
+      }, []);
+    
     // 진행 바의 진행률을 계산 (기본값을 0으로 설정)
     const progress = (currentTime / duration) * 100;
 
@@ -34,8 +56,8 @@ const MusicPlayer = () => {
                 </div>
                 <div className="track-info">
                     <img src="/img/album.jpg" alt="Album Art" className="album-art" />
-                    <div className="track-details">
-                        <p className="track-title">Official Hige Dandism - Tell Me Baby (LIVE)</p>
+                    <div className="track-details" ref={containerRef}>
+                        <p className={`track-title ${isOverflowing ? 'marquee' : ''}`}>Collide - Hellberg & Deutgen vs Splitbreed (Astronaut & Barely Alive Remix)</p>
                     </div>
                 </div>
                 <div className="controls">

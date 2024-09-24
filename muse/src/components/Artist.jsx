@@ -1,11 +1,83 @@
 import React from 'react';
+import './css/Artist.css';
 
 const Artist = () => {
     return (
-        <div>
-            <h1>Artist Page</h1>
-            {/* 이곳에 Artist의 정보나 곡 목록을 추가 */}
+        <div className="artist-page">
+            {/* 아티스트 정보 */}
+            <div className="artist-info">
+                <img src="/img/getsix.png" alt="Artist" className="artist-image" />
+                <div className="artist-details">
+                    <div className="social-icons">
+                        <h1>Getsix</h1>
+                        <img src="/img/getsixart1.png" alt="YouTube" />
+                        <img src="/img/getsixart1.png" alt="Twitter" />
+                    </div>
+                    <p>7,603 Subs</p>
+                    <button className="subscribe-btn">Subscribe</button>
+                </div>
+                
+            </div>
+
+            {/* 트랙 리스트 */}
+            <div className="tracklist">
+                <h2>Recent <span className="dropdown-arrow">▼</span></h2>
+                <ul>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    <li>
+                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
+                        <span className="track-title">WIP That'll Never Come Out</span>
+                        <span className="track-duration">2:48</span>
+                    </li>
+                    {/* 나머지 트랙들도 동일한 방식으로 추가 */}
+                </ul>
+            </div>
         </div>
+
     );
 };
 
