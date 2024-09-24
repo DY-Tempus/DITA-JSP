@@ -9,9 +9,12 @@
     background: linear-gradient(#008cff, #aa00ff);
     color: white;
     padding: 20px;
-    z-index: 1000;
+    z-index: 1001; /* MusicPlayer보다 높은 z-index */
     transition: transform 0.3s ease; /* 부드러운 슬라이드 애니메이션 */
     transform: translateX(-340px);
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 요소를 정렬 */
+    justify-content: space-between; /* 요소들을 위쪽과 아래쪽으로 배치 */
   }
   
   .sidebar.open {
@@ -61,3 +64,16 @@
     border-radius: 0px 15px 15px 0px;
   }
   
+  /* Footer 영역의 설정 버튼 스타일 */
+  footer {
+    margin-top: auto; /* 최하단에 고정 */
+    display: flex;
+    justify-content: center;
+  }
+
+  .settings-btn {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-bottom: 80px;
+  }
