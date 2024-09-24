@@ -40,7 +40,7 @@ body {
     border: none;
     border-bottom: 1px solid white;
     background: transparent;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 18px;
     padding: 5px;
     outline: none;
@@ -49,8 +49,9 @@ body {
 }
 
 .InputSetting option{
-    background: linear-gradient(135deg, #009dff, #8000ff);
-    color: white;
+    background-color: #7970f6;
+    color: rgb(255, 255, 255);
+    border: none;
 }
 
 

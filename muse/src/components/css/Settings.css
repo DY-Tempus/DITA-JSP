@@ -1,0 +1,133 @@
+/* Settings 패널 */
+.settings-panel {
+    position: fixed;
+    top: 0; 
+    left: 25%;
+    width: 50%;
+    height: 450px; 
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001; 
+    box-sizing: border-box;
+    transform: translateY(-105%); 
+    transition: transform 0.3s ease; 
+    border-radius: 0px 0px 10px 10px; /* 하단 모서리를 둥글게 설정 */
+}
+
+.settings-panel.open {
+    transform: translateY(0);
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(45deg, #007AFF, #D14FFF);
+    color: white;
+    width: 100%; /* 상단 배너의 전체 화면 너비 비율 */
+}
+
+.back {
+    width: 35px;
+    height: 35px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.settings-item span {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 15px;
+    color: #333;
+}
+
+.settings-btn {
+    position: fixed;
+    bottom: 0px;
+    right: 140px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* From Uiverse.io by lenin55 */
+/* 토글 스위치 스타일 */
+.toggle-switch {
+    position: relative;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* Input */
+.switch > input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    z-index: -1;
+    position: absolute;
+    right: 6px;
+    top: -8px;
+    display: block;
+    margin: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.38);
+    outline: none;
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+    transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
+}
+
+/* Track */
+.switch > span::before {
+    content: "";
+    float: right;
+    display: inline-block;
+    margin: 5px 0 5px 10px;
+    border-radius: 7px;
+    width: 36px;
+    height: 14px;
+    background-color: rgba(0, 0, 0, 0.38);
+    vertical-align: top;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+/* Thumb */
+.switch > span::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    right: 16px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+/* Checked */
+.switch > input:checked + span::before {
+    background-color: #85b8b7;
+}
+
+.switch > input:checked + span::after {
+    background-color: #018786;
+    transform: translateX(16px);
+}

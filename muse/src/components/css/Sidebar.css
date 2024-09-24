@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(#008cff, #aa00ff);
+    color: white;
+    padding: 20px;
+    z-index: 850; /* MusicPlayer보다 높은 z-index */
+    transition: transform 0.3s ease; /* 부드러운 슬라이드 애니메이션 */
+    transform: translateX(-340px);
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 요소를 정렬 */
+    justify-content: space-between; /* 요소들을 위쪽과 아래쪽으로 배치 */
+  }
+  
+  .sidebar.open {
+    transform: translateX(0); /* 사이드바 열렸을 때 */
+  }
+  
+  .user-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu li {
+    margin: 10px 0;
+    cursor: pointer;
+  }
+  
+  .settings-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .toggle-btn{
+    position: absolute;
+    transform: translateX(320px) translateY(400px);
+    width: 20px;
+    height: 100px;
+    background: linear-gradient(#7840f5, #7445f5);
+    border: none;
+    border-radius: 0px 15px 15px 0px;
+  }
+  
+  /* Footer 영역의 설정 버튼 스타일 */
+  footer {
+    margin-top: auto; /* 최하단에 고정 */
+    display: flex;
+    justify-content: center;
+  }
+
+  .settings-btn {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-bottom: 160px;
+  }
+
+  .Sifoot{
+    flex: 1;
+  }
