@@ -3,8 +3,10 @@
 
 /* 전체 페이지 스타일 */
 .artist-page {
-    padding: 40px 20%;
+    padding: 40px 20% 0 20%;
     font-family: 'Inter', sans-serif;
+    height: calc(100vh - 60px - 100px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
+    overflow: auto;
   }
   
   /* 아티스트 정보 섹션 */
@@ -57,8 +59,8 @@
   }
   
   .social-icons img {
-    width: 24px;
-    height: 24px;
+    max-width: 30px;
+    max-height: 25px;
     cursor: pointer;
   }
   
@@ -98,3 +100,14 @@
     color: #666;
   }
   
+  #sort{
+    border: none;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    background: transparent;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    padding: 5px;
+    outline: none;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+  }

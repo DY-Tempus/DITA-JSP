@@ -35,6 +35,7 @@
     display: flex;
     align-items: center;
     flex: 1;
+    min-width: 0;
 }
 
 .album-art {
@@ -49,6 +50,7 @@
     /* width: 40%; 빨간 네모 영역의 너비 (원하는 값으로 조정) */
     overflow: hidden; /* 넘치는 텍스트 숨김 */
     white-space: nowrap; /* 텍스트를 한 줄로 */
+    flex: auto;
 }
 
 .track-title {
@@ -74,8 +76,13 @@
 
 .controls {
     display: flex;
-    gap: 15px; /* 버튼 간의 간격 */
+    gap: 15px;
     margin-right: 15px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .control-button {
@@ -89,12 +96,22 @@
 }
 
 .control-button-extra {
-    width: 20px;
-    height: 18px;
+    max-width: 25px;
+    max-height: 20px;
     background: none;
     border: none;
     color: white;
     cursor: pointer;
-    padding: 3px;
-    margin-top: 1px;
 }
+
+.controls-extra{
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+

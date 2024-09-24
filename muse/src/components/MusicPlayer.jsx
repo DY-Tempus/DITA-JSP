@@ -60,7 +60,7 @@ const MusicPlayer = () => {
                         <p className={`track-title ${isOverflowing ? 'marquee' : ''}`}>Collide - Hellberg & Deutgen vs Splitbreed (Astronaut & Barely Alive Remix)</p>
                     </div>
                 </div>
-                <div className="controls">
+                <div className="controls-extra">
                     <img src="/img/shuffle.png" alt="Shuffle" className="control-button-extra" onClick={() => console.log('Shuffle clicked')} />
                     <img src="/img/repeat.png" alt="Repeat" className="control-button-extra" onClick={() => console.log('Repeat clicked')} />
                     <img src="/img/volume.png" alt="Volume" className="control-button-extra" onClick={() => console.log('Volume clicked')} />

@@ -10,18 +10,25 @@ const Artist = () => {
                 <div className="artist-details">
                     <div className="social-icons">
                         <h1>Getsix</h1>
-                        <img src="/img/getsixart1.png" alt="YouTube" />
-                        <img src="/img/getsixart1.png" alt="Twitter" />
+                        <img src="/img/YouTubeLogo.png" alt="YouTube" />
+                        <img src="/img/XLogo.png" alt="Twitter" />
                     </div>
                     <p>7,603 Subs</p>
                     <button className="subscribe-btn">Subscribe</button>
                 </div>
-                
+
             </div>
 
             {/* 트랙 리스트 */}
             <div className="tracklist">
-                <h2>Recent <span className="dropdown-arrow">▼</span></h2>
+                <h2>
+                    <select id="sort" name="fruit">
+                        <option value="Recent">Recent</option>
+                        <option value="View">View</option>
+                        <option value="Comment">Comment</option>
+                        <option value="Date">Date</option>
+                    </select>
+                </h2>
                 <ul>
                     <li>
                         <img src="/img/getsixart1.png" alt="Track" className="track-image" />
