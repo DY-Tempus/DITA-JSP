@@ -6,8 +6,13 @@
 }
 
 .title {
+    padding-left: 25px;
+    float: left;
     font-size: 40px;
-    padding-left: 15px;
+    background: linear-gradient(45deg, #0077ff, #9500ff);
+    color: transparent;
+    -webkit-background-clip: text;
+    user-select: none;
 }
 
 .upload-section {
@@ -45,8 +50,8 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    padding-top: 50px;
-    gap: 10px;
+    padding-top: 30px;
+    gap: 8px;
 }
 
 .input-fields label {

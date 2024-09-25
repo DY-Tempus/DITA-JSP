@@ -37,7 +37,7 @@ function Sidebar({ isOpen }) {
                     <Link to="/favorite" onClick={closeSidebar}><li>● Favorite</li></Link>
                     <li>● My Playlist</li>
                     <li>● My Music</li>
-                    <li>● Upload Music</li>
+                    <Link to="/upload" onClick={closeSidebar}><li>● Upload Music</li></Link>
                 </ul>
                 <div className='Sifoot'>
                     <img src="/img/settings.png" alt="Settings" className="settings-btn" 
