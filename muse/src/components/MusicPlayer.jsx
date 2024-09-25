@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './css/MusicPlayer.css';
 import Detail from './Detail'
+import Volume from './Volume'
 
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false); // 재생 상태 관리
+    const [isMute, setIsMute] = useState(false); // 음소거 상태 관리
     const [currentTime, setCurrentTime] = useState(0); // 현재 재생 시간
     const duration = 240; // 총 재생 시간 (초 단위)
     const progressBarRef = useRef(null); // 진행바를 참조할 ref
@@ -37,6 +39,11 @@ const MusicPlayer = () => {
     // 재생/정지 토글 함수
     const togglePlayPause = () => {
         setIsPlaying(!isPlaying);
+    };
+
+    // 음소거 토글 함수
+    const toggleMute = () => {
+        setIsMute(!isMute);
     };
 
     // 클릭 또는 드래그 시 재생 위치 변경 함수
@@ -90,6 +97,16 @@ const MusicPlayer = () => {
         //버튼 클릭시 Detail이 나옴
     };
 
+    const [isVolumeVisible, setIsVolumeVisible] = useState(false); // 볼륨 패널 표시 상태
+    const [volume, setVolume] = useState(50); // 볼륨 상태 (0-100 범위)
+
+    const handleMouseEnter = () => { // 볼륨 패널 보이기
+        setIsVolumeVisible(true);
+    };
+    const handleMouseLeave = () => { // 볼륨 패널 숨기기
+        setIsVolumeVisible(false);
+    };
+
     return (
         <div className="music-player-container">
             {/* ProgressBar 통합 */}
@@ -105,7 +122,7 @@ const MusicPlayer = () => {
             <div className="music-player">
                 <div className="controls">
                     <img src="/img/skip_previous.png" alt="Previous" className="control-button-extra" onClick={() => console.log('Previous clicked')} />
-                    <img 
+                    <img // 재생, 멈춤 버튼
                         src={isPlaying ? "/img/pause.png" : "/img/play.png"} 
                         alt={isPlaying ? "Pause" : "Play"} 
                         className="control-button" 
@@ -122,7 +139,26 @@ const MusicPlayer = () => {
                 <div className="controls-extra">
                     <img src="/img/shuffle.png" alt="Shuffle" className="control-button-extra" onClick={() => console.log('Shuffle clicked')} />
                     <img src="/img/repeat.png" alt="Repeat" className="control-button-extra" onClick={() => console.log('Repeat clicked')} />
-                    <img src="/img/volume.png" alt="Volume" className="control-button-extra" onClick={() => console.log('Volume clicked')} />
+                    <div 
+                        className="volume-container" 
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <img 
+                            src={isMute ? "/img/mute.png" : "/img/volume.png"} 
+                            alt={isMute ? "Mute" : "Volume"} 
+                            className="control-button-extra" 
+                            onClick={toggleMute} 
+                        />
+                        {isVolumeVisible && (
+                        <Volume
+                            volume={volume} 
+                            setVolume={setVolume}
+                            onMouseEnter={handleMouseEnter} // 마우스가 패널에 진입했을 때
+                            onMouseLeave={handleMouseLeave} // 마우스가 패널을 떠났을 때
+                        />
+                )}
+                    </div>
                     <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={() => console.log('Playlist clicked')} />
                     <img src="/img/info.png" alt="Info" className="control-button-extra" onClick={toggleDetail} />
                     {/* Detail 컴포넌트 */}
