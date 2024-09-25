@@ -13,10 +13,16 @@ const Detail = ({ isOpen }) => {
             <div className="info-section">
                 <img src="/img/Collide.png" alt="Album Art" className="song-cover" />
                 <div className="detail-info">
-                    <p><strong>Uploader:</strong> Hellberg, Deutgen, Splitbreed</p>
-                    <p><strong>Producer:</strong> Astronaut, Barely Alive</p>
-                    <p><strong>Album:</strong> Collide - The Remixes</p>
-                    <p><strong>Copyright:</strong> Monstercat</p>
+                    <p><strong>Uploader</strong></p>
+                    <p><strong>Producer</strong></p>
+                    <p><strong>Album</strong></p>
+                    <p><strong>Copyright</strong> </p>
+                </div>
+                <div className="detail-info">
+                    <p>Hellberg, Deutgen, Splitbreed</p>
+                    <p>Astronaut, Barely Alive</p>
+                    <p>Collide - The Remixes</p>
+                    <p>Monstercat</p>
                 </div>
             </div>
 
@@ -44,13 +50,14 @@ const Detail = ({ isOpen }) => {
                 
                 <div className="contents">
                     <h2>Comments</h2>
-                    <div className="comments">
+                    <div className="comment">
                         <input type="text" placeholder="Add a comment..." />
-                        <img src="img/comment.png" alt="Comment-Button" className="comment-button"/>
+                        <img src="img/comment.png" alt="Comment-Button" className="comment-button" onClick={() => console.log('Comment-Button clicked')}/>
                     </div>
-                    <div className="comments-content">
-                        <p>asdf123: 1:27 was great</p>
-                        <p>aaaaaaa: Loving this track!</p>
+                    <div className="comments-sector">
+                        <p><strong>writer1</strong><br/>1:27 was great</p>
+                        <p><strong>신 창 섭</strong><br/>이 또한 신창섭의 은혜겠지요</p>
+                        <p><strong>대 상 혁</strong><br/>젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
                     </div>
                 </div>
             </div>

@@ -124,10 +124,10 @@
 
 /* Checked */
 .switch > input:checked + span::before {
-    background-color: #85b8b7;
+    background: linear-gradient(#007bffa8, #d04fff8f);
 }
 
 .switch > input:checked + span::after {
-    background-color: #018786;
+    background: linear-gradient(45deg, #007AFF, #D14FFF);
     transform: translateX(16px);
 }
