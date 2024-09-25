@@ -10,6 +10,7 @@ import Recent from './components/Recent';
 import Favorite from './components/Favorite';
 import PlayList from './components/PlayList';
 import Upload from './components/Upload';
+import MyMusic from './components/MyMusic';
 import './css/App.css';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/favorite" element={<Favorite/>}/>
           <Route path="/playlist" element={<PlayList/>}/>
           <Route path="/upload" element={<Upload/>}/>
+          <Route path="/mymusic" element={<MyMusic/>}/>
         </Routes>
         <MusicPlayer /> {/* 항상 하단에 고정된 음악 플레이어 */}
       </div>
