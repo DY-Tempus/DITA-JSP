@@ -7,7 +7,7 @@ const Detail = ({ isOpen }) => {
     return ReactDOM.createPortal(
         <div className={`detail-panel ${isOpen ? 'open' : ''}`}>
             {/* 곡 제목 */}
-            <h1 className="title">Collide - Hellberg & Deutgen vs Splitbreed (Astronaut & Barely Alive Remix)</h1>
+            <h1 className="detail-panel-title">Collide - Hellberg & Deutgen vs Splitbreed (Astronaut & Barely Alive Remix)</h1>
 
             {/* 상단 영역: 앨범 이미지와 정보 */}
             <div className="info-section">
@@ -15,6 +15,10 @@ const Detail = ({ isOpen }) => {
                 <div className="detail-info">
                     <div>
                         <span><strong>Uploader</strong></span>
+                        <span>User123</span>
+                    </div>
+                    <div>
+                        <span><strong>Artist</strong></span>
                         <span>Hellberg, Deutgen, Splitbreed</span>
                     </div>
                     <div>
