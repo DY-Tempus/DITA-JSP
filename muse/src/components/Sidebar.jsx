@@ -35,7 +35,9 @@ function Sidebar({ isOpen }) {
                     <Link to="/profile" onClick={closeSidebar}>
                         <li>● Profile</li>
                     </Link>
-                    <li>● Recently Played</li>
+                    <Link to="/recent" onClick={closeSidebar}>
+                        <li>● Recently Played</li>
+                    </Link>
                     <li>● Favorite</li>
                     <li>● My Playlist</li>
                     <li>● My Music</li>

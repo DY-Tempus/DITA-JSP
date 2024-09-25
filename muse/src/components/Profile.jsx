@@ -31,7 +31,8 @@ const Profile = () => {
     };
 
     // 포커스를 잃었을 때 저장하는 함수
-    const handleBlur = (field, value) => {
+    const handleBlur = (e, field, value) => {
+        setUserInfo({ ...userInfo, [field]: e.target.value });
         setEditField(''); // 수정 끝나면 다시 기본 상태로 돌아감
     };
 
@@ -47,7 +48,7 @@ const Profile = () => {
                             value={userInfo.username}
                             onChange={(e) => handleKeyDown(e, 'username', e.target.value)}
                             onKeyDown={(e) => handleKeyDown(e, 'username', e.target.value)}
-                            onBlur={(e) => handleBlur('username', e.target.value)}/>
+                            onBlur={(e) => handleBlur(e, 'username', e.target.value)}/>
                             <img
                                 src="./img/edit.png"
                                 alt="Edit"
@@ -85,7 +86,7 @@ const Profile = () => {
                                 value={userInfo.password}
                                 onChange={(e) => handleKeyDown(e, 'password', e.target.value)}
                                 onKeyDown={(e) => handleKeyDown(e, 'password', e.target.value)}
-                                onBlur={(e) => handleBlur('password', e.target.value)}
+                                onBlur={(e) => handleBlur(e, 'password', e.target.value)}
                             />
                             <img
                                     src="./img/edit.png"
@@ -116,7 +117,7 @@ const Profile = () => {
                             value={userInfo.country}
                             onChange={(e) => handleKeyDown(e, 'country', e.target.value)}
                             onKeyDown={(e) => handleKeyDown(e, 'country', e.target.value)}
-                            onBlur={(e) => handleBlur('country', e.target.value)}
+                            onBlur={(e) => handleBlur(e, 'country', e.target.value)}
                             />
                             <img
                                 src="./img/edit.png"
@@ -148,7 +149,7 @@ const Profile = () => {
                             value={userInfo.email}
                             onChange={(e) => handleKeyDown(e, 'email', e.target.value)}
                             onKeyDown={(e) => handleKeyDown(e, 'email', e.target.value)}
-                            onBlur={(e) => handleBlur('email', e.target.value)}
+                            onBlur={(e) => handleBlur(e, 'email', e.target.value)}
                             />
                             <img
                                 src="./img/edit.png"
@@ -175,7 +176,7 @@ const Profile = () => {
                     <span className='width-limit'>Favorite Genre 1</span>
                     <select
                         value={userInfo.genre1}
-                        onChange={(e) => handleBlur('genre1', e.target.value)}
+                        onChange={(e) => handleBlur(e, 'genre1', e.target.value)}
                     >
                         <option value="Dubstep">Dubstep</option>
                         <option value="Rock">Rock</option>
@@ -187,7 +188,7 @@ const Profile = () => {
                     <span className='width-limit'>Favorite Genre 2</span>
                     <select
                         value={userInfo.genre2}
-                        onChange={(e) => handleBlur('genre2', e.target.value)}
+                        onChange={(e) => handleBlur(e, 'genre2', e.target.value)}
                     >
                         <option value="EDM">EDM</option>
                         <option value="Hip-Hop">Hip-Hop</option>
