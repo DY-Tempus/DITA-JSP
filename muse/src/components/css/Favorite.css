@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 
-.recent-page {
+.favorite-page {
     padding: 20px;
     overflow: auto;
     height: calc(100vh - 60px - 97px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
@@ -46,6 +46,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
   }
   
   .song-title {
@@ -66,4 +67,9 @@
 
   .song-writer{
     font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .thumbs_click{
+    height: 30px;
   }

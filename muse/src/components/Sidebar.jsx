@@ -32,13 +32,9 @@ function Sidebar({ isOpen }) {
                     <h3>My Page</h3>
                 </div>
                 <ul className="menu">
-                    <Link to="/profile" onClick={closeSidebar}>
-                        <li>● Profile</li>
-                    </Link>
-                    <Link to="/recent" onClick={closeSidebar}>
-                        <li>● Recently Played</li>
-                    </Link>
-                    <li>● Favorite</li>
+                    <Link to="/profile" onClick={closeSidebar}><li>● Profile</li></Link>
+                    <Link to="/recent" onClick={closeSidebar}><li>● Recently Played</li></Link>
+                    <Link to="/favorite" onClick={closeSidebar}><li>● Favorite</li></Link>
                     <li>● My Playlist</li>
                     <li>● My Music</li>
                     <li>● Upload Music</li>
