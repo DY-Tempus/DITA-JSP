@@ -43,6 +43,7 @@ const Profile = () => {
                 <div className="profile-username">
                     {editField === 'username' ? (
                         <div>
+                            <div>
                             <input
                             type="text"
                             value={userInfo.username}
@@ -55,10 +56,14 @@ const Profile = () => {
                                 className="edit-icon"
                                 onClick={() => handleEdit('username')}
                             />
+                            </div>
+                            <div className='subs'>
+                                <span>7,603 Subs</span>
+                            </div>
                         </div>
                         
                     ) : (
-                        <>
+                        <div>
                             <span>{userInfo.username}</span>
                             <img
                                 src="./img/edit.png"
@@ -66,7 +71,10 @@ const Profile = () => {
                                 className="edit-icon"
                                 onClick={() => handleEdit('username')}
                             />
-                        </>
+                            <div className='subs'>
+                                <span>7,603 Subs</span>
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>
@@ -202,7 +210,7 @@ const Profile = () => {
             </div>
             
         </div>
-    );
+                );
 };
 
-export default Profile;
+                export default Profile;
