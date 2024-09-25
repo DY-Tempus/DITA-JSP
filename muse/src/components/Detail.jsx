@@ -1,9 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './css/Detail.css';
 
-const Detail = () => {
-    return (
-        <div className="detail-container">
+const Detail = ({ isOpen }) => {
+
+    return ReactDOM.createPortal(
+        <div className={`detail-panel ${isOpen ? 'open' : ''}`}>
             {/* 곡 제목 */}
             <h1 className="title">Collide - Hellberg & Deutgen vs Splitbreed (Astronaut & Barely Alive Remix)</h1>
             
@@ -23,7 +25,7 @@ const Detail = () => {
                 {/* 가사 */}
                 <div className="contents">
                     <h2>Lyrics</h2>
-                    <div className="lyrics-content">
+                    <div className="lyrics-section">
                         [Intro] <br />
                         (Missile directed to the heart) <br />
                         You are my star <br />
@@ -36,22 +38,6 @@ const Detail = () => {
                         Feet off the ground, head to the sky<br />
                         Yeah, wind by my side<br />
                         You're in my vision, directly we collide<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
-                        집에가고싶다<br />
                     </div>
                 </div>
                 {/* 댓글 */}
@@ -65,22 +51,11 @@ const Detail = () => {
                     <div className="comments-content">
                         <p>asdf123: 1:27 was great</p>
                         <p>aaaaaaa: Loving this track!</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
-                        <p>히히: 집에못가</p>
                     </div>
-                    
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 

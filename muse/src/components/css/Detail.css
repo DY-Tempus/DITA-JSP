@@ -1,8 +1,18 @@
 /* 전체 Detail 컨테이너 설정 */
-.detail-container {
+.detail-panel {
+    position: fixed;
     width: 100%;
     height: 100%;
     background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999; 
+    box-sizing: border-box;
+    transform: translateY(100%); 
+    transition: transform 0.3s ease;
+}
+
+.detail-panel.open {
+    transform: translateY(0);
 }
 
 /* Title 섹션 */
@@ -42,11 +52,12 @@
 .content-section {
     display: flex;
     gap: 20px;
+    justify-content: space-between; /* 두 섹션을 양쪽에 정렬 */
+    padding: 0 15px; /* 왼쪽과 오른쪽에 패딩 추가 */
 }
 
 .contents {
     flex: 1;
-    border-radius: 10px;
     padding: 15px;
 }
 
@@ -56,7 +67,7 @@
     margin-bottom: 15px;
 }
 
-.lyrics-content {
+.lyrics-section {
     max-height: 400px;
     overflow-y: auto;
 }
@@ -89,7 +100,6 @@
 .comments-content {
     max-height: 400px;
     overflow-y: auto;
-    padding-right: 10px;
 }
 
 

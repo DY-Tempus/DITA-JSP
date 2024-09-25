@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './css/MusicPlayer.css';
+import Detail from './Detail'
 
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false); // 재생 상태 관리
@@ -82,6 +83,12 @@ const MusicPlayer = () => {
         };
     }, [isDragging]);
 
+    const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
+
+    const toggleDetail = () => {
+        setIsDetailOpen(!isDetailOpen);
+        //버튼 클릭시 Detail이 나옴
+    };
 
     return (
         <div className="music-player-container">
@@ -117,7 +124,9 @@ const MusicPlayer = () => {
                     <img src="/img/repeat.png" alt="Repeat" className="control-button-extra" onClick={() => console.log('Repeat clicked')} />
                     <img src="/img/volume.png" alt="Volume" className="control-button-extra" onClick={() => console.log('Volume clicked')} />
                     <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={() => console.log('Playlist clicked')} />
-                    <img src="/img/info.png" alt="Info" className="control-button-extra" onClick={() => console.log('Info clicked')} />
+                    <img src="/img/info.png" alt="Info" className="control-button-extra" onClick={toggleDetail} />
+                    {/* Detail 컴포넌트 */}
+                    <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} />
                 </div>
             </div>
         </div>
