@@ -121,3 +121,6 @@
     align-items: center;
 }
 
+.volume-container { /* 볼륨만 줄 안 맞아서 만듬 */
+    margin-top: 5px;
+}
