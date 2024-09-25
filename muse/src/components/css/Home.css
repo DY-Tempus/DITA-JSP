@@ -120,3 +120,9 @@ body {
     margin-top: 25px; /* 이미지와 텍스트 간의 여백 */
     text-align: center;
 }
+
+.artist-image-home{
+    width: inherit;
+    margin: 0;
+    border-radius: 50%;
+}
