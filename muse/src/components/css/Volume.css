@@ -2,11 +2,11 @@
     position: absolute;
     bottom: 42px; /* 볼륨 아이콘 위에 나타나도록 */
     right: 97px; /* 위치 조절 */
-    background: #e2e2e2;
+    background: #ffffff;
     padding: 4px 7px;
     border: none;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 999; /* 다른 요소 위에 나타나도록 */
 }
 
@@ -14,6 +14,6 @@
     width: 6px; /* 슬라이더의 너비 */
     height: 100px; /* 슬라이더의 높이 */
     border-radius: 5px;
-    background: white;
     -webkit-appearance: slider-vertical; /* 브라우저에 따라 세로 슬라이더 표시 */
+    border: none;
 }

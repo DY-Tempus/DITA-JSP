@@ -14,23 +14,26 @@ const Upload = () => {
                         <p>Upload Image</p>
                     </div>
                     <div className="input-fields">
-                        <label>Title</label><input type="text" />
-                        <label>Uploader</label><input type="text" />
-                        <label>Producer</label><input type="text" />
-                        <label>Album</label><input type="text" />
-                        <label>Genre</label><input type="text" />
-                        <label>Copyright</label><input type="text" />
-                        <label>Option</label>
-                        <select>
-                            <option value="public">Public</option>
-                            <option value="private">Private</option>
-                        </select>
+                        <div><label>Title</label><input type="text" /></div>
+                        <div><label>Uploader</label><input type="text" /></div>
+                        <div><label>Producer</label><input type="text" /></div>
+                        <div><label>Album</label><input type="text" /></div>
+                        <div><label>Genre</label><input type="text" /></div>
+                        <div><label>Copyright</label><input type="text" /></div>
+                        <div>
+                            <label>Option</label>
+                            <select>
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                        
                     </div>
                 </div>
 
                 {/* 가사 섹션 */}
                 <div className="lyrics-content">
-                    <h2>Lyrics</h2>
+                    <h1>Lyrics</h1>
                     <textarea placeholder="Insert your lyrics here..."></textarea>
                 </div>
             </div>
