@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+.IDPWContainer{
+    background: linear-gradient(45deg, #007AFF, #D14FFF);
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    text-align: right;
+    color: white;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+    /* background: linear-gradient(#00eaff, transparent),
+      linear-gradient(-45deg, #e567fe, transparent),
+      linear-gradient(45deg, #0040ff, transparent);
+    background-blend-mode: sreen; */
+    -ms-overflow-style: none;
+    margin: 0px;
+}
+
+.ContentContainer{
+    margin: 10px;
+}
+
+.InputSetting{
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+    font-size: 18px;
+    padding: 5px;
+    outline: none;
+}
+
+.TitleLabel{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #009dff, #8000ff);
+    color: transparent;
+    font-weight: 500;
+    -webkit-background-clip: text;
+    user-select: none;
+}
+
+.SignInButton{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #009dff, #8000ff);
+    color: transparent;
+    font-weight: 400;
+    -webkit-background-clip: text;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    border: none;
+    font-size: medium;
+}
+
+.SignInButton:hover{
+    cursor: pointer;
+    background: linear-gradient(135deg, #009dff, #8000ff);
+    color: white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+
+.FontSetting{
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
+    font-size: larger;
+    user-select: none;
+}
+
+.ForgotPass{
+    color: #6f6f6f;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+    user-select: none;
+}
+
+.ForgotPass:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
