@@ -11,6 +11,7 @@ body {
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
+    height: calc(100vh - 60px - 100px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
 }
 
 /* 스크롤바 전체 영역 */

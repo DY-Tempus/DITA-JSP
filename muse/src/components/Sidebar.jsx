@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import './css/Sidebar.css';
 import Settings from './Settings'; // Settings 컴포넌트 가져오기
+import { Link } from 'react-router-dom';
 
 function Sidebar({ isOpen }) {
 
@@ -13,6 +14,10 @@ function Sidebar({ isOpen }) {
         //버튼 클릭시 사이드바가 나옴
 
     };
+
+    const closeSidebar = () =>{
+        setIsSidebarOpen(false); // 사이드바는 닫기
+    }
 
     const openSettings = () => {
         setIsSettingsOpen(true); // Settings를 보이도록 설정
@@ -27,7 +32,9 @@ function Sidebar({ isOpen }) {
                     <h3>My Page</h3>
                 </div>
                 <ul className="menu">
-                    <li>● Profile</li>
+                    <Link to="/profile" onClick={closeSidebar}>
+                        <li>● Profile</li>
+                    </Link>
                     <li>● Recently Played</li>
                     <li>● Favorite</li>
                     <li>● My Playlist</li>

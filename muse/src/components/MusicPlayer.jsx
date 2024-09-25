@@ -3,32 +3,34 @@ import './css/MusicPlayer.css';
 
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false); // 재생 상태 관리
-    const currentTime = 0; // 현재 재생 시간 (초 단위)
-    const duration = 240; // 총 재생 시간 (초 단위), 예를 들어 4분 = 240초
+    const [currentTime, setCurrentTime] = useState(0); // 현재 재생 시간
+    const duration = 240; // 총 재생 시간 (초 단위)
+    const progressBarRef = useRef(null); // 진행바를 참조할 ref
+    const [isDragging, setIsDragging] = useState(false); // 드래그 상태 관리
 
     const [isOverflowing, setIsOverflowing] = useState(false);
     const titleRef = useRef(null);
     const containerRef = useRef(null);
 
-      // 텍스트가 넘치는지 확인하는 함수
+    // 텍스트가 넘치는지 확인하는 함수
     const checkOverflow = () => {
-    if (titleRef.current && containerRef.current) {
-      const titleWidth = titleRef.current.scrollWidth;
-      const containerWidth = containerRef.current.offsetWidth;
-      setIsOverflowing(titleWidth > containerWidth); // 제목이 컨테이너보다 긴지 확인
+        if (titleRef.current && containerRef.current) {
+            const titleWidth = titleRef.current.scrollWidth;
+            const containerWidth = containerRef.current.offsetWidth;
+            setIsOverflowing(titleWidth > containerWidth); // 제목이 컨테이너보다 긴지 확인
         }
     };
 
     useEffect(() => {
         checkOverflow(); // 초기 로드 시 실행
         window.addEventListener('resize', checkOverflow); // 윈도우 크기가 변경될 때마다 실행
-    
+
         return () => {
-          window.removeEventListener('resize', checkOverflow); // 크기 변경 이벤트 리스너 해제
+            window.removeEventListener('resize', checkOverflow); // 크기 변경 이벤트 리스너 해제
         };
-      }, []);
-    
-    // 진행 바의 진행률을 계산 (기본값을 0으로 설정)
+    }, []);
+
+    // 진행 바의 진행률을 계산
     const progress = (currentTime / duration) * 100;
 
     // 재생/정지 토글 함수
@@ -36,10 +38,60 @@ const MusicPlayer = () => {
         setIsPlaying(!isPlaying);
     };
 
+    // 클릭 또는 드래그 시 재생 위치 변경 함수
+    const handleProgressChange = (e) => {
+        const progressBar = progressBarRef.current;
+        const rect = progressBar.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left; // 클릭한 x좌표 계산
+        const newProgress = (offsetX / rect.width) * duration; // 클릭한 위치에 따른 새 재생 시간 계산
+        setCurrentTime(newProgress); // 재생 시간을 업데이트
+    };
+    // 드래그 시작
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        handleProgressChange(e); // 첫 클릭 시 재생 위치 변경
+    };
+
+    // 드래그 중
+    const handleMouseMove = (e) => {
+        if (isDragging) {
+            handleProgressChange(e); // 마우스 이동 중에 재생 위치 업데이트
+        }
+    };
+
+    // 드래그 종료
+    const handleMouseUp = () => {
+        if (isDragging) {
+            setIsDragging(false);
+        }
+    };
+
+    // 마우스 업 이벤트 리스너 추가
+    useEffect(() => {
+        if (isDragging) {
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+        } else {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseup', handleMouseUp);
+        }
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isDragging]);
+
+
     return (
         <div className="music-player-container">
             {/* ProgressBar 통합 */}
-            <div className="progress-bar-container">
+            <div 
+                className="progress-bar-container" 
+                ref={progressBarRef}
+                onClick={handleProgressChange} // 진행바 클릭 이벤트 추가
+                onMouseDown={handleMouseDown} // 드래그 시작
+            >
                 <div className="progress-bar" style={{ width: `${progress}%` }}></div>
             </div>
 

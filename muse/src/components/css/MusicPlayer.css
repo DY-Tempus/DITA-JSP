@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+
 /* MusicPlayer.css - 하단 음악 플레이어 스타일 */
 .music-player-container {
     position: fixed;
@@ -12,11 +15,12 @@
     height: 6px; /* 높이 조정 */
     background-color: #e0e0e0; /* 바탕색 */
     overflow: hidden;
+
 }
 
 .progress-bar {
     height: 100%;
-    background: linear-gradient(45deg, #6a11cb, #2575fc); /* 그라데이션 색상 */
+    background: linear-gradient(90deg, #2575fc, #6a11cb); /* 그라데이션 색상 */
     transition: width 0.1s ease; /* 부드러운 진행 효과 */
     border-radius: 4px;
 }
@@ -29,6 +33,7 @@
     background: linear-gradient(45deg, #6a11cb, #2575fc);
     color: white;
     height: 40px;
+    user-select: none;
 }
 
 .track-info {
@@ -58,6 +63,7 @@
     margin: 0;
     display: inline-block;
     white-space: nowrap; /* 한 줄로 유지 */
+    font-family: 'Inter', sans-serif;
 }
 
 .track-title.marquee{
