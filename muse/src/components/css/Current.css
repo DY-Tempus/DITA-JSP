@@ -1,0 +1,13 @@
+
+.current-page {
+    padding: 20px;
+    overflow: auto;
+    height: calc(100vh - 60px - 97px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
+    transform: translateY(100%); 
+    transition: transform 0.3s ease;
+    z-index: 999;
+}
+
+.current-page.open {
+    transform: translateY(0);
+}
