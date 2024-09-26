@@ -1,14 +1,14 @@
 const express = require('express');
-const router = express.Router();
-const { getAlbums, createAlbum, getAlbumById } = require('../controllers/albumController');
+const app = express()
+const albemCon = require('../controllers/albumController');
 
 // 모든 앨범 조회
-router.get('/', getAlbums);
+app.get('/', albemCon.getAlbums);
 
 // 특정 앨범 조회
-router.get('/:albumId', getAlbumById);
+app.get('/:albumId', albemCon.getAlbumById);
 
 // 앨범 추가
-router.post('/', createAlbum);
+app.post('/', albemCon.createAlbum);
 
-module.exports = router;
+module.exports = app;

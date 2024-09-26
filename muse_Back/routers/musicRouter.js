@@ -1,14 +1,14 @@
 const express = require('express');
-const router = express.Router();
-const { getMusics, createMusic, getMusicById } = require('../controllers/musicController');
+const app = express()
+const musicCon = require('../controllers/musicController');
 
 // 모든 음악 조회
-router.get('/', getMusics);
+app.get('/', musicCon.getMusics);
 
 // 특정 음악 조회
-router.get('/:musicId', getMusicById);
+app.get('/:musicId', musicCon.getMusicById);
 
 // 음악 추가
-router.post('/', createMusic);
+app.post('/', musicCon.createMusic);
 
-module.exports = router;
+module.exports = app;
