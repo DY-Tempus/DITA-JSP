@@ -11,52 +11,49 @@
 
 <body>
   <h1 class="TitleLabel">MU:SE</h1>
-  <div class="ContentContainer">
-    <div class="Spread">
-      <label>ID</label>
-      <input type="text" class="InputSetting" name="username">
+  <form action="SignUpServlet" method="post"> <!-- SignUpServlet으로 폼 전송 -->
+    <div class="ContentContainer">
+      <div class="Spread">
+        <label>ID</label>
+        <input type="text" class="InputSetting" name="username">
+      </div>
+      <div class="Spread">
+        <label>PW</label>
+        <input type="password" class="InputSetting" name="password">
+      </div>
+      <div class="Spread">
+        <label>PW Confirm</label>
+        <input type="password" class="InputSetting" name="passwordConfirm">
+      </div>
+      <div class="Spread">
+        <label>Email</label>
+        <input type="email" class="InputSetting" name="email">
+      </div>
+      <div class="Spread">
+        <label>Name</label>
+        <input type="text" class="InputSetting" name="name">
+      </div>
+      <div class="Spread">
+        <label>Favorite Genre 1</label>
+        <select name="favoriteGenre1" class="InputSetting">
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="hiphop">Hip-hop</option>
+          <option value="jazz">Jazz</option>
+        </select>
+      </div>
+      <div class="Spread">
+        <label>Favorite Genre 2</label>
+        <select name="favoriteGenre2" class="InputSetting">
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="hiphop">Hip-hop</option>
+          <option value="jazz">Jazz</option>
+        </select>
+      </div>
     </div>
-    <div class="Spread">
-      <label>PW</label>
-      <input type="password" class="InputSetting" name="password">
-    </div>
-    <div class="Spread">
-      <label>PW Confirm</label>
-      <input type="password" class="InputSetting" name="passwordConfirm">
-    </div>
-    <div class="Spread">
-      <label class="Email">Email</label>''
-      <input type="email" class="InputSetting" name="email">
-    </div>
-    <div class="Spread">
-      <label>Name</label>
-      <input type="text" class="InputSetting" name="name">
-    </div>
-    <div class="Spread">
-      <label>Favorite Genre 1</label>
-      <select name="favoriteGenre1" class="InputSetting">
-        <option value="pop">Pop</option>
-        <option value="rock">Rock</option>
-        <option value="hiphop">Hip-hop</option>
-        <option value="jazz">Jazz</option>
-      </select>
-    </div>
-    <div class="Spread">
-      <label>Favorite Genre 2</label>
-      <select name="favoriteGenre2" class="InputSetting">
-        <option value="pop">Pop</option>
-        <option value="rock">Rock</option>
-        <option value="hiphop">Hip-hop</option>
-        <option value="jazz">Jazz</option>
-      </select>
-    </div>
-  </div>
-  <button class="ConfirmButton" onclick="submitSignUp()">Sign Up</button>
-  <script>
-    function submitSignUp() {
-      document.location.href = "SignIn.jsp";
-    }
-  </script>
+    <button type="submit" class="ConfirmButton">Sign Up</button>
+  </form>
 </body>
 
 </html>

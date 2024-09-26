@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+
+/* 상단 배너 스타일 */
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #007AFF, #D14FFF);
+    color: white;
+    z-index: 2; /* 항상 다른 요소 위에 나타나도록 설정 */
+    font-family: 'Inter', sans-serif;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 500;
+    user-select: none;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    max-width: 400px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+}
+
+.search-bar ::-webkit-input-placeholder{
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.search-bar button, .sign-out {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: white;
+    color: #4c8bf5;
+    margin-left: 5px;
+}
+
+.sign-out {
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    color: #009dff;
+    font-weight: 400;
+    border: none;
+    border-radius: 15px;
+}
+
+.sign-out:hover{
+    cursor: pointer;
+    background: linear-gradient(45deg, #002fff, #00c3ff);
+    color: white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+
+.search-icon{
+    width: 30px;
+}
+
+.logo {
+    text-decoration: none; /* 밑줄 제거 */
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+  
+a {
+text-decoration: none; /* 모든 링크에서 밑줄 제거 */
+}
+  

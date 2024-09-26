@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+
+/* 전체 페이지 기본 설정 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 스크롤바 전체 영역 */
+::-webkit-scrollbar {
+    width: 10px; /* 세로 스크롤바 너비 */
+    height: 6px; /* 가로 스크롤바 높이 */
+}
+
+/* 스크롤바 트랙 (배경) */
+::-webkit-scrollbar-track {
+    background: #ffffff; 
+}
+
+/* 스크롤바 핸들 (움직이는 부분) */
+::-webkit-scrollbar-thumb {
+    background: #6a11cb; 
+    border-radius: 10px; /* 둥근 모서리 */
+}
+
+/* 스크롤바 핸들에 마우스를 올렸을 때 */
+::-webkit-scrollbar-thumb:hover {
+    background: #2575fc; 
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    padding-top: 20px; /* 상단 배너와의 간격 */
+    overflow-y: auto; /* 세로 스크롤을 허용 */
+    height: calc(100vh - 60px - 100px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
+}
+
+/* 앨범 섹션 */
+.album-section {
+    margin-bottom: 40px;
+}
+
+.section-title{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(45deg, #0077ff, #9500ff);
+    color: transparent;
+    font-weight: 500;
+    -webkit-background-clip: text;
+    user-select: none;
+}
+
+.album-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* 앨범이 많을 때 가로 스크롤을 허용 */
+}
+
+.album-item {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    width: 150px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.album-cover-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transition: transform 0.2s; /* hover 시 이미지 확대 효과 */
+}
+
+.album-item:hover .album-cover-container {
+    transform: scale(1.05); /* 이미지 영역만 확대 */
+    z-index: 1;
+}
+
+.album-cover {
+    position: absolute;
+    border-radius: 5px;
+    transition: transform 0.2s;
+    width: 100%;
+    height: 100%;
+}
+
+.main-cover {
+    z-index: 2; /* main cover가 항상 위에 오도록 설정 */
+}
+
+.track-cover {
+    z-index: 1; /* track cover는 main cover 아래에 위치 */
+    opacity: 0.3;
+    width: 90%;
+    height: 90%;
+}
+
+.album-item:hover .track-cover {
+    transform: scale(1.05);
+    opacity: 0.5;
+}
+
+.album-title {
+    font-weight: bold;
+    color: black;
+    user-select: none;
+    margin-top: 25px; /* 이미지와 텍스트 간의 여백 */
+    text-align: center;
+}

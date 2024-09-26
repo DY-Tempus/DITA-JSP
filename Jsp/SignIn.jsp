@@ -11,27 +11,22 @@
 
 <body>
   <h2 class="TitleLabel">MU:SE</h2>
-  <div class="IDPWContainer">
-    <div class="ContentContainer">
-      <label class="FontSetting">ID</label>
-      <input type="text" class="InputSetting" name="username">
+  <form action="SignInServlet" method="post"> <!-- SignInServlet으로 데이터 전송 -->
+    <div class="IDPWContainer">
+      <div class="ContentContainer">
+        <label class="FontSetting">ID</label>
+        <input type="text" class="InputSetting" name="username">
+      </div>
+      <div class="ContentContainer">
+        <label class="FontSetting">PW</label>
+        <input type="password" class="InputSetting" name="password">
+      </div>
     </div>
-    <div class="ContentContainer">
-      <label class="FontSetting">PW</label>
-      <input type="password" class="InputSetting" name="password">
-    </div>
-  </div>
-  <button class="SignInButton" onclick="submitLogin()">Sign In</button>
-  <script>
-    function submitLogin() {
-      document.location.href = "Home.jsp";
-    }
-  </script>
-  <script src="${pageContext.request.contextPath}/javascript/SignInPage.js"></script>
+    <button type="submit" class="SignInButton">Sign In</button> <!-- 서버로 POST 전송 -->
+  </form>
+  <footer>
+    <label class="ForgotPass">Forgot Password?</label>
+  </footer>
 </body>
-
-<footer>
-  <label class="ForgotPass">Forgot Password?</label>
-</footer>
 
 </html>
