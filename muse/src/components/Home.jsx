@@ -31,10 +31,12 @@ const Home = () => {
                         {recent_played.map((recent_played) => (
                             <div key={recent_played.id} className="album-item">
                                 <div className="album-cover-container">
+                                <Link to="/album">
                                     <img src={recent_played.img4} className='album-img layer-3'></img>
                                     <img src={recent_played.img3} className='album-img layer-2'></img>
                                     <img src={recent_played.img2} className='album-img layer-1'></img>
                                     <img src={recent_played.img1} className='album-img'></img>
+                                </Link>
                                 </div>
                                 <p className="album-title">{recent_played.name}</p>
                             </div>

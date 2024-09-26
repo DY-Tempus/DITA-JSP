@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+
+.album-page {
+    padding: 20px;
+    /* overflow: auto; */
+    height: calc(100vh - 60px - 97px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #009dff, #8000ff);
+    color: transparent;
+    font-weight: 700;
+    -webkit-background-clip: text;
+    margin-bottom: 30px;
+    width: fit-content;
+  }
+  
+  .song-list-album {
+    display: flex;
+    flex-direction: column;
+    /* padding-left: 10%;
+    padding-right: 10%; */
+    flex: 1;
+    max-width: 800px;
+    overflow: auto;
+    height: 100%;
+    padding-right: 10px;
+  }
+  
+  .my-music {
+    display: flex;
+    justify-content: space-between; /* song-item과 thumbs 이미지 사이의 공간을 최대한 늘림 */
+    align-items: center;
+    gap: 5px;
+  }
+
+  .thumbs-views{
+    margin-left: 15px; /* 왼쪽 여백을 약간 추가해 여유 공간을 만듦 */
+    margin-right: 5px;
+    width: 25px;
+    height: 25px; /* thumbs 이미지의 크기를 조절 */
+    cursor: pointer;
+  }
+
+  .song-list p {
+    font-size: 16px;
+  }
+
+  .song-item {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd; /* 각 곡 사이의 구분선 */
+    cursor: pointer;
+  }
+  
+  .song-image {
+    width: 50px; /* 이미지 크기 */
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+  }
+  
+  .song-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .song-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;  
+  }
+  
+  .song-duration {
+    font-size: 14px;
+    color: #999;
+    align-content: center;
+  }
+  
+  .song-detail{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .song-writer{
+    font-size: 14px;
+  }
+
+  .flex-direction-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: calc(100% - 80px);
+  }
+
+  .album-image{
+    width: fit-content;
+    display: flex;
+  }
+
+  .album-image{
+    width: 40%;
+  }
