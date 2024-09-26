@@ -10,7 +10,6 @@ app.use(express.json()); // JSON 데이터 처리
 app.use(express.urlencoded({ extended: true })); // URL-encoded 데이터 처리
 
 
-
 // API 라우터 연결
 const userRouter = require('./routers/userRouter'); // 예시로 사용자 라우터 추가
 app.use('/api/users', userRouter); // 사용자 라우터 설정
