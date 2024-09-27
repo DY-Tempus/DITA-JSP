@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/Profile.css';
+import axios from 'axios';
 
 const Profile = () => {
+    useEffect(()=>{
+        axios.get("http://localhost:3000/api/profile")
+        .then((Response)=>console.log(Response.data));
+    }, []);
     // 사용자 정보 상태
     const [userInfo, setUserInfo] = useState({
         username: 'user123',
@@ -39,6 +44,7 @@ const Profile = () => {
     return (
         <div className="profile-page">
             <div className="profile-header">
+                <h1>{console.log(Response.data)}</h1>
                 <img src="./img/getsix.png" alt="Profile" className="profile-image" />
                 <div className="profile-username">
                     {editField === 'username' ? (
