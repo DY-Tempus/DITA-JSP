@@ -4,6 +4,7 @@ const dbInfo={
   user: 'root',
   password: '1234',
   database: 'mydb',
+  connectionLimit: 5
 };
 
 const connection = mysql.createConnection(dbInfo);
