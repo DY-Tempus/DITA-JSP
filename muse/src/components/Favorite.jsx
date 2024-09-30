@@ -175,20 +175,20 @@ const songs = [
 const Favorite = () => {
 return (
     <div className="favorite-page">
-    <h1 className="section-title">Favorite</h1>
-    <div className="song-list">
+    <h1 className="favorite-section-title">Favorite</h1>
+    <div className="favorite-song-list">
         {songs.map((song) => (
-        <div key={song.id} className="song-item">
-            <img src={song.image} alt={song.title} className="song-image" />
-            <div className="song-info">
-                <div className="song-detail">
-                  <span className="song-title">{song.title}</span>
+        <div key={song.id} className="favorite-song-item">
+            <img src={song.image} alt={song.title} className="favorite-song-image" />
+            <div className="favorite-song-info">
+                <div className="favorite-song-detail">
+                  <span className="favorite-song-title">{song.title}</span>
                   <div>
-                    <span className="song-writer">{song.writer}</span>
-                    <span className="song-duration">{song.duration}</span>
+                    <span className="favorite-song-writer">{song.writer}</span>
+                    <span className="favorite-song-duration">{song.duration}</span>
                   </div>
                 </div>
-                <img src='./img/thumbs_click.png' className='thumbs_click'/>
+                <img src='./img/thumbs_click.png' className="favorite-thumbs_click"/>
             </div>
         </div>
         ))}
