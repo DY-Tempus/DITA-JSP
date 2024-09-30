@@ -175,20 +175,20 @@ const songs = [
 const Recent = () => {
     return (
         <div className="album-page">
-            <h1 className="section-title">Album_Name</h1>
-            <div className='flex-direction-row'>
-                <img src='./img/main_album2.jpg' className='album-image'/>
-                <div className="song-list-album">
+            <h1 className="album-section-title">Album_Name</h1>
+            <div className="album-flex-direction-row">
+                <img src='./img/main_album2.jpg' className="album-image"/>
+                <div className="album-song-list">
                     {songs.map((song) => (
-                        <div className="my-music" key={song.id}>
-                            <div className="song-item">
-                                <img src={song.image} alt={song.title} className="song-image" />
-                                <div className="song-info">
-                                    <div className="song-detail">
-                                        <span className="song-title">{song.title}</span>
-                                        <span className="song-writer">{song.writer}</span>
+                        <div className="album-music" key={song.id}>
+                            <div className="album-song-item">
+                                <img src={song.image} alt={song.title} className="album-song-image" />
+                                <div className="album-song-info">
+                                    <div className="album-song-detail">
+                                        <span className="album-song-title">{song.title}</span>
+                                        <span className="album-song-writer">{song.writer}</span>
                                     </div>
-                                    <span className="song-duration">{song.duration}</span>
+                                    <span className="album-song-duration">{song.duration}</span>
                                 </div>
                             </div>
                         </div>

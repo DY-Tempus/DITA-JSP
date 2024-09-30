@@ -8,7 +8,7 @@
     font-family: 'Inter', sans-serif;
   }
   
-  .section-title {
+  .album-section-title {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #009dff, #8000ff);
     color: transparent;
@@ -18,7 +18,7 @@
     width: fit-content;
   }
   
-  .song-list-album {
+  .album-song-list {
     display: flex;
     flex-direction: column;
     /* padding-left: 10%;
@@ -30,14 +30,14 @@
     padding-right: 10px;
   }
   
-  .my-music {
+  .album-music {
     display: flex;
     justify-content: space-between; /* song-item과 thumbs 이미지 사이의 공간을 최대한 늘림 */
     align-items: center;
     gap: 5px;
   }
 
-  .thumbs-views{
+  .album-thumbs-views{
     margin-left: 15px; /* 왼쪽 여백을 약간 추가해 여유 공간을 만듦 */
     margin-right: 5px;
     width: 25px;
@@ -45,55 +45,56 @@
     cursor: pointer;
   }
 
-  .song-list p {
+  .album-song-list p {
     font-size: 16px;
   }
 
-  .song-item {
+  .album-song-item {
     display: flex;
     flex: 1;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ddd; /* 각 곡 사이의 구분선 */
     cursor: pointer;
+    padding: 10px 0;
   }
   
-  .song-image {
+  .album-song-image {
     width: 50px; /* 이미지 크기 */
     height: 50px;
     object-fit: cover;
     margin-right: 15px;
   }
   
-  .song-info {
+  .album-song-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
   }
   
-  .song-title {
+  .album-song-title {
     font-size: 18px;
     font-weight: bold;
     color: #000;  
   }
   
-  .song-duration {
+  .album-song-duration {
     font-size: 14px;
     color: #999;
     align-content: center;
   }
   
-  .song-detail{
+  .album-song-detail{
     display: flex;
     flex-direction: column;
   }
 
-  .song-writer{
+  .album-song-writer{
     font-size: 14px;
   }
 
-  .flex-direction-row{
+  .album-flex-direction-row{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -107,8 +108,5 @@
   .album-image{
     width: fit-content;
     display: flex;
-  }
-
-  .album-image{
     width: 40%;
   }

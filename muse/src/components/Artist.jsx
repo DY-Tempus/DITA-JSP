@@ -27,23 +27,23 @@ const tracks = [
 
 const Artist = () => {
   return (
-    <div className="artist-page">
+    <div className="artist-artist-page">
       {/* 아티스트 정보 */}
-      <div className="artist-info">
-        <img src="/img/getsix.png" alt="Artist" className="artist-image" />
-        <div className="artist-details">
-          <div className="social-icons">
+      <div className="artist-artist-info">
+        <img src="/img/getsix.png" alt="Artist" className="artist-artist-image" />
+        <div className="artist-artist-details">
+          <div className="artist-social-icons">
             <h1>Getsix</h1>
             <img src="/img/YouTubeLogo.png" alt="YouTube" />
             <img src="/img/XLogo.png" alt="Twitter" />
           </div>
           <p>7,603 Subs</p>
-          <button className="subscribe-btn">Subscribe</button>
+          <button className="artist-subscribe-btn">Subscribe</button>
         </div>
       </div>
 
       {/* 트랙 리스트 */}
-      <div className="tracklist">
+      <div className="artist-tracklist">
         <h2>
           <select id="sort" name="artist-sort">
             <option value="Recent">Recent</option>
@@ -55,9 +55,9 @@ const Artist = () => {
         <ul>
           {tracks.map((track) => (
             <li key={track.id}>
-              <img src={track.image} alt={track.title} className="track-image" />
-              <span className="track-title">{track.title}</span>
-              <span className="track-duration">{track.duration}</span>
+              <img src={track.image} alt={track.title} className="artist-track-image" />
+              <span className="artist-track-title">{track.title}</span>
+              <span className="artist-track-duration">{track.duration}</span>
             </li>
           ))}
         </ul>
