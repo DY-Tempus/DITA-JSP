@@ -2,10 +2,27 @@ import React, { useEffect, useState } from 'react';
 import './css/Profile.css';
 import axios from 'axios';
 
+
+
 const Profile = () => {
     useEffect(()=>{
         axios.get("http://localhost:3000/api/profile")
-        .then((Response)=>console.log(Response.data));
+        .then((Response)=>{
+            console.log(Response.data);
+
+            var j=(Response.data);
+            setUserInfo({
+                username: j.name,
+                id: j.id,
+                password: j.password,
+                country: 'Korea',
+                genre1: j.genre1,
+                genre2: j.genre2,
+                email: 'asdfasdf@gmail.com',
+            });
+        });
+
+        
     }, []);
     // 사용자 정보 상태
     const [userInfo, setUserInfo] = useState({

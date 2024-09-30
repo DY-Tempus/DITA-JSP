@@ -2,7 +2,8 @@ const userModel = require('../models/userModel');
 
 // 모든 사용자 조회
 const getUsers = (req, res) => {
-  userModel.getAllUsers((err, users) => {    
+  
+  usermodel.getAllUsers((err, users) => {    
     if (err) {
       return res.status(500).json({ error: '사용자 조회 실패' });
     }
