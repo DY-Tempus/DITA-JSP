@@ -175,17 +175,17 @@ const songs = [
 const Recent = () => {
 return (
     <div className="recent-page">
-    <h1 className="section-title">Recent</h1>
-    <div className="song-list">
+    <h1 className="recent-section-title">Recent</h1>
+    <div className="recent-song-list">
         {songs.map((song) => (
-        <div key={song.id} className="song-item">
-            <img src={song.image} alt={song.title} className="song-image" />
-            <div className="song-info">
-                <div className="song-detail">
-                    <span className="song-title">{song.title}</span>
-                    <span className="song-writer">{song.writer}</span>
+        <div key={song.id} className="recent-song-item">
+            <img src={song.image} alt={song.title} className="recent-song-image" />
+            <div className="recent-song-info">
+                <div className="recent-song-detail">
+                    <span className="recent-song-title">{song.title}</span>
+                    <span className="recent-song-writer">{song.writer}</span>
                 </div>
-                <span className="song-duration">{song.duration}</span>
+                <span className="recent-song-duration">{song.duration}</span>
             </div>
         </div>
         ))}
