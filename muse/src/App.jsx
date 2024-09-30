@@ -21,7 +21,7 @@ function App() {
         <Header />
         <Sidebar />
         <Routes>
-          <Route path="/Home" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/artist" element={<Artist />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/recent" element={<Recent />}/>
