@@ -175,19 +175,19 @@ const currentPlaylist = [
 
 const Current = ({ isOpen }) => {
 return ReactDOM.createPortal(
-    <div className={`detail-panel ${isOpen ? 'open' : ''}`} >
-    <h1 className="section-title">현재 재생중인 플레이리스트</h1>
-    <div className="song-list">
+    <div className={`current-page ${isOpen ? 'open' : ''}`} >
+    <h1 className="current-section-title">현재 재생중인 플레이리스트</h1>
+    <div className="current-song-list">
         {currentPlaylist.map((currentPlaylist) => (
-        <div className="my-music" key={currentPlaylist.id}>
-          <div className="song-item">
-              <img src={currentPlaylist.image} alt={currentPlaylist.title} className="song-image" />
-              <div className="song-info">
-                  <div className="song-detail">
-                      <span className="song-title">{currentPlaylist.title}</span>
-                      <span className="song-writer">{currentPlaylist.writer}</span>
+        <div className="current-my-music" key={currentPlaylist.id}>
+          <div className="current-song-item">
+              <img src={currentPlaylist.image} alt={currentPlaylist.title} className="current-song-image" />
+              <div className="current-song-info">
+                  <div className="current-song-detail">
+                      <span className="current-song-title">{currentPlaylist.title}</span>
+                      <span className="current-song-writer">{currentPlaylist.writer}</span>
                   </div>
-                  <span className="song-duration">{currentPlaylist.duration}</span>
+                  <span className="current-song-duration">{currentPlaylist.duration}</span>
               </div>
           </div>
           <img src='./img/move.png' className='thumbs-views'/>
