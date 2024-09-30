@@ -4,35 +4,37 @@ import axios from 'axios';
 
 
 
+
 const Profile = () => {
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/profile")
+        axios.get("http://localhost:3000/api/profile",{
+                responseType: 'json',
+            })
         .then((Response)=>{
             console.log(Response.data);
-
-            var j=(Response.data);
+            const obj=Response.data[0];
+            
             setUserInfo({
-                username: j.name,
-                id: j.id,
-                password: j.password,
+                username: obj.NAME,
+                id: obj.ID,
+                password: obj.PASSWORD,
                 country: 'Korea',
-                genre1: j.genre1,
-                genre2: j.genre2,
-                email: 'asdfasdf@gmail.com',
+                genre1: obj.GENRE1,
+                genre2: obj.GENRE2,
+                email: obj.EMAIL,
             });
         });
 
-        
     }, []);
     // 사용자 정보 상태
     const [userInfo, setUserInfo] = useState({
-        username: 'user123',
-        id: 'asdf1234',
-        password: 'asdf1234',
-        country: 'Korea',
-        genre1: 'Dubstep',
-        genre2: 'EDM',
-        email: 'asdfasdf@gmail.com',
+        username: '',
+        id: '',
+        password: '',
+        country: '',
+        genre1: '',
+        genre2: '',
+        email: '',
     });
 
     // 수정 상태 관리
@@ -61,7 +63,7 @@ const Profile = () => {
     return (
         <div className="profile-page">
             <div className="profile-header">
-                <h1>{console.log(Response.data)}</h1>
+
                 <img src="./img/getsix.png" alt="Profile" className="profile-image" />
                 <div className="profile-username">
                     {editField === 'username' ? (
