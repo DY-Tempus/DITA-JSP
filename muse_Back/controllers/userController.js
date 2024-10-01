@@ -1,23 +1,29 @@
-const db = require('../db');
+const pool = require('../db.js');
+const express = require('express');
+const app=express()
 
-const createUser = (userData, callback) => {
-  const { ID, PASSWORD, EMAIL, NAME, GENRE1, GENRE2 } = userData;
 
-  db.getConnection((err, connection) => {
-    if (err) return callback(err);
+const getUsers=(req,res)=>{
+    
+    const sql=`SELECT * FROM user`;
+    pool.getConnection((error,connection)=>{
+        if (error) {
+            return res.status(500).json({ error: '사용자 조회 실패' });
+        }
 
-    const query = 'INSERT INTO user (ID, PASSWORD, EMAIL, NAME, GENRE1, GENRE2) VALUES (?, ?, ?, ?, ?, ?)';
-    connection.query(query, [ID, PASSWORD, EMAIL, NAME, GENRE1, GENRE2], (err, results) => {
-      connection.release(); // 연결 해제
-      if (err) {
-        console.error('사용자 생성 실패:', err);
-        callback(err);
-      } else {
-        console.log('사용자 생성 성공:', results);
-        callback(null, results);
-      }
-    });
-  });
+        connection.query(sql,(error,result)=>{
+            if(!error){
+                console.log('조회된 사용자 데이터:', result);
+                res.send(JSON.stringify(result));
+                connection.release();
+            }else{
+                throw error
+            }
+        })
+        
+
+    })
+}
+module.exports = {
+    getUsers,
 };
-
-module.exports = { createUser };
