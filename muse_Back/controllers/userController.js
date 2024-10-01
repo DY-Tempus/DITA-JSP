@@ -20,7 +20,6 @@ const getUsers=(req,res)=>{
                 throw error
             }
         })
-        
 
     })
 }

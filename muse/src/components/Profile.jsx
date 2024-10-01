@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Profile = () => {
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/profile",{
+        axios.get("http://localhost:3000/api/user",{
                 responseType: 'json',
             })
         .then((Response)=>{

@@ -2,7 +2,7 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const uploadRouter = require('./routers/uploadRouter');
-const userRouter = require('./routers/userRouter'); // 사용자 라우터 추가
+const userRouter = require('./routers/userRouter');
 
 const app = express();
 const port = 3000;
@@ -19,9 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // 파일 업로드 라우터 연결
 app.use('/api/music', uploadRouter);
-
-// 사용자 라우터 연결
-app.use('/api/users', userRouter); // 사용자 API 라우터 연결
+app.use('/api/user', userRouter);
 
 // 서버 실행
 app.listen(port, () => {
