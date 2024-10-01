@@ -71,11 +71,12 @@
     gap: 20px;
     justify-content: space-between; /* 두 섹션을 양쪽에 정렬 */
     padding: 0 15px; /* 왼쪽과 오른쪽에 패딩 추가 */
+    height: calc(100% - 400px);
 }
 
 .contents {
     flex: 1;
-    padding: 15px;
+    padding-left: 15px;
 }
 
 .contents h2 {
@@ -85,10 +86,12 @@
 }
 
 .lyrics-section {
-    max-height: 400px;
+    /* max-height: 400px; */
+    height: calc(100% - 50px);
     overflow-y: auto;
     font-size: 16px;
     line-height: 21px;
+    padding-right: 10px;
 }
 
 .comment {
@@ -117,7 +120,7 @@
 
 
 .comments-sector {
-    max-height: 400px;
+    height: calc(100% - 100px);
     overflow-y: auto;
 }
 

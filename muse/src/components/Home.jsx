@@ -1,21 +1,20 @@
 import React from 'react';
 import './css/Home.css';
 import { Link } from 'react-router-dom';
+
 function AlbumItem({item}){
     return(
-        <Link to="/album">
-        <div className="album-item">
+        <div key={item.id} className="album-item">
             <div className="album-cover-container">
-                <a href="">
-                <img src={require(`../../public/img/${item.imageName}`)} alt="Main Album Cover" className="album-cover main-cover" />
-                <img src={require(`../../public/img/${item.imageName}`)} alt="Track 1" className="album-cover track-cover" style={{ top: '10px', left: '10px' }} />
-                <img src={require(`../../public/img/${item.imageName}`)} alt="Track 2" className="album-cover track-cover" style={{ top: '20px', left: '20px' }} />
-                <img src={require(`../../public/img/${item.imageName}`)} className="album-cover track-cover" style={{ top: '30px', left: '30px' }} />
-                </a>
+            <Link to="/album">
+                <img src={item.img4} className='album-img layer-3'></img>
+                <img src={item.img3} className='album-img layer-2'></img>
+                <img src={item.img2} className='album-img layer-1'></img>
+                <img src={item.img1} className='album-img'></img>
+            </Link>
             </div>
-            <p className="album-title">{item.albumtitle}</p>
+            <p className="album-title">{item.name}</p>
         </div>
-        </Link>
     )
 }
 function ArtistItem({item}){
@@ -23,7 +22,7 @@ function ArtistItem({item}){
         <Link to="/artist">
             <div className="album-item">
                 <div className="album-cover-container">
-                    <img src={require(`../../public/img/${item.imageName}`)} alt="Artist Image" className="artist-image-home" />
+                    <img src={item.img} alt="Artist Image" className="artist-image-home" />
                 </div>
                 <p className="album-title">{item.name}</p>
             </div>
@@ -31,43 +30,109 @@ function ArtistItem({item}){
     )
 }
 
+const recent_played = [
+    { 
+        id: 1, 
+        img1: './img/Collide.png', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album3.jpg',  
+        name: 'Red Playlist' 
+    },
+    { 
+        id: 2, 
+        img1: './img/Collide.png', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album3.jpg',  
+        name: 'Red Playlist' 
+    },
+    { 
+        id: 3, 
+        img1: './img/Collide.png', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album3.jpg',  
+        name: 'Red Playlist' 
+    },
+    { 
+        id: 4, 
+        img1: './img/Collide.png', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album3.jpg',  
+        name: 'Red Playlist' 
+    },
+];
+
+const jpop = [
+    { 
+        id: 1, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 2, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 3, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 4, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 5, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 6, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 7, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+];
+
+const artist=[
+    {
+        id:1,
+        img:'./img/main_album.jpg',
+        name:'aaa'
+    }
+];
+
 const Home = () => {
-    const recently=[
-        {
-            id:1,
-            albumtitle:'이름',
-            imageName:'album.jpg',
-        },
-        {
-            id:2,
-            albumtitle:'이름2',
-            imageName:'album.jpg',
-        },
-    ];
-    const jpop=[
-        {
-            id:1,
-            albumtitle:'이름',
-            imageName:'album.jpg',
-        },
-        {
-            id:2,
-            albumtitle:'이름2',
-            imageName:'album.jpg',
-        },
-    ];
-    const artist=[
-        {
-            id:1,
-            name:'이름',
-            imageName:'getsix.png',
-        },
-        {
-            id:2,
-            name:'이름2',
-            imageName:'getsix.png',
-        },
-    ];
     return (
         <div>
             {/* 메인 콘텐츠 영역 */}
@@ -76,10 +141,10 @@ const Home = () => {
                 <section className="album-section">
                     <h2 className="section-title">Recently Played</h2>
                     <div className="album-container">
-                        {/* 앨범 1 */}
+                        
                         <>
                             {
-                                recently.map(
+                                recent_played.map(
                                     item=>(<AlbumItem item={item} key={item.id}/>)
                                 )
                             }
@@ -92,8 +157,7 @@ const Home = () => {
                 <section className="album-section">
                     <h2 className="section-title">J-Pop</h2>
                     <div className="album-container">
-                        {/* 앨범 1 */}
-                        <>
+                    <>
                             {
                                 jpop.map(
                                     item=>(<AlbumItem item={item} key={item.id}/>)

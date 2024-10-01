@@ -145,6 +145,13 @@ const Detail = ({ isOpen }) => {
                         <p><strong>writer1</strong><br />1:27 was great</p>
                         <p><strong>신 창 섭</strong><br />이 또한 신창섭의 은혜겠지요</p>
                         <p><strong>대 상 혁</strong><br />젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
+                        <p><strong>대 상 혁</strong><br />젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
+                        <p><strong>대 상 혁</strong><br />젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
+                        <p><strong>대 상 혁</strong><br />젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
+                        <p><strong>대 상 혁</strong><br />젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
+                        <p><strong>대 상 혁</strong><br />젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
+                        <p><strong>대 상 혁</strong><br />젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
+                        <p><strong>대 상 혁</strong><br />젠장 또 대상혁이야 나는 그를 숭배해야만 해</p>
                     </div>
                 </div>
             </div>

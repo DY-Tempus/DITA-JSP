@@ -85,7 +85,7 @@ body {
 }
 
 .album-item:hover .album-cover-container {
-    transform: scale(1.05); /* 이미지 영역만 확대 */
+    transform: scale(1.1); /* 이미지 영역만 확대 */
     z-index: 1;
 }
 

@@ -25,6 +25,11 @@
     font-weight: bold;
   }
   
+  .subs{
+    font-size: 16px;
+    color: #5f5f5f;
+  }
+
   .profile-username input {
     font-size: 24px;
   }

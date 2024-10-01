@@ -11,6 +11,7 @@ import Favorite from './components/Favorite';
 import PlayList from './components/PlayList';
 import Upload from './components/Upload';
 import MyMusic from './components/MyMusic';
+import Album from './components/Album';
 import './css/App.css';
 
 function App() {
@@ -20,8 +21,8 @@ function App() {
         <Header />
         <Sidebar />
         <Routes>
-        <Route path="/" element={<Home />} />
-          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />}/>
+          <Route path="/home" element={<Home />} />
           <Route path="/artist" element={<Artist />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/recent" element={<Recent />}/>
@@ -29,6 +30,7 @@ function App() {
           <Route path="/playlist" element={<PlayList/>}/>
           <Route path="/upload" element={<Upload/>}/>
           <Route path="/mymusic" element={<MyMusic/>}/>
+          <Route path="/album" element={<Album/>}/>
         </Routes>
         <MusicPlayer /> {/* 항상 하단에 고정된 음악 플레이어 */}
       </div>

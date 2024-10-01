@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './css/Profile.css';
 import axios from 'axios';
 
-
-
-
 const Profile = () => {
     useEffect(()=>{
         axios.get("http://localhost:3000/api/profile",{
@@ -28,13 +25,13 @@ const Profile = () => {
     }, []);
     // 사용자 정보 상태
     const [userInfo, setUserInfo] = useState({
-        username: '',
-        id: '',
-        password: '',
-        country: '',
-        genre1: '',
-        genre2: '',
-        email: '',
+        username: 'user123',
+        id: 'asdf1234',
+        password: 'asdf1234',
+        country: 'Korea',
+        genre1: 'Dubstep',
+        genre2: 'EDM',
+        email: 'asdfasdf@gmail.com',
     });
 
     // 수정 상태 관리
@@ -63,11 +60,11 @@ const Profile = () => {
     return (
         <div className="profile-page">
             <div className="profile-header">
-
                 <img src="./img/getsix.png" alt="Profile" className="profile-image" />
                 <div className="profile-username">
                     {editField === 'username' ? (
                         <div>
+                            <div>
                             <input
                             type="text"
                             value={userInfo.username}
@@ -80,10 +77,14 @@ const Profile = () => {
                                 className="edit-icon"
                                 onClick={() => handleEdit('username')}
                             />
+                            </div>
+                            <div className='subs'>
+                                <span>7,603 Subs</span>
+                            </div>
                         </div>
                         
                     ) : (
-                        <>
+                        <div>
                             <span>{userInfo.username}</span>
                             <img
                                 src="./img/edit.png"
@@ -91,7 +92,10 @@ const Profile = () => {
                                 className="edit-icon"
                                 onClick={() => handleEdit('username')}
                             />
-                        </>
+                            <div className='subs'>
+                                <span>7,603 Subs</span>
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>
@@ -227,7 +231,7 @@ const Profile = () => {
             </div>
             
         </div>
-    );
+                );
 };
 
-export default Profile;
+                export default Profile;

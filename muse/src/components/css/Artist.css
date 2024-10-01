@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.artist-googleapis.artist-com/css2?family=Inter:wght@400;500;700&display=swap');
 
 
 /* 전체 페이지 스타일 */
-.artist-page {
+.artist-artist-page {
     padding: 40px 20% 0 20%;
     font-family: 'Inter', sans-serif;
     height: calc(100vh - 60px - 100px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
@@ -10,35 +10,35 @@
   }
   
   /* 아티스트 정보 섹션 */
-  .artist-info {
+  .artist-artist-info {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
   }
   
-  .artist-image {
+  .artist-artist-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-right: 20px;
   }
   
-  .artist-details {
+  .artist-artist-details {
     flex-grow: 1; /* 아티스트 정보가 남은 공간을 차지하도록 */
   }
   
-  .artist-details h1 {
+  .artist-artist-details h1 {
     font-size: 24px;
     margin: 0 10px 0px 0px;
   }
   
-  .artist-details p {
+  .artist-artist-details p {
     font-size: 14px;
     color: #666;
     margin: 5px;
   }
   
-  .subscribe-btn {
+  .artist-subscribe-btn {
     background-color: #007BFF;
     color: white;
     padding: 5px 10px;
@@ -47,36 +47,36 @@
     cursor: pointer;
   }
   
-  .subscribe-btn:hover{
-    transform: scale(1.1);
-    transition: 0.1s;
+  .artist-subscribe-btn:hover{
+    transform: scale(1.artist-1);
+    transition: 0.artist-1s;
   }
   
-  .social-icons {
+  .artist-social-icons {
     display: flex;
     gap: 10px;
     align-items: center;
   }
   
-  .social-icons img {
+  .artist-social-icons img {
     max-width: 30px;
     max-height: 25px;
     cursor: pointer;
   }
   
   /* 트랙 리스트 */
-  .tracklist h2 {
+  .artist-tracklist h2 {
     font-size: 20px;
     margin-bottom: 10px;
   }
   
-  .tracklist ul {
+  .artist-tracklist ul {
     list-style: none;
     padding: 0;
     overflow-y: scroll;
   }
   
-  .tracklist li {
+  .artist-tracklist li {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,18 +84,18 @@
     border-bottom: 1px solid #ddd;
   }
   
-  .track-image {
+  .artist-track-image {
     width: 50px;
     height: 50px;
     margin-right: 10px;
   }
   
-  .track-title {
+  .artist-track-title {
     flex-grow: 1;
     font-size: 16px;
   }
   
-  .track-duration {
+  .artist-track-duration {
     font-size: 14px;
     color: #666;
   }

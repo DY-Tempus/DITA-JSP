@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './css/MusicPlayer.css';
+import Current from './Current';
 import Detail from './Detail'
 import Volume from './Volume'
 
@@ -97,6 +98,13 @@ const MusicPlayer = () => {
         //버튼 클릭시 Detail이 나옴
     };
 
+    const [isCurrentOpen, setIsCurrentOpen] = useState(false); // Detail 패널 상태 관리
+
+    const toggleCurrent = () => {
+        setIsCurrentOpen(!isCurrentOpen);
+        //버튼 클릭시 Detail이 나옴
+    };
+
     const [isVolumeVisible, setIsVolumeVisible] = useState(false); // 볼륨 패널 표시 상태
     const [volume, setVolume] = useState(50); // 볼륨 상태 (0-100 범위)
 
@@ -159,9 +167,10 @@ const MusicPlayer = () => {
                         />
                 )}
                     </div>
-                    <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={() => console.log('Playlist clicked')} />
+                    <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={toggleCurrent} />
                     <img src="/img/info.png" alt="Info" className="control-button-extra" onClick={toggleDetail} />
                     {/* Detail 컴포넌트 */}
+                    <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} />
                     <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} />
                 </div>
             </div>
