@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const userCon= require('../controllers/userControl')
+const userCon= require('../controllers/userController')
 
 // 사용자 목록 조회 API
 app.get('/', (req, res) => {
