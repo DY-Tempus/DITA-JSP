@@ -108,6 +108,11 @@
     border: none;
     color: white;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.control-button-extra.detailopen {
+    transform: rotate(180deg);
 }
 
 .controls-extra{
@@ -124,3 +129,4 @@
 .volume-container { /* 볼륨만 줄 안 맞아서 만듬 */
     margin-top: 5px;
 }
+

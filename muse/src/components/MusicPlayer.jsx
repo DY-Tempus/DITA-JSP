@@ -168,7 +168,12 @@ const MusicPlayer = () => {
                 )}
                     </div>
                     <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={toggleCurrent} />
-                    <img src="/img/info.png" alt="Info" className="control-button-extra" onClick={toggleDetail} />
+                    <img // 재생, 멈춤 버튼
+                        src="/img/info.png"
+                        alt={isDetailOpen ? "DetailOpen" : "DetailClose"} 
+                        className={`control-button-extra ${isDetailOpen ? 'detailopen' : ''}`}
+                        onClick={toggleDetail} 
+                    />
                     {/* Detail 컴포넌트 */}
                     <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} />
                     <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} />
