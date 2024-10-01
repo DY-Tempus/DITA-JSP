@@ -1,7 +1,39 @@
 import React from 'react';
 import './css/Artist.css';
 
+function TrackItem({item}){
+    return(
+        <li>
+            <img src={require(`../../public/img/${item.src}`)} alt="Track" className="track-image" />
+            <span className="track-title">{item.name}</span>
+            <span className="track-duration">2:48</span>
+        </li>
+    )
+}
+
 const Artist = () => {
+    const track=[
+        {
+            id:1,
+            name:'aaa',
+            src:'album.jpg',
+        },
+        {
+            id:2,
+            name:'bbb',
+            src:'album.jpg',
+        },
+        {
+            id:3,
+            name:'ccc',
+            src:'album.jpg',
+        },
+        {
+            id:4,
+            name:'ddd',
+            src:'album.jpg',
+        },
+    ]
     return (
         <div className="artist-page">
             {/* 아티스트 정보 */}
@@ -30,56 +62,13 @@ const Artist = () => {
                     </select>
                 </h2>
                 <ul>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
-                    <li>
-                        <img src="/img/getsixart1.png" alt="Track" className="track-image" />
-                        <span className="track-title">WIP That'll Never Come Out</span>
-                        <span className="track-duration">2:48</span>
-                    </li>
+                <>
+                    {
+                        track.map(
+                            item=>(<TrackItem item={item} key={item.id}/>)
+                        )
+                    }
+                </>
                     {/* 나머지 트랙들도 동일한 방식으로 추가 */}
                 </ul>
             </div>
