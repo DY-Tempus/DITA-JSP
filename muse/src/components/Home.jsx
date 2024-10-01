@@ -3,6 +3,7 @@ import './css/Home.css';
 import { Link } from 'react-router-dom';
 function AlbumItem({item}){
     return(
+        <Link to="/album">
         <div className="album-item">
             <div className="album-cover-container">
                 <a href="">
@@ -14,6 +15,7 @@ function AlbumItem({item}){
             </div>
             <p className="album-title">{item.albumtitle}</p>
         </div>
+        </Link>
     )
 }
 function ArtistItem({item}){
