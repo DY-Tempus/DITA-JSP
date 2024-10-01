@@ -1,39 +1,23 @@
-const musicModel = require('../models/musicModel');
+const db = require('../db');
 
-// 모든 음악 조회
-const getMusics = (req, res) => {
-  musicModel.getAllMusics((err, musics) => {
-    if (err) {
-      return res.status(500).json({ error: '음악 조회 실패' });
-    }
-    res.json(musics);
+const uploadMusic = (musicData, callback) => {
+  const { MNAME, MFILE, MLYRICS, MGENRE, ID } = musicData;
+
+  db.getConnection((err, connection) => {
+    if (err) return callback(err);
+
+    const query = 'INSERT INTO music (MNAME, MFILE, MLYRICS, MGENRE, ID) VALUES (?, ?, ?, ?, ?)';
+    connection.query(query, [MNAME, MFILE, MLYRICS, MGENRE, ID], (err, results) => {
+      connection.release(); // 연결 해제
+      if (err) {
+        console.error('음악 업로드 실패:', err);
+        callback(err);
+      } else {
+        console.log('음악 업로드 성공:', results);
+        callback(null, results);
+      }
+    });
   });
 };
 
-// 특정 음악 조회
-const getMusicById = (req, res) => {
-  const { musicId } = req.params;
-  musicModel.getMusicByIdFromDb(musicId, (err, music) => {
-    if (err) {
-      return res.status(500).json({ error: '음악 조회 실패' });
-    }
-    res.json(music);
-  });
-};
-
-// 음악 추가
-const createMusic = (req, res) => {
-  const music = req.body;
-  musicModel.addMusic(music, (err, result) => {
-    if (err) {
-      return res.status(500).json({ error: '음악 추가 실패' });
-    }
-    res.json({ message: '음악 추가 성공', result });
-  });
-};
-
-module.exports = {
-  getMusics,
-  getMusicById,
-  createMusic
-};
+module.exports = { uploadMusic };

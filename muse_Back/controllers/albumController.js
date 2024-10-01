@@ -1,39 +1,23 @@
-const albumModel = require('../models/albumModel');
+const db = require('../db');
 
-// 모든 앨범 조회
-const getAlbums = (req, res) => {
-  albumModel.getAllAlbums((err, albums) => {
-    if (err) {
-      return res.status(500).json({ error: '앨범 조회 실패' });
-    }
-    res.json(albums);
+const uploadAlbum = (albumData, callback) => {
+  const { ANAME, ADATE, ATEXT, AIMG, AGENRE, ID } = albumData;
+
+  db.getConnection((err, connection) => {
+    if (err) return callback(err);
+
+    const query = 'INSERT INTO album (ANAME, ADATE, ATEXT, AIMG, AGENRE, ID) VALUES (?, ?, ?, ?, ?, ?)';
+    connection.query(query, [ANAME, ADATE, ATEXT, AIMG, AGENRE, ID], (err, results) => {
+      connection.release(); // 연결 해제
+      if (err) {
+        console.error('앨범 업로드 실패:', err);
+        callback(err);
+      } else {
+        console.log('앨범 업로드 성공:', results);
+        callback(null, results);
+      }
+    });
   });
 };
 
-// 특정 앨범 조회
-const getAlbumById = (req, res) => {
-  const { albumId } = req.params;
-  albumModel.getAlbumByIdFromDb(albumId, (err, album) => {
-    if (err) {
-      return res.status(500).json({ error: '앨범 조회 실패' });
-    }
-    res.json(album);
-  });
-};
-
-// 앨범 추가
-const createAlbum = (req, res) => {
-  const album = req.body;
-  albumModel.addAlbum(album, (err, result) => {
-    if (err) {
-      return res.status(500).json({ error: '앨범 추가 실패' });
-    }
-    res.json({ message: '앨범 추가 성공', result });
-  });
-};
-
-module.exports = {
-  getAlbums,
-  getAlbumById,
-  createAlbum
-};
+module.exports = { uploadAlbum };

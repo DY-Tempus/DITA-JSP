@@ -1,29 +1,23 @@
-const userModel = require('../models/userModel');
+const db = require('../db');
 
-// 모든 사용자 조회
-const getUsers = (req, res) => {
-  
-  usermodel.getAllUsers((err, users) => {    
-    if (err) {
-      return res.status(500).json({ error: '사용자 조회 실패' });
-    }
-    console.log('조회된 사용자 데이터:', users);  // 조회된 데이터를 로그로 확인
-    res.json(users);  // 가져온 사용자 데이터를 클라이언트에 반환
+const createUser = (userData, callback) => {
+  const { ID, PASSWORD, EMAIL, NAME, GENRE1, GENRE2 } = userData;
+
+  db.getConnection((err, connection) => {
+    if (err) return callback(err);
+
+    const query = 'INSERT INTO user (ID, PASSWORD, EMAIL, NAME, GENRE1, GENRE2) VALUES (?, ?, ?, ?, ?, ?)';
+    connection.query(query, [ID, PASSWORD, EMAIL, NAME, GENRE1, GENRE2], (err, results) => {
+      connection.release(); // 연결 해제
+      if (err) {
+        console.error('사용자 생성 실패:', err);
+        callback(err);
+      } else {
+        console.log('사용자 생성 성공:', results);
+        callback(null, results);
+      }
+    });
   });
 };
 
-// 사용자 추가
-const createUser = (req, res) => {
-  const user = req.body;
-  addUser(user, (err, result) => {
-    if (err) {
-      return res.status(500).json({ error: '사용자 추가 실패' });
-    }
-    res.json({ message: '사용자 추가 성공', result });
-  });
-};
-
-module.exports = {
-  getUsers,
-  createUser,
-};
+module.exports = { createUser };
