@@ -80,8 +80,8 @@ const Detail = ({ isOpen }) => {
                 {/* 가사 */}
                 <div className="contents">
                     <h2>Lyrics</h2>
-                    <div className="lyrics-section" dangerouslySetInnerHTML={{__html:`${musicInfo.mlyrics}`}}>
-                        
+                    <div className="lyrics-section" >
+                        {musicInfo.mlyrics}
                     </div>
                 </div>
                 {/* 댓글 */}

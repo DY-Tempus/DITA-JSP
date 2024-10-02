@@ -7,6 +7,7 @@ const port = 3000;
 const uploadRouter = require('./routers/uploadRouter');
 const userRouter = require('./routers/userRouter');
 const musicRouter=require('./routers/musicRouter');
+
 // CORS 설정
 app.use(cors());
 
