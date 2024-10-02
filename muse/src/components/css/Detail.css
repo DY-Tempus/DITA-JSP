@@ -65,6 +65,26 @@
     align-items: center;
 }
 
+.detail-thumbs-views {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+    gap: 5px;
+}
+
+.detail-thumbs-views img{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.detail-thumbs-views span{
+    font-size: 18px;
+    font-weight: bold;
+}
+
 /* Content Section: Lyrics and Comments */
 .content-section {
     display: flex;

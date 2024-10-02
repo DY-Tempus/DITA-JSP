@@ -99,6 +99,35 @@
     color: white;
     cursor: pointer;
     padding: 3px;
+    animation: pp 0.3s;
+}
+
+.play-pause {
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.play-pause.animate {
+    animation: pp 0.3s ease-in-out; /* 애니메이션 트리거 */
+}
+
+@keyframes pp {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .control-button-extra {

@@ -35,6 +35,13 @@ const Detail = ({ isOpen }) => {
                     </div>
                 </div>
             </div>
+            
+            <div className="detail-thumbs-views">
+                <img src="/img/thumbs.png" alt="Thumbs"/>
+                <span>34.7K</span>
+                <img src="/img/views.png" alt="Views"/>
+                <span>1.23M</span>
+            </div>
 
             {/* 중간 영역: 가사 및 댓글 */}
             <div className="content-section">

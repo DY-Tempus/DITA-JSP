@@ -133,8 +133,8 @@ const MusicPlayer = () => {
                     <img // 재생, 멈춤 버튼
                         src={isPlaying ? "/img/pause.png" : "/img/play.png"} 
                         alt={isPlaying ? "Pause" : "Play"} 
-                        className="control-button" 
-                        onClick={togglePlayPause} 
+                        className={`play-pause ${isPlaying ? 'animate' : ''}`}
+                        onClick={togglePlayPause}
                     />
                     <img src="/img/skip_next.png" alt="Next" className="control-button-extra" onClick={() => console.log('Next clicked')} />
                 </div>
