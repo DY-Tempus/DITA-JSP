@@ -5,8 +5,8 @@ import axios from 'axios';
 const Profile = () => {
     useEffect(()=>{
         axios.get("http://localhost:3000/api/user",{
-                responseType: 'json',
-            })
+            responseType: 'json',
+        })
         .then((Response)=>{
             console.log(Response.data);
             const obj=Response.data[0];

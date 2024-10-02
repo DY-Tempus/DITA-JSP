@@ -1,23 +1,26 @@
-const db = require('../db');
+const pool = require('../db');
 
-const uploadMusic = (musicData, callback) => {
-  const { MNAME, MFILE, MLYRICS, MGENRE, ID } = musicData;
+const getMusic =(req, res) => {
 
-  db.getConnection((err, connection) => {
-    if (err) return callback(err);
+    const sql=`SELECT mid, mname, mlyrics, name AS uname, COALESCE(aname, 'No Album') AS aname FROM music JOIN user ON music.ID=user.ID LEFT JOIN album ON music.aID=album.aID WHERE mid=${req.query.mid};`;
+    pool.getConnection((error,connection)=>{
+        if (error) {
+            return res.status(500).json({ error: '음악 조회 실패' });
+        }
 
-    const query = 'INSERT INTO music (MNAME, MFILE, MLYRICS, MGENRE, ID) VALUES (?, ?, ?, ?, ?)';
-    connection.query(query, [MNAME, MFILE, MLYRICS, MGENRE, ID], (err, results) => {
-      connection.release(); // 연결 해제
-      if (err) {
-        console.error('음악 업로드 실패:', err);
-        callback(err);
-      } else {
-        console.log('음악 업로드 성공:', results);
-        callback(null, results);
-      }
-    });
-  });
+        connection.query(sql,(error,result)=>{
+            if(!error){
+                console.log('조회된 음악 데이터:', result);
+                res.send(JSON.stringify(result));
+                connection.release();
+            }else{
+                throw error
+            }
+        })
+
+    })
 };
 
-module.exports = { uploadMusic };
+module.exports = { 
+    getMusic,
+ };
