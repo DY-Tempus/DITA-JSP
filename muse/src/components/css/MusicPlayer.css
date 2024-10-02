@@ -110,6 +110,8 @@
     color: white;
     cursor: pointer;
     padding: 3px;
+    transform: scale(1); /* 기본 상태 */
+    transition: transform 0.3s ease-in-out; /* 애니메이션 트랜지션 추가 */
 }
 
 .play-pause.animate {
@@ -118,7 +120,7 @@
 
 @keyframes pp {
     0% {
-        transform: scale(0);
+        transform: scale(0.5);
         opacity: 0;
     }
     50% {
