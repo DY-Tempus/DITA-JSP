@@ -1,5 +1,136 @@
 import React from 'react';
 import './css/Home.css';
+import { Link } from 'react-router-dom';
+
+function AlbumItem({item}){
+    return(
+        <div key={item.id} className="album-item">
+            <div className="album-cover-container">
+            <Link to="/album">
+                <img src={item.img4} className='album-img layer-3'></img>
+                <img src={item.img3} className='album-img layer-2'></img>
+                <img src={item.img2} className='album-img layer-1'></img>
+                <img src={item.img1} className='album-img'></img>
+            </Link>
+            </div>
+            <p className="album-title">{item.name}</p>
+        </div>
+    )
+}
+function ArtistItem({item}){
+    return(
+        <Link to="/artist">
+            <div className="album-item">
+                <div className="album-cover-container">
+                    <img src={item.img} alt="Artist Image" className="artist-image-home" />
+                </div>
+                <p className="album-title">{item.name}</p>
+            </div>
+        </Link>
+    )
+}
+
+const recent_played = [
+    { 
+        id: 1, 
+        img1: './img/Collide.png', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album3.jpg',  
+        name: 'Red Playlist' 
+    },
+    { 
+        id: 2, 
+        img1: './img/Collide.png', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album3.jpg',  
+        name: 'Red Playlist' 
+    },
+    { 
+        id: 3, 
+        img1: './img/Collide.png', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album3.jpg',  
+        name: 'Red Playlist' 
+    },
+    { 
+        id: 4, 
+        img1: './img/Collide.png', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album3.jpg',  
+        name: 'Red Playlist' 
+    },
+];
+
+const jpop = [
+    { 
+        id: 1, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 2, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 3, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 4, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 5, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 6, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+    { 
+        id: 7, 
+        img1: './img/main_album.jpg', 
+        img2: './img/main_album.jpg', 
+        img3: './img/main_album2.jpg', 
+        img4: './img/main_album2.jpg',  
+        name: 'JPop Playlist' 
+    },
+];
+
+const artist=[
+    {
+        id:1,
+        img:'./img/main_album.jpg',
+        name:'aaa'
+    }
+];
 
 const Home = () => {
     return (
@@ -9,6 +140,51 @@ const Home = () => {
                 {/* 앨범 섹션 예시 */}
                 <section className="album-section">
                     <h2 className="section-title">Recently Played</h2>
+                    <div className="album-container">
+                        
+                        <>
+                            {
+                                recent_played.map(
+                                    item=>(<AlbumItem item={item} key={item.id}/>)
+                                )
+                            }
+                        </>
+                    </div>
+                </section>
+
+                {/*스크롤 시험용 */}
+                {/* 앨범 섹션 예시 */}
+                <section className="album-section">
+                    <h2 className="section-title">J-Pop</h2>
+                    <div className="album-container">
+                    <>
+                            {
+                                jpop.map(
+                                    item=>(<AlbumItem item={item} key={item.id}/>)
+                                )
+                            }
+                        </>
+                    </div>
+                </section>
+
+                {/* 앨범 섹션 예시 */}
+                <section className="album-section">
+                    <h2 className="section-title">추천 아티스트</h2>
+                    <div className="album-container">
+                        {/* 앨범 1 */}
+                        <>
+                            {
+                                artist.map(
+                                    item=>(<ArtistItem item={item} key={item.id}/>)
+                                )
+                            }
+                        </>
+                    </div>
+                </section>
+
+                {/* 앨범 섹션 예시 */}
+                <section className="album-section">
+                    <h2 className="section-title">예시2</h2>
                     <div className="album-container">
                         {/* 앨범 1 */}
                         <div className="album-item">
