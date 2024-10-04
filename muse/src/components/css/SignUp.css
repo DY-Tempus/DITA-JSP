@@ -80,6 +80,17 @@
     color: white;  /* 레이블 색상 white로 설정 */
 }
 
+.input-container select{
+    width: 100%;
+}
+
+.input-container select:focus ~ .label,
+.input-container select:valid ~ .label {
+    top: -20px;
+    font-size: large;
+    color: white;  /* 레이블 색상 white로 설정 */
+}
+
 /* 밑줄 스타일 */
 .input-container .underline {
     position: absolute;
@@ -110,8 +121,8 @@ input:-webkit-autofill {
     background-color: #7970f6;
     color: rgb(255, 255, 255);
     border: none;
+    padding: 5px;
 }
-
 
 .Spread{
     display:flex;
