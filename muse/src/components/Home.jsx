@@ -1,7 +1,6 @@
 import React from 'react';
 import './css/Home.css';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 function AlbumItem({item}){
     return(
@@ -134,7 +133,6 @@ const artist=[
 ];
 
 const Home = () => {
-    const navigate = useNavigate()
     if(!sessionStorage.getItem("idKey")){
         return (
             <div>
