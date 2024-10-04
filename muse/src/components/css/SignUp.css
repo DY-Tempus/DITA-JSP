@@ -98,6 +98,13 @@
     transform: scaleX(1);
 }
 
+input:-webkit-autofill {
+    background-color: transparent !important; /* 기본 배경색 투명으로 설정 */
+    -webkit-text-fill-color: white !important; /* 자동완성된 글자색을 white로 설정 */
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset; /* 기본 그림자 제거 */
+    box-shadow: 0 0 0px 1000px transparent inset; /* 기본 그림자 제거 */
+    transition: background-color 5000s ease-in-out 0s; /* 배경색 애니메이션 제거 */
+}
 
 .InputSetting option{
     background-color: #7970f6;
