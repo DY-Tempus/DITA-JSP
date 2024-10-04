@@ -12,6 +12,12 @@
     border-radius: 20px;
 }
 
+.sign-in-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -27,8 +33,13 @@ body {
     margin: 0px;
 }
 
-.ContentContainer{
-    margin: 10px;
+.signInContainer{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
 .InputSetting{

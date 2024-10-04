@@ -14,7 +14,7 @@ const SignIn = () => {
     <div className="sign-in-page">
       <h1 className="TitleLabel">MU:SE</h1>
       <div className="IDPWContainer">
-        <div className="ContentContainer">
+        <div className="signInContainer">
           <label className="FontSetting">ID</label>
           <input
             type="text"
@@ -23,7 +23,7 @@ const SignIn = () => {
             onChange={(e) => setId(e.target.value)}
           />
         </div>
-        <div className="ContentContainer">
+        <div className="signInContainer">
           <label className="FontSetting">PW</label>
           <input
             type="password"
@@ -37,7 +37,7 @@ const SignIn = () => {
         Sign In
       </button>
       <footer>
-        <label className="ForgotPass">Forgot Password?</label>
+        <label className="ForgotPass">이것은 React Project입니다. 그런데 이제 JSP를 곁들인.</label>
       </footer>
     </div>
   );
