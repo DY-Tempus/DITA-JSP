@@ -7,6 +7,7 @@ import Volume from './Volume';
 
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false); // 재생 상태 관리
+    const [animate, setAnimate] = useState(false); // 애니메이션 상태 관리
     const [isMute, setIsMute] = useState(false); // 음소거 상태 관리
     const [currentTime, setCurrentTime] = useState(0); // 현재 재생 시간
     const [audioSrc, setAudioSrc] = useState(''); // 오디오 소스 관리
@@ -64,6 +65,16 @@ const MusicPlayer = () => {
         }
         setIsPlaying(!isPlaying);
     };
+
+    //재생/정지 애니메이션
+    useEffect(() => {
+        if (isPlaying || !isPlaying) {
+            setAnimate(true); // 재생 상태에서 애니메이션 활성화
+            const timer = setTimeout(() => setAnimate(false), 300); // 0.3초 후 애니메이션 해제
+            return () => clearTimeout(timer); // 이전 타이머 해제
+        }
+    }, [isPlaying]);
+
 
     // 음소거 토글 함수
     const toggleMute = () => {
@@ -157,7 +168,7 @@ const MusicPlayer = () => {
                     <img 
                         src={isPlaying ? "/img/pause.png" : "/img/play.png"} 
                         alt={isPlaying ? "Pause" : "Play"} 
-                        className="control-button" 
+                        className={`control-button ${animate ? 'animate' : ''}`}
                         onClick={togglePlayPause} 
                     />
                     <img src="/img/skip_next.png" alt="Next" className="control-button-extra" />
@@ -194,7 +205,12 @@ const MusicPlayer = () => {
                         )}
                     </div>
                     <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={toggleCurrent} />
-                    <img src="/img/info.png" alt="Info" className="control-button-extra" onClick={toggleDetail} />
+                    <img // Detail Open/Close
+                        src="/img/info.png"
+                        alt={isDetailOpen ? "DetailOpen" : "DetailClose"} 
+                        className={`control-button-extra ${isDetailOpen ? 'detailopen' : ''}`}
+                        onClick={toggleDetail} 
+                    />
                     <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} />
                     <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} />
                 </div>

@@ -99,6 +99,24 @@
     color: white;
     cursor: pointer;
     padding: 3px;
+    transform: scale(1); /* 기본 상태 */
+    transition: transform 0.3s ease-in-out; /* 애니메이션 트랜지션 추가 */
+}
+
+.control-button.animate {
+    animation: pp 0.3s ease-in-out; /* 애니메이션 트리거 */
+}
+
+@keyframes pp {
+    0% {
+        transform: scale(0.5);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .control-button-extra {
