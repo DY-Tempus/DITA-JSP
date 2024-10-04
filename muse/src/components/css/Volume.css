@@ -16,7 +16,6 @@
     cursor: pointer;                     /* 마우스 커서 변경 */
     display: inline-flex;                /* 수평 정렬을 위한 flexbox 사용 */
     align-items: center;                 /* 수직 중앙 정렬 */
-    bottom: 5px;
     padding-left: 10px;
   }
   

@@ -153,8 +153,8 @@ const MusicPlayer = () => {
             ></audio>
 
             {/* 진행 바 */}
-            <div 
-                className="progress-bar-container" 
+            <div
+                className="progress-bar-container"
                 ref={progressBarRef}
                 onClick={handleProgressChange} // 진행바 클릭 이벤트 추가
                 onMouseDown={handleMouseDown} // 드래그 시작
@@ -165,11 +165,11 @@ const MusicPlayer = () => {
             <div className="music-player">
                 <div className="controls">
                     <img src="/img/skip_previous.png" alt="Previous" className="control-button-extra" />
-                    <img 
-                        src={isPlaying ? "/img/pause.png" : "/img/play.png"} 
-                        alt={isPlaying ? "Pause" : "Play"} 
+                    <img
+                        src={isPlaying ? "/img/pause.png" : "/img/play.png"}
+                        alt={isPlaying ? "Pause" : "Play"}
                         className={`control-button ${animate ? 'animate' : ''}`}
-                        onClick={togglePlayPause} 
+                        onClick={togglePlayPause}
                     />
                     <img src="/img/skip_next.png" alt="Next" className="control-button-extra" />
                 </div>
@@ -184,32 +184,31 @@ const MusicPlayer = () => {
                 <div className="controls-extra">
                     <img src="/img/shuffle.png" alt="Shuffle" className="control-button-extra" />
                     <img src="/img/repeat.png" alt="Repeat" className="control-button-extra" />
-                    <div 
-                        className="volume-container" 
+                    <div
+                        className="volume-container"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                     >
-                        <img 
-                            src={isMute ? "/img/mute.png" : "/img/volume.png"} 
-                            alt={isMute ? "Mute" : "Volume"} 
-                            className="control-button-extra" 
-                            onClick={toggleMute} 
+                        <img
+                            src={isMute ? "/img/mute.png" : "/img/volume.png"}
+                            alt={isMute ? "Mute" : "Volume"}
+                            className="control-button-extra"
+                            onClick={toggleMute}
                         />
-                        {isVolumeVisible && (
-                            <Volume
-                                volume={volume}
-                                setVolume={setVolume}
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                            />
-                        )}
+                        <Volume
+                            className={`additionalOption ${isVolumeVisible ? 'visible' : ''}`}
+                            volume={volume}
+                            setVolume={setVolume}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                        />
                     </div>
                     <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={toggleCurrent} />
                     <img // Detail Open/Close
                         src="/img/info.png"
-                        alt={isDetailOpen ? "DetailOpen" : "DetailClose"} 
+                        alt={isDetailOpen ? "DetailOpen" : "DetailClose"}
                         className={`control-button-extra ${isDetailOpen ? 'detailopen' : ''}`}
-                        onClick={toggleDetail} 
+                        onClick={toggleDetail}
                     />
                     <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} />
                     <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} />

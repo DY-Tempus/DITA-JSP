@@ -38,7 +38,7 @@
   }
   
   .menu li {
-    margin: 10px 0;
+    padding: 5px 0px;
     cursor: pointer;
     text-decoration: none; /* 밑줄 제거 */
     color: white;
@@ -90,3 +90,20 @@
   a {
     text-decoration: none; /* 모든 링크에서 밑줄 제거 */
     }
+
+.additionalOption{
+  font-size: small;
+  margin-left: 15px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.additionalOption.visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.liElement{
+
+}
