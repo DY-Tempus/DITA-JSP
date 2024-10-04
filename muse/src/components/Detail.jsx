@@ -43,6 +43,7 @@ const Detail = ({ isOpen }) => {
         aname:'',
         uname:'',
     });
+    
     return ReactDOM.createPortal(
         <div className={`detail-panel ${isOpen ? 'open' : ''}`}>
             {/* 곡 제목 */}

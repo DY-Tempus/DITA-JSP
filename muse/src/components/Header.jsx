@@ -10,6 +10,7 @@ const App = () => {
         sessionStorage.removeItem("idKey")
         navigate("/signin")
     }
+    
     return (
         <div>
             {/* 상단 배너 */}

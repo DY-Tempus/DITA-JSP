@@ -173,6 +173,13 @@ const songs = [
 ];
 
 const Recent = () => {
+    if(!sessionStorage.getItem("idKey")){
+        return (
+            <div>
+                <meta http-equiv="refresh" content="0;url=/signIn"></meta>
+            </div>
+        );
+    }
     return (
         <div className="album-page">
             <h1 className="album-section-title">Album_Name</h1>

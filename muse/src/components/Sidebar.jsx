@@ -49,7 +49,7 @@ function Sidebar({ isOpen }) {
         setIsSettingsOpen(true); // Settings를 보이도록 설정
         setIsSidebarOpen(false); // 사이드바는 닫기
     };
-
+    
     return (
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}> {/* isOpen 값에 따라 클래스 추가 */}
                 <div className="user-info">

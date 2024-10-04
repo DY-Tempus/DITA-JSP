@@ -67,7 +67,13 @@ const Upload = () => {
             alert('음악 업로드 실패');
         }
     };
-
+    if(!sessionStorage.getItem("idKey")){
+        return (
+            <div>
+                <meta http-equiv="refresh" content="0;url=/signIn"></meta>
+            </div>
+        );
+    }
     return (
         <div className="upload-panel">
             <h1 className="title">Upload Music</h1>

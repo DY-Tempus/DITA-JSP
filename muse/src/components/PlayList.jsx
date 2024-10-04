@@ -9,6 +9,13 @@ const playlists = [
 ];
 
 const PlayList = () => {
+    if(!sessionStorage.getItem("idKey")){
+        return (
+            <div>
+                <meta http-equiv="refresh" content="0;url=/signIn"></meta>
+            </div>
+        );
+    }
     return (
         <div className="playlist-page">
             <h1 className="playlist-title">My Playlist</h1>

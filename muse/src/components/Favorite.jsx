@@ -173,6 +173,13 @@ const songs = [
 ];
 
 const Favorite = () => {
+  if(!sessionStorage.getItem("idKey")){
+    return (
+        <div>
+            <meta http-equiv="refresh" content="0;url=/signIn"></meta>
+        </div>
+    );
+  }
 return (
     <div className="favorite-page">
     <h1 className="favorite-section-title">Favorite</h1>

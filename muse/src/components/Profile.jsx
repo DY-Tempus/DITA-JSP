@@ -51,7 +51,13 @@ const Profile = () => {
         setUserInfo({ ...userInfo, [field]: e.target.value });
         setEditField(''); // 수정 끝나면 다시 기본 상태로 돌아감
     };
-
+    if(!sessionStorage.getItem("idKey")){
+        return (
+            <div>
+                <meta http-equiv="refresh" content="0;url=/signIn"></meta>
+            </div>
+        );
+    }
     return (
         <div className="profile-page">
             <div className="profile-header">
