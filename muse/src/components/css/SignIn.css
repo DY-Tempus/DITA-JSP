@@ -2,10 +2,7 @@
 
 .IDPWContainer{
     background: linear-gradient(45deg, #007AFF, #D14FFF);
-    padding-top: 15px;
-    padding-left: 20px;
-    padding-right: 30px;
-    padding-bottom: 15px;
+    padding: 15px 20px;
     text-align: right;
     color: white;
     margin: 20px;
@@ -50,8 +47,6 @@ body {
     color: white;
     font-size: 18px;
     padding: 5px;
-    outline: none;
-    width: 100%;
 }
 
 /* 입력란을 감싸는 컨테이너 */
@@ -66,9 +61,11 @@ body {
     position: absolute;
     top: 5px;
     left: 0;
-    color: #ccc;
+    color: #ffffff;
     transition: all 0.3s ease;
     pointer-events: none;
+    font-size: large;
+    left: 5px;
 }
 
 /* 포커스 또는 값이 있을 때 레이블 애니메이션 */
@@ -115,12 +112,9 @@ body {
     -webkit-background-clip: text;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding-top: 10px;
-    padding-right: 20px;
-    padding-left: 20px;
-    padding-bottom: 10px;
-    border-radius: 15px;
+    padding: 10px 15px;
     border: none;
+    border-radius: 15px;
     font-size: medium;
 }
 
