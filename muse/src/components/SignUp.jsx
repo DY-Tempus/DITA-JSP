@@ -25,7 +25,7 @@ const SignUp = () => {
   return (
     <div className="sign-up-page">
       <h1 className="TitleLabel">MU:SE</h1>
-      <div className="ContentContainer">
+      <div className="signUpConatainer">
         <div className="Spread">
           <label>ID</label>
           <input
