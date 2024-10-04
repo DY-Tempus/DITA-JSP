@@ -15,6 +15,12 @@ body {
   margin: 0px;
 }
 
+.sign-up-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .TitleLabel{
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #009dff, #8000ff);
@@ -24,7 +30,7 @@ body {
     user-select: none;
 }
 
-.ContentContainer{
+.signUpConatainer{
     background: linear-gradient(45deg, #007AFF, #D14FFF);
     padding-top: 15px;
     padding-left: 20px;
