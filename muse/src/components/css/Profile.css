@@ -18,6 +18,12 @@
     margin-right: 20px;
   }
   
+  .profile-image:hover{
+    transform: scale(1.1);
+    transition: 0.1s;
+    filter: opacity(0.5);
+  }
+
   .profile-username {
     display: flex;
     align-items: center;
@@ -154,4 +160,9 @@
     color: white;
     transform: scale(1.1);
     transition: 0.1s;
+}
+
+.image-edit{
+  height: 60px;
+  width: 60px;
 }
