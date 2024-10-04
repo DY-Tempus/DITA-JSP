@@ -1,10 +1,41 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import './css/Sidebar.css';
 import Settings from './Settings'; // Settings 컴포넌트 가져오기
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 
 function Sidebar({ isOpen }) {
+    useEffect(()=>{
+        axios.get("http://localhost:3000/api/user",{
+            responseType: 'json',
+        })
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data[0];
+            
+            setUserInfo({
+                username: obj.NAME,
+                id: obj.ID,
+                password: obj.PASSWORD,
+                country: 'Korea',
+                genre1: obj.GENRE1,
+                genre2: obj.GENRE2,
+                email: obj.EMAIL,
+            });
+        });
 
+    }, []);
+    // 사용자 정보 상태
+    const [userInfo, setUserInfo] = useState({
+        username: 'user123',
+        id: 'asdf1234',
+        password: 'asdf1234',
+        country: 'Korea',
+        genre1: 'Dubstep',
+        genre2: 'EDM',
+        email: 'asdfasdf@gmail.com',
+    });
     
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태 관리
     const [isSettingsOpen, setIsSettingsOpen] = useState(false); // Settings 패널 상태 관리
@@ -28,7 +59,7 @@ function Sidebar({ isOpen }) {
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}> {/* isOpen 값에 따라 클래스 추가 */}
                 <div className="user-info">
                     <img src="./img/getsix.png" alt="User Icon" className="user-icon" />
-                    <h2>User</h2>
+                    <h2>{userInfo.username}</h2>
                     <h3>My Page</h3>
                 </div>
                 <ul className="menu">

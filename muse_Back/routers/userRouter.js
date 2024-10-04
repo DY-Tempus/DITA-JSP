@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 // 사용자 추가 API
 app.post('/', (req, res) => {
   console.log('POST /api/users 요청이 호출되었습니다.');  // 로그 추가
-  userCon.createUser(req, res);  // userController의 createUser 함수 호출
+  userCon.signIn(req, res);  // userController의 createUser 함수 호출
 });
 
 module.exports = app;
