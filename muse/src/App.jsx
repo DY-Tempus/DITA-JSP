@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/signIn" element={<SignIn onLogin={setIsLoggedIn} />} />
             <Route path="/signUp" element={<SignUp onSignup={() => setIsLoggedIn(false)} />} />
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="*" element={<Navigate to="/signIn" />} />
           </Routes>
         ) : (
           <>
