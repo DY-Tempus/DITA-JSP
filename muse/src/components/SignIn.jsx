@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './css/SignIn.css';
 import axios from 'axios';
 
@@ -6,6 +7,7 @@ const SignIn = () => {
 
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleSignIn = () => {
     axios.post("http://localhost:3000/api/user",{
@@ -19,11 +21,13 @@ const SignIn = () => {
 
       if(obj.cnt>0){
         //로그인 성공
-        console.log('난천재야')
+        console.log('난천재야');
+        navigate('/home');
       }
       else{
         //qt
-        console.log('난바보야')
+        console.log('난바보야');
+        alert('Invalid username or password');
       }
       
   });
