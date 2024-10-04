@@ -5,7 +5,7 @@
     padding-top: 15px;
     padding-left: 20px;
     padding-right: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     text-align: right;
     color: white;
     margin: 20px;
@@ -42,7 +42,8 @@ body {
     gap: 10px;
 }
 
-.InputSetting{
+/* 기존 InputSetting 스타일 유지 */
+.InputSetting {
     border: none;
     border-bottom: 2px solid white;
     background: transparent;
@@ -50,7 +51,52 @@ body {
     font-size: 18px;
     padding: 5px;
     outline: none;
+    width: 100%;
 }
+
+/* 입력란을 감싸는 컨테이너 */
+.input-container {
+    position: relative;
+    margin: 10px auto;
+    width: 100%;  /* 필요시 너비 조절 가능 */
+}
+
+/* 레이블 스타일 */
+.input-container .label {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* 포커스 또는 값이 있을 때 레이블 애니메이션 */
+.input-container input:focus ~ .label,
+.input-container input:valid ~ .label {
+    top: -20px;
+    font-size: 16px;
+    color: white;  /* 레이블 색상 white로 설정 */
+}
+
+/* 밑줄 스타일 */
+.input-container .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: white;  /* 밑줄 색상을 white로 설정 */
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+}
+
+/* 포커스 상태일 때 밑줄 확장 */
+.input-container input:focus ~ .underline,
+.input-container input:valid ~ .underline {
+    transform: scaleX(1);
+}
+
 
 .TitleLabel{
     font-family: 'Inter', sans-serif;

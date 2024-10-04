@@ -36,22 +36,32 @@ const SignIn = () => {
       <h1 className="TitleLabel">MU:SE</h1>
       <div className="IDPWContainer">
         <div className="signInContainer">
-          <label className="FontSetting">ID</label>
-          <input
-            type="text"
-            className="InputSetting"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
+          <div className="input-container">
+            <input 
+              type="text" 
+              id="input" 
+              className="InputSetting" 
+              value={id} 
+              onChange={(e) => setId(e.target.value)} 
+              required 
+            />
+            <label for="input" className="label">ID</label>
+            <div className="underline"></div>
+          </div>
         </div>
         <div className="signInContainer">
-          <label className="FontSetting">PW</label>
-          <input
-            type="password"
-            className="InputSetting"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="input-container">
+            <input 
+              type="password" 
+              id="input" 
+              className="InputSetting" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+            <label for="input" className="label">PW</label>
+            <div className="underline"></div>
+          </div>
         </div>
       </div>
       <button className="SignInButton" onClick={handleSignIn}>
