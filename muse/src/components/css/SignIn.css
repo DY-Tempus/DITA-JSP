@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-body {
+/*body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,9 +26,9 @@ body {
       linear-gradient(-45deg, #e567fe, transparent),
       linear-gradient(45deg, #0040ff, transparent);
     background-blend-mode: sreen; */
-    -ms-overflow-style: none;
+    /*-ms-overflow-style: none;
     margin: 0px;
-}
+}*/
 
 .signInContainer{
     padding: 10px;
@@ -60,7 +60,6 @@ body {
 .input-container .label {
     position: absolute;
     top: 5px;
-    left: 0;
     color: #ffffff;
     transition: all 0.3s ease;
     pointer-events: none;
@@ -72,7 +71,7 @@ body {
 .input-container input:focus ~ .label,
 .input-container input:valid ~ .label {
     top: -20px;
-    font-size: 16px;
+    font-size: large;
     color: white;  /* 레이블 색상 white로 설정 */
 }
 

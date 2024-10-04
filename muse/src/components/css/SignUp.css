@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-body {
+/* body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,9 +11,9 @@ body {
     linear-gradient(-45deg, #e567fe, transparent),
     linear-gradient(45deg, #0040ff, transparent);
   background-blend-mode: sreen; */
-  -ms-overflow-style: none;
+  /*-ms-overflow-style: none;
   margin: 0px;
-}
+} */
 
 .sign-up-page{
     display: flex;
@@ -66,7 +66,7 @@ body {
 .input-container .label {
     position: absolute;
     top: 5px;
-    left: 0;
+    left: 5px;
     color: #ccc;
     transition: all 0.3s ease;
     pointer-events: none;
@@ -76,7 +76,7 @@ body {
 .input-container input:focus ~ .label,
 .input-container input:valid ~ .label {
     top: -20px;
-    font-size: 16px;
+    font-size: large;
     color: white;  /* 레이블 색상 white로 설정 */
 }
 

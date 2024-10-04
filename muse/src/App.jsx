@@ -23,14 +23,6 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {!isLoggedIn ? (
-          <Routes>
-            <Route path="/signIn" element={<SignIn onLogin={setIsLoggedIn} />} />
-            <Route path="/signUp" element={<SignUp onSignup={() => setIsLoggedIn(false)} />} />
-            <Route path="*" element={<Navigate to="/signIn" />} />
-          </Routes>
-        ) : (
-          <>
             <Header />
             <Sidebar />
             <Routes>
@@ -44,10 +36,10 @@ function App() {
               <Route path="/upload" element={<Upload />} />
               <Route path="/mymusic" element={<MyMusic />} />
               <Route path="/album" element={<Album />} />
+              <Route path="/SignIn" element={<SignIn />} />
+              <Route path="/SignUp" element={<SignUp />} />
             </Routes>
             <MusicPlayer /> {/* 항상 하단에 고정된 음악 플레이어 */}
-          </>
-        )}
       </div>
     </Router>
   );
