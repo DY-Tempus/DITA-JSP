@@ -42,7 +42,7 @@
 /* 기존 InputSetting 스타일 유지 */
 .InputSetting {
     border: none;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid white;
     background: transparent;
     color: white;
     font-size: 18px;

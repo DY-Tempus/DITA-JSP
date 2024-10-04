@@ -8,7 +8,7 @@ const SignUp = () => {
     confirmPassword: '',
     email: '',
     name: '',
-    genre1: 'banana',
+    genre1: '',
     genre2: 'banana',
   });
 
@@ -97,19 +97,24 @@ const SignUp = () => {
           </div>
         </div>
         <div className="Spread">
-          <label>Favorite Genre 1</label>
-          <select
-            id="genre1"
-            name="genre1"
-            className="InputSetting"
-            value={formData.genre1}
-            onChange={handleChange}
-          >
-            <option value="apple">Apple</option>
-            <option value="banana">Banana</option>
-            <option value="cherry">Cherry</option>
-            <option value="date">Date</option>
-          </select>
+          <div className="input-container">
+            <select
+              id="text"
+              name="genre1"
+              className="InputSetting"
+              value={formData.genre1}
+              onChange={handleChange}
+              required
+            >
+              <option value=""></option>
+              <option value="apple">Apple</option>
+              <option value="banana">Banana</option>
+              <option value="cherry">Cherry</option>
+              <option value="date">Date</option>
+            </select>
+            <label htmlFor="genre1" className="label">Favorite Genre 1</label>
+            <div className="underline"></div>
+          </div>
         </div>
         <div className="Spread">
           <label>Favorite Genre 2</label>
