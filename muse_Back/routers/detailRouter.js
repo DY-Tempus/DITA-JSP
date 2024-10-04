@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const musicCon = require('../controllers/musicController');
+const musicCon = require('../controllers/detailController');
 
 // 현재 음악 조회
 app.get('/', (req, res) => {
