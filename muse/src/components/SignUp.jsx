@@ -27,54 +27,74 @@ const SignUp = () => {
       <h1 className="TitleLabel">MU:SE</h1>
       <div className="signUpConatainer">
         <div className="Spread">
-          <label>ID</label>
-          <input
-            type="text"
-            className="InputSetting"
-            name="id"
-            value={formData.id}
-            onChange={handleChange}
-          />
+          <div className="input-container">
+            <input 
+              type="text" 
+              name="id" 
+              className="InputSetting" 
+              value={formData.id} 
+              onChange={handleChange} 
+              required 
+            />
+            <label for="input" className="label">ID</label>
+            <div className="underline"></div>
+          </div>
         </div>
         <div className="Spread">
-          <label>PW</label>
-          <input
-            type="password"
-            className="InputSetting"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+          <div className="input-container">
+            <input 
+              type="password" 
+              name="password"
+              className="InputSetting" 
+              value={formData.password} 
+              onChange={handleChange} 
+              required 
+            />
+            <label for="input" className="label">PW</label>
+            <div className="underline"></div>
+          </div>
         </div>
         <div className="Spread">
-          <label>PW Confirm</label>
-          <input
-            type="password"
-            className="InputSetting"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
+          <div className="input-container">
+            <input 
+              type="password" 
+              name="confirmPassword"
+              className="InputSetting" 
+              value={formData.confirmPassword} 
+              onChange={handleChange} 
+              required 
+            />
+            <label for="input" className="label">PW Confirm</label>
+            <div className="underline"></div>
+          </div>
         </div>
         <div className="Spread">
-          <label className="Email">Email</label>
-          <input
-            type="email"
-            className="InputSetting"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+          <div className="input-container">
+            <input 
+              type="email" 
+              name="email"
+              className="InputSetting" 
+              value={formData.email} 
+              onChange={handleChange} 
+              required 
+            />
+            <label for="input" className="label">Email</label>
+            <div className="underline"></div>
+          </div>
         </div>
         <div className="Spread">
-          <label>Name</label>
-          <input
-            type="text"
-            className="InputSetting"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
+          <div className="input-container">
+            <input 
+              type="text" 
+              name="name"
+              className="InputSetting" 
+              value={formData.name} 
+              onChange={handleChange} 
+              required 
+            />
+            <label for="input" className="label">Name</label>
+            <div className="underline"></div>
+          </div>
         </div>
         <div className="Spread">
           <label>Favorite Genre 1</label>
