@@ -17,8 +17,8 @@ const SignIn = () => {
   .then((Response)=>{
       console.log(Response.data);
       const obj=Response.data[0];
-
-      if(obj.cnt>0){
+      console.log(obj)
+      if(obj){
         //로그인 성공
         sessionStorage.setItem("idKey",JSON.stringify(obj))
         if(sessionStorage.getItem("idKey")){

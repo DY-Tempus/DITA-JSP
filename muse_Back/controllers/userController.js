@@ -27,7 +27,7 @@ const getUsers=(req,res)=>{
 
 const signIn=(req,res)=>{
     console.log(req.body)
-    const sql=`SELECT count(*) as cnt FROM user where id='${req.body.uid}' and password='${req.body.upw}'`;
+    const sql=`SELECT * FROM user where id='${req.body.uid}' and password='${req.body.upw}'`;
     pool.getConnection((error,connection)=>{
         if (error) {
             return res.status(500).json({ error: '사용자 조회 실패' });
