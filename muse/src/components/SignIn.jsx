@@ -11,7 +11,6 @@ const SignIn = () => {
 
   const handleSignIn = () => {
     axios.post("http://localhost:3000/api/user",{
-      responseType: 'json',
       uid:id,
       upw:password,
   })
@@ -21,8 +20,11 @@ const SignIn = () => {
 
       if(obj.cnt>0){
         //로그인 성공
-        console.log('난천재야');
-        navigate('/home');
+        sessionStorage.setItem("idKey",JSON.stringify(obj))
+        if(sessionStorage.getItem("idKey")){
+          navigate("/home")
+        }
+
       }
       else{
         //qt

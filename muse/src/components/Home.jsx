@@ -1,6 +1,7 @@
 import React from 'react';
 import './css/Home.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function AlbumItem({item}){
     return(
@@ -133,6 +134,15 @@ const artist=[
 ];
 
 const Home = () => {
+    const navigate = useNavigate()
+    if(!sessionStorage.getItem("idKey")){
+        return (
+            <div>
+                <meta http-equiv="refresh" content="0;url=/signIn"></meta>
+            </div>
+        );
+    }
+
     return (
         <div>
             {/* 메인 콘텐츠 영역 */}
