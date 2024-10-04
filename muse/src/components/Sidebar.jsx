@@ -7,24 +7,19 @@ import axios from 'axios';
 
 function Sidebar({ isOpen }) {
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/user",{
-            responseType: 'json',
-        })
-        .then((Response)=>{
-            console.log(Response.data);
-            const obj=Response.data[0];
-            
-            setUserInfo({
-                username: obj.NAME,
-                id: obj.ID,
-                password: obj.PASSWORD,
-                country: 'Korea',
-                genre1: obj.GENRE1,
-                genre2: obj.GENRE2,
-                email: obj.EMAIL,
-            });
+        if(!sessionStorage.getItem("idKey")) return //이거 없으면 창 안떠서 임시로 넣음. 로그인 페이지랑 홈 분리 후에 지울것.
+        let obj=sessionStorage.getItem("idKey")
+        obj=JSON.parse(obj)
+        console.log(obj)
+        setUserInfo({
+            username: obj.NAME,
+            id: obj.ID,
+            password: obj.PASSWORD,
+            country: 'Korea',
+            genre1: obj.GENRE1,
+            genre2: obj.GENRE2,
+            email: obj.EMAIL,
         });
-
     }, []);
     // 사용자 정보 상태
     const [userInfo, setUserInfo] = useState({
