@@ -108,6 +108,11 @@
     border: none;
     color: white;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.control-button-extra.detailopen {
+    transform: rotate(180deg);
 }
 
 .controls-extra{
