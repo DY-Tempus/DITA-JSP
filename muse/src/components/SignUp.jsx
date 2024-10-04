@@ -71,7 +71,7 @@ const SignUp = () => {
         <div className="Spread">
           <div className="input-container">
             <input 
-              type="email" 
+              type="text" 
               name="email"
               className="InputSetting" 
               value={formData.email} 
