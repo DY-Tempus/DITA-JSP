@@ -1,5 +1,4 @@
 const db = require('../db'); // 커넥션 풀 사용
-const path = require('path');
 
 const uploadMusic = (req, res) => {
     const { title, lyrics, genre } = req.body;
@@ -15,7 +14,7 @@ const uploadMusic = (req, res) => {
     const imageFileData = imageFile.data;
 
     // SQL 쿼리
-    const query = 'INSERT INTO music (MNAME, MFILE, MLYRICS, MGENRE, ID) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO music (MNAME, MFILE, MLYRICS, MGENRE, ID, MIMG, MDATE) VALUES (?, ?, ?, ?, ?, ?, NOW())';
     
     // 커넥션 풀에서 커넥션을 얻어서 쿼리 실행
     db.getConnection((err, connection) => {
@@ -24,7 +23,7 @@ const uploadMusic = (req, res) => {
             return res.status(500).json({ error: 'DB 연결 중 오류 발생' });
         }
 
-        connection.query(query, [title, musicFileData, lyrics, genre, 'rang'], (err, result) => {
+        connection.query(query, [title, musicFileData, lyrics, genre, 'rang', imageFileData], (err, result) => {
             connection.release();
 
             if (err) {
