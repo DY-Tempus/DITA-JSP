@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
+.side-page {
+    position: fixed;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 850; 
+    transition: opacity 0.2s ease, visibility 0s 0.3s; /* 페이드 인/아웃 애니메이션 */
+    visibility: hidden; /* 처음에는 보이지 않음 */
+}
+
+.side-page.open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease; /* 페이드 인 애니메이션 */
+}
 
 .sidebar {
     position: fixed;
@@ -66,6 +81,7 @@
     background: linear-gradient(#7367f6, #7561f5, #795ef6);
     border: none;
     border-radius: 0px 15px 15px 0px;
+    visibility: visible;
   }
   
   /* Footer 영역의 설정 버튼 스타일 */

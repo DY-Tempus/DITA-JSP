@@ -9,44 +9,53 @@ const Settings = ({ isOpen, setIsOpen }) => {
         setIsOpen(false); // Settings를 숨김
     };
 
+    const handlePageClick = (e) => {
+        // settings-panel을 제외한 영역 클릭 시 설정 닫기
+        if (e.target.classList.contains('settings-page')) {
+            setIsOpen(false);
+        }
+    };
+
     return ReactDOM.createPortal(
-        <div className={`settings-panel ${isOpen ? 'open' : ''}`}>
-            <div className="settings-header">
-            <img src="/img/back.png" alt="Back" className="back" onClick={hideSettings} />
-                <h2>Settings</h2>
-            </div>
-            <div className="settings-item">
-                <span>다크 모드</span>
-                <div className="toggle-switch">
-                    <label className="switch">
-                        <input type="checkbox" />
-                        <span></span>
-                    </label>
+        <div className={`settings-page ${isOpen ? 'open' : ''}`} onClick={handlePageClick}>
+            <div className={`settings-panel ${isOpen ? 'open' : ''}`}>
+                <div className="settings-header">
+                <img src="/img/back.png" alt="Back" className="back" onClick={hideSettings} />
+                    <h2>Settings</h2>
                 </div>
-            </div>
-            <div className="settings-item">
-                <span>시청 기록 관리</span>
-            </div>
-            <div className="settings-item">
-                <span>시청 기록 일시중지</span>
-                <div className="toggle-switch">
-                    <label className="switch">
-                        <input type="checkbox" defaultChecked />
-                        <span></span>
-                    </label>
+                <div className="settings-item">
+                    <span>다크 모드</span>
+                    <div className="toggle-switch">
+                        <label className="switch">
+                            <input type="checkbox" />
+                            <span></span>
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div className="settings-item">
-                <span>검색 기록 일시중지</span>
-                <div className="toggle-switch">
-                    <label className="switch">
-                        <input type="checkbox" />
-                        <span></span>
-                    </label>
+                <div className="settings-item">
+                    <span>시청 기록 관리</span>
                 </div>
-            </div>
-            <div className="settings-item">
-                <span>Project 정보</span>
+                <div className="settings-item">
+                    <span>시청 기록 일시중지</span>
+                    <div className="toggle-switch">
+                        <label className="switch">
+                            <input type="checkbox" defaultChecked />
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div className="settings-item">
+                    <span>검색 기록 일시중지</span>
+                    <div className="toggle-switch">
+                        <label className="switch">
+                            <input type="checkbox" />
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div className="settings-item">
+                    <span>Project 정보</span>
+                </div>
             </div>
         </div>,
         document.body
