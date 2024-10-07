@@ -67,6 +67,8 @@ const Upload = () => {
             alert('음악 업로드 실패');
         }
     };
+
+    // 유저 정보가 없는 경우 리다이렉트
     if(!sessionStorage.getItem("idKey")){
         return (
             <div>
@@ -74,6 +76,7 @@ const Upload = () => {
             </div>
         );
     }
+
     return (
         <div className="upload-panel">
             <h1 className="title">Upload Music</h1>
@@ -132,5 +135,3 @@ const Upload = () => {
 };
 
 export default Upload;
-
-
