@@ -14,7 +14,7 @@ function CurrentItem({item, onRemove}){
             </div>
         </div>
         <img src='./img/move.png' className='thumbs-views' />
-        <img src='./img/delete.png' className='thumbs-views' onClick={()=>onRemove(item.id)}/>
+        <img src='./img/delete.png' className='thumbs-views' onClick={()=>onRemove(item.index)}/>
       </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './css/Current.css'; // CSS 파일 연결
 import CurrentList from './CurrentList';
@@ -10,6 +10,7 @@ import CurrentList from './CurrentList';
 const Current = ({ isOpen }) => {
   const[currentPlaylist, setCurrentPlaylist]=useState([
     {
+      index:1,
       id: 1,
       writer: "Getsix",
       title: "WIP That'll Never Come Out",
@@ -17,6 +18,7 @@ const Current = ({ isOpen }) => {
       image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
     },
     {
+      index:2,
       id: 2,
       writer: "Getsix",
       title: "The Psychedelic Experience",
@@ -24,6 +26,7 @@ const Current = ({ isOpen }) => {
       image: "./img/Getsixart2.png",
     },
     {
+      index:3,
       id: 3,
       writer: "Getsix",
       title: "Astral Projection",
@@ -31,6 +34,7 @@ const Current = ({ isOpen }) => {
       image: "./img/Getsixart2.png",
     },
     {
+      index:4,
       id: 4,
       writer: "Getsix",
       title: "Better Days",
@@ -38,6 +42,7 @@ const Current = ({ isOpen }) => {
       image: "./img/Getsixart2.png",
     },
     {
+      index:5,
       id: 5,
       writer: "Getsix",
       title: "Envy",
@@ -45,6 +50,7 @@ const Current = ({ isOpen }) => {
       image: "./img/Getsixart2.png",
     },
     {
+      index:6,
       id: 6,
       writer: "Getsix",
       title: "Diphenhydramine",
@@ -52,11 +58,15 @@ const Current = ({ isOpen }) => {
       image: "./img/Getsixart2.png",
     },
   ])
-  const onRemove = id => {  // onRemove 함수 생성
-    setCurrentPlaylist(currentPlaylist.filter(item => item.id !== id));
+  const onRemove = index => {  // onRemove 함수 생성
+    setCurrentPlaylist(currentPlaylist.filter(item => item.index !== index));
   };
+  const nextId = useRef(7);
+
+
   const onCreate = () => {
     const playlist = {
+      index: nextId.current,
       id: 7,
       writer: "Getsix",
       title: "Diphenhydramine",
@@ -64,6 +74,7 @@ const Current = ({ isOpen }) => {
       image: "./img/Getsixart2.png",
     };
     setCurrentPlaylist([...currentPlaylist, playlist]);
+    nextId.current+=1;
   }
   
 return ReactDOM.createPortal(
