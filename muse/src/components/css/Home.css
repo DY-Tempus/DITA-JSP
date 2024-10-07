@@ -22,7 +22,7 @@ body {
 
 /* 스크롤바 트랙 (배경) */
 ::-webkit-scrollbar-track {
-    background: #ffffff; 
+    background: none;
 }
 
 /* 스크롤바 핸들 (움직이는 부분) */

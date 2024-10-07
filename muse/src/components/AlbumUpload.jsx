@@ -2,6 +2,177 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './css/AlbumUpload.css';
 
+const songs = [
+    {
+        id: 1,
+        writer: "Getsix",
+        title: "WIP That'll Never Come Out",
+        duration: "2:48",
+        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
+    },
+    {
+        id: 2,
+        writer: "Getsix",
+        title: "The Psychedelic Experience",
+        duration: "4:35",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 3,
+        writer: "Getsix",
+        title: "Astral Projection",
+        duration: "5:53",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 4,
+        writer: "Getsix",
+        title: "Better Days",
+        duration: "4:17",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 5,
+        writer: "Getsix",
+        title: "Envy",
+        duration: "3:35",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 6,
+        writer: "Getsix",
+        title: "Diphenhydramine",
+        duration: "1:57",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 1,
+        writer: "Getsix",
+        title: "WIP That'll Never Come Out",
+        duration: "2:48",
+        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
+    },
+    {
+        id: 2,
+        writer: "Getsix",
+        title: "The Psychedelic Experience",
+        duration: "4:35",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 3,
+        writer: "Getsix",
+        title: "Astral Projection",
+        duration: "5:53",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 4,
+        writer: "Getsix",
+        title: "Better Days",
+        duration: "4:17",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 5,
+        writer: "Getsix",
+        title: "Envy",
+        duration: "3:35",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 6,
+        writer: "Getsix",
+        title: "Diphenhydramine",
+        duration: "1:57",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 1,
+        writer: "Getsix",
+        title: "WIP That'll Never Come Out",
+        duration: "2:48",
+        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
+    },
+    {
+        id: 2,
+        writer: "Getsix",
+        title: "The Psychedelic Experience",
+        duration: "4:35",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 3,
+        writer: "Getsix",
+        title: "Astral Projection",
+        duration: "5:53",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 4,
+        writer: "Getsix",
+        title: "Better Days",
+        duration: "4:17",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 5,
+        writer: "Getsix",
+        title: "Envy",
+        duration: "3:35",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 6,
+        writer: "Getsix",
+        title: "Diphenhydramine",
+        duration: "1:57",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 1,
+        writer: "Getsix",
+        title: "WIP That'll Never Come Out",
+        duration: "2:48",
+        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
+    },
+    {
+        id: 2,
+        writer: "Getsix",
+        title: "The Psychedelic Experience",
+        duration: "4:35",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 3,
+        writer: "Getsix",
+        title: "Astral Projection",
+        duration: "5:53",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 4,
+        writer: "Getsix",
+        title: "Better Days",
+        duration: "4:17",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 5,
+        writer: "Getsix",
+        title: "Envy",
+        duration: "3:35",
+        image: "./img/Getsixart2.png",
+    },
+    {
+        id: 6,
+        writer: "Getsix",
+        title: "Diphenhydramine",
+        duration: "1:57",
+        image: "./img/Getsixart2.png",
+    },
+];
+
 const AlbumUpload = () => {
     const [imageFile, setImageFile] = useState(null);  // 이미지 파일 저장
     const [musicFile, setMusicFile] = useState(null);  // 음악 파일 저장
@@ -67,44 +238,34 @@ const AlbumUpload = () => {
             alert('음악 업로드 실패');
         }
     };
-    if(!sessionStorage.getItem("idKey")){
-        return (
-            <div>
-                <meta http-equiv="refresh" content="0;url=/signIn"></meta>
-            </div>
-        );
-    }
+
+    // if(!sessionStorage.getItem("idKey")){
+    //     return (
+    //         <div>
+    //             <meta http-equiv="refresh" content="0;url=/signIn"></meta>
+    //         </div>
+    //     );
+    // }
+
     return (
-        <div className="album-upload-
-        panel">
-            <h1 className="title">AlbumUpload Music</h1>
-            <div className="album-upload-
-            section">
-                <div className="album-upload-
-                content">
+        <div className="album-upload-panel">
+            <h1 className="title">AlbumUpload</h1>
+            <div className="album-upload-section">
+                <div className="album-upload-content">
                     <div className="image-box">
                         <div className="file-AlbumUpload">
                             <input type="file" id="image-AlbumUpload" accept="image/*" onChange={handleImageChange} />
-                            <label htmlFor="image-AlbumUpload" className="custom-file-AlbumUpload">
-                                AlbumUpload Image
+                            <label htmlFor="image-AlbumUpload" className="custom-file-album-upload">
+                                Album Image
                             </label>
                             {imageFileName && <p className="file-name">{imageFileName}</p>}
-                        </div>
-                        <div className="file-AlbumUpload">
-                            <input type="file" id="music-AlbumUpload" accept="audio/*" onChange={handleMusicChange} />
-                            <label htmlFor="music-AlbumUpload" className="custom-file-AlbumUpload">
-                                AlbumUpload Music
-                            </label>
-                            {musicFileName && <p className="file-name">{musicFileName}</p>}
                         </div>
                     </div>
                     <div className="input-fields">
                         <div><label>Title</label><input type="text" name="title" value={formData.title} onChange={handleInputChange} /></div>
-                        <div><label>Artist</label><input type="text" name="artist" value={formData.artist} onChange={handleInputChange} /></div>
                         <div><label>Producer/Remix</label><input type="text" name="producer" value={formData.producer} onChange={handleInputChange} /></div>
-                        <div><label>Album</label><input type="text" name="album" value={formData.album} onChange={handleInputChange} /></div>
                         <div><label>Genre</label><input type="text" name="genre" value={formData.genre} onChange={handleInputChange} /></div>
-                        <div><label>Copyright</label><input type="text" name="copyright" value={formData.copyright} onChange={handleInputChange} /></div>
+                        <div><label>Detail</label><input type="text" name="detail" value={formData.detail} onChange={handleInputChange} /></div>
                         <div>
                             <label>Option</label>
                             <select name="option" value={formData.option} onChange={handleInputChange}>
@@ -115,20 +276,29 @@ const AlbumUpload = () => {
                     </div>
                 </div>
 
-                <div className="lyrics-content">
-                    <h1>Lyrics</h1>
-                    <textarea
-                        name="lyrics"
-                        placeholder="Insert your lyrics here..."
-                        value={formData.lyrics}
-                        onChange={handleInputChange}
-                    ></textarea>
+                <div className="album-upload-list-content">
+                    <h1>List</h1>
+                    <div className="album-upload-song-list">
+                        {songs.map((song) => (
+                            <div key={song.id}>
+                                <div className="album-song-element">
+                                    <input type='checkbox'></input>
+                                    <img src={song.image} alt={song.title} className="album-song-image" />
+                                    <div className="album-song-info">
+                                        <div className="album-song-detail">
+                                            <span className="album-song-title">{song.title}</span>
+                                        </div>
+                                        <span className="album-song-duration">{song.duration}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
             <div className="button-section">
-                <button className="album-upload-
-                button" onClick={handleSubmit}>AlbumUpload</button>
+                <button className="album-upload-button" onClick={handleSubmit}>Upload</button>
                 <button className="cancel-button">Cancel</button>
             </div>
         </div>

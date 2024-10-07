@@ -98,13 +98,13 @@
 }
 
 /* 가사 섹션 */
-.lyrics-content {
+.album-upload-list-content {
     align-items: center;
     min-width: 300px;
     width: 40%;
 }
 
-.lyrics-content h1 {
+.album-upload-list-content h1 {
     margin: 0px 0px 20px 0px;
     background: linear-gradient(45deg, #0077ff, #9500ff);
     color: transparent;
@@ -114,7 +114,7 @@
     width: fit-content;
 }
 
-.lyrics-content textarea {
+.album-upload-list-content textarea {
     width: calc(100% - 20px);
     height: calc(100% - 80px);
     border-radius: 15px;
@@ -216,4 +216,27 @@ input[type="file"] {
     flex-direction: column;
     align-items: center;
     width: 200px;
+}
+
+.album-upload-song-list{
+    height: 450px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: auto;
+    padding: 15px 10px;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.album-song-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
 }
