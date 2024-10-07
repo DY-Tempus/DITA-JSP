@@ -16,7 +16,7 @@ const App = () => {
             {/* 상단 배너 */}
             <header className="top-banner">
                 <Link to="/home">
-                    <div className="logo">MU:SE</div>
+                    <img src="img/logo.png" className="logo"/>
                 </Link>
                 <div className="search-bar">
                     <input type="text" placeholder="Search..." />
