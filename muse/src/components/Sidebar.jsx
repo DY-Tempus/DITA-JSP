@@ -73,18 +73,20 @@ function Sidebar({ isOpen }) {
                 <Link to="/favorite" onClick={closeSidebar}><li>● Favorite</li></Link>
                 <Link to="/playlist" onClick={closeSidebar}><li>● My Playlist</li></Link>
                 <Link to="/mymusic" onClick={closeSidebar}><li>● My Music</li></Link>
-                <Link to="/upload" onClick={closeSidebar}>
-                    <li
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                    >● Upload</li>
-                    <div className={`additionalOption ${isHovered ? 'visible' : ''}`}>
+                <li
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >● Upload</li>
+                <div className={`additionalOption ${isHovered ? 'visible' : ''}`}>
+                    <Link to="/upload" onClick={closeSidebar}>
                         <li className='liElement' onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}>- Upload Music</li>
+                    </Link>
+                    <Link to="/albumupload" onClick={closeSidebar}>
                         <li className='liElement' onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}>- Upload Album</li>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
             </ul>
             <div className='Sifoot'>
                 <img src="/img/settings.png" alt="Settings" className="settings-btn"

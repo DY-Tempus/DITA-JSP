@@ -32,10 +32,7 @@
 
 .signUpConatainer{
     background: linear-gradient(45deg, #007AFF, #D14FFF);
-    padding-top: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 30px;
+    padding: 30px 20px;
     text-align: right;
     color: white;
     margin: 20px;
@@ -67,7 +64,7 @@
     position: absolute;
     top: 5px;
     left: 5px;
-    color: #ccc;
+    color: white;
     transition: all 0.3s ease;
     pointer-events: none;
 }

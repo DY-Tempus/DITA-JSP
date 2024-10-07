@@ -14,6 +14,7 @@ import MyMusic from './components/MyMusic';
 import Album from './components/Album';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import AlbumUpload from './components/AlbumUpload';
 import './css/App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               <Route path="/favorite" element={<Favorite />} />
               <Route path="/playlist" element={<PlayList />} />
               <Route path="/upload" element={<Upload />} />
+              <Route path="/albumupload" element={<AlbumUpload/>}/>
               <Route path="/mymusic" element={<MyMusic />} />
               <Route path="/album" element={<Album />} />
               <Route path="/SignIn" element={<SignIn />} />
