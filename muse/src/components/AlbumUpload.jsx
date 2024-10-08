@@ -1,194 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/AlbumUpload.css';
 
-const songs = [
-    {
-        id: 1,
-        writer: "Getsix",
-        title: "WIP That'll Never Come Out",
-        duration: "2:48",
-        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
-    },
-    {
-        id: 2,
-        writer: "Getsix",
-        title: "The Psychedelic Experience",
-        duration: "4:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 3,
-        writer: "Getsix",
-        title: "Astral Projection",
-        duration: "5:53",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 4,
-        writer: "Getsix",
-        title: "Better Days",
-        duration: "4:17",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 5,
-        writer: "Getsix",
-        title: "Envy",
-        duration: "3:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 6,
-        writer: "Getsix",
-        title: "Diphenhydramine",
-        duration: "1:57",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 1,
-        writer: "Getsix",
-        title: "WIP That'll Never Come Out",
-        duration: "2:48",
-        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
-    },
-    {
-        id: 2,
-        writer: "Getsix",
-        title: "The Psychedelic Experience",
-        duration: "4:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 3,
-        writer: "Getsix",
-        title: "Astral Projection",
-        duration: "5:53",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 4,
-        writer: "Getsix",
-        title: "Better Days",
-        duration: "4:17",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 5,
-        writer: "Getsix",
-        title: "Envy",
-        duration: "3:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 6,
-        writer: "Getsix",
-        title: "Diphenhydramine",
-        duration: "1:57",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 1,
-        writer: "Getsix",
-        title: "WIP That'll Never Come Out",
-        duration: "2:48",
-        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
-    },
-    {
-        id: 2,
-        writer: "Getsix",
-        title: "The Psychedelic Experience",
-        duration: "4:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 3,
-        writer: "Getsix",
-        title: "Astral Projection",
-        duration: "5:53",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 4,
-        writer: "Getsix",
-        title: "Better Days",
-        duration: "4:17",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 5,
-        writer: "Getsix",
-        title: "Envy",
-        duration: "3:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 6,
-        writer: "Getsix",
-        title: "Diphenhydramine",
-        duration: "1:57",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 1,
-        writer: "Getsix",
-        title: "WIP That'll Never Come Out",
-        duration: "2:48",
-        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
-    },
-    {
-        id: 2,
-        writer: "Getsix",
-        title: "The Psychedelic Experience",
-        duration: "4:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 3,
-        writer: "Getsix",
-        title: "Astral Projection",
-        duration: "5:53",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 4,
-        writer: "Getsix",
-        title: "Better Days",
-        duration: "4:17",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 5,
-        writer: "Getsix",
-        title: "Envy",
-        duration: "3:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 6,
-        writer: "Getsix",
-        title: "Diphenhydramine",
-        duration: "1:57",
-        image: "./img/Getsixart2.png",
-    },
-];
-
 const AlbumUpload = () => {
-    const [imageFile, setImageFile] = useState(null);  // 이미지 파일 저장
-    const [musicFile, setMusicFile] = useState(null);  // 음악 파일 저장
+    const [selectedSongs, setSelectedSongs] = useState([]);
+    const [songs, setSongs] = useState([]);
     const [formData, setFormData] = useState({
         title: '',
-        artist: '',        // DB에는 저장되지 않음
-        producer: '',      // DB에는 저장되지 않음
-        album: '',         // DB에는 저장되지 않음
+        producer: '',  // Producer/Remix 추가
         genre: '',
-        copyright: '',     // DB에는 저장되지 않음
-        lyrics: '',
-        option: 'public'   // DB에는 저장되지 않음
+        detail: '',
+        option: 'public'
     });
-
-    const [imageFileName, setImageFileName] = useState('');  // 이미지 파일 이름
-    const [musicFileName, setMusicFileName] = useState('');  // 음악 파일 이름
+    const [imageFile, setImageFile] = useState(null); // 앨범 이미지 파일 저장
+    const [imageFileName, setImageFileName] = useState(''); // 앨범 이미지 파일 이름 저장
 
     // 이미지 파일 처리
     const handleImageChange = (event) => {
@@ -199,16 +24,34 @@ const AlbumUpload = () => {
         }
     };
 
-    // 음악 파일 처리
-    const handleMusicChange = (event) => {
-        const file = event.target.files[0];  // 첫 번째 파일 선택
-        if (file) {
-            setMusicFile(file);  // 음악 파일 저장
-            setMusicFileName(file.name);  // 음악 파일 이름 저장
+    // 로그인된 사용자의 노래 불러오기
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/music/mysongs')
+            .then((response) => {
+                setSongs(response.data); // 불러온 노래 데이터를 songs에 저장
+            })
+            .catch((error) => {
+                console.error('노래 목록 가져오기 실패:', error);
+            });
+
+        // 로그인된 사용자 이름 가져오기
+        const loggedInUser = JSON.parse(sessionStorage.getItem("idKey"));
+        if (loggedInUser) {
+            setFormData(prevState => ({
+                ...prevState,
+                producer: loggedInUser.NAME  // Producer/Remix에 로그인된 사용자 이름 설정
+            }));
+        }
+    }, []);
+
+    const handleSongSelect = (id) => {
+        if (selectedSongs.includes(id)) {
+            setSelectedSongs(selectedSongs.filter(songId => songId !== id));
+        } else {
+            setSelectedSongs([...selectedSongs, id]);
         }
     };
 
-    // 입력 필드 값 변경 처리
     const handleInputChange = (e) => {
         setFormData({
             ...formData,
@@ -216,36 +59,29 @@ const AlbumUpload = () => {
         });
     };
 
-    // 파일 및 데이터를 서버로 전송하는 함수
     const handleSubmit = async () => {
-        const data = new FormData();  // FormData 객체 생성
-        data.append('image', imageFile);  // 이미지 파일 추가
-        data.append('music', musicFile);  // 음악 파일 추가
-        data.append('title', formData.title);
-        data.append('genre', formData.genre);
-        data.append('lyrics', formData.lyrics);
+        const albumData = new FormData(); // FormData 객체 생성
+        albumData.append('title', formData.title); // 앨범 타이틀
+        albumData.append('producer', formData.producer); // Producer/Remix 정보
+        albumData.append('genre', formData.genre); 
+        albumData.append('detail', formData.detail);
+        albumData.append('option', formData.option);
+        albumData.append('image', imageFile); // 이미지 파일 추가
+        albumData.append('songIds', selectedSongs); // 선택된 곡들 추가
 
         try {
-            const response = await axios.post('http://localhost:3000/api/music/AlbumUpload', data, {
+            const response = await axios.post('http://localhost:3000/api/music/albumUpload', albumData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'  // 파일 전송 시 헤더 설정
+                    'Content-Type': 'multipart/form-data'
                 }
             });
-            alert('음악 업로드 성공!');
+            alert('앨범 업로드 성공!');
             console.log(response.data);
         } catch (error) {
-            console.error('업로드 실패:', error);
-            alert('음악 업로드 실패');
+            console.error('앨범 업로드 실패:', error);
+            alert('앨범 업로드 실패');
         }
     };
-
-    // if(!sessionStorage.getItem("idKey")){
-    //     return (
-    //         <div>
-    //             <meta http-equiv="refresh" content="0;url=/signIn"></meta>
-    //         </div>
-    //     );
-    // }
 
     return (
         <div className="album-upload-panel">
@@ -277,22 +113,28 @@ const AlbumUpload = () => {
                 </div>
 
                 <div className="album-upload-list-content">
-                    <h1>List</h1>
+                    <h1>Select Songs for Album</h1>
                     <div className="album-upload-song-list">
-                        {songs.map((song) => (
-                            <div key={song.id}>
-                                <div className="album-song-element">
-                                    <input type='checkbox'></input>
-                                    <img src={song.image} alt={song.title} className="album-song-image" />
+                        {songs.length > 0 ? (
+                            songs.map((song) => (
+                                <div key={song.MID} className="album-song-element">
+                                    <input
+                                        type='checkbox'
+                                        onChange={() => handleSongSelect(song.MID)}
+                                        checked={selectedSongs.includes(song.MID)}
+                                    />
+                                    <img src={`data:image/jpeg;base64,${song.MIMG}`} alt={song.MNAME} className="album-song-image" />
                                     <div className="album-song-info">
                                         <div className="album-song-detail">
-                                            <span className="album-song-title">{song.title}</span>
+                                            <span className="album-song-title">{song.MNAME}</span>
                                         </div>
                                         <span className="album-song-duration">{song.duration}</span>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        ) : (
+                            <p>No songs uploaded by the user.</p>
+                        )}
                     </div>
                 </div>
             </div>
@@ -306,5 +148,3 @@ const AlbumUpload = () => {
 };
 
 export default AlbumUpload;
-
-
