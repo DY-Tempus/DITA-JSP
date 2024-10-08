@@ -27,12 +27,18 @@ const SignUp = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
+
+
     // 입력 변경 시 에러 해제
     setFormErrors({
       ...formErrors,
       [`${name}Error`]: false,
     });
   };
+
+  const handleBlur = (e, field, value) => {
+    console.log("AAA");
+};
 
   const handleSignUp = () => {
     let hasError = false;
@@ -92,6 +98,7 @@ const SignUp = () => {
               className={`InputSetting ${formErrors.idError ? 'error' : ''}`}
               value={formData.id} 
               onChange={handleChange} 
+              onBlur={(e) => handleBlur(e, 'username', e.target.value)}
               required 
             />
             <label htmlFor="input" className="label">ID</label>
