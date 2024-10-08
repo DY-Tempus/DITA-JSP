@@ -9,6 +9,11 @@
     width: 100%;
     z-index: 1000; /* 다른 요소 위에 나타나도록 설정 */
 }
+.music-player-container audio {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
 
 .progress-bar-container {
     width: 100%;

@@ -12,13 +12,21 @@ const MusicPlayer = () => {
     const [currentTime, setCurrentTime] = useState(0); // 현재 재생 시간
     const [audioSrc, setAudioSrc] = useState(''); // 오디오 소스 관리
     const [audioElement, setAudioElement] = useState(null); // 오디오 엘리먼트 관리
-    const musicId = 21; // 현재 재생할 음악 ID (임시로 21번 음악 사용)
-    const duration = 240; // 총 재생 시간 (초 단위, 실제로는 서버에서 가져와야 함)
-    const progressBarRef = useRef(null); // 진행 바 참조
+    const [duration, setDuration] = useState(0); // 총 재생 시간 (초 단위, 서버에서 받아옴)
+    const [volume, setVolume] = useState(50); // 볼륨 상태 (0-100 범위)
+    const [isVolumeVisible, setIsVolumeVisible] = useState(false); // 볼륨 패널 표시 상태
+
+    const [musicInfo, setMusicInfo] = useState({
+        title: 'Unknown',
+        artist: 'Unknown',
+        genre: 'Unknown',
+    });
 
     const [isOverflowing, setIsOverflowing] = useState(false);
     const titleRef = useRef(null);
     const containerRef = useRef(null);
+    const progressBarRef = useRef(null); // 진행 바 참조
+    const musicId = 29; // 현재 재생할 음악 ID
 
     // 텍스트가 넘치는지 확인하는 함수
     const checkOverflow = () => {
@@ -45,11 +53,20 @@ const MusicPlayer = () => {
             })
             .then((response) => {
                 const audioUrl = URL.createObjectURL(response.data);
-                console.log('Audio URL:', audioUrl); // 디버깅: URL 확인
                 setAudioSrc(audioUrl); // 오디오 소스 설정
             })
             .catch((error) => {
                 console.error('음악 스트리밍 오류:', error);
+            });
+
+        // 음악 정보 가져오기
+        axios
+            .get(`http://localhost:3000/api/music/detail/${musicId}`)
+            .then((response) => {
+                setMusicInfo(response.data); // 음악 정보 업데이트
+            })
+            .catch((error) => {
+                console.error('음악 정보 가져오기 오류:', error);
             });
     }, [musicId]);
 
@@ -74,7 +91,6 @@ const MusicPlayer = () => {
             return () => clearTimeout(timer); // 이전 타이머 해제
         }
     }, [isPlaying]);
-
 
     // 음소거 토글 함수
     const toggleMute = () => {
@@ -135,21 +151,25 @@ const MusicPlayer = () => {
     const [isCurrentOpen, setIsCurrentOpen] = useState(false); // 현재 재생 목록 패널 상태 관리
     const toggleCurrent = () => setIsCurrentOpen(!isCurrentOpen);
 
-    const [isVolumeVisible, setIsVolumeVisible] = useState(false); // 볼륨 패널 표시 상태
-    const [volume, setVolume] = useState(50); // 볼륨 상태 (0-100 범위)
-
     const handleMouseEnter = () => setIsVolumeVisible(true); // 볼륨 패널 보이기
     const handleMouseLeave = () => setIsVolumeVisible(false); // 볼륨 패널 숨기기
+
+    useEffect(() => {
+        if (audioElement) {
+            audioElement.volume = volume / 100; // 오디오 엘리먼트의 볼륨 조정
+        }
+    }, [volume, audioElement]);
 
     return (
         <div className="music-player-container">
             {/* 오디오 엘리먼트 */}
+            
             <audio
                 ref={(el) => setAudioElement(el)}
                 controls
                 src={audioSrc} // 오디오 소스가 올바르게 설정되었는지 확인
                 onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
-                onLoadedMetadata={(e) => e.target.duration}
+                onLoadedMetadata={(e) => setDuration(e.target.duration)} // 메타데이터 로드 시 길이 설정
             ></audio>
 
             {/* 진행 바 */}
@@ -177,7 +197,7 @@ const MusicPlayer = () => {
                     <img src="/img/album.jpg" alt="Album Art" className="album-art" />
                     <div className="track-details" ref={containerRef}>
                         <p className={`track-title ${isOverflowing ? 'marquee' : ''}`}>
-                            Collide - Hellberg & Deutgen vs Splitbreed (Astronaut & Barely Alive Remix)
+                            {musicInfo.title} - {musicInfo.artist}
                         </p>
                     </div>
                 </div>
@@ -195,13 +215,12 @@ const MusicPlayer = () => {
                             className="control-button-extra"
                             onClick={toggleMute}
                         />
-                        <Volume
-                            className={`additionalOption ${isVolumeVisible ? 'visible' : ''}`}
-                            volume={volume}
-                            setVolume={setVolume}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                        {isVolumeVisible && (
+                            <Volume
+                                volume={volume}
+                                setVolume={setVolume}
+                            />
+                        )}
                     </div>
                     <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={toggleCurrent} />
                     <img // Detail Open/Close
