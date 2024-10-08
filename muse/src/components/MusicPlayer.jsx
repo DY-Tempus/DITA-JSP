@@ -222,7 +222,12 @@ const MusicPlayer = () => {
                             />
                         )}
                     </div>
-                    <img src="/img/playlist.png" alt="Playlist" className="control-button-extra" onClick={toggleCurrent} />
+                    <label class="burger" for="burger">
+                        <input type="checkbox" id="burger" onClick={toggleCurrent}/>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
                     <img // Detail Open/Close
                         src="/img/info.png"
                         alt={isDetailOpen ? "DetailOpen" : "DetailClose"}
