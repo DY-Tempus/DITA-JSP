@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './css/Sidebar.css';
 import Settings from './Settings'; // Settings 컴포넌트 가져오기
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 
 function Sidebar({ isOpen }) {

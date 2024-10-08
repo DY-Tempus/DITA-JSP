@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './css/SignUp.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     id: '',
     password: '',
@@ -38,21 +41,50 @@ const SignUp = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
+    
+     axios.post("http://localhost:3000/api/user/idcheck",{
+      uid:value,
+    })
+    .then((Response)=>{
+      const obj=Response.data[0];
+      console.log(obj)
 
-    console.log(name, value);
-};
-
+      if(obj.count===1){
+        setFormErrors({
+          [`${name}Error`]:true
+        });
+      }else{
+        setFormErrors({
+          [`${name}Error`]:false
+        });
+      }
+    });
+    console.log(name)
+  };
+  const handleBlur2 = (e) => {
+    const { name, value } = e.target;
+    if(formData.password!==formData.confirmPassword){
+      setFormErrors({
+        confirmPasswordError:true
+      });
+    }else{
+      setFormErrors({
+        confirmPasswordError:false
+      });
+    }
+  };
+  let hasError = false;
+  const errors = {
+    idError: formData.id === "",
+    passwordError: formData.password === "",
+    confirmPasswordError: formData.confirmPassword === "" || formData.password !== formData.confirmPassword,
+    emailError: formData.email === "",
+    nameError: formData.name === "",
+    genre1Error: formData.genre1 === "",
+    genre2Error: formData.genre2 === "",
+  };
   const handleSignUp = () => {
-    let hasError = false;
-    const errors = {
-      idError: formData.id === "",
-      passwordError: formData.password === "",
-      confirmPasswordError: formData.confirmPassword === "" || formData.password !== formData.confirmPassword,
-      emailError: formData.email === "",
-      nameError: formData.name === "",
-      genre1Error: formData.genre1 === "",
-      genre2Error: formData.genre2 === "",
-    };
+    
 
     setFormErrors(errors);
 
@@ -84,8 +116,22 @@ const SignUp = () => {
 
     // 회원가입 로직 구현
 
-    //여기 pw confirm 구현 '해줘'
-    console.log(formData);
+    axios.post("http://localhost:3000/api/user/signup",{
+      uid:formData.id,
+      upw:formData.password,
+      email:formData.email,
+      uname:formData.name,
+      genre1:formData.genre1,
+      genre2:formData.genre2,
+    })
+    .then((Response)=>{
+      const obj=Response.data;
+      console.log(obj)
+
+      if(obj.result===true){
+        navigate('/signin')
+      }
+    });
   };
 
   return (
@@ -114,6 +160,7 @@ const SignUp = () => {
               name="password"
               className={`InputSetting ${formErrors.passwordError ? 'error' : ''}`}
               value={formData.password} 
+              onBlur={(e) => handleBlur2(e, 'username', e.target.value)}
               onChange={handleChange} 
               required 
             />
@@ -128,6 +175,7 @@ const SignUp = () => {
               name="confirmPassword"
               className={`InputSetting ${formErrors.confirmPasswordError ? 'error' : ''}`}
               value={formData.confirmPassword} 
+              onBlur={(e) => handleBlur2(e, 'username', e.target.value)}
               onChange={handleChange} 
               required 
             />
