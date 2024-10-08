@@ -26,6 +26,17 @@ const SignUp = () => {
     genre2Error: false,
   });
 
+  let hasError = false;
+  const errors = {
+    idError: formData.id === "",
+    passwordError: formData.password === "",
+    confirmPasswordError: formData.confirmPassword === "" || formData.password !== formData.confirmPassword,
+    emailError: formData.email === "",
+    nameError: formData.name === "",
+    genre1Error: formData.genre1 === "",
+    genre2Error: formData.genre2 === "",
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -59,7 +70,6 @@ const SignUp = () => {
         });
       }
     });
-    console.log(name)
   };
   const handleBlur2 = (e) => {
     const { name, value } = e.target;
@@ -73,18 +83,9 @@ const SignUp = () => {
       });
     }
   };
-  let hasError = false;
-  const errors = {
-    idError: formData.id === "",
-    passwordError: formData.password === "",
-    confirmPasswordError: formData.confirmPassword === "" || formData.password !== formData.confirmPassword,
-    emailError: formData.email === "",
-    nameError: formData.name === "",
-    genre1Error: formData.genre1 === "",
-    genre2Error: formData.genre2 === "",
-  };
+  
   const handleSignUp = () => {
-    
+    if(formErrors.idError==true) return;
 
     setFormErrors(errors);
 
