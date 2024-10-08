@@ -36,8 +36,10 @@ const SignUp = () => {
     });
   };
 
-  const handleBlur = (e, field, value) => {
-    console.log("AAA");
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+
+    console.log(name, value);
 };
 
   const handleSignUp = () => {
