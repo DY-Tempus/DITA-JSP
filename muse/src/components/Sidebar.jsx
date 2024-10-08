@@ -93,11 +93,11 @@ function Sidebar({ isOpen }) {
                             <li className='liElement' onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}>- Upload Album</li>
                         </Link>
-                        <Link to="" onClick={closeSidebar}>
+                        <Link to="/updatemusic" onClick={closeSidebar}>
                             <li className='liElement' onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}>- Update Music</li>
                         </Link>
-                        <Link to="" onClick={closeSidebar}>
+                        <Link to="/updatealbum" onClick={closeSidebar}>
                             <li className='liElement' onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}>- Update Album</li>
                         </Link>
