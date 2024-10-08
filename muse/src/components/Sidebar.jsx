@@ -79,7 +79,7 @@ function Sidebar({ isOpen }) {
                     <Link to="/recent" onClick={closeSidebar}><li>● Recently Played</li></Link>
                     <Link to="/favorite" onClick={closeSidebar}><li>● Favorite</li></Link>
                     <Link to="/playlist" onClick={closeSidebar}><li>● My Playlist</li></Link>
-                    <Link to="/mymusic" onClick={closeSidebar}><li>● My Music</li></Link>
+                    <Link to="/mymusic" onClick={closeSidebar}><li>● My Contents</li></Link>
                     <li
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
@@ -92,14 +92,6 @@ function Sidebar({ isOpen }) {
                         <Link to="/albumupload" onClick={closeSidebar}>
                             <li className='liElement' onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}>- Upload Album</li>
-                        </Link>
-                        <Link to="/updatemusic" onClick={closeSidebar}>
-                            <li className='liElement' onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}>- Update Music</li>
-                        </Link>
-                        <Link to="/updatealbum" onClick={closeSidebar}>
-                            <li className='liElement' onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}>- Update Album</li>
                         </Link>
                     </div>
                 </ul>

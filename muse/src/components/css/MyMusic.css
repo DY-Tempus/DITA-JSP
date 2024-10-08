@@ -88,3 +88,13 @@
   .song-writer{
     font-size: 14px;
   }
+
+  .align-center{
+    display: flex;
+    align-items: center;
+  }
+
+  .album-edit-icon{
+    width: 30px;
+    height: 30px;
+  }

@@ -29,7 +29,7 @@ function AlbumItem({item}){
 }
 
 // 트랙 데이터 선언
-const recent_played = [
+const artist_song_list = [
   { 
       id: 1, 
       img1: './img/Collide.png', 
@@ -155,20 +155,20 @@ const Artist = () => {
 
       {/* 트랙 리스트 */}
       <div className="artist-tracklist">
-        <section className="album-section">
-          <h1 className="section-title">Album</h1>
-          <div className="album-container">
+      <h1 className="artist-section-title">Album</h1>
+        <section className="artist-album-section">
+          <div className="artist-album-container">
 
             <>
               {
-                recent_played.map(
+                artist_song_list.map(
                   item => (<AlbumItem item={item} key={item.id} />)
                 )
               }
             </>
           </div>
         </section>
-        <h1 className="section-title">Music</h1>
+        <h1 className="artist-section-title">Music</h1>
         <h2>
           <select id="sort" name="artist-sort">
             <option value="Recent">Recent</option>
