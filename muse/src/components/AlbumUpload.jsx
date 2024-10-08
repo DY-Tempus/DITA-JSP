@@ -249,7 +249,7 @@ const AlbumUpload = () => {
 
     return (
         <div className="album-upload-panel">
-            <h1 className="title">Album Upload</h1>
+            <h1 className="title">Upload Album</h1>
             <div className="album-upload-section">
                 <div className="album-upload-content">
                     <div className="image-box">
