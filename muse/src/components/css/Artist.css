@@ -3,7 +3,7 @@
 
 /* 전체 페이지 스타일 */
 .artist-artist-page {
-    padding: 40px 20% 0 20%;
+    padding: 40px 10% 0 10%;
     font-family: 'Inter', sans-serif;
     height: calc(100vh - 60px - 100px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
     overflow: auto;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './css/AlbumUpload.css';
+import './css/UpdateAlbum.css';
 
 const songs = [
     {
@@ -173,7 +173,7 @@ const songs = [
     },
 ];
 
-const AlbumUpload = () => {
+const UpdateAlbum = () => {
     const [imageFile, setImageFile] = useState(null);  // 이미지 파일 저장
     const [musicFile, setMusicFile] = useState(null);  // 음악 파일 저장
     const [formData, setFormData] = useState({
@@ -249,7 +249,7 @@ const AlbumUpload = () => {
 
     return (
         <div className="album-upload-panel">
-            <h1 className="title">Album Upload</h1>
+            <h1 className="title">Update Album</h1>
             <div className="album-upload-section">
                 <div className="album-upload-content">
                     <div className="image-box">
@@ -298,13 +298,13 @@ const AlbumUpload = () => {
             </div>
 
             <div className="button-section">
-                <button className="album-upload-button" onClick={handleSubmit}>Upload</button>
+                <button className="album-upload-button" onClick={handleSubmit}>Update</button>
                 <button className="cancel-button">Cancel</button>
             </div>
         </div>
     );
 };
 
-export default AlbumUpload;
+export default UpdateAlbum;
 
 

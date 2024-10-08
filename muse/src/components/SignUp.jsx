@@ -75,6 +75,8 @@ const SignUp = () => {
     if (hasError) return; // 에러가 있으면 함수 종료
 
     // 회원가입 로직 구현
+
+    //여기 pw confirm 구현 '해줘'
     console.log(formData);
   };
 
