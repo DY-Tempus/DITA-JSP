@@ -100,6 +100,15 @@
     transition: all 0.3s ease;
 }
 
+/* 오류 상태일 때 밑줄 색을 빨간색으로 */
+.input-container .underline.error {
+    background-color: rgb(255, 50, 50);
+}
+
+.InputSetting.error {
+    border-bottom-color: rgb(255, 50, 50);
+}
+
 /* 포커스 상태일 때 밑줄 확장 */
 .input-container input:focus ~ .underline,
 .input-container input:valid ~ .underline {
