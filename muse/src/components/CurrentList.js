@@ -23,7 +23,7 @@ function CurrentList({item, onRemove}){
     return(
         <>
         {
-            item.map(item=>(<CurrentItem item={item} key={item.id} onRemove={onRemove}/>))
+            item.map(item=>(<CurrentItem item={item} key={item.index} onRemove={onRemove}/>))
         }
         </>
     )
