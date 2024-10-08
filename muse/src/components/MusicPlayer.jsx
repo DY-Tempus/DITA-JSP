@@ -163,6 +163,7 @@ const MusicPlayer = () => {
     return (
         <div className="music-player-container">
             {/* 오디오 엘리먼트 */}
+            
             <audio
                 ref={(el) => setAudioElement(el)}
                 controls
