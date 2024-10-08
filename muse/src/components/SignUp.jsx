@@ -19,6 +19,8 @@ const SignUp = () => {
 
   const handleSignUp = () => {
     // 회원가입 로직 구현
+
+    //여기 pw confirm 구현 '해줘'
     console.log(formData);
   };
 
