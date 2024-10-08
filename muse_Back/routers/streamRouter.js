@@ -34,4 +34,32 @@ router.get('/stream/:id', (req, res) => {
     });
 });
 
+// 음악 상세 정보 가져오기
+router.get('/detail/:id', (req, res) => {
+    const musicId = req.params.id;
+
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('DB 연결 실패:', err);
+            return res.status(500).send('DB 연결 실패');
+        }
+
+        const query = 'SELECT MNAME as title, MGENRE as genre, ID as artist FROM MUSIC WHERE MID = ?';
+        connection.query(query, [musicId], (err, results) => {
+            connection.release();
+
+            if (err) {
+                console.error('DB 쿼리 오류:', err);
+                return res.status(500).send('DB 쿼리 오류');
+            }
+
+            if (results.length === 0) {
+                return res.status(404).send('음악 정보를 찾을 수 없습니다.');
+            }
+
+            res.json(results[0]);
+        });
+    });
+});
+
 module.exports = router;
