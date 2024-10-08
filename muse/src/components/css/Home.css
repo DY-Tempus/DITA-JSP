@@ -40,8 +40,7 @@ body {
 /* 메인 콘텐츠 영역 */
 .main-content {
     flex: 1;
-    padding: 20px;
-    padding-top: 20px; /* 상단 배너와의 간격 */
+    padding: 20px 10%;
     overflow-y: auto; /* 세로 스크롤을 허용 */
     height: calc(100vh - 60px - 100px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
 }

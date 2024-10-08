@@ -221,7 +221,8 @@ function AlbumItem({ item }) {
       </div>
       <p className="album-title">{item.name}</p>
       <Link to="/updatealbum">
-        <img src='./img/edit.png' className='album-edit-icon'></img>
+        <img src='./img/edit.png' className='album-edit-icon'/>
+        <img src='./img/delete.png' className='album-edit-icon'/>
       </Link>
     </div>
   )
@@ -265,6 +266,7 @@ const MyMusic = () => {
                   <span className="song-duration">{song.duration}</span>
                   <Link to="/updatemusic">
                   <img src='./img/edit.png' className='thumbs-views' />
+                  <img src='./img/delete.png' className='thumbs-views' />
                   </Link>
                 </div>
               </div>
