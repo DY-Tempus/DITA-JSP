@@ -146,10 +146,20 @@ const MusicPlayer = () => {
     }, [isDragging]);
 
     const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
-    const toggleDetail = () => setIsDetailOpen(!isDetailOpen);
+    const toggleDetail = () => {
+        setIsDetailOpen(!isDetailOpen);
+        if (!isDetailOpen) {
+            setIsCurrentOpen(false);
+        }
+    }
 
     const [isCurrentOpen, setIsCurrentOpen] = useState(false); // 현재 재생 목록 패널 상태 관리
-    const toggleCurrent = () => setIsCurrentOpen(!isCurrentOpen);
+    const toggleCurrent = () => {
+        setIsCurrentOpen(!isCurrentOpen);
+        if (!isCurrentOpen) {
+            setIsDetailOpen(false);
+        }
+    }
 
     const handleMouseEnter = () => setIsVolumeVisible(true); // 볼륨 패널 보이기
     const handleMouseLeave = () => setIsVolumeVisible(false); // 볼륨 패널 숨기기
@@ -222,13 +232,13 @@ const MusicPlayer = () => {
                             />
                         )}
                     </div>
-                    <label class="burger" for="burger">
-                        <input type="checkbox" id="burger" onClick={toggleCurrent}/>
+                    <label className="burger" for="burger">
+                        <input type="checkbox" id="burger" checked={isCurrentOpen} onClick={toggleCurrent}/>
                         <span></span>
                         <span></span>
                         <span></span>
                     </label>
-                    <img // Detail Open/Close
+                    <img // Detail Open/Closev
                         src="/img/info.png"
                         alt={isDetailOpen ? "DetailOpen" : "DetailClose"}
                         className={`control-button-extra ${isDetailOpen ? 'detailopen' : ''}`}
