@@ -94,6 +94,10 @@
     align-items: center;
   }
 
+  .align-center a{
+    height: 20px;
+  }
+
   .album-edit-icon{
     width: 30px;
     height: 30px;
