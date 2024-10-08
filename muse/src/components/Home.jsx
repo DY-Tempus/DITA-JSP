@@ -147,7 +147,7 @@ const Home = () => {
             <main className="main-content">
                 {/* 앨범 섹션 예시 */}
                 <section className="album-section">
-                    <h2 className="section-title">Recently Played</h2>
+                    <h2 className="section-title">최신 노래</h2>
                     <div className="album-container">
                         
                         <>
@@ -163,7 +163,7 @@ const Home = () => {
                 {/*스크롤 시험용 */}
                 {/* 앨범 섹션 예시 */}
                 <section className="album-section">
-                    <h2 className="section-title">J-Pop</h2>
+                    <h2 className="section-title">선호할 만한 노래</h2>
                     <div className="album-container">
                     <>
                             {
@@ -177,7 +177,7 @@ const Home = () => {
 
                 {/* 앨범 섹션 예시 */}
                 <section className="album-section">
-                    <h2 className="section-title">추천 아티스트</h2>
+                    <h2 className="section-title">선호할 만한 아티스트</h2>
                     <div className="album-container">
                         {/* 앨범 1 */}
                         <>
@@ -192,7 +192,7 @@ const Home = () => {
 
                 {/* 앨범 섹션 예시 */}
                 <section className="album-section">
-                    <h2 className="section-title">예시2</h2>
+                    <h2 className="section-title">추천 앨범</h2>
                     <div className="album-container">
                         {/* 앨범 1 */}
                         <div className="album-item">
