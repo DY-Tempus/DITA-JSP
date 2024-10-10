@@ -2,7 +2,7 @@ const pool = require('../db');
 
 const getRecent =(req, res) => {
 
-    const sql=`SELECT * FROM ALBUM ORDER BY ADATE DESC LIMIT 15`;
+    const sql=`SELECT * FROM music ORDER BY mDATE DESC LIMIT 15`;
     pool.getConnection((error,connection)=>{
         if (error) {
             return res.status(500).json({ error: '조회 실패' });
@@ -58,9 +58,29 @@ const getArtist =(req, res) => {
 
     })
 };
+const getAlbum =(req, res) => {
+    const sql=`SELECT A.* FROM ALBUM A JOIN USER U ON (A.AGENRE = U.GENRE1 OR A.AGENRE = U.GENRE2) WHERE U.ID = '${req.body.uid}' LIMIT 15`;
+    pool.getConnection((error,connection)=>{
+        if (error) {
+            return res.status(500).json({ error: '조회 실패' });
+        }
+
+        connection.query(sql,(error,result)=>{
+            if(!error){
+                console.log('조회된 추천앨범 데이터:', result);
+                res.send(JSON.stringify(result));
+                connection.release();
+            }else{
+                throw error
+            }
+        })
+
+    })
+};
 
 module.exports = { 
     getRecent,
     getMusic,
-    getArtist
+    getArtist,
+    getAlbum
  };

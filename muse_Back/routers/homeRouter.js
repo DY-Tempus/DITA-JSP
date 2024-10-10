@@ -15,5 +15,9 @@ app
     console.log('post /api/home/preferartist 요청이 호출되었습니다.');  // 로그 추가
     homeCon.getArtist(req,res)
 })
+.post('/preferalbum', (req, res) => {
+    console.log('post /api/home/preferalblum 요청이 호출되었습니다.');  // 로그 추가
+    homeCon.getAlbum(req,res)
+})
 
 module.exports = app;

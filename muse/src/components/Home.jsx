@@ -1,115 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './css/Home.css';
 
-import {AlbumList,ArtistList} from './HomeList';
+import {AlbumList,ArtistList, MusicList} from './HomeList';
 import axios from 'axios';
 
-const recent_played = [
-    { 
-        id: 1, 
-        img1: './img/Collide.png', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album3.jpg',  
-        name: 'Red Playlist' 
-    },
-    { 
-        id: 2, 
-        img1: './img/Collide.png', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album3.jpg',  
-        name: 'Red Playlist' 
-    },
-    { 
-        id: 3, 
-        img1: './img/Collide.png', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album3.jpg',  
-        name: 'Red Playlist' 
-    },
-    { 
-        id: 4, 
-        img1: './img/Collide.png', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album3.jpg',  
-        name: 'Red Playlist' 
-    },
-];
-
-const jpop = [
-    { 
-        id: 1, 
-        img1: './img/main_album.jpg', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album2.jpg',  
-        name: 'JPop Playlist' 
-    },
-    { 
-        id: 2, 
-        img1: './img/main_album.jpg', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album2.jpg',  
-        name: 'JPop Playlist' 
-    },
-    { 
-        id: 3, 
-        img1: './img/main_album.jpg', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album2.jpg',  
-        name: 'JPop Playlist' 
-    },
-    { 
-        id: 4, 
-        img1: './img/main_album.jpg', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album2.jpg',  
-        name: 'JPop Playlist' 
-    },
-    { 
-        id: 5, 
-        img1: './img/main_album.jpg', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album2.jpg',  
-        name: 'JPop Playlist' 
-    },
-    { 
-        id: 6, 
-        img1: './img/main_album.jpg', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album2.jpg',  
-        name: 'JPop Playlist' 
-    },
-    { 
-        id: 7, 
-        img1: './img/main_album.jpg', 
-        img2: './img/main_album.jpg', 
-        img3: './img/main_album2.jpg', 
-        img4: './img/main_album2.jpg',  
-        name: 'JPop Playlist' 
-    },
-];
-
-const artist=[
-    {
-        id:1,
-        img:'./img/main_album.jpg',
-        name:'aaa'
-    }
-];
 
 const Home = () => {
     const [recent, setRecent]=useState([])
     const [preferMusic,setPreferMusic]=useState([])
     const [preferArtist,setPreferArtist]=useState([])
+    const [perferAlbum,setPerferAlbum]=useState([])
 
     useEffect(()=>{
         let user=JSON.parse(sessionStorage.getItem('idKey'))
@@ -145,6 +45,17 @@ const Home = () => {
             
             setPreferArtist([...preferArtist,obj]);
         });
+
+        axios.post("http://localhost:3000/api/home/preferalbum",{
+            uid:user.ID
+        })
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data;
+            console.log(obj)
+            
+            setPerferAlbum([...perferAlbum,obj]);
+        });
     }, []);
 
     // if(!sessionStorage.getItem("idKey")){
@@ -166,7 +77,7 @@ const Home = () => {
                         
                         <>
                             {
-                                <AlbumList item={recent}/>
+                                <MusicList item={recent}/>
                             }
                         </>
                     </div>
@@ -179,7 +90,7 @@ const Home = () => {
                     <div className="album-container">
                     <>
                             {
-                                <AlbumList item={preferMusic}/>
+                                <MusicList item={preferMusic}/>
                             }
                         </>
                     </div>
@@ -189,7 +100,6 @@ const Home = () => {
                 <section className="album-section">
                     <h2 className="section-title">선호할 만한 아티스트</h2>
                     <div className="album-container">
-                        {/* 앨범 1 */}
                         <>
                         {
                             <ArtistList item={preferArtist}/>
@@ -202,38 +112,11 @@ const Home = () => {
                 <section className="album-section">
                     <h2 className="section-title">추천 앨범</h2>
                     <div className="album-container">
-                        {/* 앨범 1 */}
-                        <div className="album-item">
-                            <div className="album-cover-container">
-                                <img src="/img/main_album.jpg" alt="Main Album Cover" className="album-cover main-cover" />
-                                <img src="/img/track1.jpg" alt="Track 1" className="album-cover track-cover" style={{ top: '10px', left: '10px' }} />
-                                <img src="/img/track2.jpg" alt="Track 2" className="album-cover track-cover" style={{ top: '20px', left: '20px' }} />
-                                <img src="/img/track3.jpg" alt="Track 3" className="album-cover track-cover" style={{ top: '30px', left: '30px' }} />
-                            </div>
-                            <p className="album-title">HIGEDAN LIVE</p>
-                        </div>
-
-                        {/* 앨범 2 */}
-                        <div className="album-item">
-                            <div className="album-cover-container">
-                                <img src="/img/main_album2.jpg" alt="Main Album Cover" className="album-cover main-cover" />
-                                <img src="/img/track4.jpg" alt="Track 1" className="album-cover track-cover" style={{ top: '10px', left: '10px' }} />
-                                <img src="/img/track5.jpg" alt="Track 2" className="album-cover track-cover" style={{ top: '20px', left: '20px' }} />
-                                <img src="/img/track6.jpg" alt="Track 3" className="album-cover track-cover" style={{ top: '30px', left: '30px' }} />
-                            </div>
-                            <p className="album-title">HIGEDAN 1ST ALBUM</p>
-                        </div>
-
-                        {/* 앨범 3 */}
-                        <div className="album-item">
-                            <div className="album-cover-container">
-                                <img src="/img/main_album3.jpg" alt="Main Album Cover" className="album-cover main-cover" />
-                                <img src="/img/track7.jpg" alt="Track 1" className="album-cover track-cover" style={{ top: '10px', left: '10px' }} />
-                                <img src="/img/track8.jpg" alt="Track 2" className="album-cover track-cover" style={{ top: '20px', left: '20px' }} />
-                                <img src="/img/track9.jpg" alt="Track 3" className="album-cover track-cover" style={{ top: '30px', left: '30px' }} />
-                            </div>
-                            <p className="album-title">HIGEDAN 2ND ALBUM</p>
-                        </div>
+                        <>
+                        {
+                            <AlbumList item={perferAlbum}/>
+                        }
+                        </>
                     </div>
                 </section>
             </main>
