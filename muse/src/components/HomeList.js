@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-function AlbumItem({item}){
-    const listItems = item.map((item) =>
-    	<div key={item.AID} className="album-item">
+function AlbumItemCon({item}){
+    return(
+        <div key={item.AID} className="album-item">
             <div className="album-cover-container">
             <Link to={`/album/${item.ID}/${item.AID}`}>
                 <img src={item.img4} className='album-img layer-3'></img>
@@ -14,15 +14,11 @@ function AlbumItem({item}){
             </div>
             <p className="album-title">{item.name}</p>
         </div>
-    );
-    return(
-        <>{listItems}</>
     )
 }
-function ArtistItem({item}){
-    
-    const listItems = item.map((item) =>
-    	<Link to={`/artist/${item.ID}`}>
+function ArtistItemCon({item}){
+    return(
+        <Link to={`/artist/${item.ID}`}>
             <div className="album-item">
                 <div className="album-cover-container">
                     <img src={item.img} alt="Artist Image" className="artist-image-home" />
@@ -30,14 +26,12 @@ function ArtistItem({item}){
                 <p className="album-title">{item.name}</p>
             </div>
         </Link>
-    );
-    return(
-        <>{listItems}</>
     )
 }
-function MusicItem({item}){
-    const listItems = item.map((item) =>
-    	<div key={item.id} className="album-item">
+function MusicItemCon({item}){
+    console.log(item)
+    return(
+        <div key={item.id} className="album-item">
             <div className="album-cover-container">
             <Link to="/music">
                 <img src={item.img} className='album-img'></img>
@@ -45,26 +39,20 @@ function MusicItem({item}){
             </div>
             <p className="album-title">{item.name}</p>
         </div>
-    );
-    return(
-        <>{listItems}</>
     )
 }
-function TrackItem({ item }) {
-    const listItems = item.map((item) =>
-    	<li key={item.id}>
+function TrackItemCon({item}){
+    return(
+        <li key={item.ID}>
         <img src={item.image} alt={item.title} className="artist-track-image" />
         <span className="artist-track-title">{item.title}</span>
         <span className="artist-track-duration">{item.duration}</span>
-      </li>
-    );
-    return (
-        <>{listItems}</>
+        </li>
     )
 }
-function AlbumTrackItem({ item }) {
-    const listItems = item.map((item) =>
-    	<div className="album-music" key={item.MID}>
+function AlbumTrackItemCon({item}){
+    return(
+        <div className="album-music" key={item.MID}>
             <div className="album-song-item">
                 <img src={item.image} alt={item.MNAME} className="album-song-image" />
                 <div className="album-song-info">
@@ -76,13 +64,60 @@ function AlbumTrackItem({ item }) {
                 </div>
             </div>
         </div>
-    );
-    return (
-        <>{listItems}</>
     )
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function AlbumItem({item}){
+    const listItems = item.map(item=>(<AlbumItemCon item={item} key={item.AID}/>))	
+
+    return(
+        <>{listItems}</>
+    )
+}
+function ArtistItem({item}){
+    const listItems = item.map(item=>(<ArtistItemCon item={item} key={item.ID}/>))	
+    return(
+        <>{listItems}</>
+    )
+}
+function MusicItem({item}){
+    const listItems = item.map(item=>(<MusicItemCon item={item} key={item.MID}/>))	
+    return(
+        <>{listItems}</>
+    )
+}
+function TrackItem({ item }) {
+    const listItems = item.map(item=>(<TrackItemCon item={item} key={item.MID}/>))
+    return (
+        <>{listItems}</>
+    )
+}
+function AlbumTrackItem({ item }) {
+    const listItems = item.map(item=>(<AlbumTrackItemCon item={item} key={item.MID}/>))
+
+    return (
+        <>{listItems}</>
+    )
+}
 
 
 
