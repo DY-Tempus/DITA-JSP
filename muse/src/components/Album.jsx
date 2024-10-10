@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'
 import './css/Album.css'; // CSS 파일 연결
-
+import {AlbumTrackList} from './HomeList'
+import axios from 'axios';
 const songs = [
     {
         id: 1,
@@ -47,6 +49,43 @@ const songs = [
 ];
 
 const Recent = () => {
+    const params = useParams();
+    const [album,setAlbum]=useState({
+        aname:'',
+        asrc:'',
+    })
+    const [musics,setMusics]=useState([])
+    
+    useEffect(()=>{
+        let id=params.id
+        let aid=params.aid
+        axios.post("http://localhost:3000/api/album/detail",{
+            id:id,
+            aid:aid
+        })
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data[0];
+            console.log(obj)
+            
+            setAlbum({
+                aname:obj.ANAME,
+                asrc:''
+            });
+        });
+
+        axios.post("http://localhost:3000/api/album/musics",{
+            aid:aid
+        })
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data;
+            console.log(obj)
+            
+            setMusics([...musics,obj]);
+        });
+    }, []);
+
     if(!sessionStorage.getItem("idKey")){
         return (
             <div>
@@ -56,24 +95,15 @@ const Recent = () => {
     }
     return (
         <div className="album-page">
-            <h1 className="album-section-title">Album_Name</h1>
+            <h1 className="album-section-title">{album.aname}</h1>
             <div className="album-flex-direction-row">
                 <img src='./img/main_album2.jpg' className="album-image"/>
                 <div className="album-song-list">
-                    {songs.map((song) => (
-                        <div className="album-music" key={song.id}>
-                            <div className="album-song-item">
-                                <img src={song.image} alt={song.title} className="album-song-image" />
-                                <div className="album-song-info">
-                                    <div className="album-song-detail">
-                                        <span className="album-song-title">{song.title}</span>
-                                        <span className="album-song-writer">{song.writer}</span>
-                                    </div>
-                                    <span className="album-song-duration">{song.duration}</span>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                <>
+                {
+                    <AlbumTrackList item={musics} />
+                }
+                </>
                 </div>
             </div>
         </div>

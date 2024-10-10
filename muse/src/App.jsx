@@ -50,7 +50,7 @@ function App() {
           <Route path="/upload" element={<Upload />} />
           <Route path="/albumupload" element={<AlbumUpload />} />
           <Route path="/mymusic" element={<MyMusic />} />
-          <Route path="/album" element={<Album />} />
+          <Route path="/album/:id/:aid" element={<Album />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/updatealbum" element={<UpdateAlbum />} />

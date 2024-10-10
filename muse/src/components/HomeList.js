@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-function AlbumItem({item}){
+function AlbumItemCon({item}){
     return(
-        <div key={item.id} className="album-item">
+        <div key={item.AID} className="album-item">
             <div className="album-cover-container">
-            <Link to="/album">
+            <Link to={`/album/${item.ID}/${item.AID}`}>
                 <img src={item.img4} className='album-img layer-3'></img>
                 <img src={item.img3} className='album-img layer-2'></img>
                 <img src={item.img2} className='album-img layer-1'></img>
@@ -16,10 +16,9 @@ function AlbumItem({item}){
         </div>
     )
 }
-function ArtistItem({item}){
-    
+function ArtistItemCon({item}){
     return(
-        <Link to={`/artist/${item[0].ID}`}>
+        <Link to={`/artist/${item.ID}`}>
             <div className="album-item">
                 <div className="album-cover-container">
                     <img src={item.img} alt="Artist Image" className="artist-image-home" />
@@ -29,7 +28,8 @@ function ArtistItem({item}){
         </Link>
     )
 }
-function MusicItem({item}){
+function MusicItemCon({item}){
+    console.log(item)
     return(
         <div key={item.id} className="album-item">
             <div className="album-cover-container">
@@ -41,13 +41,29 @@ function MusicItem({item}){
         </div>
     )
 }
-function TrackItem({ item }) {
-    return (
-      <li key={item.id}>
+function TrackItemCon({item}){
+    return(
+        <li key={item.ID}>
         <img src={item.image} alt={item.title} className="artist-track-image" />
         <span className="artist-track-title">{item.title}</span>
         <span className="artist-track-duration">{item.duration}</span>
-      </li>
+        </li>
+    )
+}
+function AlbumTrackItemCon({item}){
+    return(
+        <div className="album-music" key={item.MID}>
+            <div className="album-song-item">
+                <img src={item.image} alt={item.MNAME} className="album-song-image" />
+                <div className="album-song-info">
+                    <div className="album-song-detail">
+                        <span className="album-song-title">{item.MNAME}</span>
+                        <span className="album-song-writer">{item.ID}</span>
+                    </div>
+                    <span className="album-song-duration">{/*재생시간 */}</span>
+                </div>
+            </div>
+        </div>
     )
 }
 
@@ -55,11 +71,61 @@ function TrackItem({ item }) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function AlbumItem({item}){
+    const listItems = item.map(item=>(<AlbumItemCon item={item} key={item.AID}/>))	
+
+    return(
+        <>{listItems}</>
+    )
+}
+function ArtistItem({item}){
+    const listItems = item.map(item=>(<ArtistItemCon item={item} key={item.ID}/>))	
+    return(
+        <>{listItems}</>
+    )
+}
+function MusicItem({item}){
+    const listItems = item.map(item=>(<MusicItemCon item={item} key={item.MID}/>))	
+    return(
+        <>{listItems}</>
+    )
+}
+function TrackItem({ item }) {
+    const listItems = item.map(item=>(<TrackItemCon item={item} key={item.MID}/>))
+    return (
+        <>{listItems}</>
+    )
+}
+function AlbumTrackItem({ item }) {
+    const listItems = item.map(item=>(<AlbumTrackItemCon item={item} key={item.MID}/>))
+
+    return (
+        <>{listItems}</>
+    )
+}
+
+
+
 function AlbumList({item}){
     return(
         <>
         {
-            item.map(item=>(<AlbumItem item={item} key={item.aid}/>))
+            item.map(item=>(<AlbumItem item={item} key={item.AID}/>))
         }
         </>
     )
@@ -68,7 +134,7 @@ function ArtistList({item}){
     return(
         <>
         {
-            item.map(item=>(<ArtistItem item={item} key={item.id}/>))
+            item.map(item=>(<ArtistItem item={item} key={item.ID}/>))
         }
         </>
     )
@@ -77,7 +143,7 @@ function MusicList({item}){
     return(
         <>
         {
-            item.map(item=>(<MusicItem item={item} key={item.mid}/>))
+            item.map(item=>(<MusicItem item={item} key={item.MID}/>))
         }
         </>
     )
@@ -86,15 +152,27 @@ function TrackList({item}){
     return(
         <>
         {
-            item.map(item=>(<TrackItem item={item} key={item.mid}/>))
+            item.map(item=>(<TrackItem item={item} key={item.MID}/>))
         }
         </>
     )
 }
 
+function AlbumTrackList({item}){
+    return(
+        <>
+        {
+            item.map(item=>(<AlbumTrackItem item={item} key={item.MID}/>))
+        }
+        </>
+    )
+}
+
+
 export {
     AlbumList,
     ArtistList,
     MusicList,
-    TrackList
+    TrackList,
+    AlbumTrackList
 }

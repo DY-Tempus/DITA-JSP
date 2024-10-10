@@ -54,7 +54,7 @@ const Home = ({ isDarkMode, setIsDarkMode }) => {
             const obj=Response.data;
             console.log(obj)
             
-            setPerferAlbum([...perferAlbum,obj]);
+            setPerferAlbum([obj]);
         });
     }, []);
 
