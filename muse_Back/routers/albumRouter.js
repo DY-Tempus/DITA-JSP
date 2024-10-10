@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { uploadAlbum } = require('../controllers/albumController');
+const albumController = require('../controllers/albumController');
 
 router.post('/album/upload', (req, res) => {
   const { name, date, text, genre } = req.body;
@@ -14,7 +14,7 @@ router.post('/album/upload', (req, res) => {
     ID: '임시사용자ID' // 추후 로그인 기능이 추가되면 변경
   };
 
-  uploadAlbum(albumData, (err, result) => {
+  albumController.uploadAlbum(albumData, (err, result) => {
     if (err) {
       res.status(500).json({ error: '앨범 업로드 실패' });
     } else {
