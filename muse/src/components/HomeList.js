@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 function AlbumItemCon({item}){
@@ -28,18 +28,37 @@ function ArtistItemCon({item}){
         </Link>
     )
 }
-function MusicItemCon({item}){
-    console.log(item)
-    return(
+function MusicItemCon({ item }) {
+    const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        if (item.MIMG && item.MIMG.data) {
+            const uint8Array = new Uint8Array(item.MIMG.data);  // Buffer 데이터를 Uint8Array로 변환
+            const blob = new Blob([uint8Array]);
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+            };
+    
+            reader.readAsDataURL(blob);
+        }
+    }, [item.MIMG]);
+
+    return (
         <div key={item.id} className="album-item">
             <div className="album-cover-container">
-            <Link to="/music">
-                <img src={item.img} className='album-img'></img>
-            </Link>
+                <Link to="/music">
+                    {imageSrc ? (
+                        <img src={imageSrc} className='album-img' alt={item.name} />
+                    ) : (
+                        <p>이미지 없음</p>
+                    )}
+                </Link>
             </div>
             <p className="album-title">{item.name}</p>
         </div>
-    )
+    );
 }
 function TrackItemCon({item}){
     return(
