@@ -17,6 +17,7 @@ import SignUp from './components/SignUp';
 import AlbumUpload from './components/AlbumUpload';
 import UpdateAlbum from './components/UpdateAlbum';
 import UpdateMusic from './components/UpdateMusic';
+import Search from './components/Search';
 import './css/App.css';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
               <Route path="/SignUp" element={<SignUp />} />
               <Route path="/updatealbum" element={<UpdateAlbum/>}/>
               <Route path="/updatemusic" element={<UpdateMusic/>}/>
+              <Route path="/search" element={<Search/>} />
             </Routes>
             <MusicPlayer /> {/* 항상 하단에 고정된 음악 플레이어 */}
       </div>
