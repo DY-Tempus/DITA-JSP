@@ -11,12 +11,17 @@
 
 .sign-in-page{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    height: 100vh;
 }
 
-
+.sign-in-content-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .signInContainer{
     padding: 10px;

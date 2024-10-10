@@ -12,7 +12,7 @@ const SignUp = () => {
     email: '',
     name: '',
     genre1: '',
-    genre2: 'banana',
+    genre2: '',
   });
 
   // 에러 상태 관리
@@ -52,40 +52,40 @@ const SignUp = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    
-     axios.post("http://localhost:3000/api/user/idcheck",{
-      uid:value,
-    })
-    .then((Response)=>{
-      const obj=Response.data[0];
-      console.log(obj)
 
-      if(obj.count===1){
-        setFormErrors({
-          [`${name}Error`]:true
-        });
-      }else{
-        setFormErrors({
-          [`${name}Error`]:false
-        });
-      }
-    });
+    axios.post("http://localhost:3000/api/user/idcheck", {
+      uid: value,
+    })
+      .then((Response) => {
+        const obj = Response.data[0];
+        console.log(obj)
+
+        if (obj.count === 1) {
+          setFormErrors({
+            [`${name}Error`]: true
+          });
+        } else {
+          setFormErrors({
+            [`${name}Error`]: false
+          });
+        }
+      });
   };
   const handleBlur2 = (e) => {
     const { name, value } = e.target;
-    if(formData.password!==formData.confirmPassword){
+    if (formData.password !== formData.confirmPassword) {
       setFormErrors({
-        confirmPasswordError:true
+        confirmPasswordError: true
       });
-    }else{
+    } else {
       setFormErrors({
-        confirmPasswordError:false
+        confirmPasswordError: false
       });
     }
   };
-  
+
   const handleSignUp = () => {
-    if(formErrors.idError==true) return;
+    if (formErrors.idError == true) return;
 
     setFormErrors(errors);
 
@@ -117,145 +117,147 @@ const SignUp = () => {
 
     // 회원가입 로직 구현
 
-    axios.post("http://localhost:3000/api/user/signup",{
-      uid:formData.id,
-      upw:formData.password,
-      email:formData.email,
-      uname:formData.name,
-      genre1:formData.genre1,
-      genre2:formData.genre2,
+    axios.post("http://localhost:3000/api/user/signup", {
+      uid: formData.id,
+      upw: formData.password,
+      email: formData.email,
+      uname: formData.name,
+      genre1: formData.genre1,
+      genre2: formData.genre2,
     })
-    .then((Response)=>{
-      const obj=Response.data;
-      console.log(obj)
+      .then((Response) => {
+        const obj = Response.data;
+        console.log(obj)
 
-      if(obj.result===true){
-        navigate('/signin')
-      }
-    });
+        if (obj.result === true) {
+          navigate('/signin')
+        }
+      });
   };
 
   return (
-    <div className="sign-up-page">
-      <h1 className="TitleLabel">MU:SE</h1>
-      <div className="signUpConatainer">
-        <div className="Spread">
-          <div className="input-container">
-            <input 
-              type="text" 
-              name="id" 
-              className={`InputSetting ${formErrors.idError ? 'error' : ''}`}
-              value={formData.id} 
-              onChange={handleChange} 
-              onBlur={(e) => handleBlur(e, 'username', e.target.value)}
-              required 
-            />
-            <label htmlFor="input" className="label">ID</label>
-            <div className={`underline ${formErrors.idError ? 'error' : ''}`}></div>
+    <div className="sign-in-page">
+      <div className='sign-in-content-container'>
+        <h1 className="TitleLabel">MU:SE</h1>
+        <div className="signUpConatainer">
+          <div className="Spread">
+            <div className="input-container">
+              <input
+                type="text"
+                name="id"
+                className={`InputSetting ${formErrors.idError ? 'error' : ''}`}
+                value={formData.id}
+                onChange={handleChange}
+                onBlur={(e) => handleBlur(e, 'username', e.target.value)}
+                required
+              />
+              <label htmlFor="input" className="label">ID</label>
+              <div className={`underline ${formErrors.idError ? 'error' : ''}`}></div>
+            </div>
+          </div>
+          <div className="Spread">
+            <div className="input-container">
+              <input
+                type="password"
+                name="password"
+                className={`InputSetting ${formErrors.passwordError ? 'error' : ''}`}
+                value={formData.password}
+                onBlur={(e) => handleBlur2(e, 'username', e.target.value)}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="input" className="label">PW</label>
+              <div className={`underline ${formErrors.passwordError ? 'error' : ''}`}></div>
+            </div>
+          </div>
+          <div className="Spread">
+            <div className="input-container">
+              <input
+                type="password"
+                name="confirmPassword"
+                className={`InputSetting ${formErrors.confirmPasswordError ? 'error' : ''}`}
+                value={formData.confirmPassword}
+                onBlur={(e) => handleBlur2(e, 'username', e.target.value)}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="input" className="label">PW Confirm</label>
+              <div className={`underline ${formErrors.confirmPasswordError ? 'error' : ''}`}></div>
+            </div>
+          </div>
+          <div className="Spread">
+            <div className="input-container">
+              <input
+                type="text"
+                name="email"
+                className={`InputSetting ${formErrors.emailError ? 'error' : ''}`}
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="input" className="label">Email</label>
+              <div className={`underline ${formErrors.emailError ? 'error' : ''}`}></div>
+            </div>
+          </div>
+          <div className="Spread">
+            <div className="input-container">
+              <input
+                type="text"
+                name="name"
+                className={`InputSetting ${formErrors.nameError ? 'error' : ''}`}
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="input" className="label">Name</label>
+              <div className={`underline ${formErrors.nameError ? 'error' : ''}`}></div>
+            </div>
+          </div>
+          <div className="Spread">
+            <div className="input-container">
+              <select
+                id="text"
+                name="genre1"
+                className={`InputSetting ${formErrors.genre1Error ? 'error' : ''}`}
+                value={formData.genre1}
+                onChange={handleChange}
+                required
+              >
+                <option value=""></option>
+                <option value="apple">Apple</option>
+                <option value="banana">Banana</option>
+                <option value="cherry">Cherry</option>
+                <option value="date">Date</option>
+              </select>
+              <label htmlFor="genre1" className="label">Favorite Genre 1</label>
+              <div className={`underline ${formErrors.genre1Error ? 'error' : ''}`}></div>
+            </div>
+          </div>
+          <div className="Spread">
+            <div className="input-container">
+              <select
+                id="text"
+                name="genre2"
+                className={`InputSetting ${formErrors.genre2Error ? 'error' : ''}`}
+                value={formData.genre2}
+                onChange={handleChange}
+                required
+              >
+                <option value=""></option>
+                <option value="apple">Apple</option>
+                <option value="banana">Banana</option>
+                <option value="cherry">Cherry</option>
+                <option value="date">Date</option>
+              </select>
+              <label htmlFor="genre2" className="label">Favorite Genre 2</label>
+              <div className={`underline ${formErrors.genre2Error ? 'error' : ''}`}></div>
+            </div>
           </div>
         </div>
-        <div className="Spread">
-          <div className="input-container">
-            <input 
-              type="password" 
-              name="password"
-              className={`InputSetting ${formErrors.passwordError ? 'error' : ''}`}
-              value={formData.password} 
-              onBlur={(e) => handleBlur2(e, 'username', e.target.value)}
-              onChange={handleChange} 
-              required 
-            />
-            <label htmlFor="input" className="label">PW</label>
-            <div className={`underline ${formErrors.passwordError ? 'error' : ''}`}></div>
-          </div>
-        </div>
-        <div className="Spread">
-          <div className="input-container">
-            <input 
-              type="password" 
-              name="confirmPassword"
-              className={`InputSetting ${formErrors.confirmPasswordError ? 'error' : ''}`}
-              value={formData.confirmPassword} 
-              onBlur={(e) => handleBlur2(e, 'username', e.target.value)}
-              onChange={handleChange} 
-              required 
-            />
-            <label htmlFor="input" className="label">PW Confirm</label>
-            <div className={`underline ${formErrors.confirmPasswordError ? 'error' : ''}`}></div>
-          </div>
-        </div>
-        <div className="Spread">
-          <div className="input-container">
-            <input 
-              type="text" 
-              name="email"
-              className={`InputSetting ${formErrors.emailError ? 'error' : ''}`}
-              value={formData.email} 
-              onChange={handleChange} 
-              required 
-            />
-            <label htmlFor="input" className="label">Email</label>
-            <div className={`underline ${formErrors.emailError ? 'error' : ''}`}></div>
-          </div>
-        </div>
-        <div className="Spread">
-          <div className="input-container">
-            <input 
-              type="text" 
-              name="name"
-              className={`InputSetting ${formErrors.nameError ? 'error' : ''}`}
-              value={formData.name} 
-              onChange={handleChange} 
-              required 
-            />
-            <label htmlFor="input" className="label">Name</label>
-            <div className={`underline ${formErrors.nameError ? 'error' : ''}`}></div>
-          </div>
-        </div>
-        <div className="Spread">
-          <div className="input-container">
-            <select
-              id="text"
-              name="genre1"
-              className={`InputSetting ${formErrors.genre1Error ? 'error' : ''}`}
-              value={formData.genre1}
-              onChange={handleChange}
-              required
-            >
-              <option value=""></option>
-              <option value="apple">Apple</option>
-              <option value="banana">Banana</option>
-              <option value="cherry">Cherry</option>
-              <option value="date">Date</option>
-            </select>
-            <label htmlFor="genre1" className="label">Favorite Genre 1</label>
-            <div className={`underline ${formErrors.genre1Error ? 'error' : ''}`}></div>
-          </div>
-        </div>
-        <div className="Spread">
-        <div className="input-container">
-            <select
-              id="text"
-              name="genre2"
-              className={`InputSetting ${formErrors.genre2Error ? 'error' : ''}`}
-              value={formData.genre2}
-              onChange={handleChange}
-              required
-            >
-              <option value=""></option>
-              <option value="apple">Apple</option>
-              <option value="banana">Banana</option>
-              <option value="cherry">Cherry</option>
-              <option value="date">Date</option>
-            </select>
-            <label htmlFor="genre2" className="label">Favorite Genre 2</label>
-            <div className={`underline ${formErrors.genre2Error ? 'error' : ''}`}></div>
-          </div>
-        </div>
+        <button className="ConfirmButton" onClick={handleSignUp}>
+          Sign Up
+        </button>
       </div>
-      <button className="ConfirmButton" onClick={handleSignUp}>
-        Sign Up
-      </button>
     </div>
   );
 };

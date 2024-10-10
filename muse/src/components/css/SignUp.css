@@ -37,6 +37,9 @@
     color: white;
     margin: 20px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /* 기존 InputSetting 스타일 유지 */
