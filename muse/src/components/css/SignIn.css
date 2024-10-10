@@ -13,22 +13,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-/*body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: white;
-    /* background: linear-gradient(#00eaff, transparent),
-      linear-gradient(-45deg, #e567fe, transparent),
-      linear-gradient(45deg, #0040ff, transparent);
-    background-blend-mode: sreen; */
-    /*-ms-overflow-style: none;
-    margin: 0px;
-}*/
+
 
 .signInContainer{
     padding: 10px;

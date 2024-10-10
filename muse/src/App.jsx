@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Home from './components/Home';
 import Artist from './components/Artist';
 import Header from './components/Header';
@@ -24,33 +24,42 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCurrentOpen, setIsCurrentOpen] = useState(false); //Current페이지 상태 관리
+  const location = useLocation();
+  const hideOnPaths = ['/SignIn', '/SignUp','/signup','/signin'];
 
   return (
-    <Router>
+
       <div className="app">
-            <Header setIsCurrentOpen={setIsCurrentOpen}/>
+        {!hideOnPaths.includes(location.pathname) && (
+          <>
+            <Header />
             <Sidebar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/artist" element={<Artist />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/recent" element={<Recent />} />
-              <Route path="/favorite" element={<Favorite />} />
-              <Route path="/playlist" element={<PlayList />} />
-              <Route path="/upload" element={<Upload />} />
-              <Route path="/albumupload" element={<AlbumUpload/>}/>
-              <Route path="/mymusic" element={<MyMusic />} />
-              <Route path="/album" element={<Album />} />
-              <Route path="/SignIn" element={<SignIn />} />
-              <Route path="/SignUp" element={<SignUp />} />
-              <Route path="/updatealbum" element={<UpdateAlbum/>}/>
-              <Route path="/updatemusic" element={<UpdateMusic/>}/>
-              <Route path="/search" element={<Search/>} />
-            </Routes>
-            <MusicPlayer isCurrentOpen={isCurrentOpen} setIsCurrentOpen={setIsCurrentOpen}/> {/* 항상 하단에 고정된 음악 플레이어 */}
+          </>
+        )}
+        {/* <Header setIsCurrentOpen={setIsCurrentOpen}/>
+            <Sidebar /> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/artist" element={<Artist />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/recent" element={<Recent />} />
+          <Route path="/favorite" element={<Favorite />} />
+          <Route path="/playlist" element={<PlayList />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/albumupload" element={<AlbumUpload />} />
+          <Route path="/mymusic" element={<MyMusic />} />
+          <Route path="/album" element={<Album />} />
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/updatealbum" element={<UpdateAlbum />} />
+          <Route path="/updatemusic" element={<UpdateMusic />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+        {/* <MusicPlayer isCurrentOpen={isCurrentOpen} setIsCurrentOpen={setIsCurrentOpen} /> 항상 하단에 고정된 음악 플레이어 */}
+        {!hideOnPaths.includes(location.pathname) && <MusicPlayer />}
       </div>
-    </Router>
+
   );
 }
 
