@@ -9,6 +9,8 @@ const userRouter = require('./routers/userRouter'); // 유저 라우터 추가
 const detailRouter = require('./routers/detailRouter');
 const homeRouter = require('./routers/homeRouter');
 const artistRouter = require('./routers/artistRouter');
+const albumRouter = require('./routers/albumRouter');
+
 
 
 const path = require('path'); // path 모듈 추가
@@ -34,6 +36,8 @@ app.use('/api/user', userRouter);  // 유저 관련 라우터
 app.use('/api/detail', detailRouter);
 app.use('/api/home', homeRouter);
 app.use('/api/artist',artistRouter)
+app.use('/api/album',albumRouter)
+
 
 
 

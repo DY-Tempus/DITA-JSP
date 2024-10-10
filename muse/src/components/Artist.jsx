@@ -85,9 +85,7 @@ const Artist = () => {
 
             <>
               {
-                album.map(
-                  item => (<AlbumList item={item} key={item.id} />)
-                )
+                <AlbumList item={album} />
               }
             </>
           </div>
@@ -104,9 +102,7 @@ const Artist = () => {
         <ul>
           <>
             {
-              track.map(
-                item => (<TrackList item={item} key={item.id} />)
-              )
+              <TrackList item={track}/>
             }
           </>
         </ul>

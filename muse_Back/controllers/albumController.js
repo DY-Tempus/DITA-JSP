@@ -1,9 +1,9 @@
-const db = require('../db');
+const pool = require('../db');
 
 const uploadAlbum = (albumData, callback) => {
   const { ANAME, ADATE, ATEXT, AIMG, AGENRE, ID } = albumData;
 
-  db.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if (err) return callback(err);
 
     const query = 'INSERT INTO album (ANAME, ADATE, ATEXT, AIMG, AGENRE, ID) VALUES (?, ?, ?, ?, ?, ?)';
@@ -20,4 +20,50 @@ const uploadAlbum = (albumData, callback) => {
   });
 };
 
-module.exports = { uploadAlbum };
+const getAlbum =(req, res) => {
+
+  const sql=`SELECT * FROM album where aid='${req.body.aid}'`;
+  pool.getConnection((error,connection)=>{
+      if (error) {
+          return res.status(500).json({ error: '조회 실패' });
+      }
+
+      connection.query(sql,(error,result)=>{
+          if(!error){
+              console.log('조회된 앨범 데이터:', result);
+              res.send(JSON.stringify(result));
+              connection.release();
+          }else{
+              throw error
+          }
+      })
+
+  })
+};
+
+const getMusics =(req, res) => {
+
+  const sql=`SELECT * FROM music where aid='${req.body.aid}'`;
+  pool.getConnection((error,connection)=>{
+      if (error) {
+          return res.status(500).json({ error: '조회 실패' });
+      }
+
+      connection.query(sql,(error,result)=>{
+          if(!error){
+              console.log('조회된 수록곡 데이터:', result);
+              res.send(JSON.stringify(result));
+              connection.release();
+          }else{
+              throw error
+          }
+      })
+
+  })
+};
+
+module.exports = { 
+  uploadAlbum,
+  getAlbum,
+  getMusics
+ };

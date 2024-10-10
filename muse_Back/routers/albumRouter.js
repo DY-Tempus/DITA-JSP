@@ -23,4 +23,14 @@ router.post('/album/upload', (req, res) => {
   });
 });
 
+router
+.post('/detail', (req, res) => {
+  console.log('post /api/album/detail 요청이 호출되었습니다.');  // 로그 추가
+  albumController.getAlbum(req,res)
+})
+.post('/musics', (req, res) => {
+  console.log('post /api/album/musics 요청이 호출되었습니다.');  // 로그 추가
+  albumController.getMusics(req,res)
+})
+
 module.exports = router;
