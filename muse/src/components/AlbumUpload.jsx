@@ -102,13 +102,6 @@ const AlbumUpload = () => {
                         <div><label>Producer/Remix</label><input type="text" name="producer" value={formData.producer} onChange={handleInputChange} /></div>
                         <div><label>Genre</label><input type="text" name="genre" value={formData.genre} onChange={handleInputChange} /></div>
                         <div><label>Detail</label><input type="text" name="detail" value={formData.detail} onChange={handleInputChange} /></div>
-                        <div>
-                            <label>Option</label>
-                            <select name="option" value={formData.option} onChange={handleInputChange}>
-                                <option value="public">Public</option>
-                                <option value="private">Private</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
 
@@ -119,7 +112,7 @@ const AlbumUpload = () => {
                             songs.map((song) => (
                                 <div key={song.MID} className="album-song-element">
                                     <input
-                                        type='checkbox'
+                                        type='checkbox'Dubstep
                                         onChange={() => handleSongSelect(song.MID)}
                                         checked={selectedSongs.includes(song.MID)}
                                     />

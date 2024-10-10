@@ -54,24 +54,12 @@ const Detail = ({ isOpen }) => {
                 <img src="/img/Collide.png" alt="Album Art" className="song-cover" />
                 <div className="detail-info">
                     <div>
-                        <span><strong>Uploader</strong></span>
-                        <span>{musicInfo.uname}</span>
-                    </div>
-                    <div>
                         <span><strong>Artist</strong></span>
                         <span>Hellberg, Deutgen, Splitbreed</span>
                     </div>
                     <div>
-                        <span><strong>Producer</strong></span>
-                        <span>Astronaut, Barely Alive</span>
-                    </div>
-                    <div>
                         <span><strong>Album</strong></span>
                         <span>{musicInfo.aname}</span>
-                    </div>
-                    <div>
-                        <span><strong>Copyright</strong></span>
-                        <span>Monstercat</span>
                     </div>
                 </div>
             </div>

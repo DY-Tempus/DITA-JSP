@@ -71,7 +71,6 @@ function Sidebar({ isOpen }) {
                 <div className="user-info">
                     <img src="./img/getsix.png" alt="User Icon" className="user-icon" />
                     <h2>{userInfo.username}</h2>
-                    <h3>My Page</h3>
                 </div>
                 <ul className="menu">
                     <Link to="/profile" onClick={closeSidebar}><li>● Profile</li></Link>
