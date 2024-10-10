@@ -63,7 +63,7 @@ const Current = ({ isOpen }) => {
   };
   const nextId = useRef(7);
 
-
+  
   const onCreate = () => {
     const playlist = {
       index: nextId.current,
