@@ -41,7 +41,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/artist" element={<Artist />} />
+          <Route path="/artist/:id" element={<Artist />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/recent" element={<Recent />} />
           <Route path="/favorite" element={<Favorite />} />

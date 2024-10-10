@@ -10,7 +10,6 @@ const getMusic =(req, res) => {
 
         connection.query(sql,(error,result)=>{
             if(!error){
-                console.log('조회된 음악 데이터:', result);
                 res.send(JSON.stringify(result));
                 connection.release();
             }else{

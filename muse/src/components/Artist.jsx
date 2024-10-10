@@ -1,135 +1,59 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link,useParams } from 'react-router-dom';
 import './css/Artist.css';
-
-function TrackItem({ item }) {
-  return (
-    <li key={item.id}>
-      <img src={item.image} alt={item.title} className="artist-track-image" />
-      <span className="artist-track-title">{item.title}</span>
-      <span className="artist-track-duration">{item.duration}</span>
-    </li>
-  )
-}
-
-function AlbumItem({item}){
-  return(
-      <div key={item.id} className="album-item">
-          <div className="album-cover-container">
-          <Link to="/album">
-              <img src={item.img4} className='album-img layer-3'></img>
-              <img src={item.img3} className='album-img layer-2'></img>
-              <img src={item.img2} className='album-img layer-1'></img>
-              <img src={item.img1} className='album-img'></img>
-          </Link>
-          </div>
-          <p className="album-title">{item.name}</p>
-      </div>
-  )
-}
-
-// 트랙 데이터 선언
-const artist_song_list = [
-  { 
-      id: 1, 
-      img1: './img/Collide.png', 
-      img2: './img/main_album.jpg', 
-      img3: './img/main_album2.jpg', 
-      img4: './img/main_album3.jpg',  
-      name: 'Red Playlist' 
-  },
-  { 
-      id: 2, 
-      img1: './img/Collide.png', 
-      img2: './img/main_album.jpg', 
-      img3: './img/main_album2.jpg', 
-      img4: './img/main_album3.jpg',  
-      name: 'Red Playlist' 
-  },
-  { 
-      id: 3, 
-      img1: './img/Collide.png', 
-      img2: './img/main_album.jpg', 
-      img3: './img/main_album2.jpg', 
-      img4: './img/main_album3.jpg',  
-      name: 'Red Playlist' 
-  },
-  { 
-      id: 4, 
-      img1: './img/Collide.png', 
-      img2: './img/main_album.jpg', 
-      img3: './img/main_album2.jpg', 
-      img4: './img/main_album3.jpg',  
-      name: 'Red Playlist' 
-  },
-];
-
-const tracks = [
-  {
-    id: 1,
-    title: "WIP That'll Never Come Out",
-    duration: "2:48",
-    image: "/img/getsixart1.png"
-  },
-  // 추가 트랙 데이터들
-  {
-    id: 2,
-    title: "The Psychedelic Experience",
-    duration: "4:35",
-    image: "/img/getsixart1.png"
-  },
-  {
-    id: 3,
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "/img/getsixart1.png"
-  },
-  {
-    id: 3,
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "/img/getsixart1.png"
-  },
-  {
-    id: 3,
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "/img/getsixart1.png"
-  },
-  {
-    id: 3,
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "/img/getsixart1.png"
-  },
-  {
-    id: 3,
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "/img/getsixart1.png"
-  },
-  {
-    id: 3,
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "/img/getsixart1.png"
-  },
-  {
-    id: 3,
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "/img/getsixart1.png"
-  },
-  {
-    id: 3,
-    title: "Bstral Projection",
-    duration: "5:53",
-    image: "/img/getsixart1.png"
-  }
-  // 다른 트랙도 여기에 추가 가능
-];
+import axios from 'axios';
+import {AlbumList,TrackList} from './HomeList';
 
 const Artist = () => {
+  const params = useParams();
+  const [artist,setArtist]=useState({
+    aname:'',
+    aimg:'',
+  })
+  const [album,setAlbum]=useState([])
+  const [track,setTrack]=useState([])
+
+  useEffect(()=>{
+    
+    console.log(params.id)
+    axios.post(`http://localhost:3000/api/artist/user`,{
+      id:params.id
+    })
+    .then((Response)=>{
+      console.log(Response.data);
+      const obj=Response.data[0];
+      console.log(obj)
+
+      setArtist({
+        aname:obj.NAME,
+        aimg:'',
+    });
+    });
+
+    axios.post(`http://localhost:3000/api/artist/album`,{
+      id:params.id
+    })
+    .then((Response)=>{
+      console.log(Response.data);
+      const obj=Response.data;
+      console.log(obj)
+
+      setAlbum([...album,obj]);
+    });
+
+    axios.post(`http://localhost:3000/api/artist/track`,{
+      id:params.id
+    })
+    .then((Response)=>{
+      console.log(Response.data);
+      const obj=Response.data;
+      console.log(obj)
+
+      setTrack([...track,obj]);
+    });
+
+  }, []);
+
   // if(!sessionStorage.getItem("idKey")){
   //   return (
   //       <div>
@@ -141,10 +65,10 @@ const Artist = () => {
     <div className="artist-artist-page">
       {/* 아티스트 정보 */}
       <div className="artist-artist-info">
-        <img src="/img/getsix.png" alt="Artist" className="artist-artist-image" />
+        <img src={artist.aimg} alt="Artist" className="artist-artist-image" />
         <div className="artist-artist-details">
           <div className="artist-social-icons">
-            <h1>Getsix</h1>
+            <h1>{artist.aname}</h1>
             <img src="/img/YouTubeLogo.png" alt="YouTube" />
             <img src="/img/XLogo.png" alt="Twitter" />
           </div>
@@ -161,8 +85,8 @@ const Artist = () => {
 
             <>
               {
-                artist_song_list.map(
-                  item => (<AlbumItem item={item} key={item.id} />)
+                album.map(
+                  item => (<AlbumList item={item} key={item.id} />)
                 )
               }
             </>
@@ -180,8 +104,8 @@ const Artist = () => {
         <ul>
           <>
             {
-              tracks.map(
-                item => (<TrackItem item={item} key={item.id} />)
+              track.map(
+                item => (<TrackList item={item} key={item.id} />)
               )
             }
           </>

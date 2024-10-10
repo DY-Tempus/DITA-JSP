@@ -17,8 +17,9 @@ function AlbumItem({item}){
     )
 }
 function ArtistItem({item}){
+    
     return(
-        <Link to="/artist">
+        <Link to={`/artist/${item[0].ID}`}>
             <div className="album-item">
                 <div className="album-cover-container">
                     <img src={item.img} alt="Artist Image" className="artist-image-home" />
@@ -40,6 +41,19 @@ function MusicItem({item}){
         </div>
     )
 }
+function TrackItem({ item }) {
+    return (
+      <li key={item.id}>
+        <img src={item.image} alt={item.title} className="artist-track-image" />
+        <span className="artist-track-title">{item.title}</span>
+        <span className="artist-track-duration">{item.duration}</span>
+      </li>
+    )
+}
+
+
+
+
 
 function AlbumList({item}){
     return(
@@ -68,9 +82,19 @@ function MusicList({item}){
         </>
     )
 }
+function TrackList({item}){
+    return(
+        <>
+        {
+            item.map(item=>(<TrackItem item={item} key={item.mid}/>))
+        }
+        </>
+    )
+}
 
 export {
     AlbumList,
     ArtistList,
-    MusicList
+    MusicList,
+    TrackList
 }
