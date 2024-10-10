@@ -3,120 +3,107 @@
 .profile-page {
     padding: 40px 20% 0 20%;
     font-family: 'Inter', sans-serif;
-  }
+}
   
-  .profile-header {
+.profile-header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-  }
+}
   
-  .profile-image {
+.profile-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-right: 20px;
-  }
+}
   
-  .profile-image:hover{
+.profile-image:hover{
     transform: scale(1.1);
     transition: 0.1s;
     filter: opacity(0.5);
-  }
+}
 
-  .profile-username {
+.profile-username {
     display: flex;
     align-items: center;
     font-size: 24px;
     font-weight: bold;
-  }
+}
   
-  .subs{
+.subs{
     font-size: 16px;
     color: #5f5f5f;
-  }
+}
 
-  .profile-username input {
+.profile-username input {
     font-size: 24px;
-  }
+}
   
-  .edit-icon {
+.edit-icon {
     width: 20px;
     height: 20px;
     margin-left: 10px;
     cursor: pointer;
-  }
-  
-  .profile-details {
-    border-top: 2px solid #dcdcdc;
-    padding-top: 20px;
-  }
-  
-  .detail-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    height: 30px;
-    border-bottom: 2px solid #dcdcdc;
-  }
-  
-  .detail-item select, .detail-item input {
-    font-size: 16px;
-    padding: 5px;
-    border: none;
-    margin-bottom: 15px;
-    user-select: none;
-  }
-  
-  .detail-item img.edit-icon {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-  }
-
-  /* 기본 프로필 페이지 스타일 */
-.profile-username input, 
-.detail-item input {
-  font-size: 16px; /* 글자 크기 */
-  width: 100%; /* 입력 필드의 너비를 조정 */
-  padding: 5px; /* 입력 필드 내부 여백 */
-  border: 1px solid #dcdcdc; /* 테두리 스타일 */
-  border-radius: 5px; /* 입력 필드 모서리를 둥글게 */
-  box-sizing: border-box; /* 테두리와 패딩을 포함한 너비 */
 }
 
-.profile-username input:focus, x
-.detail-item input:focus {
-  outline: none; /* 포커스 시 기본 아웃라인 제거 */
-  border-color: #0099ff; /* 포커스 시 테두리 색 변경 */
-  box-shadow: 0 0 5px #0099ff; /* 포커스 시 그림자 추가 */
+/* 프로필 상세 정보 스타일 */
+.profile-details {
+  background-color: white; /* 배경색 흰색으로 변경 */
+  padding: 15px 20px;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 가벼운 그림자 추가 */
+  color: black; /* 글자 색 검은색으로 변경 */
 }
 
-/* 특정 필드에 크기를 따로 지정 */
-.profile-username input {
-  width: 50%; /* 프로필 이름 입력 필드의 너비 */
+.profile-details .profile-container {
+  display: flex;
+  position: relative;
+  margin: 20px auto;
+  width: 100%; 
+  justify-content: flex-end;
+  border-bottom: 1px solid rgb(185, 185, 185);
+  border-radius: 2px;
 }
 
-.detail-item input {
-  width: 60%; /* 다른 입력 필드 너비 */
+.profile-details .InputSetting {
+  border: none;
+  background: transparent;
+  color: black;
+  font-size: 18px;
+  padding: 5px;
 }
 
-.width-limit{
-    width: 150px;
+.profile-details .profile-container .label {
+  position: absolute;
+  top: 5px;
+  color: black;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  font-size: large;
+  left: 5px;
 }
 
-.display-flex{
-    display: flex;
-    align-items: center;
+.profile-details .profile-container .label {
+  top: 0px;
+  font-size: large;
+  color: black; 
 }
 
-.display-flex input{
-    flex: 1;
+.profile-details .underline {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  height: 2px;
+  width: 70%;
+  background-color: black;  
+  transform: scaleX(0);
+  transition: all 0.3s ease;
 }
 
-.flex1{
-    flex: 1;
+.profile-details .profile-container input:focus ~ .underline {
+  transform: scaleX(1);
 }
 
 .CancelConfirm{
