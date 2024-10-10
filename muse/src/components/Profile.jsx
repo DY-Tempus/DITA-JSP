@@ -102,130 +102,46 @@ const Profile = () => {
             </div>
 
             <div className="profile-details">
-                <div className="detail-item">
-                    <span className='width-limit'>ID</span>
-                    <span className='flex1'>{userInfo.id}</span>
-                </div>
-                
-                <div className="detail-item">
-                    <span className='width-limit'>PW</span>
-                    {editField === 'password' ? (
-                        <div className='display-flex'>
-                            <input
-                                type="password"
-                                value={userInfo.password}
-                                onChange={(e) => handleKeyDown(e, 'password', e.target.value)}
-                                onKeyDown={(e) => handleKeyDown(e, 'password', e.target.value)}
-                                onBlur={(e) => handleBlur(e, 'password', e.target.value)}
-                            />
-                            <img
-                                    src="./img/edit.png"
-                                    alt="Edit"
-                                    className="edit-icon"
-                                    onClick={() => handleEdit('password')}
-                                />
-                        </div>
-                    ) : (
-                        <>
-                            <span className='flex1'>{userInfo.password}</span>
-                            <img
-                                src="./img/edit.png"
-                                alt="Edit"
-                                className="edit-icon"
-                                onClick={() => handleEdit('password')}
-                            />
-                        </>
-                    )}
+                <div className="profile-container">
+                    <input
+                        type="text"
+                        id="idInput"
+                        className="InputSetting"
+                        value={userInfo.id}
+                        onChange={(e) => handleKeyDown(e, 'id', e.target.value)}
+                        required
+                    />
+                    <label htmlFor="idInput" className="label">ID</label>
+                    <div className="underline"></div>
                 </div>
 
-                <div className="detail-item">
-                    <span className='width-limit'>Country</span>
-                    {editField === 'country' ? (
-                        <div className='display-flex'>
-                            <input
-                            type="text"
-                            value={userInfo.country}
-                            onChange={(e) => handleKeyDown(e, 'country', e.target.value)}
-                            onKeyDown={(e) => handleKeyDown(e, 'country', e.target.value)}
-                            onBlur={(e) => handleBlur(e, 'country', e.target.value)}
-                            />
-                            <img
-                                src="./img/edit.png"
-                                alt="Edit"
-                                className="edit-icon"
-                                onClick={() => handleEdit('country')}
-                            />
-                        </div>
-                        
-                    ) : (
-                        <>
-                            <span className='flex1'>{userInfo.country}</span>
-                            <img
-                                src="./img/edit.png"
-                                alt="Edit"
-                                className="edit-icon"
-                                onClick={() => handleEdit('country')}
-                            />
-                        </>
-                    )}
-                </div>
-                
-                <div className="detail-item">
-                    <span className='width-limit'>Email</span>
-                    {editField === 'email' ? (
-                        <div className='display-flex'>
-                            <input 
-                            type="text"
-                            value={userInfo.email}
-                            onChange={(e) => handleKeyDown(e, 'email', e.target.value)}
-                            onKeyDown={(e) => handleKeyDown(e, 'email', e.target.value)}
-                            onBlur={(e) => handleBlur(e, 'email', e.target.value)}
-                            />
-                            <img
-                                src="./img/edit.png"
-                                alt="Edit"
-                                className="edit-icon"
-                                onClick={() => handleEdit('email')}
-                            />
-                        </div>
-                        
-                    ) : (
-                        <>
-                            <span className='flex1'>{userInfo.email}</span>
-                            <img
-                                src="./img/edit.png"
-                                alt="Edit"
-                                className="edit-icon"
-                                onClick={() => handleEdit('email')}
-                            />
-                        </>
-                    )}
-                </div>
-                
-                <div className="detail-item">
-                    <span className='width-limit'>Favorite Genre 1</span>
-                    <select
-                        value={userInfo.genre1}
-                        onChange={(e) => handleBlur(e, 'genre1', e.target.value)}
-                    >
-                        <option value="Dubstep">Dubstep</option>
-                        <option value="Rock">Rock</option>
-                        <option value="Pop">Pop</option>
-                    </select>
+                <div className="profile-container">
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        className="InputSetting"
+                        value={userInfo.password}
+                        onChange={(e) => handleKeyDown(e, 'password', e.target.value)}
+                        required
+                    />
+                    <label htmlFor="passwordInput" className="label">PW</label>
+                    <div className="underline"></div>
                 </div>
 
-                <div className="detail-item">
-                    <span className='width-limit'>Favorite Genre 2</span>
-                    <select
-                        value={userInfo.genre2}
-                        onChange={(e) => handleBlur(e, 'genre2', e.target.value)}
-                    >
-                        <option value="EDM">EDM</option>
-                        <option value="Hip-Hop">Hip-Hop</option>
-                        <option value="Jazz">Jazz</option>
-                    </select>
+                <div className="profile-container">
+                    <input
+                        type="text"
+                        id="emailInput"
+                        className="InputSetting"
+                        value={userInfo.email}
+                        onChange={(e) => handleKeyDown(e, 'email', e.target.value)}
+                        required
+                    />
+                    <label htmlFor="emailInput" className="label">Email</label>
+                    <div className="underline"></div>
                 </div>
             </div>
+
             <div className='CancelConfirm'>
                 <button className='my-button cancel'>Cancel</button>
                 <button className='my-button confirm'>Confirm</button>

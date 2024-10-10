@@ -18,6 +18,7 @@ const Upload = () => {
 
     const [imageFileName, setImageFileName] = useState('');  // 이미지 파일 이름
     const [musicFileName, setMusicFileName] = useState('');  // 음악 파일 이름
+    const userId = JSON.parse(sessionStorage.getItem('idKey')).ID;  // 세션에서 사용자 ID 가져오기
 
     // 이미지 파일 처리
     const handleImageChange = (event) => {
@@ -53,6 +54,7 @@ const Upload = () => {
         data.append('title', formData.title);
         data.append('genre', formData.genre);
         data.append('lyrics', formData.lyrics);
+        data.append('userId', userId);  // 사용자 ID 추가
 
         try {
             const response = await axios.post('http://localhost:3000/api/music/upload', data, {
