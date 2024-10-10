@@ -26,7 +26,11 @@ const AlbumUpload = () => {
 
     // 로그인된 사용자의 노래 불러오기
     useEffect(() => {
-        axios.get('http://localhost:3000/api/music/mysongs')
+        const loggedInUser = JSON.parse(sessionStorage.getItem("idKey"));
+        if (loggedInUser) {
+            axios.post('http://localhost:3000/api/music/mysongs', {
+                id: loggedInUser.ID  // Fetch songs based on logged-in user's ID
+            })
             .then((response) => {
                 setSongs(response.data); // 불러온 노래 데이터를 songs에 저장
             })
@@ -34,12 +38,10 @@ const AlbumUpload = () => {
                 console.error('노래 목록 가져오기 실패:', error);
             });
 
-        // 로그인된 사용자 이름 가져오기
-        const loggedInUser = JSON.parse(sessionStorage.getItem("idKey"));
-        if (loggedInUser) {
+            // Producer/Remix에 로그인된 사용자 이름 설정
             setFormData(prevState => ({
                 ...prevState,
-                producer: loggedInUser.NAME  // Producer/Remix에 로그인된 사용자 이름 설정
+                producer: loggedInUser.NAME
             }));
         }
     }, []);
@@ -102,13 +104,6 @@ const AlbumUpload = () => {
                         <div><label>Producer/Remix</label><input type="text" name="producer" value={formData.producer} onChange={handleInputChange} /></div>
                         <div><label>Genre</label><input type="text" name="genre" value={formData.genre} onChange={handleInputChange} /></div>
                         <div><label>Detail</label><input type="text" name="detail" value={formData.detail} onChange={handleInputChange} /></div>
-                        <div>
-                            <label>Option</label>
-                            <select name="option" value={formData.option} onChange={handleInputChange}>
-                                <option value="public">Public</option>
-                                <option value="private">Private</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
 
@@ -119,7 +114,7 @@ const AlbumUpload = () => {
                             songs.map((song) => (
                                 <div key={song.MID} className="album-song-element">
                                     <input
-                                        type='checkbox'
+                                        type='checkbox'Dubstep
                                         onChange={() => handleSongSelect(song.MID)}
                                         checked={selectedSongs.includes(song.MID)}
                                     />

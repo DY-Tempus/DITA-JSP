@@ -18,6 +18,7 @@ const Upload = () => {
 
     const [imageFileName, setImageFileName] = useState('');  // 이미지 파일 이름
     const [musicFileName, setMusicFileName] = useState('');  // 음악 파일 이름
+    const userId = JSON.parse(sessionStorage.getItem('idKey')).ID;  // 세션에서 사용자 ID 가져오기
 
     // 이미지 파일 처리
     const handleImageChange = (event) => {
@@ -53,6 +54,7 @@ const Upload = () => {
         data.append('title', formData.title);
         data.append('genre', formData.genre);
         data.append('lyrics', formData.lyrics);
+        data.append('userId', userId);  // 사용자 ID 추가
 
         try {
             const response = await axios.post('http://localhost:3000/api/music/upload', data, {
@@ -97,18 +99,8 @@ const Upload = () => {
                     </div>
                     <div className="input-fields">
                         <div><label>Title</label><input type="text" name="title" value={formData.title} onChange={handleInputChange} /></div>
-                        <div><label>Artist</label><input type="text" name="artist" value={formData.artist} onChange={handleInputChange} /></div>
-                        <div><label>Producer/Remix</label><input type="text" name="producer" value={formData.producer} onChange={handleInputChange} /></div>
                         <div><label>Album</label><input type="text" name="album" value={formData.album} onChange={handleInputChange} /></div>
                         <div><label>Genre</label><input type="text" name="genre" value={formData.genre} onChange={handleInputChange} /></div>
-                        <div><label>Copyright</label><input type="text" name="copyright" value={formData.copyright} onChange={handleInputChange} /></div>
-                        <div>
-                            <label>Option</label>
-                            <select name="option" value={formData.option} onChange={handleInputChange}>
-                                <option value="public">Public</option>
-                                <option value="private">Private</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
 
