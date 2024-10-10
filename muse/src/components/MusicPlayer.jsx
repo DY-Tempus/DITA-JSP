@@ -145,6 +145,16 @@ const MusicPlayer = ({ isCurrentOpen, setIsCurrentOpen }) => {
         };
     }, [isDragging]);
 
+    const [isShuffle, setIsShuffle] = useState(false); // Shuffle 상태 관리
+    const toggleShuffle = () => {
+        setIsShuffle(!isShuffle);
+    }
+
+    const [isRepeat, setIsRepeat] = useState(0); // Repeat 상태 관리
+    const toggleRepeat = () => {
+        setIsRepeat((prevState) => (prevState + 1) % 3);
+    };
+
     const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
     const toggleDetail = () => {
         setIsDetailOpen(!isDetailOpen);
@@ -212,8 +222,32 @@ const MusicPlayer = ({ isCurrentOpen, setIsCurrentOpen }) => {
                     </div>
                 </div>
                 <div className="controls-extra">
-                    <img src="/img/shuffle.png" alt="Shuffle" className="control-button-extra" />
-                    <img src="/img/repeat.png" alt="Repeat" className="control-button-extra" />
+                    <img 
+                        src={isShuffle ? "/img/shuffle_on.png" : "/img/shuffle.png"}
+                        alt={isShuffle ? "Shuffle_on" : "Shuffle_off"}
+                        className={`control-button-extra ${isShuffle ? 'on' : ''}`}
+                        onClick={toggleShuffle}
+                    />
+                    <img 
+                        src={
+                            isRepeat === 0
+                                ? "/img/repeat.png"
+                                : isRepeat === 1
+                                ? "/img/repeat_all.png"
+                                : "/img/repeat_one.png"
+                        }
+                        alt={
+                            isRepeat === 0
+                                ? "Repeat Off"
+                                : isRepeat === 1
+                                ? "Repeat All"
+                                : "Repeat One"
+                        }
+                        className={`control-button-extra ${
+                            isRepeat !== 0 ? 'on' : ''
+                        }`}
+                        onClick={toggleRepeat}
+                    />
                     <div
                         className="volume-container"
                         onMouseEnter={handleMouseEnter}

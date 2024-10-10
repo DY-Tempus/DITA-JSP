@@ -6,6 +6,8 @@ const uploadRouter = require('./routers/uploadRouter');
 const streamRouter = require('./routers/streamRouter');
 const userRouter = require('./routers/userRouter'); // 유저 라우터 추가
 const detailRouter = require('./routers/detailRouter');
+const homeRouter = require('./routers/homeRouter');
+
 
 const path = require('path'); // path 모듈 추가
 
@@ -27,6 +29,8 @@ app.use('/api/music', uploadRouter);  // 업로드 관련 라우터(뮤직을 �
 app.use('/api/music', streamRouter);  // 스트리밍 관련 라우터
 app.use('/api/user', userRouter);  // 유저 관련 라우터
 app.use('/api/detail', detailRouter);
+app.use('/api/home', homeRouter);
+
 
 // 서버 실행
 app.listen(port, () => {

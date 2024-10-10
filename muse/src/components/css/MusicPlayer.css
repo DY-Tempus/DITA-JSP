@@ -134,6 +134,10 @@
     transition: transform 0.3s ease;
 }
 
+.control-button-extra.on {
+    transform: scale(1.2);
+}
+
 .control-button-extra.detailopen {
     transform: rotate(180deg);
 }
@@ -153,6 +157,7 @@
     display: flex;
 }
 
+  /* Current 패널 버튼 css */
 .burger {
     position: relative;
     width: 23px;
