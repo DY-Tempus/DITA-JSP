@@ -114,6 +114,8 @@
 
 /* 포커스 상태일 때 밑줄 확장 */
 .input-container input:focus ~ .underline,
+.input-container select:focus ~ .underline,
+.input-container select:valid ~ .underline,
 .input-container input:valid ~ .underline {
     transform: scaleX(1);
 }
