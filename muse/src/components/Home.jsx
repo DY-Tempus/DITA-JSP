@@ -5,7 +5,7 @@ import {AlbumList,ArtistList, MusicList} from './HomeList';
 import axios from 'axios';
 
 
-const Home = () => {
+const Home = ({ isDarkMode, setIsDarkMode }) => {
     const [recent, setRecent]=useState([])
     const [preferMusic,setPreferMusic]=useState([])
     const [preferArtist,setPreferArtist]=useState([])
@@ -69,7 +69,7 @@ const Home = () => {
     return (
         <div>
             {/* 메인 콘텐츠 영역 */}
-            <main className="main-content">
+            <main className={`main-content ${isDarkMode ? 'dark-mode' : ''}`}>
                 {/* 앨범 섹션 예시 */}
                 <section className="album-section">
                     <h2 className="section-title">최신 노래</h2>

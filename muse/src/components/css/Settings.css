@@ -35,6 +35,19 @@
     transform: translateY(0);
 }
 
+/* 다크 모드 스타일 */
+.settings-panel.dark-mode {
+    background-color: gray; /* 다크 모드 배경색 */
+}
+
+.settings-panel.dark-mode .settings-item {
+    border-bottom: 1px solid #555;
+}
+
+.settings-panel.dark-mode .settings-item span {
+    color: white;
+}
+
 .settings-header {
     display: flex;
     align-items: center;

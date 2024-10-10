@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './css/Settings.css';
 
-const Settings = ({ isOpen, setIsOpen }) => {
+const Settings = ({ isOpen, setIsOpen, isDarkMode, setIsDarkMode }) => {
 
     // Settings 패널을 숨기는 함수
     const hideSettings = () => {
@@ -16,9 +16,14 @@ const Settings = ({ isOpen, setIsOpen }) => {
         }
     };
 
+    // 다크 모드 토글 함수
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode); // 다크 모드 상태 반전
+    };
+
     return ReactDOM.createPortal(
         <div className={`settings-page ${isOpen ? 'open' : ''}`} onClick={handlePageClick}>
-            <div className={`settings-panel ${isOpen ? 'open' : ''}`}>
+            <div className={`settings-panel ${isOpen ? 'open' : ''} ${isDarkMode ? 'dark-mode' : ''}`}>
                 <div className="settings-header">
                 <img src="/img/back.png" alt="Back" className="back" onClick={hideSettings} />
                     <h2>Settings</h2>
@@ -27,7 +32,7 @@ const Settings = ({ isOpen, setIsOpen }) => {
                     <span>다크 모드</span>
                     <div className="toggle-switch">
                         <label className="switch">
-                            <input type="checkbox" />
+                        <input type="checkbox" onChange={toggleDarkMode} checked={isDarkMode} />
                             <span></span>
                         </label>
                     </div>

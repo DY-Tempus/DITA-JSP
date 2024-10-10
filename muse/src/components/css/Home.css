@@ -46,6 +46,10 @@ body {
     height: calc(100vh - 60px - 100px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
 }
 
+.main-content.dark-mode {
+    background-color: gray;
+}
+
 /* 앨범 섹션 */
 .album-section {
     margin-bottom: 40px;

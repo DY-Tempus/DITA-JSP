@@ -24,6 +24,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCurrentOpen, setIsCurrentOpen] = useState(false); //Current페이지 상태 관리
+  const [isDarkMode, setIsDarkMode] = useState(false); //다크모드
   const location = useLocation();
   const hideOnPaths = ['/SignIn', '/SignUp','/signup','/signin'];
 
@@ -33,14 +34,14 @@ function App() {
         {!hideOnPaths.includes(location.pathname) && (
           <>
             <Header />
-            <Sidebar />
+            <Sidebar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
           </>
         )}
         {/* <Header setIsCurrentOpen={setIsCurrentOpen}/>
             <Sidebar /> */}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>} />
+          <Route path="/home" element={<Home isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>} />
           <Route path="/artist/:id" element={<Artist />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/recent" element={<Recent />} />

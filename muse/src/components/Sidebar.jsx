@@ -4,7 +4,7 @@ import Settings from './Settings'; // Settings 컴포넌트 가져오기
 import { Link } from 'react-router-dom';
 
 
-function Sidebar({ isOpen }) {
+function Sidebar({ isOpen, isDarkMode, setIsDarkMode }) {
     useEffect(() => {
         if (!sessionStorage.getItem("idKey")) return //이거 없으면 창 안떠서 임시로 넣음. 로그인 페이지랑 홈 분리 후에 지울것.
         let obj = sessionStorage.getItem("idKey")
@@ -100,7 +100,7 @@ function Sidebar({ isOpen }) {
                 <button className='toggle-btn' onClick={toggleSidebar}></button>
 
                 {/* Settings 컴포넌트 */}
-                <Settings isOpen={isSettingsOpen} setIsOpen={setIsSettingsOpen} />
+                <Settings isOpen={isSettingsOpen} setIsOpen={setIsSettingsOpen} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
             </div>
         </div>
     );
