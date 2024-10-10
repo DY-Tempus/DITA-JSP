@@ -23,11 +23,12 @@ import './css/App.css';
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isCurrentOpen, setIsCurrentOpen] = useState(false); //Current페이지 상태 관리
 
   return (
     <Router>
       <div className="app">
-            <Header />
+            <Header setIsCurrentOpen={setIsCurrentOpen}/>
             <Sidebar />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -47,7 +48,7 @@ function App() {
               <Route path="/updatemusic" element={<UpdateMusic/>}/>
               <Route path="/search" element={<Search/>} />
             </Routes>
-            <MusicPlayer /> {/* 항상 하단에 고정된 음악 플레이어 */}
+            <MusicPlayer isCurrentOpen={isCurrentOpen} setIsCurrentOpen={setIsCurrentOpen}/> {/* 항상 하단에 고정된 음악 플레이어 */}
       </div>
     </Router>
   );
