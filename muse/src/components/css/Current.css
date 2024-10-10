@@ -94,3 +94,43 @@
     height: 25px; /* thumbs 이미지의 크기를 조절 */
     cursor: pointer;
 }
+
+.popup {
+    position: fixed;
+    border-radius: 15px;
+    border: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .popup button {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #009dff, #8000ff);
+    color: transparent;
+    font-weight: 400;
+    -webkit-background-clip: text;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 5px;
+  }
+
+  .cancel:hover{
+    background-color: #999;
+  }
+  
+  .popup select {
+    padding: 5px;
+  }
