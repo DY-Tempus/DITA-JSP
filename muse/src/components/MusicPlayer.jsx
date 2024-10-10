@@ -26,7 +26,7 @@ const MusicPlayer = ({ isCurrentOpen, setIsCurrentOpen }) => {
     const titleRef = useRef(null);
     const containerRef = useRef(null);
     const progressBarRef = useRef(null); // 진행 바 참조
-    const musicId = 29; // 현재 재생할 음악 ID
+    const musicId = 33; // 현재 재생할 음악 ID
 
     // 텍스트가 넘치는지 확인하는 함수
     const checkOverflow = () => {
