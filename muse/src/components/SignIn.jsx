@@ -13,8 +13,8 @@ const SignIn = () => {
     axios.post("http://localhost:3000/api/user/signin",{
       uid:id,
       upw:password,
-  })
-  .then((Response)=>{
+    })
+    .then((Response)=>{
       console.log(Response.data);
       const obj=Response.data[0];
       console.log(obj)
@@ -32,7 +32,7 @@ const SignIn = () => {
         alert('Invalid username or password');
       }
       
-  });
+    });
     // 로그인 로직 구현
     console.log(`ID: ${id}, Password: ${password}`);
   };

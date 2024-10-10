@@ -1,34 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/Home.css';
-import { Link } from 'react-router-dom';
 
-function AlbumItem({item}){
-    return(
-        <div key={item.id} className="album-item">
-            <div className="album-cover-container">
-            <Link to="/album">
-                <img src={item.img4} className='album-img layer-3'></img>
-                <img src={item.img3} className='album-img layer-2'></img>
-                <img src={item.img2} className='album-img layer-1'></img>
-                <img src={item.img1} className='album-img'></img>
-            </Link>
-            </div>
-            <p className="album-title">{item.name}</p>
-        </div>
-    )
-}
-function ArtistItem({item}){
-    return(
-        <Link to="/artist">
-            <div className="album-item">
-                <div className="album-cover-container">
-                    <img src={item.img} alt="Artist Image" className="artist-image-home" />
-                </div>
-                <p className="album-title">{item.name}</p>
-            </div>
-        </Link>
-    )
-}
+import {AlbumList,ArtistList} from './HomeList';
+import axios from 'axios';
 
 const recent_played = [
     { 
@@ -133,6 +107,46 @@ const artist=[
 ];
 
 const Home = () => {
+    const [recent, setRecent]=useState([])
+    const [preferMusic,setPreferMusic]=useState([])
+    const [preferArtist,setPreferArtist]=useState([])
+
+    useEffect(()=>{
+        let user=JSON.parse(sessionStorage.getItem('idKey'))
+        
+
+        axios.post("http://localhost:3000/api/home/recent")
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data;
+            console.log(obj)
+            
+            setRecent([...recent,obj]);
+        });
+
+        axios.post("http://localhost:3000/api/home/prefermusic",{
+            uid:user.ID
+        })
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data;
+            console.log(obj)
+            
+            setPreferMusic([...preferMusic,obj]);
+        });
+
+        axios.post("http://localhost:3000/api/home/preferartist",{
+            uid:user.ID
+        })
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data;
+            console.log(obj)
+            
+            setPreferArtist([...preferArtist,obj]);
+        });
+    }, []);
+
     // if(!sessionStorage.getItem("idKey")){
     //     return (
     //         <div>
@@ -152,9 +166,7 @@ const Home = () => {
                         
                         <>
                             {
-                                recent_played.map(
-                                    item=>(<AlbumItem item={item} key={item.id}/>)
-                                )
+                                <AlbumList item={recent}/>
                             }
                         </>
                     </div>
@@ -167,9 +179,7 @@ const Home = () => {
                     <div className="album-container">
                     <>
                             {
-                                jpop.map(
-                                    item=>(<AlbumItem item={item} key={item.id}/>)
-                                )
+                                <AlbumList item={preferMusic}/>
                             }
                         </>
                     </div>
@@ -181,11 +191,9 @@ const Home = () => {
                     <div className="album-container">
                         {/* 앨범 1 */}
                         <>
-                            {
-                                artist.map(
-                                    item=>(<ArtistItem item={item} key={item.id}/>)
-                                )
-                            }
+                        {
+                            <ArtistList item={preferArtist}/>
+                        }
                         </>
                     </div>
                 </section>
