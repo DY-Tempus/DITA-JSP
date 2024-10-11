@@ -58,13 +58,13 @@ const Home = ({ isDarkMode, setIsDarkMode }) => {
         });
     }, []);
 
-    // if(!sessionStorage.getItem("idKey")){
-    //     return (
-    //         <div>
-    //             <meta http-equiv="refresh" content="0;url=/signIn"></meta>
-    //         </div>
-    //     );
-    // }
+    if(!sessionStorage.getItem("idKey")){
+        return (
+            <div>
+                <meta http-equiv="refresh" content="0;url=/signin"></meta>
+            </div>
+        );
+    }
 
     return (
         <div>
