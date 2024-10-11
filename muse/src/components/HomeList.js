@@ -44,7 +44,7 @@ function AlbumItemCon({item}){
                 )}
             </Link>
             </div>
-            <p className="album-title">{item.name}</p>
+            <p className="album-title">{item.ANAME}</p>
         </div>
     )
 }
@@ -75,7 +75,7 @@ function ArtistItemCon({item}){
                         <p className="artist-image-home">이미지 없음</p>
                     )}
                 </div>
-                <p className="album-title">{item.name}</p>
+                <p className="album-title">{item.NAME}</p>
             </div>
         </Link>
     )
@@ -108,7 +108,7 @@ function MusicItemCon({ item }) {
                     )}
                 </Link>
             </div>
-            <p className="album-title">{item.name}</p>
+            <p className="album-title">{item.MNAME}</p>
         </div>
     );
 }
@@ -136,7 +136,7 @@ function TrackItemCon({item}){
         ) : (
             <p className="artist-track-image">이미지 없음</p>
         )}
-        <span className="artist-track-title">{item.title}</span>
+        <span className="artist-track-title">{item.MNAME}</span>
         <span className="artist-track-duration">{item.duration}</span>
         </li>
     )
