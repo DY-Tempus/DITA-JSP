@@ -54,7 +54,7 @@ function Popup({ onClose }) {
     const [album,setAlbum]=useState([])
     let user=JSON.parse(sessionStorage.getItem('idKey'))
     useEffect(()=>{
-        axios.post("http://localhost:3000/api/home/myalbum",{
+        axios.post("http://localhost:3000/api/mymusic/album",{
             uid:user.ID
         })
         .then((Response)=>{

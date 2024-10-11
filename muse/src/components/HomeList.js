@@ -220,19 +220,19 @@ function AlbumTrackItem({ item }) {
 
 //////
 function AlbumList({item}){
-    return(<>{ item.map(item=>(<AlbumItem item={item} key={item.AID}/>)) }</>)
+    return(<>{ item.map(item=>(<AlbumItem item={item}/>)) }</>)
 }
 function ArtistList({item}){
-    return(<>{item.map(item=>(<ArtistItem item={item} key={item.ID}/>))}</>)
+    return(<>{item.map(item=>(<ArtistItem item={item}/>))}</>)
 }
 function MusicList({item}){
-    return(<>{item.map(item=>(<MusicItem item={item} key={item.MID}/>))}</>)
+    return(<>{item.map(item=>(<MusicItem item={item}/>))}</>)
 }
 function TrackList({item}){
-    return(<>{item.map(item=>(<TrackItem item={item} key={item.MID}/>))}</>)
+    return(<>{item.map(item=>(<TrackItem item={item}/>))}</>)
 }
 function AlbumTrackList({item}){
-    return(<>{item.map(item=>(<AlbumTrackItem item={item} key={item.MID}/>))}</>)
+    return(<>{item.map(item=>(<AlbumTrackItem item={item}/>))}</>)
 }
 
 

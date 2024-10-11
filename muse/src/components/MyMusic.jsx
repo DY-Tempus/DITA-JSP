@@ -1,134 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/MyMusic.css'; // CSS 파일 연결
 import { Link } from 'react-router-dom';
-
+import {AlbumList, MusicList} from './MyMusicList';
+import axios from 'axios';
 const songs = [
-  {
-    id: 1,
-    writer: "Getsix",
-    title: "WIP That'll Never Come Out",
-    duration: "2:48",
-    image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
-  },
-  {
-    id: 2,
-    writer: "Getsix",
-    title: "The Psychedelic Experience",
-    duration: "4:35",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 3,
-    writer: "Getsix",
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 4,
-    writer: "Getsix",
-    title: "Better Days",
-    duration: "4:17",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 5,
-    writer: "Getsix",
-    title: "Envy",
-    duration: "3:35",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 6,
-    writer: "Getsix",
-    title: "Diphenhydramine",
-    duration: "1:57",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 1,
-    writer: "Getsix",
-    title: "WIP That'll Never Come Out",
-    duration: "2:48",
-    image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
-  },
-  {
-    id: 2,
-    writer: "Getsix",
-    title: "The Psychedelic Experience",
-    duration: "4:35",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 3,
-    writer: "Getsix",
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 4,
-    writer: "Getsix",
-    title: "Better Days",
-    duration: "4:17",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 5,
-    writer: "Getsix",
-    title: "Envy",
-    duration: "3:35",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 6,
-    writer: "Getsix",
-    title: "Diphenhydramine",
-    duration: "1:57",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 1,
-    writer: "Getsix",
-    title: "WIP That'll Never Come Out",
-    duration: "2:48",
-    image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
-  },
-  {
-    id: 2,
-    writer: "Getsix",
-    title: "The Psychedelic Experience",
-    duration: "4:35",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 3,
-    writer: "Getsix",
-    title: "Astral Projection",
-    duration: "5:53",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 4,
-    writer: "Getsix",
-    title: "Better Days",
-    duration: "4:17",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 5,
-    writer: "Getsix",
-    title: "Envy",
-    duration: "3:35",
-    image: "./img/Getsixart2.png",
-  },
-  {
-    id: 6,
-    writer: "Getsix",
-    title: "Diphenhydramine",
-    duration: "1:57",
-    image: "./img/Getsixart2.png",
-  },
   {
     id: 1,
     writer: "Getsix",
@@ -229,51 +104,57 @@ function AlbumItem({ item }) {
 }
 
 const MyMusic = () => {
-  // if(!sessionStorage.getItem("idKey")){
+    // if(!sessionStorage.getItem("idKey")){
   //   return (
   //       <div>
   //           <meta http-equiv="refresh" content="0;url=/signIn"></meta>
   //       </div>
   //   );
   // }
+
+  const [myAlbum, setMyAlbum]=useState([])
+  const [myMusic,setMyMusic]=useState([])
+  useEffect(()=>{
+    let user=JSON.parse(sessionStorage.getItem('idKey'))
+    
+
+    axios.post("http://localhost:3000/api/mymusic/album",{
+      uid:user.ID
+    })
+    .then((Response)=>{
+        const obj=Response.data;
+        
+        setMyAlbum([...myAlbum,obj]);
+    });
+
+    axios.post("http://localhost:3000/api/mymusic/music",{
+        uid:user.ID
+    })
+    .then((Response)=>{
+        const obj=Response.data;
+        
+        setMyMusic([...myMusic,obj]);
+    });
+}, []);
+
+
   return (
     <div className="mymusic-page">
       <h1 className="section-title">My Album</h1>
       <section className="artist-album-section">
         <div className="artist-album-container">
-
           <>
             {
-              artist_album_list.map(
-                item => (<AlbumItem item={item} key={item.id} />)
-              )
+              <AlbumItem item={myAlbum}/>
             }
           </>
         </div>
       </section>
       <h1 className="section-title">My Music</h1>
       <div className="song-list">
-        {songs.map((song) => (
-          <div className="my-music" key={song.id}>
-            <div className="song-item">
-              <img src={song.image} alt={song.title} className="song-image" />
-              <div className="song-info">
-                <div className="song-detail">
-                  <span className="song-title">{song.title}</span>
-                  <span className="song-writer">{song.writer}</span>
-                </div>
-                <div className='align-center'>
-                  <span className="song-duration">{song.duration}</span>
-                  <Link to="/updatemusic">
-                  <img src='./img/edit.png' className='thumbs-views' />
-                  <img src='./img/delete.png' className='thumbs-views' />
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        ))}
+        {
+          <MusicList item={myMusic}/>
+        }
       </div>
     </div>
   );

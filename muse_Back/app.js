@@ -10,6 +10,7 @@ const detailRouter = require('./routers/detailRouter');
 const homeRouter = require('./routers/homeRouter');
 const artistRouter = require('./routers/artistRouter');
 const albumRouter = require('./routers/albumRouter');
+const mymusicRouter = require('./routers/mymusicRouter');
 
 
 
@@ -37,7 +38,7 @@ app.use('/api/detail', detailRouter);
 app.use('/api/home', homeRouter);
 app.use('/api/artist',artistRouter)
 app.use('/api/album',albumRouter)
-
+app.use('/api/mymusic',mymusicRouter)
 
 
 
