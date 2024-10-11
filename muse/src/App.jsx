@@ -44,7 +44,7 @@ function App() {
           <Route path="/home" element={<Home isDarkMode={isDarkMode}/>} />
           <Route path="/artist/:id" element={<Artist />} />
           <Route path="/profile" element={<Profile isDarkMode={isDarkMode}/>} />
-          <Route path="/recent" element={<Recent />} />
+          <Route path="/recent" element={<Recent isDarkMode={isDarkMode}/>} />
           <Route path="/favorite" element={<Favorite />} />
           <Route path="/playlist" element={<PlayList />} />
           <Route path="/upload" element={<Upload />} />

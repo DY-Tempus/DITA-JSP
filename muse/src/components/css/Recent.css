@@ -7,7 +7,24 @@
     height: calc(100vh - 60px - 97px); /* 전체 높이 - 상단 배너 - 하단 배너(MusicPlayer) */
     font-family: 'Inter', sans-serif;
 }
-  
+
+/* 다크모드 관련 */
+.recent-page.dark-mode {
+  background-color: #262626;
+}
+
+.recent-page.dark-mode .recent-song-item {
+  border-bottom: 1px solid gray;
+}
+
+.recent-page.dark-mode .recent-song-info {
+  color: white;
+}
+
+.recent-page.dark-mode .recent-song-duration {
+  color: #d0d0d0;
+}
+
 .recent-section-title {
   font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, #009dff, #8000ff);
@@ -55,7 +72,6 @@
 
 .recent-song-title {
   font-size: 16px;
-  color: #000;
 }
 
 .recent-song-writer{
