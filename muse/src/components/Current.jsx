@@ -7,7 +7,7 @@ import CurrentList from './CurrentList';
 
 
 
-const Current = ({ isOpen }) => {
+const Current = ({ isOpen, isDarkMode }) => {
   const[currentPlaylist, setCurrentPlaylist]=useState([
     {
       index:1,
@@ -78,12 +78,12 @@ const Current = ({ isOpen }) => {
   }
   
 return ReactDOM.createPortal(
-    <div className={`current-page ${isOpen ? 'open' : ''}`} >
+    <div className={`current-page ${isOpen ? 'open' : ''} ${isDarkMode ? 'dark-mode' : ''}`} >
     <h1 className="current-section-title" onClick={onCreate}>현재 재생중인 플레이리스트</h1>
     <div className="current-song-list">
         <>
           {
-            <CurrentList item={currentPlaylist} onRemove={onRemove}/>
+            <CurrentList item={currentPlaylist} onRemove={onRemove} isDarkMode={isDarkMode}/>
           }
         </>
     </div>

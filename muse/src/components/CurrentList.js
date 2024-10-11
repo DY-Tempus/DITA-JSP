@@ -4,7 +4,7 @@ import { useState } from "react";
 import ReactDOM from 'react-dom';
 import {OptionList} from './optionValues'
 
-function CurrentItem({ item, onRemove }) {
+function CurrentItem({ item, onRemove, isDarkMode }) {
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);  // 팝업 상태
 
@@ -30,7 +30,7 @@ function CurrentItem({ item, onRemove }) {
                     <span className="current-song-duration">{item.duration}</span>
                 </div>
             </div>
-            <img src='./img/move.png' className='thumbs-views' onClick={handleMoveClick} />
+            <img src={isDarkMode ? '/img/move2.png' : '/img/move.png'} className='thumbs-views' onClick={handleMoveClick} />
             <img src='./img/delete.png' className='thumbs-views' onClick={() => onRemove(item.index)} />
 
             {/* 팝업이 열려 있을 때만 팝업 표시 */}
@@ -39,11 +39,11 @@ function CurrentItem({ item, onRemove }) {
     )
 }
 
-function CurrentList({ item, onRemove }) {
+function CurrentList({ item, onRemove, isDarkMode }) {
     return (
         <>
             {
-                item.map(item => (<CurrentItem item={item} key={item.index} onRemove={onRemove} />))
+                item.map(item => (<CurrentItem item={item} key={item.index} onRemove={onRemove} isDarkMode={isDarkMode}/>))
             }
         </>
     )

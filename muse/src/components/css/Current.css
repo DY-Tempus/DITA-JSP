@@ -14,6 +14,18 @@
     z-index: 999;
 }
 
+.current-page.dark-mode {
+    background-color: #262626;
+}
+
+.current-page.dark-mode .current-song-item {
+    border-bottom: 1px solid gray;
+}
+
+.current-page.dark-mode .current-song-detail span{
+    color: white;
+}
+
 .current-page.open {
     transform: translateY(0);
 }
