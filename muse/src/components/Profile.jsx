@@ -67,7 +67,7 @@ const Profile = ({ isDarkMode }) => {
     return (
         <div className={`profile-page ${isDarkMode ? 'dark-mode' : ''}`}>
             <div className="profile-header">
-                {<ProfileImg item={profileImg}/>}
+                {<ProfileImg item={profileImg} cname='profile-image'/>}
                 <div className="profile-username">
                     <input
                         type="text"
