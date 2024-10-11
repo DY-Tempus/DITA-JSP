@@ -30,7 +30,7 @@ const Detail = ({ isOpen,setIsOpen,mid}) => {
         });
         
 
-    }, []);
+    }, [mid]);
     const [musicInfo,setMusicInfo]=useState([]);
     const [comments,setComments]=useState([]);
     
