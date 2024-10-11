@@ -12,7 +12,7 @@ const MusicPlayer = () => {
     const [currentTime, setCurrentTime] = useState(0); // 현재 재생 시간
     const [audioSrc, setAudioSrc] = useState(''); // 오디오 소스 관리
     const [audioElement, setAudioElement] = useState(null); // 오디오 엘리먼트 관리
-    const [duration, setDuration] = useState(0); // 총 재생 시간 (초 단위, 서버에서 받아옴)
+    const [duration, setDuration] = useState(0); // 총 재생 시간 (초 단위)
     const [volume, setVolume] = useState(50); // 볼륨 상태 (0-100 범위)
     const [isVolumeVisible, setIsVolumeVisible] = useState(false); // 볼륨 패널 표시 상태
     const [imageSrc, setImageSrc] = useState(''); // 이미지 소스 상태
@@ -23,11 +23,17 @@ const MusicPlayer = () => {
         genre: 'Unknown',
     });
 
+    const [isShuffle, setIsShuffle] = useState(false); // Shuffle 상태 관리
+    const [isRepeat, setIsRepeat] = useState(0); // Repeat 상태 관리
+
     const [isOverflowing, setIsOverflowing] = useState(false);
     const titleRef = useRef(null);
     const containerRef = useRef(null);
     const progressBarRef = useRef(null); // 진행 바 참조
-    const musicId = 33; // 현재 재생할 음악 ID
+    const [currentMusicId, setCurrentMusicId] = useState(33); // 현재 재생할 MID
+
+    const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
+    const [isCurrentOpen, setIsCurrentOpen] = useState(false); // Current 패널 상태 관리
 
     // 텍스트가 넘치는지 확인하는 함수
     const checkOverflow = () => {
@@ -47,9 +53,9 @@ const MusicPlayer = () => {
     }, []);
 
     useEffect(() => {
-        // 음악 파일을 스트리밍하는 API 호출
+        // 새 MID에 맞춰 음악 파일, 상세 정보, 이미지 다시 가져오기
         axios
-            .get(`http://localhost:3000/api/music/stream/${musicId}`, {
+            .get(`http://localhost:3000/api/music/stream/${currentMusicId}`, {
                 responseType: 'blob', // BLOB 형식으로 데이터 받기
             })
             .then((response) => {
@@ -60,9 +66,8 @@ const MusicPlayer = () => {
                 console.error('음악 스트리밍 오류:', error);
             });
 
-        // 음악 정보 가져오기
         axios
-            .get(`http://localhost:3000/api/music/detail/${musicId}`)
+            .get(`http://localhost:3000/api/music/detail/${currentMusicId}`)
             .then((response) => {
                 setMusicInfo(response.data); // 음악 정보 업데이트
             })
@@ -70,9 +75,8 @@ const MusicPlayer = () => {
                 console.error('음악 정보 가져오기 오류:', error);
             });
 
-        // 음악 이미지 가져오기
         axios
-            .get(`http://localhost:3000/api/music/image/${musicId}`, {
+            .get(`http://localhost:3000/api/music/image/${currentMusicId}`, {
                 responseType: 'arraybuffer', // BLOB 데이터를 ArrayBuffer로 받음
             })
             .then((response) => {
@@ -89,8 +93,7 @@ const MusicPlayer = () => {
             .catch((error) => {
                 console.error('이미지 가져오기 오류:', error);
             });
-
-    }, [musicId]);
+    }, [currentMusicId]);
 
     // 진행 바의 진행률 계산
     const progress = (currentTime / duration) * 100;
@@ -105,14 +108,28 @@ const MusicPlayer = () => {
         setIsPlaying(!isPlaying);
     };
 
-    //재생/정지 애니메이션
-    useEffect(() => {
-        if (isPlaying || !isPlaying) {
-            setAnimate(true); // 재생 상태에서 애니메이션 활성화
-            const timer = setTimeout(() => setAnimate(false), 300); // 0.3초 후 애니메이션 해제
-            return () => clearTimeout(timer); // 이전 타이머 해제
+    // currentMusicId가 변경되고 메타데이터가 로드되면 자동 재생
+    const handleLoadedMetadata = () => {
+        setDuration(audioElement.duration); // 곡의 길이 설정
+        if (isPlaying && audioElement) {
+            audioElement.play(); // 곡이 로드된 후 자동 재생
         }
-    }, [isPlaying]);
+    };
+
+    // 시간을 업데이트하고 진행 바를 갱신하는 함수
+    const handleTimeUpdate = () => {
+        setCurrentTime(audioElement.currentTime); // 현재 재생 시간 업데이트
+    };
+
+    // Shuffle 토글 함수
+    const toggleShuffle = () => {
+        setIsShuffle(!isShuffle);
+    };
+
+    // Repeat 토글 함수
+    const toggleRepeat = () => {
+        setIsRepeat((prevState) => (prevState + 1) % 3); // Repeat 상태를 0, 1, 2로 순환
+    };
 
     // 음소거 토글 함수
     const toggleMute = () => {
@@ -167,26 +184,31 @@ const MusicPlayer = () => {
         };
     }, [isDragging]);
 
-    const [isShuffle, setIsShuffle] = useState(false); // Shuffle 상태 관리
-    const toggleShuffle = () => {
-        setIsShuffle(!isShuffle);
-    }
-
-    const [isRepeat, setIsRepeat] = useState(0); // Repeat 상태 관리
-    const toggleRepeat = () => {
-        setIsRepeat((prevState) => (prevState + 1) % 3);
+    // 이전 곡으로 이동하는 함수
+    const handlePrevious = () => {
+        axios
+            .get(`http://localhost:3000/api/music/previous/${currentMusicId}`)
+            .then((response) => {
+                const prevId = response.data.prevId;
+                setCurrentMusicId(prevId); // 이전 곡의 MID로 상태 변경
+            })
+            .catch((error) => {
+                console.error('이전 곡 가져오기 오류:', error);
+            });
     };
 
-    const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
-    const toggleDetail = () => {
-        setIsDetailOpen(!isDetailOpen);
-    }
-
-    // Current 패널 상태 관리
-    const [isCurrentOpen, setIsCurrentOpen] = useState(false);
-    const toggleCurrent = () => {
-        setIsCurrentOpen(!isCurrentOpen);
-    }
+    // 다음 곡으로 이동하는 함수
+    const handleNext = () => {
+        axios
+            .get(`http://localhost:3000/api/music/next/${currentMusicId}`)
+            .then((response) => {
+                const nextId = response.data.nextId;
+                setCurrentMusicId(nextId); // 다음 곡의 MID로 상태 변경
+            })
+            .catch((error) => {
+                console.error('다음 곡 가져오기 오류:', error);
+            });
+    };
 
     const handleMouseEnter = () => setIsVolumeVisible(true); // 볼륨 패널 보이기
     const handleMouseLeave = () => setIsVolumeVisible(false); // 볼륨 패널 숨기기
@@ -197,6 +219,22 @@ const MusicPlayer = () => {
         }
     }, [volume, audioElement]);
 
+    // Current 패널 상태 토글
+    const toggleCurrent = () => {
+        setIsCurrentOpen(!isCurrentOpen);
+        if (!isCurrentOpen) {
+            setIsDetailOpen(false);
+        }
+    };
+
+    // Detail 패널 상태 토글
+    const toggleDetail = () => {
+        setIsDetailOpen(!isDetailOpen);
+        if (!isDetailOpen) {
+            setIsCurrentOpen(false);
+        }
+    };
+
     return (
         <div className="music-player-container">
             {/* 오디오 엘리먼트 */}
@@ -205,8 +243,8 @@ const MusicPlayer = () => {
                 ref={(el) => setAudioElement(el)}
                 controls
                 src={audioSrc} // 오디오 소스가 올바르게 설정되었는지 확인
-                onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
-                onLoadedMetadata={(e) => setDuration(e.target.duration)} // 메타데이터 로드 시 길이 설정
+                onTimeUpdate={handleTimeUpdate} // 현재 시간 업데이트
+                onLoadedMetadata={handleLoadedMetadata} // 메타데이터 로드 시 자동 재생
             ></audio>
 
             {/* 진행 바 */}
@@ -221,14 +259,24 @@ const MusicPlayer = () => {
 
             <div className="music-player">
                 <div className="controls">
-                    <img src="/img/skip_previous.png" alt="Previous" className="control-button-extra" />
+                    <img
+                        src="/img/skip_previous.png"
+                        alt="Previous"
+                        className="control-button-extra"
+                        onClick={handlePrevious} // 이전 곡으로 이동
+                    />
                     <img
                         src={isPlaying ? "/img/pause.png" : "/img/play.png"}
                         alt={isPlaying ? "Pause" : "Play"}
                         className={`control-button ${animate ? 'animate' : ''}`}
                         onClick={togglePlayPause}
                     />
-                    <img src="/img/skip_next.png" alt="Next" className="control-button-extra" />
+                    <img
+                        src="/img/skip_next.png"
+                        alt="Next"
+                        className="control-button-extra"
+                        onClick={handleNext} // 다음 곡으로 이동
+                    />
                 </div>
                 <div className="track-info">
                     {imageSrc ? (
@@ -288,12 +336,12 @@ const MusicPlayer = () => {
                         )}
                     </div>
                     <label className="burger" htmlFor="burger">
-                        <input type="checkbox" id="burger" checked={isCurrentOpen} onClick={toggleCurrent}/>
+                        <input type="checkbox" id="burger" checked={isCurrentOpen} onClick={toggleCurrent} />
                         <span></span>
                         <span></span>
                         <span></span>
                     </label>
-                    <img // Detail Open/Closev
+                    <img
                         src="/img/info.png"
                         alt={isDetailOpen ? "DetailOpen" : "DetailClose"}
                         className={`control-button-extra ${isDetailOpen ? 'detailopen' : ''}`}

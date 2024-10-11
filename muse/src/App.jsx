@@ -53,7 +53,7 @@ function App() {
           <Route path="/album/:id/:aid" element={<Album />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/updatealbum" element={<UpdateAlbum />} />
+          <Route path="/updatealbum/:aid" element={<UpdateAlbum />} />
           <Route path="/updatemusic" element={<UpdateMusic />} />
           <Route path="/search" element={<Search />} />
         </Routes>
