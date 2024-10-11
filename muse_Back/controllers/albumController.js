@@ -85,7 +85,7 @@ const updateAlbum =(req, res) => {
 
 const musicList =(req, res) => {
 
-  const sql=`SELECT * FROM music where aid='${req.body.aid}'`;
+  const sql=`SELECT * FROM music where id='${req.body.uid}'`;
   pool.getConnection((error,connection)=>{
       if (error) {
           return res.status(500).json({ error: '조회 실패' });
@@ -93,7 +93,7 @@ const musicList =(req, res) => {
 
       connection.query(sql,(error,result)=>{
           if(!error){
-              console.log('조회된 수록곡 데이터:', result);
+              console.log('조회된 곡 데이터:', result);
               res.send(JSON.stringify(result));
               connection.release();
           }else{
