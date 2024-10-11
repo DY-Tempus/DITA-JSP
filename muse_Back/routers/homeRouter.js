@@ -19,5 +19,9 @@ app
     console.log('post /api/home/preferalblum 요청이 호출되었습니다.');  // 로그 추가
     homeCon.getAlbum(req,res)
 })
+.post('/myalbum', (req, res) => {
+    console.log('post /api/home/myalbum 요청이 호출되었습니다.');  // 로그 추가
+    homeCon.getMyAlbum(req,res)
+})
 
 module.exports = app;

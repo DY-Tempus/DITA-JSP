@@ -1,6 +1,8 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import ReactDOM from 'react-dom';
+import {OptionList} from './optionValues'
 
 function CurrentItem({ item, onRemove }) {
 
@@ -49,14 +51,27 @@ function CurrentList({ item, onRemove }) {
 export default CurrentList;
 
 function Popup({ onClose }) {
+    const [album,setAlbum]=useState([])
+    let user=JSON.parse(sessionStorage.getItem('idKey'))
+    useEffect(()=>{
+        axios.post("http://localhost:3000/api/home/myalbum",{
+            uid:user.ID
+        })
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data;
+            console.log(obj)
+            
+            setAlbum([...album,obj]);
+        });
+    },[]);
     return ReactDOM.createPortal(
         <div className="popup">
             <div className="popup-content">
                 <h3>플레이리스트</h3>
                 <select>
-                    <option value="option1">옵션 1</option>
-                    <option value="option2">옵션 2</option>
-                    <option value="option3">옵션 3</option>
+                    <option value=""></option>
+                    {<OptionList item={album}/>}
                 </select>
                 <button onClick={onClose} className="confirm">추가</button>
                 <button onClick={onClose} className="cancel">취소</button>
