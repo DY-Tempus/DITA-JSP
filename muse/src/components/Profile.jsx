@@ -3,7 +3,7 @@ import './css/Profile.css';
 import axios from 'axios';
 import {ProfileImg} from './ProfileImg'
 
-const Profile = () => {
+const Profile = ({ isDarkMode }) => {
 
     const [profileImg, setProfileImg]=useState([])
 
@@ -65,49 +65,26 @@ const Profile = () => {
         );
     }
     return (
-        <div className="profile-page">
+        <div className={`profile-page ${isDarkMode ? 'dark-mode' : ''}`}>
             <div className="profile-header">
                 {<ProfileImg item={profileImg}/>}
                 <div className="profile-username">
-                    {editField === 'username' ? (
-                        <div>
-                            <div>
-                            <input
-                            type="text"
-                            value={userInfo.username}
-                            onChange={(e) => handleKeyDown(e, 'username', e.target.value)}
-                            onKeyDown={(e) => handleKeyDown(e, 'username', e.target.value)}
-                            onBlur={(e) => handleBlur(e, 'username', e.target.value)}/>
-                            <img
-                                src="./img/edit.png"
-                                alt="Edit"
-                                className="edit-icon"
-                                onClick={() => handleEdit('username')}
-                            />
-                            </div>
-                            <div className='subs'>
-                                <span>7,603 Subs</span>
-                            </div>
-                        </div>
-                        
-                    ) : (
-                        <div>
-                            <span>{userInfo.username}</span>
-                            <img
-                                src="./img/edit.png"
-                                alt="Edit"
-                                className="edit-icon"
-                                onClick={() => handleEdit('username')}
-                            />
-                            <div className='subs'>
-                                <span>7,603 Subs</span>
-                            </div>
-                        </div>
-                    )}
+                    <input
+                        type="text"
+                        id="nameInput"
+                        className="InputSetting"
+                        value={userInfo.username}
+                        onChange={(e) => handleKeyDown(e, 'username', e.target.value)}
+                        required
+                    />
+                    <div className="underline"></div>
+                    <div className="subs">
+                        <span>7,603 Subs</span>
+                    </div>
                 </div>
             </div>
 
-            <div className="profile-details">
+            <div className={`profile-details ${isDarkMode ? 'dark-mode' : ''}`}>
                 <div className="profile-container">
                     <input
                         type="text"
@@ -144,6 +121,25 @@ const Profile = () => {
                         required
                     />
                     <label htmlFor="emailInput" className="label">Email</label>
+                    <div className="underline"></div>
+                </div>
+
+                <div className="profile-container">
+                    <select
+                        id="text"
+                        name="genre1Input"
+                        className="InputSetting"
+                        value={userInfo.genre1}
+                        onChange={(e) => handleKeyDown(e, 'email', e.target.value)}
+                        required
+                    >
+                        <option value=""></option>
+                        <option value="apple">Apple</option>
+                        <option value="banana">Banana</option>
+                        <option value="cherry">Cherry</option>
+                        <option value="date">Date</option>
+                    </select>
+                    <label htmlFor="genre1Input" className="label">Genre1</label>
                     <div className="underline"></div>
                 </div>
             </div>

@@ -37,7 +37,7 @@
 
 /* 다크 모드 스타일 */
 .settings-panel.dark-mode {
-    background-color: gray; /* 다크 모드 배경색 */
+    background-color: #262626; /* 다크 모드 배경색 */
 }
 
 .settings-panel.dark-mode .settings-item {
