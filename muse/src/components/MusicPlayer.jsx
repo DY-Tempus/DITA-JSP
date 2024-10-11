@@ -5,7 +5,7 @@ import Current from './Current';
 import Detail from './Detail';
 import Volume from './Volume';
 
-const MusicPlayer = ({ isCurrentOpen, setIsCurrentOpen }) => {
+const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false); // 재생 상태 관리
     const [animate, setAnimate] = useState(false); // 애니메이션 상태 관리
     const [isMute, setIsMute] = useState(false); // 음소거 상태 관리
@@ -164,6 +164,7 @@ const MusicPlayer = ({ isCurrentOpen, setIsCurrentOpen }) => {
     }
 
     // Current 패널 상태 관리
+    const [isCurrentOpen, setIsCurrentOpen] = useState(false);
     const toggleCurrent = () => {
         setIsCurrentOpen(!isCurrentOpen);
         if (!isCurrentOpen) {
