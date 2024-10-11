@@ -40,10 +40,10 @@ function App() {
         {/* <Header setIsCurrentOpen={setIsCurrentOpen}/>
             <Sidebar /> */}
         <Routes>
-          <Route path="/" element={<Home isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>} />
-          <Route path="/home" element={<Home isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>} />
+          <Route path="/" element={<Home isDarkMode={isDarkMode}/>} />
+          <Route path="/home" element={<Home isDarkMode={isDarkMode}/>} />
           <Route path="/artist/:id" element={<Artist />} />
-          <Route path="/profile" element={<Profile isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>} />
+          <Route path="/profile" element={<Profile isDarkMode={isDarkMode}/>} />
           <Route path="/recent" element={<Recent />} />
           <Route path="/favorite" element={<Favorite />} />
           <Route path="/playlist" element={<PlayList />} />
@@ -58,7 +58,7 @@ function App() {
           <Route path="/search" element={<Search />} />
         </Routes>
         {/* <MusicPlayer isCurrentOpen={isCurrentOpen} setIsCurrentOpen={setIsCurrentOpen} /> 항상 하단에 고정된 음악 플레이어 */}
-        {!hideOnPaths.includes(location.pathname) && <MusicPlayer />}
+        {!hideOnPaths.includes(location.pathname) && <MusicPlayer isDarkMode={isDarkMode}/>}
       </div>
 
   );

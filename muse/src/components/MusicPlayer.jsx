@@ -5,7 +5,7 @@ import Current from './Current';
 import Detail from './Detail';
 import Volume from './Volume';
 
-const MusicPlayer = () => {
+const MusicPlayer = ({ isDarkMode }) => {
     const [isPlaying, setIsPlaying] = useState(false); // 재생 상태 관리
     const [animate, setAnimate] = useState(false); // 애니메이션 상태 관리
     const [isMute, setIsMute] = useState(false); // 음소거 상태 관리
@@ -30,7 +30,7 @@ const MusicPlayer = () => {
     const titleRef = useRef(null);
     const containerRef = useRef(null);
     const progressBarRef = useRef(null); // 진행 바 참조
-    const [currentMusicId, setCurrentMusicId] = useState(3); // 현재 재생할 MID
+    const [currentMusicId, setCurrentMusicId] = useState(33); // 현재 재생할 MID
 
     const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
     const [isCurrentOpen, setIsCurrentOpen] = useState(false); // Current 패널 상태 관리
@@ -242,7 +242,7 @@ const MusicPlayer = () => {
         }
     },[volume])
     return (
-        <div className="music-player-container">
+        <div className={`music-player-container ${isDarkMode ? 'dark-mode' : ''}`}>
             {/* 오디오 엘리먼트 */}
             
             <audio
@@ -353,8 +353,8 @@ const MusicPlayer = () => {
                         className={`control-button-extra ${isDetailOpen ? 'detailopen' : ''}`}
                         onClick={toggleDetail}
                     />
-                    <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} />
-                    <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} mid={currentMusicId}/>
+                    <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} isDarkMode={isDarkMode} />
+                    <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} mid={currentMusicId} isDarkMode={isDarkMode} />
                 </div>
             </div>
         </div>

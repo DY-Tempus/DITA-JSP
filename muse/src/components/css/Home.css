@@ -122,8 +122,11 @@ body {
     font-weight: bold;
     color: black;
     user-select: none;
-    margin-top: 25px; /* 이미지와 텍스트 간의 여백 */
     text-align: center;
+}
+
+.main-content.dark-mode .album-title {
+    color: white;
 }
 
 .artist-image-home{
