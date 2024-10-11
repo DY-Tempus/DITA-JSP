@@ -10,16 +10,12 @@ const Header = ({ setIsCurrentOpen }) => {
         navigate("/signin")
     }
     
-    const closeAll = () => {
-        setIsCurrentOpen(false);
-    }
-
     return (
         <div>
             {/* 상단 배너 */}
             <header className="top-banner">
                 <Link to="/home">
-                    <img src="img/logo.png" className="logo" onClick={closeAll}/>
+                    <img src="img/logo.png" className="logo"/>
                 </Link>
                 <div className="search-bar">
                     <input type="text" placeholder="Search..." />
