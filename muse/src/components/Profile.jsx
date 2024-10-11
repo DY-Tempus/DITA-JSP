@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './css/Profile.css';
 import axios from 'axios';
-import {ProfileImg} from './ProfileImg'
+import { ProfileImg } from './ProfileImg'
 
 const Profile = ({ isDarkMode }) => {
 
-    const [profileImg, setProfileImg]=useState([])
+    const [profileImg, setProfileImg] = useState([])
 
-    useEffect(()=>{
-        let obj=sessionStorage.getItem("idKey")
-        obj=JSON.parse(obj)
+    useEffect(() => {
+        let obj = sessionStorage.getItem("idKey")
+        obj = JSON.parse(obj)
         console.log(obj)
-        setProfileImg([...profileImg,obj])
+        setProfileImg([...profileImg, obj])
         setUserInfo({
             username: obj.NAME,
             id: obj.ID,
@@ -32,7 +32,7 @@ const Profile = ({ isDarkMode }) => {
         genre1: 'Dubstep',
         genre2: 'EDM',
         email: 'asdfasdf@gmail.com',
-        img:''
+        img: ''
     });
 
     // 수정 상태 관리
@@ -57,7 +57,7 @@ const Profile = ({ isDarkMode }) => {
         setUserInfo({ ...userInfo, [field]: e.target.value });
         setEditField(''); // 수정 끝나면 다시 기본 상태로 돌아감
     };
-    if(!sessionStorage.getItem("idKey")){
+    if (!sessionStorage.getItem("idKey")) {
         return (
             <div>
                 <meta http-equiv="refresh" content="0;url=/signIn"></meta>
@@ -67,7 +67,7 @@ const Profile = ({ isDarkMode }) => {
     return (
         <div className={`profile-page ${isDarkMode ? 'dark-mode' : ''}`}>
             <div className="profile-header">
-                {<ProfileImg item={profileImg} cname='profile-image'/>}
+                {<ProfileImg item={profileImg} cname='profile-image' />}
                 <div className="profile-username">
                     <input
                         type="text"
@@ -86,71 +86,101 @@ const Profile = ({ isDarkMode }) => {
 
             <div className={`profile-details ${isDarkMode ? 'dark-mode' : ''}`}>
                 <div className="profile-container">
-                    <input
-                        type="text"
-                        id="idInput"
-                        className="InputSetting"
-                        value={userInfo.id}
-                        onChange={(e) => handleKeyDown(e, 'id', e.target.value)}
-                        required
-                    />
                     <label htmlFor="idInput" className="label">ID</label>
-                    <div className="underline"></div>
+                    <div className='flex1'>
+                        <input
+                            type="text"
+                            id="idInput"
+                            className="InputSetting"
+                            value={userInfo.id}
+                            onChange={(e) => handleKeyDown(e, 'id', e.target.value)}
+                            required
+                        />
+                        <div className="underline"></div>
+                    </div>
                 </div>
 
                 <div className="profile-container">
-                    <input
-                        type="password"
-                        id="passwordInput"
-                        className="InputSetting"
-                        value={userInfo.password}
-                        onChange={(e) => handleKeyDown(e, 'password', e.target.value)}
-                        required
-                    />
                     <label htmlFor="passwordInput" className="label">PW</label>
-                    <div className="underline"></div>
+                    <div className='flex1'>
+                        <input
+                            type="password"
+                            id="passwordInput"
+                            className="InputSetting"
+                            value={userInfo.password}
+                            onChange={(e) => handleKeyDown(e, 'password', e.target.value)}
+                            required
+                        />
+                        <div className="underline"></div>
+                    </div>
                 </div>
 
                 <div className="profile-container">
-                    <input
-                        type="text"
-                        id="emailInput"
-                        className="InputSetting"
-                        value={userInfo.email}
-                        onChange={(e) => handleKeyDown(e, 'email', e.target.value)}
-                        required
-                    />
                     <label htmlFor="emailInput" className="label">Email</label>
-                    <div className="underline"></div>
+                    <div className='flex1'>
+                        <input
+                            type="text"
+                            id="emailInput"
+                            className="InputSetting"
+                            value={userInfo.email}
+                            onChange={(e) => handleKeyDown(e, 'email', e.target.value)}
+                            required
+                        />
+                        <div className="underline"></div>
+                    </div>
                 </div>
 
                 <div className="profile-container">
-                    <select
-                        id="text"
-                        name="genre1Input"
-                        className="InputSetting"
-                        value={userInfo.genre1}
-                        onChange={(e) => handleKeyDown(e, 'email', e.target.value)}
-                        required
-                    >
-                        <option value=""></option>
-                        <option value="apple">Apple</option>
-                        <option value="banana">Banana</option>
-                        <option value="cherry">Cherry</option>
-                        <option value="date">Date</option>
-                    </select>
                     <label htmlFor="genre1Input" className="label">Genre1</label>
-                    <div className="underline"></div>
+                    <div className='flex1'>
+                        <select
+                            id="text"
+                            name="genre1Input"
+                            className="InputSetting"
+                            value={userInfo.genre1}
+                            onChange={(e) => handleKeyDown(e, 'genre1', e.target.value)}
+                            required
+                        >
+                            <option value=""></option>
+                            <option value="apple">Apple</option>
+                            <option value="banana">Banana</option>
+                            <option value="cherry">Cherry</option>
+                            <option value="date">Date</option>
+                        </select>
+                        <div className="underline"></div>
+                    </div>
+                </div>
+
+                <div className="profile-container">
+                    <label htmlFor="genre1Input" className="label">Genre2</label>
+                    <div className='flex1'>
+                        <select
+                            id="text"
+                            name="genre1Input"
+                            className="InputSetting"
+                            value={userInfo.genre2}
+                            onChange={(e) => handleKeyDown(e, 'genre2', e.target.value)}
+                            required
+                        >
+                            <option value=""></option>
+                            <option value="apple">Apple</option>
+                            <option value="banana">Banana</option>
+                            <option value="cherry">Cherry</option>
+                            <option value="date">Date</option>
+                        </select>
+                        <div className="underline"></div>
+                    </div>
                 </div>
             </div>
 
             <div className='CancelConfirm'>
-                <button className='my-button cancel'>Cancel</button>
                 <button className='my-button confirm'>Confirm</button>
+                <button className='my-button cancel'>Cancel</button>
+
             </div>
-            
+
         </div>
-                );
+    );
 };
 
-                export default Profile;
+export default Profile;

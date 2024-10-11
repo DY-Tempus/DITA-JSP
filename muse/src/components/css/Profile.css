@@ -20,6 +20,9 @@
     height: 100px;
     border-radius: 50%;
     margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
   
 .profile-image:hover{
@@ -68,11 +71,13 @@
 /* 프로필 상세 정보 스타일 */
 .profile-details {
   background-color: white; /* 배경색 흰색으로 변경 */
-  padding: 15px 20px;
-  margin: 20px;
+  padding: 15px 30px;
+  margin-bottom: 20px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 가벼운 그림자 추가 */
   color: black; /* 글자 색 검은색으로 변경 */
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-details.dark-mode {
@@ -107,35 +112,47 @@
   color: white;
 }
 
-.profile-details .profile-container .label {
-  position: absolute;
-  top: 5px;
-  pointer-events: none;
+.profile-details .profile-container{
+  /* pointer-events: none; <이거 있으면 포인터 작동을 안함 */
   font-size: large;
-  left: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.profile-details .profile-container .flex1{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .profile-details .profile-container .label {
   top: 0px;
   font-size: large;
+  width: 150px;
+  pointer-events: none;
 }
 
-.profile-details .underline {
-  position: absolute;
+.profile-details .flex1 .underline {
   bottom: 0;
-  left: 35%;
+  /* left: 35%; */
   height: 2px;
-  width: 65%;
+  width: 100%;
   background-color: black;  
   transform: scaleX(0);
   transition: all 0.3s ease;
 }
 
-.profile-details.dark-mode .underline {
+.profile-details.dark-mode .flex1 .underline {
   background-color: white;
 }
 
-.profile-details .profile-container input:focus ~ .underline {
+.profile-details .profile-container .flex1 input:focus ~ .underline {
+  transform: scaleX(1);
+}
+
+.profile-details .profile-container .flex1 select:focus ~ .underline {
   transform: scaleX(1);
 }
 
