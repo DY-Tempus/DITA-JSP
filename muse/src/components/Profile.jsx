@@ -5,7 +5,21 @@ import { ProfileImg } from './ProfileImg'
 
 const Profile = ({ isDarkMode }) => {
 
-    const [profileImg, setProfileImg] = useState([])
+    const [profileImg, setProfileImg] = useState([]); // 서버에서 이미지 받아오기
+
+    const [imageSrc, setImageSrc] = useState(null); // 로컬에서 이미지 업로드 하는부분
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0]; // 파일을 하나만 선택한다고 가정
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageSrc(reader.result); // 파일이 로드되면 결과를 state에 저장
+            };
+            reader.readAsDataURL(file); // 파일을 Data URL로 변환
+        }
+    };
+
 
     useEffect(() => {
         let obj = sessionStorage.getItem("idKey")
@@ -38,11 +52,6 @@ const Profile = ({ isDarkMode }) => {
     // 수정 상태 관리
     const [editField, setEditField] = useState('');
 
-    // 수정할 필드를 변경하는 함수
-    const handleEdit = (field) => {
-        setEditField(field);
-    };
-
     // 엔터키로 저장하는 함수
     const handleKeyDown = (e, field, value) => {
         setUserInfo({ ...userInfo, [field]: e.target.value });
@@ -50,12 +59,6 @@ const Profile = ({ isDarkMode }) => {
         if (e.key === 'Enter') {
             setEditField(''); // 수정 끝나면 다시 기본 상태로 돌아감
         }
-    };
-
-    // 포커스를 잃었을 때 저장하는 함수
-    const handleBlur = (e, field, value) => {
-        setUserInfo({ ...userInfo, [field]: e.target.value });
-        setEditField(''); // 수정 끝나면 다시 기본 상태로 돌아감
     };
     if (!sessionStorage.getItem("idKey")) {
         return (
@@ -67,7 +70,9 @@ const Profile = ({ isDarkMode }) => {
     return (
         <div className={`profile-page ${isDarkMode ? 'dark-mode' : ''}`}>
             <div className="profile-header">
-                {<ProfileImg item={profileImg} cname='profile-image' />}
+                {imageSrc && <img src={imageSrc} alt="Image Preview" style={{ maxWidth: '100px', marginTop: '10px', borderRadius: '50%' }} />}
+                <input type="file" id="image-upload" accept="image/*" onChange={handleImageChange} />
+                <label htmlFor="image-upload" className="profile-custom-file-upload"></label>
                 <div className="profile-username">
                     <input
                         type="text"
