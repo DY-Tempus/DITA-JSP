@@ -5,7 +5,7 @@ import {AlbumList,ArtistList, MusicList} from './HomeList';
 import axios from 'axios';
 
 
-const Home = ({ isDarkMode, setIsDarkMode }) => {
+const Home = ({ isDarkMode, mid }) => {
     const [recent, setRecent]=useState([])
     const [preferMusic,setPreferMusic]=useState([])
     const [preferArtist,setPreferArtist]=useState([])
@@ -77,7 +77,7 @@ const Home = ({ isDarkMode, setIsDarkMode }) => {
                         
                         <>
                             {
-                                <MusicList item={recent}/>
+                                <MusicList item={recent} mid={mid}/>
                             }
                         </>
                     </div>
@@ -90,7 +90,7 @@ const Home = ({ isDarkMode, setIsDarkMode }) => {
                     <div className="album-container">
                     <>
                             {
-                                <MusicList item={preferMusic}/>
+                                <MusicList item={preferMusic} mid={mid}/>
                             }
                         </>
                     </div>

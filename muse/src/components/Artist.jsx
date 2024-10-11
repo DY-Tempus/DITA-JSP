@@ -4,7 +4,7 @@ import './css/Artist.css';
 import axios from 'axios';
 import {AlbumList,TrackList} from './HomeList';
 
-const Artist = () => {
+const Artist = ({mid}) => {
   const params = useParams();
   const [artist,setArtist]=useState({
     aname:'',
@@ -102,7 +102,7 @@ const Artist = () => {
         <ul>
           <>
             {
-              <TrackList item={track}/>
+              <TrackList item={track} mid={mid}/>
             }
           </>
         </ul>

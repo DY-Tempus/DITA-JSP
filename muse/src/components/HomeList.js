@@ -80,9 +80,11 @@ function ArtistItemCon({item}){
         </Link>
     )
 }
-function MusicItemCon({ item }) {
+function MusicItemCon({ item,mid }) {
     const [imageSrc, setImageSrc] = useState(null);
-
+    function itemClickEvent(){
+        mid(item.MID)
+    }
     useEffect(() => {
         if (item.MIMG && item.MIMG.data) {
             const uint8Array = new Uint8Array(item.MIMG.data);  // Buffer 데이터를 Uint8Array로 변환
@@ -98,23 +100,23 @@ function MusicItemCon({ item }) {
     }, []);
 
     return (
-        <div key={item.id} className="album-item">
+        <div key={item.id} className="album-item" onClick={itemClickEvent}>
             <div className="album-cover-container">
-                <Link to="/music">
                     {imageSrc ? (
                         <img src={imageSrc} className='album-img' alt={item.name} />
                     ) : (
                         <p className='album-img'>이미지 없음</p>
                     )}
-                </Link>
             </div>
             <p className="album-title">{item.MNAME}</p>
         </div>
     );
 }
-function TrackItemCon({item}){
+function TrackItemCon({item,mid}){
     const [imageSrc, setImageSrc] = useState(null);
-
+    function itemClickEvent(){
+        mid(item.MID)
+    }
     useEffect(() => {
         if (item.MIMG && item.MIMG.data) {
             const uint8Array = new Uint8Array(item.MIMG.data);  // Buffer 데이터를 Uint8Array로 변환
@@ -130,7 +132,7 @@ function TrackItemCon({item}){
     }, []);
 
     return(
-        <li key={item.ID}>
+        <li key={item.ID} onClick={itemClickEvent}>
         {imageSrc ? (
             <img src={imageSrc} alt={item.title} className="artist-track-image" />
         ) : (
@@ -207,12 +209,12 @@ function ArtistItem({item}){
     const listItems = item.map(item=>(<ArtistItemCon item={item} key={item.ID}/>))	
     return(<>{listItems}</>)
 }
-function MusicItem({item}){
-    const listItems = item.map(item=>(<MusicItemCon item={item} key={item.MID}/>))	
+function MusicItem({item,mid}){
+    const listItems = item.map(item=>(<MusicItemCon item={item} mid={mid} key={item.MID}/>))	
     return(<>{listItems}</>)
 }
-function TrackItem({ item }) {
-    const listItems = item.map(item=>(<TrackItemCon item={item} key={item.MID}/>))
+function TrackItem({ item,mid }) {
+    const listItems = item.map(item=>(<TrackItemCon item={item} mid={mid} key={item.MID}/>))
     return(<>{listItems}</>)
 }
 function AlbumTrackItem({ item,mid }) {
@@ -227,11 +229,11 @@ function AlbumList({item}){
 function ArtistList({item}){
     return(<>{item.map(item=>(<ArtistItem item={item}/>))}</>)
 }
-function MusicList({item}){
-    return(<>{item.map(item=>(<MusicItem item={item}/>))}</>)
+function MusicList({item,mid}){
+    return(<>{item.map(item=>(<MusicItem item={item} mid={mid}/>))}</>)
 }
-function TrackList({item}){
-    return(<>{item.map(item=>(<TrackItem item={item}/>))}</>)
+function TrackList({item,mid}){
+    return(<>{item.map(item=>(<TrackItem item={item} mid={mid}/>))}</>)
 }
 function AlbumTrackList({item,mid}){
     return(<>{item.map(item=>(<AlbumTrackItem item={item} mid={mid}/>))}</>)

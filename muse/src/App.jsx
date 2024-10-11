@@ -41,8 +41,8 @@ function App() {
             <Sidebar /> */}
         <Routes>
           <Route path="/" element={<Home isDarkMode={isDarkMode}/>} />
-          <Route path="/home" element={<Home isDarkMode={isDarkMode}/>} />
-          <Route path="/artist/:id" element={<Artist />} />
+          <Route path="/home" element={<Home isDarkMode={isDarkMode} mid={setMid} />} />
+          <Route path="/artist/:id" element={<Artist mid={setMid}/>} />
           <Route path="/profile" element={<Profile isDarkMode={isDarkMode}/>} />
           <Route path="/recent" element={<Recent />} />
           <Route path="/favorite" element={<Favorite />} />
