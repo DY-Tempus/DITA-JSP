@@ -8,6 +8,16 @@
     font-family: 'Inter', sans-serif;
   }
   
+ /* 다크모드 관련 */ 
+.mymusic-page.dark-mode {
+  background-color: #262626;
+}
+
+.mymusic-page.dark-mode .song-item {
+  border-bottom: 1px solid gray;
+  color: white;
+}
+
   .section-title {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #009dff, #8000ff);
@@ -76,7 +86,6 @@
   .song-title {
     font-size: 18px;
     font-weight: bold;
-    color: #000;  
   }
   
   .song-duration {

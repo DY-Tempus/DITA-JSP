@@ -5,7 +5,7 @@ import {AlbumList, MusicList} from './MyMusicList';
 import axios from 'axios';
 
 
-const MyMusic = () => {
+const MyMusic = ({ isDarkMode }) => {
     // if(!sessionStorage.getItem("idKey")){
   //   return (
   //       <div>
@@ -41,7 +41,7 @@ const MyMusic = () => {
 
 
   return (
-    <div className="mymusic-page">
+    <div className={`mymusic-page ${isDarkMode ? 'dark-mode' : ''}`}>
       <h1 className="section-title">My Album</h1>
       <section className="artist-album-section">
         <div className="artist-album-container">
