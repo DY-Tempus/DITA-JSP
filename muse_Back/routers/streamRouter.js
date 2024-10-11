@@ -94,4 +94,60 @@ router.get('/image/:id', (req, res) => {
     });
 });
 
+// 이전 곡 가져오기
+router.get('/previous/:id', (req, res) => {
+    const musicId = req.params.id; // 현재 MID
+
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('DB 연결 실패:', err);
+            return res.status(500).send('DB 연결 실패');
+        }
+
+        const query = 'SELECT MAX(MID) as prevId FROM MUSIC WHERE MID < ?'; // 현재 MID보다 작은 MID 중 가장 큰 값
+        connection.query(query, [musicId], (err, results) => {
+            connection.release();
+
+            if (err) {
+                console.error('DB 쿼리 오류:', err);
+                return res.status(500).send('DB 쿼리 오류');
+            }
+
+            if (results.length === 0 || results[0].prevId === null) {
+                return res.status(404).send('이전 곡을 찾을 수 없습니다.');
+            }
+
+            res.json({ prevId: results[0].prevId });
+        });
+    });
+});
+
+// 다음 곡 가져오기
+router.get('/next/:id', (req, res) => {
+    const musicId = req.params.id; // 현재 MID
+
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('DB 연결 실패:', err);
+            return res.status(500).send('DB 연결 실패');
+        }
+
+        const query = 'SELECT MIN(MID) as nextId FROM MUSIC WHERE MID > ?'; // 현재 MID보다 큰 MID 중 가장 작은 값
+        connection.query(query, [musicId], (err, results) => {
+            connection.release();
+
+            if (err) {
+                console.error('DB 쿼리 오류:', err);
+                return res.status(500).send('DB 쿼리 오류');
+            }
+
+            if (results.length === 0 || results[0].nextId === null) {
+                return res.status(404).send('다음 곡을 찾을 수 없습니다.');
+            }
+
+            res.json({ nextId: results[0].nextId });
+        });
+    });
+});
+
 module.exports = router;

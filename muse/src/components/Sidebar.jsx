@@ -74,7 +74,6 @@ function Sidebar({ isOpen, isDarkMode, setIsDarkMode }) {
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}> {/* isOpen 값에 따라 클래스 추가 */}
                 <div className="user-info">
                 {<ProfileImg item={profileImg} cname="user-icon"/>}
-                    <img src="./img/getsix.png" alt="User Icon" className="user-icon" />
                     <h2>{userInfo.username}</h2>
                 </div>
                 <ul className="menu">
