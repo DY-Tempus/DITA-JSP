@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function AlbumItemCon({item}){
     const [imageSrc, setImageSrc] = useState(null);
-
+    
     useEffect(() => {
         if (item.AIMG && item.AIMG.data) {
             const uint8Array = new Uint8Array(item.AIMG.data);  // Buffer 데이터를 Uint8Array로 변환
@@ -21,7 +21,7 @@ function AlbumItemCon({item}){
             reader.readAsDataURL(blob);
         }
     }, []);
-
+    
     return (
         <div key={item.id} className="album-item">
           <div className="album-cover-container">
@@ -49,7 +49,7 @@ function AlbumItemCon({item}){
             </Link>
           </div>
           <p className="album-title">{item.name}</p>
-          <Link to="/updatealbum">
+          <Link to={`/updatealbum/${item.AID}`}>
             <img src='./img/edit.png' className='album-edit-icon'/>
             <img src='./img/delete.png' className='album-edit-icon'/>
           </Link>
@@ -104,6 +104,7 @@ function MusicItemCon({item}){
 
 
 function AlbumItem({ item }) {
+    console.log(item)
     const listItems = item.map(item=>(<AlbumItemCon item={item} key={item.AID}/>))	
     return(<>{listItems}</>)
 }
