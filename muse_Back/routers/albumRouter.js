@@ -2,16 +2,27 @@ const express = require('express');
 const router = express.Router();
 const albumController = require('../controllers/albumController');
 
-router.post('/album/upload', (req, res) => {
-  const { name, date, text, genre } = req.body;
-  const albumFile = req.files.album; // 파일 업로드
+// 앨범 업로드 라우트
+router.post('/upload', (req, res) => {
+  const { title, genre, detail, image, ID } = req.body;
+
+  if (!ID) {
+    return res.status(400).json({ message: '사용자 ID가 필요합니다.' });
+  }
+
+  if (!image) {
+    return res.status(400).json({ message: '앨범 이미지가 필요합니다.' });
+  }
+
+  const imageBuffer = Buffer.from(image.split(',')[1], 'base64'); // base64를 Buffer로 변환
+
   const albumData = {
-    ANAME: name,
-    ADATE: date,
-    ATEXT: text,
-    AIMG: albumFile.data, // 파일 데이터 저장
+    ANAME: title,
+    ADATE: new Date(),
+    ATEXT: detail,
+    AIMG: imageBuffer, // 변환된 이미지 데이터를 BLOB으로 저장
     AGENRE: genre,
-    ID: '임시사용자ID' // 추후 로그인 기능이 추가되면 변경
+    ID: ID  // 사용자 ID
   };
 
   albumController.uploadAlbum(albumData, (err, result) => {
@@ -23,22 +34,19 @@ router.post('/album/upload', (req, res) => {
   });
 });
 
-router
-.post('/detail', (req, res) => {
-  console.log('post /api/album/detail 요청이 호출되었습니다.');  // 로그 추가
-  albumController.getAlbum(req,res)
-})
-.post('/musics', (req, res) => {
-  console.log('post /api/album/musics 요청이 호출되었습니다.');  // 로그 추가
-  albumController.getMusics(req,res)
-})
-.post('/updatealbum', (req, res) => {
-  console.log('post /api/album/updatealbum 요청이 호출되었습니다.');  // 로그 추가
-  albumController.updateAlbum(req,res)
-})
-.post('/musiclist', (req, res) => {
-  console.log('post /api/album/musiclist 요청이 호출되었습니다.');  // 로그 추가
-  albumController.musicList(req,res)
-})
+// 앨범 조회 라우트
+router.post('/detail', (req, res) => {
+  albumController.getAlbum(req, res);
+});
+
+// 곡 목록 조회 라우트
+router.post('/musics', (req, res) => {
+  albumController.getMusics(req, res);
+});
+
+// 유저별 음악 목록 조회 라우트
+router.post('/musiclist', (req, res) => {
+  albumController.musicList(req, res);
+});
 
 module.exports = router;

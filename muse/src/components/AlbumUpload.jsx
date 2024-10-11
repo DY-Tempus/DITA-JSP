@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {MusicList,AlbumList} from './AlbumList'
+import { MusicList } from './AlbumList';
 import axios from 'axios';
 import './css/AlbumUpload.css';
 
@@ -8,41 +8,41 @@ const AlbumUpload = () => {
     const [songs, setSongs] = useState([]);
     const [formData, setFormData] = useState({
         title: '',
-        producer: '',  // Producer/Remix 추가
         genre: '',
         detail: '',
         option: 'public'
     });
-    const [imageFile, setImageFile] = useState(null); // 앨범 이미지 파일 저장
+    const [imageFile, setImageFile] = useState(null); // base64로 변환한 이미지 데이터 저장
     const [imageFileName, setImageFileName] = useState(''); // 앨범 이미지 파일 이름 저장
-    const [album,setAlbum]=useState([]);
-    const [musics,setMusics]=useState([]);
+    const [album, setAlbum] = useState([]);
+    const [musics, setMusics] = useState([]);
 
-    useEffect(()=>{
-        let obj = sessionStorage.getItem("idKey")
-        obj = JSON.parse(obj)
-        axios.post("http://localhost:3000/api/album/musiclist",{
-            uid:obj.ID,
+    useEffect(() => {
+        let obj = sessionStorage.getItem("idKey");
+        obj = JSON.parse(obj);
+        axios.post("http://localhost:3000/api/album/musiclist", {
+            uid: obj.ID,
         })
-        .then((Response)=>{
+        .then((Response) => {
             console.log(Response.data);
-            const obj=Response.data;
-            console.log(obj)
-            
-            setMusics([...musics,obj]);
+            const obj = Response.data;
+            console.log(obj);
+            setMusics([...musics, obj]);
         });
-    },[])
+    }, []);
 
-    // 이미지 파일 처리
+    // 이미지 파일 처리 및 base64 변환
     const handleImageChange = (event) => {
-        const file = event.target.files[0];  // 첫 번째 파일 선택
+        const file = event.target.files[0];
         if (file) {
-            setImageFile(file);  // 이미지 파일 저장
-            setImageFileName(file.name);  // 이미지 파일 이름 저장
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageFile(reader.result); // base64로 변환된 이미지 데이터 저장
+            };
+            reader.readAsDataURL(file); // 파일을 base64로 인코딩
+            setImageFileName(file.name); // 파일 이름 저장
         }
     };
-
-
 
     const handleSongSelect = (id) => {
         if (selectedSongs.includes(id)) {
@@ -60,26 +60,29 @@ const AlbumUpload = () => {
     };
 
     const handleSubmit = async () => {
-        const albumData = new FormData(); // FormData 객체 생성
-        albumData.append('title', formData.title); // 앨범 타이틀
-        albumData.append('producer', formData.producer); // Producer/Remix 정보
-        albumData.append('genre', formData.genre); 
-        albumData.append('detail', formData.detail);
-        albumData.append('option', formData.option);
-        albumData.append('image', imageFile); // 이미지 파일 추가
-        albumData.append('songIds', selectedSongs); // 선택된 곡들 추가
+        const obj = JSON.parse(sessionStorage.getItem("idKey")); // 세션에서 유저 정보 가져오기
+        if (!obj || !obj.ID) {
+            alert('로그인 정보가 없습니다.');
+            return;
+        }
+
+        const albumData = {
+            title: formData.title,
+            genre: formData.genre,
+            detail: formData.detail,
+            option: formData.option,
+            image: imageFile, // base64로 변환된 이미지 데이터 전송
+            songIds: selectedSongs,
+            ID: obj.ID // 세션에서 가져온 사용자 ID
+        };
 
         try {
-            const response = await axios.post('http://localhost:3000/api/music/albumUpload', albumData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+            const response = await axios.post('http://localhost:3000/api/album/upload', albumData);
             alert('앨범 업로드 성공!');
             console.log(response.data);
         } catch (error) {
-            console.error('앨범 업로드 실패:', error);
-            alert('앨범 업로드 실패');
+            console.error('앨범 업로드 실패:', error.response);
+            alert('앨범 업로드 실패: ' + (error.response && error.response.data && error.response.data.message ? error.response.data.message : '알 수 없는 오류'));
         }
     };
 
