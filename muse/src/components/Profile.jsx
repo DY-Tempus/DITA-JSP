@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './css/Profile.css';
 import axios from 'axios';
+import {ProfileImg} from './ProfileImg'
 
 const Profile = () => {
+
+    const [profileImg, setProfileImg]=useState([])
+
     useEffect(()=>{
         let obj=sessionStorage.getItem("idKey")
         obj=JSON.parse(obj)
         console.log(obj)
+        setProfileImg([...profileImg,obj])
         setUserInfo({
             username: obj.NAME,
             id: obj.ID,
@@ -27,6 +32,7 @@ const Profile = () => {
         genre1: 'Dubstep',
         genre2: 'EDM',
         email: 'asdfasdf@gmail.com',
+        img:''
     });
 
     // 수정 상태 관리
@@ -61,7 +67,7 @@ const Profile = () => {
     return (
         <div className="profile-page">
             <div className="profile-header">
-                <img src="./img/getsix.png" alt="Profile" className="profile-image" />
+                {<ProfileImg item={profileImg}/>}
                 <div className="profile-username">
                     {editField === 'username' ? (
                         <div>

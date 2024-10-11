@@ -25,22 +25,22 @@ function AlbumItemCon({item}){
                 {imageSrc ? (
                     <img src={imageSrc} alt="Artist Image" className="album-img" />
                 ) : (
-                    <p>이미지 없음</p>
+                    <p className="album-img">이미지 없음</p>
                 )}
                 {imageSrc ? (
                     <img src={imageSrc} alt="Artist Image" className="album-img layer-1" />
                 ) : (
-                    <p></p>
+                    <p className="album-img layer-1"></p>
                 )}
                 {imageSrc ? (
                     <img src={imageSrc} alt="Artist Image" className="album-img layer-2" />
                 ) : (
-                    <p></p>
+                    <p className="album-img layer-2"></p>
                 )}
                 {imageSrc ? (
                     <img src={imageSrc} alt="Artist Image" className="album-img layer-3" />
                 ) : (
-                    <p></p>
+                    <p className="album-img layer-3"></p>
                 )}
             </Link>
             </div>
@@ -72,7 +72,7 @@ function ArtistItemCon({item}){
                     {imageSrc ? (
                         <img src={imageSrc} alt="Artist Image" className="artist-image-home" />
                     ) : (
-                        <p>이미지 없음</p>
+                        <p className="artist-image-home">이미지 없음</p>
                     )}
                 </div>
                 <p className="album-title">{item.name}</p>
@@ -104,7 +104,7 @@ function MusicItemCon({ item }) {
                     {imageSrc ? (
                         <img src={imageSrc} className='album-img' alt={item.name} />
                     ) : (
-                        <p>이미지 없음</p>
+                        <p className='album-img'>이미지 없음</p>
                     )}
                 </Link>
             </div>
@@ -134,7 +134,7 @@ function TrackItemCon({item}){
         {imageSrc ? (
             <img src={imageSrc} alt={item.title} className="artist-track-image" />
         ) : (
-            <p>이미지 없음</p>
+            <p className="artist-track-image">이미지 없음</p>
         )}
         <span className="artist-track-title">{item.title}</span>
         <span className="artist-track-duration">{item.duration}</span>
@@ -164,7 +164,7 @@ function AlbumTrackItemCon({item}){
             {imageSrc ? (
                 <img src={imageSrc} alt={item.MNAME} className="album-song-image" />
                 ) : (
-                    <p>이미지 없음</p>
+                    <p className="album-song-image">이미지 없음</p>
                 )}
                 <div className="album-song-info">
                     <div className="album-song-detail">
