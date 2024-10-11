@@ -21,7 +21,7 @@ const getMusic =(req, res) => {
 };
 const getComment =(req, res) => {
 
-    const sql=`select * from comment where mid=${req.body.mid}`;
+    const sql=`select * from comment where mid=${req.body.mid} order by cdate desc`;
     pool.getConnection((error,connection)=>{
         if (error) {
             return res.status(500).json({ error: '음악 조회 실패' });

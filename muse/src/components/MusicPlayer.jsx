@@ -234,7 +234,13 @@ const MusicPlayer = () => {
             setIsCurrentOpen(false);
         }
     };
-
+    useEffect(()=>{
+        if(volume==0){
+            setIsMute(true)
+        }else{
+            setIsMute(false)
+        }
+    },[volume])
     return (
         <div className="music-player-container">
             {/* 오디오 엘리먼트 */}
