@@ -62,4 +62,36 @@ router.get('/detail/:id', (req, res) => {
     });
 });
 
+// MID를 기준으로 음악 이미지 가져오기
+router.get('/image/:id', (req, res) => {
+    const musicId = req.params.id; // URL에서 음악 ID 추출
+
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('DB 연결 실패:', err);
+            return res.status(500).send('DB 연결 실패');
+        }
+
+        const query = 'SELECT MIMG FROM MUSIC WHERE MID = ?'; // MID에 해당하는 이미지 파일 조회
+        connection.query(query, [musicId], (err, results) => {
+            connection.release(); // 연결 반환
+
+            if (err) {
+                console.error('DB 쿼리 오류:', err);
+                return res.status(500).send('DB 쿼리 오류');
+            }
+
+            if (results.length === 0) {
+                return res.status(404).send('이미지 파일을 찾을 수 없습니다.');
+            }
+
+            const imageFile = results[0].MIMG;
+
+            // Content-Type 설정 (jpeg로 가정)
+            res.setHeader('Content-Type', 'image/jpeg');
+            res.send(imageFile); // 이미지 파일 전송
+        });
+    });
+});
+
 module.exports = router;

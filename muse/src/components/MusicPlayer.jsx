@@ -15,6 +15,7 @@ const MusicPlayer = () => {
     const [duration, setDuration] = useState(0); // 총 재생 시간 (초 단위, 서버에서 받아옴)
     const [volume, setVolume] = useState(50); // 볼륨 상태 (0-100 범위)
     const [isVolumeVisible, setIsVolumeVisible] = useState(false); // 볼륨 패널 표시 상태
+    const [imageSrc, setImageSrc] = useState(''); // 이미지 소스 상태
 
     const [musicInfo, setMusicInfo] = useState({
         title: 'Unknown',
@@ -68,6 +69,27 @@ const MusicPlayer = () => {
             .catch((error) => {
                 console.error('음악 정보 가져오기 오류:', error);
             });
+
+        // 음악 이미지 가져오기
+        axios
+            .get(`http://localhost:3000/api/music/image/${musicId}`, {
+                responseType: 'arraybuffer', // BLOB 데이터를 ArrayBuffer로 받음
+            })
+            .then((response) => {
+                const uint8Array = new Uint8Array(response.data);  // Buffer 데이터를 Uint8Array로 변환
+                const blob = new Blob([uint8Array], { type: 'image/jpeg' });
+                const reader = new FileReader();
+
+                reader.onloadend = () => {
+                    setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+                };
+
+                reader.readAsDataURL(blob);  // BLOB 데이터를 Base64로 변환
+            })
+            .catch((error) => {
+                console.error('이미지 가져오기 오류:', error);
+            });
+
     }, [musicId]);
 
     // 진행 바의 진행률 계산
@@ -158,18 +180,12 @@ const MusicPlayer = () => {
     const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
     const toggleDetail = () => {
         setIsDetailOpen(!isDetailOpen);
-        if (!isDetailOpen) {
-            setIsCurrentOpen(false);
-        }
     }
 
     // Current 패널 상태 관리
     const [isCurrentOpen, setIsCurrentOpen] = useState(false);
     const toggleCurrent = () => {
         setIsCurrentOpen(!isCurrentOpen);
-        if (!isCurrentOpen) {
-            setIsDetailOpen(false);
-        }
     }
 
     const handleMouseEnter = () => setIsVolumeVisible(true); // 볼륨 패널 보이기
@@ -215,7 +231,11 @@ const MusicPlayer = () => {
                     <img src="/img/skip_next.png" alt="Next" className="control-button-extra" />
                 </div>
                 <div className="track-info">
-                    <img src="/img/album.jpg" alt="Album Art" className="album-art" />
+                    {imageSrc ? (
+                        <img src={imageSrc} alt="Album Art" className="album-art" />
+                    ) : (
+                        <img src="/img/album-placeholder.png" alt="Default Album Art" className="album-art" />
+                    )}
                     <div className="track-details" ref={containerRef}>
                         <p className={`track-title ${isOverflowing ? 'marquee' : ''}`}>
                             {musicInfo.title} - {musicInfo.artist}
@@ -267,7 +287,7 @@ const MusicPlayer = () => {
                             />
                         )}
                     </div>
-                    <label className="burger" for="burger">
+                    <label className="burger" htmlFor="burger">
                         <input type="checkbox" id="burger" checked={isCurrentOpen} onClick={toggleCurrent}/>
                         <span></span>
                         <span></span>
