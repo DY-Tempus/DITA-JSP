@@ -2,14 +2,46 @@ import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 function AlbumItemCon({item}){
+    const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        if (item.AIMG && item.AIMG.data) {
+            const uint8Array = new Uint8Array(item.AIMG.data);  // Buffer 데이터를 Uint8Array로 변환
+            const blob = new Blob([uint8Array]);
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+            };
+    
+            reader.readAsDataURL(blob);
+        }
+    }, []);
+
     return(
         <div key={item.AID} className="album-item">
             <div className="album-cover-container">
             <Link to={`/album/${item.ID}/${item.AID}`}>
-                <img src={item.img4} className='album-img layer-3'></img>
-                <img src={item.img3} className='album-img layer-2'></img>
-                <img src={item.img2} className='album-img layer-1'></img>
-                <img src={item.img1} className='album-img'></img>
+                {imageSrc ? (
+                    <img src={imageSrc} alt="Artist Image" className="album-img" />
+                ) : (
+                    <p>이미지 없음</p>
+                )}
+                {imageSrc ? (
+                    <img src={imageSrc} alt="Artist Image" className="album-img layer-1" />
+                ) : (
+                    <p></p>
+                )}
+                {imageSrc ? (
+                    <img src={imageSrc} alt="Artist Image" className="album-img layer-2" />
+                ) : (
+                    <p></p>
+                )}
+                {imageSrc ? (
+                    <img src={imageSrc} alt="Artist Image" className="album-img layer-3" />
+                ) : (
+                    <p></p>
+                )}
             </Link>
             </div>
             <p className="album-title">{item.name}</p>
@@ -17,11 +49,31 @@ function AlbumItemCon({item}){
     )
 }
 function ArtistItemCon({item}){
+    const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        if (item.IMG && item.IMG.data) {
+            const uint8Array = new Uint8Array(item.IMG.data);  // Buffer 데이터를 Uint8Array로 변환
+            const blob = new Blob([uint8Array]);
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+            };
+    
+            reader.readAsDataURL(blob);
+        }
+    }, []);
+
     return(
         <Link to={`/artist/${item.ID}`}>
             <div className="album-item">
                 <div className="album-cover-container">
-                    <img src={item.img} alt="Artist Image" className="artist-image-home" />
+                    {imageSrc ? (
+                        <img src={imageSrc} alt="Artist Image" className="artist-image-home" />
+                    ) : (
+                        <p>이미지 없음</p>
+                    )}
                 </div>
                 <p className="album-title">{item.name}</p>
             </div>
@@ -43,7 +95,7 @@ function MusicItemCon({ item }) {
     
             reader.readAsDataURL(blob);
         }
-    }, [item.MIMG]);
+    }, []);
 
     return (
         <div key={item.id} className="album-item">
@@ -61,19 +113,59 @@ function MusicItemCon({ item }) {
     );
 }
 function TrackItemCon({item}){
+    const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        if (item.MIMG && item.MIMG.data) {
+            const uint8Array = new Uint8Array(item.MIMG.data);  // Buffer 데이터를 Uint8Array로 변환
+            const blob = new Blob([uint8Array]);
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+            };
+    
+            reader.readAsDataURL(blob);
+        }
+    }, []);
+
     return(
         <li key={item.ID}>
-        <img src={item.image} alt={item.title} className="artist-track-image" />
+        {imageSrc ? (
+            <img src={imageSrc} alt={item.title} className="artist-track-image" />
+        ) : (
+            <p>이미지 없음</p>
+        )}
         <span className="artist-track-title">{item.title}</span>
         <span className="artist-track-duration">{item.duration}</span>
         </li>
     )
 }
 function AlbumTrackItemCon({item}){
+    const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        if (item.MIMG && item.MIMG.data) {
+            const uint8Array = new Uint8Array(item.MIMG.data);  // Buffer 데이터를 Uint8Array로 변환
+            const blob = new Blob([uint8Array]);
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+            };
+    
+            reader.readAsDataURL(blob);
+        }
+    }, []);
+
     return(
         <div className="album-music" key={item.MID}>
             <div className="album-song-item">
-                <img src={item.image} alt={item.MNAME} className="album-song-image" />
+            {imageSrc ? (
+                <img src={imageSrc} alt={item.MNAME} className="album-song-image" />
+                ) : (
+                    <p>이미지 없음</p>
+                )}
                 <div className="album-song-info">
                     <div className="album-song-detail">
                         <span className="album-song-title">{item.MNAME}</span>
@@ -104,87 +196,43 @@ function AlbumTrackItemCon({item}){
 
 
 
-
+//////
 function AlbumItem({item}){
     const listItems = item.map(item=>(<AlbumItemCon item={item} key={item.AID}/>))	
-
-    return(
-        <>{listItems}</>
-    )
+    return(<>{listItems}</>)
 }
 function ArtistItem({item}){
     const listItems = item.map(item=>(<ArtistItemCon item={item} key={item.ID}/>))	
-    return(
-        <>{listItems}</>
-    )
+    return(<>{listItems}</>)
 }
 function MusicItem({item}){
     const listItems = item.map(item=>(<MusicItemCon item={item} key={item.MID}/>))	
-    return(
-        <>{listItems}</>
-    )
+    return(<>{listItems}</>)
 }
 function TrackItem({ item }) {
     const listItems = item.map(item=>(<TrackItemCon item={item} key={item.MID}/>))
-    return (
-        <>{listItems}</>
-    )
+    return(<>{listItems}</>)
 }
 function AlbumTrackItem({ item }) {
     const listItems = item.map(item=>(<AlbumTrackItemCon item={item} key={item.MID}/>))
-
-    return (
-        <>{listItems}</>
-    )
+    return(<>{listItems}</>)
 }
 
-
-
+//////
 function AlbumList({item}){
-    return(
-        <>
-        {
-            item.map(item=>(<AlbumItem item={item} key={item.AID}/>))
-        }
-        </>
-    )
+    return(<>{ item.map(item=>(<AlbumItem item={item} key={item.AID}/>)) }</>)
 }
 function ArtistList({item}){
-    return(
-        <>
-        {
-            item.map(item=>(<ArtistItem item={item} key={item.ID}/>))
-        }
-        </>
-    )
+    return(<>{item.map(item=>(<ArtistItem item={item} key={item.ID}/>))}</>)
 }
 function MusicList({item}){
-    return(
-        <>
-        {
-            item.map(item=>(<MusicItem item={item} key={item.MID}/>))
-        }
-        </>
-    )
+    return(<>{item.map(item=>(<MusicItem item={item} key={item.MID}/>))}</>)
 }
 function TrackList({item}){
-    return(
-        <>
-        {
-            item.map(item=>(<TrackItem item={item} key={item.MID}/>))
-        }
-        </>
-    )
+    return(<>{item.map(item=>(<TrackItem item={item} key={item.MID}/>))}</>)
 }
-
 function AlbumTrackList({item}){
-    return(
-        <>
-        {
-            item.map(item=>(<AlbumTrackItem item={item} key={item.MID}/>))
-        }
-        </>
-    )
+    return(<>{item.map(item=>(<AlbumTrackItem item={item} key={item.MID}/>))}</>)
 }
 
 
