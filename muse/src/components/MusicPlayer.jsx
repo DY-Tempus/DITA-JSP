@@ -30,7 +30,7 @@ const MusicPlayer = () => {
     const titleRef = useRef(null);
     const containerRef = useRef(null);
     const progressBarRef = useRef(null); // 진행 바 참조
-    const [currentMusicId, setCurrentMusicId] = useState(33); // 현재 재생할 MID
+    const [currentMusicId, setCurrentMusicId] = useState(3); // 현재 재생할 MID
 
     const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
     const [isCurrentOpen, setIsCurrentOpen] = useState(false); // Current 패널 상태 관리
@@ -234,7 +234,13 @@ const MusicPlayer = () => {
             setIsCurrentOpen(false);
         }
     };
-
+    useEffect(()=>{
+        if(volume==0){
+            setIsMute(true)
+        }else{
+            setIsMute(false)
+        }
+    },[volume])
     return (
         <div className="music-player-container">
             {/* 오디오 엘리먼트 */}
@@ -348,7 +354,7 @@ const MusicPlayer = () => {
                         onClick={toggleDetail}
                     />
                     <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} />
-                    <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} />
+                    <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} mid={currentMusicId}/>
                 </div>
             </div>
         </div>
