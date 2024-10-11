@@ -5,7 +5,7 @@ import {AlbumTrackList} from './HomeList'
 import axios from 'axios';
 
 
-const Recent = () => {
+const Album = ({mid}) => {
     const params = useParams();
     const [album,setAlbum]=useState({
         aname:'',
@@ -58,7 +58,7 @@ const Recent = () => {
                 <div className="album-song-list">
                 <>
                 {
-                    <AlbumTrackList item={musics} />
+                    <AlbumTrackList item={musics} mid={mid} />
                 }
                 </>
                 </div>
@@ -67,4 +67,4 @@ const Recent = () => {
     );
 };
 
-export default Recent;
+export default Album;

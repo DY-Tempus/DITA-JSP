@@ -141,9 +141,11 @@ function TrackItemCon({item}){
         </li>
     )
 }
-function AlbumTrackItemCon({item}){
+function AlbumTrackItemCon({item,mid}){
     const [imageSrc, setImageSrc] = useState(null);
-
+    function itemClickEvent(){
+        mid(item.MID)
+    }
     useEffect(() => {
         if (item.MIMG && item.MIMG.data) {
             const uint8Array = new Uint8Array(item.MIMG.data);  // Buffer 데이터를 Uint8Array로 변환
@@ -159,7 +161,7 @@ function AlbumTrackItemCon({item}){
     }, []);
 
     return(
-        <div className="album-music" key={item.MID}>
+        <div className="album-music" key={item.MID} onClick={itemClickEvent}>
             <div className="album-song-item">
             {imageSrc ? (
                 <img src={imageSrc} alt={item.MNAME} className="album-song-image" />
@@ -213,8 +215,8 @@ function TrackItem({ item }) {
     const listItems = item.map(item=>(<TrackItemCon item={item} key={item.MID}/>))
     return(<>{listItems}</>)
 }
-function AlbumTrackItem({ item }) {
-    const listItems = item.map(item=>(<AlbumTrackItemCon item={item} key={item.MID}/>))
+function AlbumTrackItem({ item,mid }) {
+    const listItems = item.map(item=>(<AlbumTrackItemCon item={item} mid={mid} key={item.MID}/>))
     return(<>{listItems}</>)
 }
 
@@ -231,8 +233,8 @@ function MusicList({item}){
 function TrackList({item}){
     return(<>{item.map(item=>(<TrackItem item={item}/>))}</>)
 }
-function AlbumTrackList({item}){
-    return(<>{item.map(item=>(<AlbumTrackItem item={item}/>))}</>)
+function AlbumTrackList({item,mid}){
+    return(<>{item.map(item=>(<AlbumTrackItem item={item} mid={mid}/>))}</>)
 }
 
 

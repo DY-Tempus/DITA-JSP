@@ -5,7 +5,10 @@ import Current from './Current';
 import Detail from './Detail';
 import Volume from './Volume';
 
-const MusicPlayer = ({ isDarkMode }) => {
+const MusicPlayer = ({ isDarkMode,mid }) => {
+    useEffect(()=>{
+        setCurrentMusicId(mid)
+    },[mid])
     const [isPlaying, setIsPlaying] = useState(false); // 재생 상태 관리
     const [animate, setAnimate] = useState(false); // 애니메이션 상태 관리
     const [isMute, setIsMute] = useState(false); // 음소거 상태 관리
@@ -30,7 +33,7 @@ const MusicPlayer = ({ isDarkMode }) => {
     const titleRef = useRef(null);
     const containerRef = useRef(null);
     const progressBarRef = useRef(null); // 진행 바 참조
-    const [currentMusicId, setCurrentMusicId] = useState(3); // 현재 재생할 MID
+    const [currentMusicId, setCurrentMusicId] = useState(33); // 현재 재생할 MID
 
     const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
     const [isCurrentOpen, setIsCurrentOpen] = useState(false); // Current 패널 상태 관리

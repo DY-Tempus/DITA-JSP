@@ -21,7 +21,7 @@ import Search from './components/Search';
 import './css/App.css';
 
 function App() {
-
+  const [mid,setMid]=useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCurrentOpen, setIsCurrentOpen] = useState(false); //Current페이지 상태 관리
   const [isDarkMode, setIsDarkMode] = useState(false); //다크모드
@@ -44,13 +44,13 @@ function App() {
           <Route path="/home" element={<Home isDarkMode={isDarkMode}/>} />
           <Route path="/artist/:id" element={<Artist />} />
           <Route path="/profile" element={<Profile isDarkMode={isDarkMode}/>} />
-          <Route path="/recent" element={<Recent isDarkMode={isDarkMode}/>} />
+          <Route path="/recent" element={<Recent />} />
           <Route path="/favorite" element={<Favorite />} />
           <Route path="/playlist" element={<PlayList />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/albumupload" element={<AlbumUpload />} />
           <Route path="/mymusic" element={<MyMusic isDarkMode={isDarkMode}/>} />
-          <Route path="/album/:id/:aid" element={<Album />} />
+          <Route path="/album/:id/:aid" element={<Album mid={setMid}/>} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/updatealbum/:aid" element={<UpdateAlbum />} />
@@ -58,7 +58,7 @@ function App() {
           <Route path="/search" element={<Search />} />
         </Routes>
         {/* <MusicPlayer isCurrentOpen={isCurrentOpen} setIsCurrentOpen={setIsCurrentOpen} /> 항상 하단에 고정된 음악 플레이어 */}
-        {!hideOnPaths.includes(location.pathname) && <MusicPlayer isDarkMode={isDarkMode}/>}
+        {!hideOnPaths.includes(location.pathname) && <MusicPlayer isDarkMode={isDarkMode} mid={mid}/>}
       </div>
 
   );

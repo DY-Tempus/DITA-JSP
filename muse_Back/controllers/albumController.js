@@ -109,4 +109,4 @@ module.exports = {
   getMusics,
   updateAlbum,
   musicList
- };
+};
