@@ -19,7 +19,7 @@ var comments=[
 ]
 const Detail = ({ isOpen }) => {
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/detail?mid=1",{
+        axios.get("http://localhost:3000/api/detail",{
             responseType: 'json',
         })
         .then((Response)=>{
