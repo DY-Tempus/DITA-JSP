@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {MusicList,AlbumList} from './AlbumList'
 import axios from 'axios';
 import './css/AlbumUpload.css';
 
@@ -14,6 +15,23 @@ const AlbumUpload = () => {
     });
     const [imageFile, setImageFile] = useState(null); // 앨범 이미지 파일 저장
     const [imageFileName, setImageFileName] = useState(''); // 앨범 이미지 파일 이름 저장
+    const [album,setAlbum]=useState([]);
+    const [musics,setMusics]=useState([]);
+
+    useEffect(()=>{
+        let obj = sessionStorage.getItem("idKey")
+        obj = JSON.parse(obj)
+        axios.post("http://localhost:3000/api/album/musiclist",{
+            uid:obj.ID,
+        })
+        .then((Response)=>{
+            console.log(Response.data);
+            const obj=Response.data;
+            console.log(obj)
+            
+            setMusics([...musics,obj]);
+        });
+    },[])
 
     // 이미지 파일 처리
     const handleImageChange = (event) => {
@@ -24,27 +42,7 @@ const AlbumUpload = () => {
         }
     };
 
-    // 로그인된 사용자의 노래 불러오기
-    useEffect(() => {
-        const loggedInUser = JSON.parse(sessionStorage.getItem("idKey"));
-        if (loggedInUser) {
-            axios.post('http://localhost:3000/api/music/mysongs', {
-                id: loggedInUser.ID  // Fetch songs based on logged-in user's ID
-            })
-            .then((response) => {
-                setSongs(response.data); // 불러온 노래 데이터를 songs에 저장
-            })
-            .catch((error) => {
-                console.error('노래 목록 가져오기 실패:', error);
-            });
 
-            // Producer/Remix에 로그인된 사용자 이름 설정
-            setFormData(prevState => ({
-                ...prevState,
-                producer: loggedInUser.NAME
-            }));
-        }
-    }, []);
 
     const handleSongSelect = (id) => {
         if (selectedSongs.includes(id)) {
@@ -101,35 +99,19 @@ const AlbumUpload = () => {
                     </div>
                     <div className="input-fields">
                         <div><label>Title</label><input type="text" name="title" value={formData.title} onChange={handleInputChange} /></div>
-                        <div><label>Producer/Remix</label><input type="text" name="producer" value={formData.producer} onChange={handleInputChange} /></div>
                         <div><label>Genre</label><input type="text" name="genre" value={formData.genre} onChange={handleInputChange} /></div>
                         <div><label>Detail</label><input type="text" name="detail" value={formData.detail} onChange={handleInputChange} /></div>
                     </div>
                 </div>
 
                 <div className="album-upload-list-content">
-                    <h1>Select Songs for Album</h1>
+                    <h1>List</h1>
                     <div className="album-upload-song-list">
-                        {songs.length > 0 ? (
-                            songs.map((song) => (
-                                <div key={song.MID} className="album-song-element">
-                                    <input
-                                        type='checkbox'Dubstep
-                                        onChange={() => handleSongSelect(song.MID)}
-                                        checked={selectedSongs.includes(song.MID)}
-                                    />
-                                    <img src={`data:image/jpeg;base64,${song.MIMG}`} alt={song.MNAME} className="album-song-image" />
-                                    <div className="album-song-info">
-                                        <div className="album-song-detail">
-                                            <span className="album-song-title">{song.MNAME}</span>
-                                        </div>
-                                        <span className="album-song-duration">{song.duration}</span>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No songs uploaded by the user.</p>
-                        )}
+                        <>
+                            {
+                                <MusicList item={musics}/>
+                            }
+                        </>
                     </div>
                 </div>
             </div>
