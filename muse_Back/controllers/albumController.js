@@ -62,8 +62,51 @@ const getMusics =(req, res) => {
   })
 };
 
+const updateAlbum =(req, res) => {
+
+  const sql=`SELECT * FROM music where aid='${req.body.aid}'`;
+  pool.getConnection((error,connection)=>{
+      if (error) {
+          return res.status(500).json({ error: '조회 실패' });
+      }
+
+      connection.query(sql,(error,result)=>{
+          if(!error){
+              console.log('조회된 수록곡 데이터:', result);
+              res.send(JSON.stringify(result));
+              connection.release();
+          }else{
+              throw error
+          }
+      })
+
+  })
+};
+
+const musicList =(req, res) => {
+
+  const sql=`SELECT * FROM music where aid='${req.body.aid}'`;
+  pool.getConnection((error,connection)=>{
+      if (error) {
+          return res.status(500).json({ error: '조회 실패' });
+      }
+
+      connection.query(sql,(error,result)=>{
+          if(!error){
+              console.log('조회된 수록곡 데이터:', result);
+              res.send(JSON.stringify(result));
+              connection.release();
+          }else{
+              throw error
+          }
+      })
+
+  })
+};
 module.exports = { 
   uploadAlbum,
   getAlbum,
-  getMusics
+  getMusics,
+  updateAlbum,
+  musicList
  };

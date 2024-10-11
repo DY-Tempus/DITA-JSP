@@ -32,5 +32,13 @@ router
   console.log('post /api/album/musics 요청이 호출되었습니다.');  // 로그 추가
   albumController.getMusics(req,res)
 })
+.post('/updatealbum', (req, res) => {
+  console.log('post /api/album/updatealbum 요청이 호출되었습니다.');  // 로그 추가
+  albumController.updateAlbum(req,res)
+})
+.post('/musiclist', (req, res) => {
+  console.log('post /api/album/musiclist 요청이 호출되었습니다.');  // 로그 추가
+  albumController.musicList(req,res)
+})
 
 module.exports = router;
