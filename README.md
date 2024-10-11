@@ -24,7 +24,8 @@
    cd DITA-JSP-main
 
 2. **의존성 설치**
-   ```npm install
+   ```
+   npm install
 
 3. **환경 변수 설정**: 프로젝트 루트에 .env 파일을 생성하여 필요한 환경 변수를 설정합니다.
    ```
