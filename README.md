@@ -27,22 +27,26 @@
    ```npm install
 
 3. **환경 변수 설정**: 프로젝트 루트에 .env 파일을 생성하여 필요한 환경 변수를 설정합니다.
-   ```DB_HOST=your_database_host
+   ```
+   DB_HOST=your_database_host
    DB_USER=your_database_user
    DB_PASS=your_database_password
 
 ## 실행 방법
 
 1. **서버 실행**
-   ```node app.js
+   ```
+   node app.js
 
 2. **프론트 실행**
-   ```npm start
+   ```
+   npm start
 
 ## 파일 구조
 
 프로젝트 파일과 주요 구조는 다음과 같습니다.
-```DITA-JSP-main/
+```
+DITA-JSP-main/
 ├── bin/                   # 빌드된 파일 저장
 ├── css/                   # 스타일시트 파일
 ├── javascript/            # 프론트엔드 JavaScript 파일
