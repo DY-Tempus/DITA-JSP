@@ -65,6 +65,8 @@ const UpdateAlbum = () => {
     const [musics,setMusics]=useState([]);
     useEffect(()=>{
         let aid=params.aid
+        let obj = sessionStorage.getItem("idKey")
+        obj = JSON.parse(obj)
         axios.post("http://localhost:3000/api/album/detail",{
             aid:aid
         })
@@ -77,7 +79,7 @@ const UpdateAlbum = () => {
         });
 
         axios.post("http://localhost:3000/api/album/musiclist",{
-            aid:aid
+            uid:obj.ID
         })
         .then((Response)=>{
             console.log(Response.data);

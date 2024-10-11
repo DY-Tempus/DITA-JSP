@@ -172,7 +172,7 @@ const songs = [
   },
 ];
 
-const Recent = () => {
+const Recent = ({ isDarkMode }) => {
   if(!sessionStorage.getItem("idKey")){
     return (
         <div>
@@ -181,7 +181,7 @@ const Recent = () => {
     );
   }
 return (
-    <div className="recent-page">
+    <div className={`recent-page ${isDarkMode ? 'dark-mode' : ''}`}>
     <h1 className="recent-section-title">Recent</h1>
     <div className="recent-song-list">
         {songs.map((song) => (

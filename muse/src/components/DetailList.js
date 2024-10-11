@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function DetailItemCon({ item, comments }) {
+function DetailItemCon({ item, comments, isDarkMode }) {
     const [imageSrc, setImageSrc] = useState(null);
     const [isLiked, setIsLiked] = useState(false); // 좋아요 상태 관리
   
@@ -90,34 +90,49 @@ function DetailItemCon({ item, comments }) {
     );
   }
 
-function CommentItemCon({item}){
-    console.log(item)
-    return(
-        <p><strong>{item.ID}</strong><br/>{item.COMMENT_TEXT}</p>
-    )
+function CommentItemCon({ item }) {
+    if (!item || !item.CID) {
+        return <p>댓글 정보를 불러올 수 없습니다.</p>;
+    }
+
+    return (
+        <p><strong>{item.ID}</strong><br />{item.COMMENT_TEXT}</p>
+    );
 }
 
+function DetailList({ item, comments, isDarkMode }) {
+    if (!item || item.length === 0) {
+        return <p>노래 정보를 찾을 수 없습니다.</p>;
+    }
 
+    return (
+        <>
+            {item.map((detail, index) => {
+                if (!detail || !detail.mid) {
+                    return <p key={index}>유효하지 않은 노래 정보입니다.</p>;
+                }
 
-
-
-function DetailItem({ item,comments }) {
-
-    const listItems = (<DetailItemCon item={item} comments={comments}/>)
-    return(<>{listItems}</>)
+                return <DetailItemCon item={detail} comments={comments} isDarkMode={isDarkMode} key={detail.mid} />;
+            })}
+        </>
+    );
 }
-function CommentItem({ item }) {
-    const listItems = item.map(item=>(<CommentItemCon item={item} key={item.CID}/>))
-    return(<>{listItems}</>)
-}
 
-function DetailList({item,comments}){
-    return(<>{ item.map(item=>(<DetailItemCon item={item} comments={comments} key={item.mid}/>)) }</>)
-}
-function CommentList({item}){
-    return(<>{ item.map(item=>(<CommentItem item={item}/>)) }</>)
+function CommentList({ item }) {
+    if (!item || item.length === 0) {
+        return <p>댓글이 없습니다.</p>;
+    }
+
+    return (
+        <>
+            {item.map((comment, index) => (
+                <CommentItemCon item={comment} key={comment.CID} />
+            ))}
+        </>
+    );
 }
 
 export {
     DetailList,
-}
+    CommentList,
+};

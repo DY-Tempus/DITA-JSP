@@ -22,6 +22,28 @@
     transform: translateY(0);
 }
 
+/* 다크모드 관련 */
+.detail-panel.dark-mode {
+    background-color: #262626;
+}
+
+.detail-panel.dark-mode .detail-info {
+    color: white;
+}
+
+.detail-panel.dark-mode .detail-thumbs-views {
+    color: white;
+}
+
+.detail-panel.dark-mode .content-section {
+    color: white;
+}
+
+.detail-panel.dark-mode .content-section .comment input {
+    border-bottom: 2px solid white;
+    color: white;
+}
+
 /* Title 섹션 */
 .detail-panel h1 {
     background: linear-gradient(45deg, #0077ff, #9500ff);
@@ -109,7 +131,7 @@
 
 .lyrics-section {
     /* max-height: 400px; */
-    height: calc(100% - 50px);
+    height: calc(100% - 150px);
     overflow-y: auto;
     font-size: 16px;
     line-height: 21px;
@@ -143,7 +165,7 @@
 
 
 .comments-sector {
-    height: calc(100% - 100px);
+    height: calc(100% - 180px);
     overflow-y: auto;
 }
 

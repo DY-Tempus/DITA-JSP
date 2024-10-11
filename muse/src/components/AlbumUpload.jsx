@@ -22,7 +22,7 @@ const AlbumUpload = () => {
         let obj = sessionStorage.getItem("idKey")
         obj = JSON.parse(obj)
         axios.post("http://localhost:3000/api/album/musiclist",{
-            id:obj.ID,
+            uid:obj.ID,
         })
         .then((Response)=>{
             console.log(Response.data);
@@ -42,27 +42,7 @@ const AlbumUpload = () => {
         }
     };
 
-    // 로그인된 사용자의 노래 불러오기
-    useEffect(() => {
-        const loggedInUser = JSON.parse(sessionStorage.getItem("idKey"));
-        if (loggedInUser) {
-            axios.post('http://localhost:3000/api/music/mysongs', {
-                id: loggedInUser.ID  // Fetch songs based on logged-in user's ID
-            })
-            .then((response) => {
-                setSongs(response.data); // 불러온 노래 데이터를 songs에 저장
-            })
-            .catch((error) => {
-                console.error('노래 목록 가져오기 실패:', error);
-            });
 
-            // Producer/Remix에 로그인된 사용자 이름 설정
-            setFormData(prevState => ({
-                ...prevState,
-                producer: loggedInUser.NAME
-            }));
-        }
-    }, []);
 
     const handleSongSelect = (id) => {
         if (selectedSongs.includes(id)) {
