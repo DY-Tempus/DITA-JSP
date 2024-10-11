@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function ProfileImgItem({item}){
+function ProfileImgItem({item,cname}){
     const [imageSrc, setImageSrc] = useState(null);
 
     useEffect(() => {
@@ -19,16 +19,16 @@ function ProfileImgItem({item}){
     return(
         <>
         {imageSrc ? (
-            <img src={imageSrc} alt="Profile" className="profile-image" />
+            <img src={imageSrc} alt="Profile" className={cname} />
         ) : (
-            <p4 className="profile-image">이미지 없음</p4>
+            <p4 className={cname}>이미지 없음</p4>
         )}
         </>
     )
 }
 
-function ProfileImg({item}){
-    return(<>{item.map(item=>(<ProfileImgItem item={item} key={item.ID}/>))}</>)
+function ProfileImg({item,cname}){
+    return(<>{item.map(item=>(<ProfileImgItem item={item} key={item.ID} cname={cname}/>))}</>)
 }
 
 export {

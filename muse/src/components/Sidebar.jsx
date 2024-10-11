@@ -2,14 +2,18 @@ import React, { useEffect, useState } from 'react';
 import './css/Sidebar.css';
 import Settings from './Settings'; // Settings 컴포넌트 가져오기
 import { Link } from 'react-router-dom';
+import {ProfileImg} from './ProfileImg'
 
 
 function Sidebar({ isOpen, isDarkMode, setIsDarkMode }) {
+    const [profileImg, setProfileImg]=useState([])
+
     useEffect(() => {
         if (!sessionStorage.getItem("idKey")) return //이거 없으면 창 안떠서 임시로 넣음. 로그인 페이지랑 홈 분리 후에 지울것.
         let obj = sessionStorage.getItem("idKey")
         obj = JSON.parse(obj)
-        console.log(obj)
+
+        setProfileImg([...profileImg,obj])
         setUserInfo({
             username: obj.NAME,
             id: obj.ID,
@@ -69,6 +73,7 @@ function Sidebar({ isOpen, isDarkMode, setIsDarkMode }) {
         <div className={`side-page ${isSidebarOpen ? 'open' : ''}`} onClick={handlePageClick}>
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}> {/* isOpen 값에 따라 클래스 추가 */}
                 <div className="user-info">
+                {<ProfileImg item={profileImg} cname="user-icon"/>}
                     <img src="./img/getsix.png" alt="User Icon" className="user-icon" />
                     <h2>{userInfo.username}</h2>
                 </div>
