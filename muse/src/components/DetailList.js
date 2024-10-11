@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function DetailItemCon({item,comments}){
+function DetailItemCon({item,comments,isDarkMode}){
     const [imageSrc, setImageSrc] = useState(null);
 
     useEffect(() => {
@@ -63,7 +63,7 @@ function DetailItemCon({item,comments}){
                     <h2>Comments</h2>
                     <div className="comment">
                         <input type="text" placeholder="Add a comment..." />
-                        <img src="img/comment.png" alt="Comment-Button" className="comment-button" onClick={() => console.log('Comment-Button clicked')} />
+                        <img src={isDarkMode ? '/img/comment2.png' : '/img/comment.png'} alt="Comment-Button" className="comment-button" onClick={() => console.log('Comment-Button clicked')} />
                     </div>
                     <div className="comments-sector">
                     <>
@@ -89,9 +89,9 @@ function CommentItemCon({item}){
 
 
 
-function DetailItem({ item,comments }) {
+function DetailItem({ item, comments, isDarkMode }) {
 
-    const listItems = (<DetailItemCon item={item} comments={comments}/>)
+    const listItems = (<DetailItemCon item={item} comments={comments} isDarkMode={isDarkMode}/>)
     return(<>{listItems}</>)
 }
 function CommentItem({ item }) {
@@ -99,8 +99,8 @@ function CommentItem({ item }) {
     return(<>{listItems}</>)
 }
 
-function DetailList({item,comments}){
-    return(<>{ item.map(item=>(<DetailItemCon item={item} comments={comments} key={item.mid}/>)) }</>)
+function DetailList({ item, comments, isDarkMode }){
+    return(<>{ item.map(item=>(<DetailItemCon item={item} comments={comments} isDarkMode={isDarkMode} key={item.mid}/>)) }</>)
 }
 function CommentList({item}){
     return(<>{ item.map(item=>(<CommentItem item={item}/>)) }</>)

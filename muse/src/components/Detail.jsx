@@ -5,7 +5,7 @@ import axios from 'axios';
 import {DetailList} from './DetailList';
 
 
-const Detail = ({ isOpen,setIsOpen,mid}) => {
+const Detail = ({ isOpen, setIsOpen, mid, isDarkMode }) => {
     useEffect(()=>{
         axios.post(`http://localhost:3000/api/detail/music`,{
             responseType: 'json',
@@ -35,10 +35,10 @@ const Detail = ({ isOpen,setIsOpen,mid}) => {
     const [comments,setComments]=useState([]);
     
     return ReactDOM.createPortal(
-        <div className={`detail-panel ${isOpen ? 'open' : ''}`}>
+        <div className={`detail-panel ${isOpen ? 'open' : ''} ${isDarkMode ? 'dark-mode' : ''}`}>
             <>
                 {
-                    <DetailList item={musicInfo} comments={comments}/>
+                    <DetailList item={musicInfo} comments={comments} isDarkMode={isDarkMode}/>
                 }
             </>
         </div>,
