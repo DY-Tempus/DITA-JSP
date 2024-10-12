@@ -59,7 +59,7 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
           {imageSrc ? (
             <img src={imageSrc} alt="Album Art" className="song-cover" />
           ) : (
-            <p className="album-img">이미지 없음</p>
+            <p className="song-cover">이미지 없음</p>
           )}
           <div className="detail-info">
             <div>
@@ -127,7 +127,7 @@ function CommentItemCon({ item }) {
 }
 function CommentItem({item}){
 
-    const listItems = item.map(item=>(<CommentItemCon item={item} key={item.CID}/>))
+    const listItems = item.map(item=>(<CommentItemCon item={item} />))
     return(<>{listItems}</>)
 }
 function DetailList({ item, comments, isDarkMode,flag,setFlag }) {

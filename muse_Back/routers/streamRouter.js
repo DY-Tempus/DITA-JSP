@@ -44,7 +44,7 @@ router.get('/detail/:id', (req, res) => {
             return res.status(500).send('DB 연결 실패');
         }
 
-        const query = 'SELECT MNAME as title, MGENRE as genre, ID as artist FROM MUSIC WHERE MID = ?';
+        const query = 'SELECT mid, mimg, MNAME as title, MGENRE as genre, ID as artist FROM MUSIC WHERE MID = ?';
         connection.query(query, [musicId], (err, results) => {
             connection.release();
 
