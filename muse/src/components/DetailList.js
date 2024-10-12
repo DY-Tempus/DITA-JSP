@@ -5,6 +5,7 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
     const [imageSrc, setImageSrc] = useState(null);
     const [isLiked, setIsLiked] = useState(false); // 좋아요 상태 관리
     const [comment,setComment]=useState('')
+
     useEffect(() => {
       if (item.MIMG && item.MIMG.data) {
         const uint8Array = new Uint8Array(item.MIMG.data);  // Buffer 데이터를 Uint8Array로 변환
@@ -16,6 +17,9 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
         };
   
         reader.readAsDataURL(blob);
+      }
+      else{
+        setImageSrc(null)
       }
     }, [item]);
   

@@ -349,7 +349,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
                         className={`control-button-extra ${isDetailOpen ? 'detailopen' : ''}`}
                         onClick={toggleDetail}
                     />
-                    <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} isDarkMode={isDarkMode} />
+                    <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} isDarkMode={isDarkMode} mid={currentMusicId} />
                     <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} mid={currentMusicId} isDarkMode={isDarkMode} />
                 </div>
             </div>

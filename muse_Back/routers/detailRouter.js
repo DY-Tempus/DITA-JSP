@@ -17,10 +17,13 @@ app
     musicCon.insertComment(req, res); 
 })
 .post('/music2', (req, res) => {
-    console.log('GET /api/detail/music 요청이 호출되었습니다.');  // 로그 추가
+    console.log('GET /api/detail/music2 요청이 호출되었습니다.');  // 로그 추가
     musicCon.getMusic2(req, res); 
 })
-
+.post('/music3', (req, res) => {
+    console.log('GET /api/detail/music3 요청이 호출되었습니다.');  // 로그 추가
+    musicCon.getMusic3(req, res); 
+})
 // 특정 음악 조회
 
 

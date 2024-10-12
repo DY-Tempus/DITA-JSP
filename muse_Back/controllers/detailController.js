@@ -38,6 +38,25 @@ const getMusic2 =(req, res) => {
 
     })
 };
+const getMusic3 =(req, res) => {
+
+    const sql=`select mid,mname,id,mimg from music where MID = ${req.body.mid}`;
+    pool.getConnection((error,connection)=>{
+        if (error) {
+            return res.status(500).json({ error: '음악 조회 실패' });
+        }
+
+        connection.query(sql,(error,result)=>{
+            if(!error){
+                res.send(JSON.stringify(result));
+                connection.release();
+            }else{
+                throw error
+            }
+        })
+
+    })
+};
 const getComment =(req, res) => {
 
     const sql=`select * from comment where mid=${req.body.mid} order by cdate desc`;
@@ -82,5 +101,6 @@ module.exports = {
     getMusic,
     getComment,
     insertComment,
-    getMusic2
+    getMusic2,
+    getMusic3
  };
