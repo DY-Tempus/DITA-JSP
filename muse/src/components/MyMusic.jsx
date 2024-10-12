@@ -5,7 +5,7 @@ import {AlbumList, MusicList} from './MyMusicList';
 import axios from 'axios';
 
 
-const MyMusic = ({ isDarkMode }) => {
+const MyMusic = ({ isDarkMode,mid }) => {
     // if(!sessionStorage.getItem("idKey")){
   //   return (
   //       <div>
@@ -55,7 +55,7 @@ const MyMusic = ({ isDarkMode }) => {
       <h1 className="section-title">My Music</h1>
       <div className="song-list">
         {
-          <MusicList item={myMusic}/>
+          <MusicList item={myMusic} mid={mid}/>
         }
       </div>
     </div>

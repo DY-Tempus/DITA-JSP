@@ -19,6 +19,25 @@ const getMusic =(req, res) => {
 
     })
 };
+const getMusic2 =(req, res) => {
+
+    const sql=`SELECT M.*, IFNULL(A.ANAME, 'No Album') AS ANAME FROM MUSIC M LEFT JOIN ALBUM A ON M.AID = A.AID WHERE M.MID = ${req.body.mid}`;
+    pool.getConnection((error,connection)=>{
+        if (error) {
+            return res.status(500).json({ error: '음악 조회 실패' });
+        }
+
+        connection.query(sql,(error,result)=>{
+            if(!error){
+                res.send(JSON.stringify(result));
+                connection.release();
+            }else{
+                throw error
+            }
+        })
+
+    })
+};
 const getComment =(req, res) => {
 
     const sql=`select * from comment where mid=${req.body.mid} order by cdate desc`;
@@ -39,7 +58,29 @@ const getComment =(req, res) => {
     })
 };
 
+const insertComment =(req, res) => {
+    console.log(req.body)
+    const sql=`insert into comment(mid, aid, id, comment_text) values(${req.body.mid},${req.body.aid},'${req.body.uid}','${req.body.txt}')`;
+    pool.getConnection((error,connection)=>{
+        if (error) {
+            return res.status(500).json({ error: '댓글 삽입 실패' });
+        }
+
+        connection.query(sql,(error,result)=>{
+            if(!error){
+                res.send(JSON.stringify(result));
+                connection.release();
+            }else{
+                throw error
+            }
+        })
+
+    })
+};
+
 module.exports = { 
     getMusic,
-    getComment
+    getComment,
+    insertComment,
+    getMusic2
  };
