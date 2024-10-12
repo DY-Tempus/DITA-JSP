@@ -20,11 +20,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
     const [isVolumeVisible, setIsVolumeVisible] = useState(false); // 볼륨 패널 표시 상태
     const [imageSrc, setImageSrc] = useState(''); // 이미지 소스 상태
 
-    const [musicInfo, setMusicInfo] = useState({
-        title: 'Unknown',
-        artist: 'Unknown',
-        genre: 'Unknown',
-    });
+    const [musicInfo, setMusicInfo] = useState(null);
 
     const [isShuffle, setIsShuffle] = useState(false); // Shuffle 상태 관리
     const [isRepeat, setIsRepeat] = useState(0); // Repeat 상태 관리
@@ -33,7 +29,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
     const titleRef = useRef(null);
     const containerRef = useRef(null);
     const progressBarRef = useRef(null); // 진행 바 참조
-    const [currentMusicId, setCurrentMusicId] = useState(33); // 현재 재생할 MID
+    const [currentMusicId, setCurrentMusicId] = useState(null); // 현재 재생할 MID
 
     const [isDetailOpen, setIsDetailOpen] = useState(false); // Detail 패널 상태 관리
     const [isCurrentOpen, setIsCurrentOpen] = useState(false); // Current 패널 상태 관리
@@ -56,6 +52,14 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
     }, []);
 
     useEffect(() => {
+        if(currentMusicId==null){ 
+            setMusicInfo(null)
+            setImageSrc(null)
+            setAudioElement(null)
+            setAudioSrc(null)
+            setDuration(null)
+            return
+        }
         // 새 MID에 맞춰 음악 파일, 상세 정보, 이미지 다시 가져오기
         axios
             .get(`http://localhost:3000/api/music/stream/${currentMusicId}`, {
@@ -73,6 +77,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
             .get(`http://localhost:3000/api/music/detail/${currentMusicId}`)
             .then((response) => {
                 setMusicInfo(response.data); // 음악 정보 업데이트
+
             })
             .catch((error) => {
                 console.error('음악 정보 가져오기 오류:', error);
@@ -284,12 +289,17 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
                     {imageSrc ? (
                         <img src={imageSrc} alt="Album Art" className="album-art" />
                     ) : (
-                        <img src="/img/album-placeholder.png" alt="Default Album Art" className="album-art" />
+                        <></>
                     )}
                     <div className="track-details" ref={containerRef}>
-                        <p className={`track-title ${isOverflowing ? 'marquee' : ''}`}>
+                        {musicInfo?(
+                            <p className={`track-title ${isOverflowing ? 'marquee' : ''}`}>
+                            
                             {musicInfo.title} - {musicInfo.artist}
                         </p>
+                        ):(
+                            <p>재생중인 곡이 없습니다.</p>
+                        )}
                     </div>
                 </div>
                 <div className="controls-extra">
@@ -349,7 +359,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
                         className={`control-button-extra ${isDetailOpen ? 'detailopen' : ''}`}
                         onClick={toggleDetail}
                     />
-                    <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} isDarkMode={isDarkMode} mid={currentMusicId} />
+                    <Current isOpen={isCurrentOpen} setIsOpen={setIsCurrentOpen} isDarkMode={isDarkMode} musicInfo={musicInfo} setMid={setCurrentMusicId} />
                     <Detail isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} mid={currentMusicId} isDarkMode={isDarkMode} />
                 </div>
             </div>

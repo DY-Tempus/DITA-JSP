@@ -67,7 +67,7 @@ function ArtistItemCon({item}){
 
     return(
         <Link to={`/artist/${item.ID}`}>
-            <div className="album-item">
+            <div key={item.AID} className="album-item">
                 <div className="album-cover-container">
                     {imageSrc ? (
                         <img src={imageSrc} alt="Artist Image" className="artist-image-home" />
