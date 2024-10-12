@@ -4,8 +4,22 @@ import { useState } from "react";
 import ReactDOM from 'react-dom';
 import {OptionList} from './optionValues'
 
-function CurrentItem({ item, onRemove, isDarkMode }) {
-
+function CurrentItemCon({ item, onRemove, isDarkMode }) {
+    const [imageSrc, setImageSrc] = useState(null);
+    useEffect(() => {
+        if (item.mimg && item.mimg.data) {
+            const uint8Array = new Uint8Array(item.mimg.data);  // Buffer 데이터를 Uint8Array로 변환
+            const blob = new Blob([uint8Array]);
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+            };
+    
+            reader.readAsDataURL(blob);
+        }
+    }, []);
+    
     const [isPopupOpen, setIsPopupOpen] = useState(false);  // 팝업 상태
 
     const handleMoveClick = () => {
@@ -17,21 +31,24 @@ function CurrentItem({ item, onRemove, isDarkMode }) {
         setIsPopupOpen(false);
     };
 
-
     return (
-        <div className="current-my-music" key={item.id}>
+        <div className="current-my-music" key={item.mid}>
             <div className="current-song-item">
-                <img src={item.image} alt={item.title} className="current-song-image" />
+                {imageSrc ? (
+                    <img src={imageSrc} className='current-song-image' alt={item.title} />
+                ) : (
+                    <p className='current-song-image'>이미지 없음</p>
+                )}
                 <div className="current-song-info">
                     <div className="current-song-detail">
                         <span className="current-song-title">{item.title}</span>
-                        <span className="current-song-writer">{item.writer}</span>
+                        <span className="current-song-writer">{item.artist}</span>
                     </div>
                     <span className="current-song-duration">{item.duration}</span>
                 </div>
             </div>
             <img src={isDarkMode ? '/img/move2.png' : '/img/move.png'} className='thumbs-views' onClick={handleMoveClick} />
-            <img src='./img/delete.png' className='thumbs-views' onClick={() => onRemove(item.index)} />
+            <img src='./img/delete.png' className='thumbs-views' onClick={() => onRemove(item)} />
 
             {/* 팝업이 열려 있을 때만 팝업 표시 */}
             {isPopupOpen && <Popup onClose={closePopup} />}
@@ -39,16 +56,21 @@ function CurrentItem({ item, onRemove, isDarkMode }) {
     )
 }
 
-function CurrentList({ item, onRemove, isDarkMode }) {
-    return (
-        <>
-            {
-                item.map(item => (<CurrentItem item={item} key={item.index} onRemove={onRemove} isDarkMode={isDarkMode}/>))
-            }
-        </>
-    )
+function CurrentItem({ item, onRemove, isDarkMode }) {
+    const listItems = item.map(item=>(<CurrentItemCon item={item} onRemove={onRemove}/>))
+    return(<>{listItems}</>)
 }
+function CurrentList({ item, onRemove, isDarkMode }) {
+    console.log(item)
+    return (<>{<CurrentItem item={item}  onRemove={onRemove} isDarkMode={isDarkMode} key={item.mid}/>}</>)
+}
+
+
 export default CurrentList;
+
+
+
+
 
 function Popup({ onClose }) {
     const [album,setAlbum]=useState([])

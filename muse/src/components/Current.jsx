@@ -8,26 +8,25 @@ import axios from 'axios';
 
 
 
-const Current = ({ isOpen,setIsOpen, isDarkMode,mid }) => {
+const Current = ({ isOpen,setIsOpen, isDarkMode,musicInfo,setMid }) => {
   const[currentPlaylist, setCurrentPlaylist]=useState([])
-  const onRemove = index => {  // onRemove 함수 생성
-    setCurrentPlaylist(currentPlaylist.filter(item => item.index !== index));
+
+  const onRemove = element => {  // onRemove 함수 생성
+    setCurrentPlaylist(currentPlaylist.filter(item=>item!=element))
+    setMid(null)
   };
+
   useEffect(()=>{
-    if(currentPlaylist.filter((item)=>{return item.MID})){
-      //
+    if(!musicInfo) return
+
+    if(!currentPlaylist){
+      if(currentPlaylist.filter(item=> item==musicInfo)){
+
+      }
     }else{
-      // axios.post("http://localhost:3000/api/album/detail",{
-      //   mid:mid
-      // })
-      // .then((Response)=>{
-      //   console.log(Response.data);
-      //   const obj=Response.data[0];
-      //   console.log(obj)
-      //   setCurrentPlaylist([...setCurrentPlaylist,obj]);
-      // });
+      setCurrentPlaylist([...currentPlaylist,musicInfo])
     }
-  },[mid])
+  },[musicInfo])
   
 return ReactDOM.createPortal(
     <div className={`current-page ${isOpen ? 'open' : ''} ${isDarkMode ? 'dark-mode' : ''}`} >
@@ -42,6 +41,6 @@ return ReactDOM.createPortal(
     </div>,
     document.body
 );
-};
+}
 
 export default Current;
