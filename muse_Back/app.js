@@ -11,7 +11,7 @@ const homeRouter = require('./routers/homeRouter');
 const artistRouter = require('./routers/artistRouter');
 const albumRouter = require('./routers/albumRouter');
 const mymusicRouter = require('./routers/mymusicRouter');
-
+const profileRouter = require('./routers/profileRouter');
 
 
 const path = require('path'); // path 모듈 추가
@@ -36,10 +36,10 @@ app.use('/api/music', streamRouter);  // 스트리밍 관련 라우터
 app.use('/api/user', userRouter);  // 유저 관련 라우터
 app.use('/api/detail', detailRouter);
 app.use('/api/home', homeRouter);
-app.use('/api/artist',artistRouter)
-app.use('/api/album',albumRouter)
-app.use('/api/mymusic',mymusicRouter)
-
+app.use('/api/artist',artistRouter);
+app.use('/api/album',albumRouter);
+app.use('/api/mymusic',mymusicRouter);
+app.use('/api/profile', profileRouter);// 프로필 관련 라우팅 추가
 
 
 // 서버 실행

@@ -1,65 +1,108 @@
 import React, { useEffect, useState } from 'react';
 import './css/Profile.css';
 import axios from 'axios';
-import { ProfileImg } from './ProfileImg'
 
 const Profile = ({ isDarkMode }) => {
+    const [profileImg, setProfileImg] = useState(null); // 서버에서 받은 프로필 이미지
+    const [imageSrc, setImageSrc] = useState(null); // 로컬에서 업로드한 이미지 파일 미리보기용
+    const [genres, setGenres] = useState([]); // 장르 데이터를 저장할 상태
 
-    const [profileImg, setProfileImg] = useState([]); // 서버에서 이미지 받아오기
+    // 장르 데이터를 가져오는 useEffect
+    useEffect(() => {
+        const fetchGenres = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/api/profile/genres');
+                setGenres(response.data); // 가져온 데이터를 상태에 저장
+            } catch (error) {
+                console.error('Error fetching genres:', error);
+            }
+        };
 
-    const [imageSrc, setImageSrc] = useState(null); // 로컬에서 이미지 업로드 하는부분
+        fetchGenres(); // 컴포넌트가 마운트될 때 장르 목록을 불러오기
+    }, []);
 
+    // 이미지 미리보기와 파일 저장
     const handleImageChange = (e) => {
-        const file = e.target.files[0]; // 파일을 하나만 선택한다고 가정
+        const file = e.target.files[0]; // 파일 객체 가져오기
         if (file) {
+            setImageSrc(file); // 파일 객체 저장
             const reader = new FileReader();
             reader.onloadend = () => {
-                setImageSrc(reader.result); // 파일이 로드되면 결과를 state에 저장
+                setProfileImg(reader.result); // 미리보기용 이미지 설정
             };
-            reader.readAsDataURL(file); // 파일을 Data URL로 변환
+            reader.readAsDataURL(file); // 파일을 base64 URL로 변환하여 미리보기 설정
         }
     };
 
+    // 이미지 업로드 함수 (BLOB 전송)
+    const handleImageUpload = async () => {
+        const formData = new FormData();
+
+        formData.append('profileImage', imageSrc); // 이미지를 FormData로 전송
+        formData.append('userId', userInfo.id); // 유저 ID도 함께 전송
+
+        try {
+            const response = await axios.post('http://localhost:3000/api/profile/uploadProfileImage', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            if (response.data.success) {
+                console.log('Image uploaded successfully', response.data);
+            } else {
+                console.error('Image upload failed', response.data);
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
 
     useEffect(() => {
-        let obj = sessionStorage.getItem("idKey")
-        obj = JSON.parse(obj)
-        console.log(obj)
-        setProfileImg([...profileImg, obj])
+        let obj = sessionStorage.getItem("idKey");
+        obj = JSON.parse(obj);
+        setProfileImg(obj.img); // 서버에서 받은 BLOB 데이터
         setUserInfo({
             username: obj.NAME,
             id: obj.ID,
             password: obj.PASSWORD,
-            country: 'Korea',
             genre1: obj.GENRE1,
             genre2: obj.GENRE2,
             email: obj.EMAIL,
         });
-
     }, []);
-    // 사용자 정보 상태
+
     const [userInfo, setUserInfo] = useState({
         username: 'user123',
         id: 'asdf1234',
         password: 'asdf1234',
-        country: 'Korea',
-        genre1: 'Dubstep',
-        genre2: 'EDM',
+        genre1: '',
+        genre2: '',
         email: 'asdfasdf@gmail.com',
-        img: ''
     });
 
-    // 수정 상태 관리
-    const [editField, setEditField] = useState('');
-
-    // 엔터키로 저장하는 함수
-    const handleKeyDown = (e, field, value) => {
+    const handleInputChange = (e, field) => {
         setUserInfo({ ...userInfo, [field]: e.target.value });
-        console.log(e.key);
-        if (e.key === 'Enter') {
-            setEditField(''); // 수정 끝나면 다시 기본 상태로 돌아감
+    };
+
+    const handleProfileUpdate = async () => {
+        const updatedInfo = {
+            id: userInfo.id,
+            username: userInfo.username,
+            password: userInfo.password,
+            email: userInfo.email,
+            genre1: userInfo.genre1,
+            genre2: userInfo.genre2,
+        };
+
+        try {
+            const response = await axios.post('http://localhost:3000/api/profile/updateProfile', updatedInfo);
+            console.log('Profile updated successfully', response.data);
+        } catch (error) {
+            console.error('Error updating profile:', error);
         }
     };
+
     if (!sessionStorage.getItem("idKey")) {
         return (
             <div>
@@ -67,19 +110,22 @@ const Profile = ({ isDarkMode }) => {
             </div>
         );
     }
+
     return (
         <div className={`profile-page ${isDarkMode ? 'dark-mode' : ''}`}>
             <div className="profile-header">
-                {imageSrc && <img src={imageSrc} alt="Image Preview" style={{ maxWidth: '100px', marginTop: '10px', borderRadius: '50%' }} />}
+                {/* 이미지 미리보기 섹션 */}
+                {profileImg && (
+                    <img src={profileImg} alt="Image Preview" style={{ maxWidth: '100px', marginTop: '10px', borderRadius: '50%' }} />
+                )}
                 <input type="file" id="image-upload" accept="image/*" onChange={handleImageChange} />
-                <label htmlFor="image-upload" className="profile-custom-file-upload"></label>
+                <label htmlFor="image-upload" className="profile-custom-file-upload">Choose Image</label>
                 <div className="profile-username">
                     <input
                         type="text"
-                        id="nameInput"
                         className="InputSetting"
                         value={userInfo.username}
-                        onChange={(e) => handleKeyDown(e, 'username', e.target.value)}
+                        onChange={(e) => handleInputChange(e, 'username')}
                         required
                     />
                     <div className="underline"></div>
@@ -89,7 +135,9 @@ const Profile = ({ isDarkMode }) => {
                 </div>
             </div>
 
+            {/* 프로필 세부 정보 */}
             <div className={`profile-details ${isDarkMode ? 'dark-mode' : ''}`}>
+                {/* ID */}
                 <div className="profile-container">
                     <label htmlFor="idInput" className="label">ID</label>
                     <div className='flex1'>
@@ -98,13 +146,14 @@ const Profile = ({ isDarkMode }) => {
                             id="idInput"
                             className="InputSetting"
                             value={userInfo.id}
-                            onChange={(e) => handleKeyDown(e, 'id', e.target.value)}
+                            onChange={(e) => handleInputChange(e, 'id')}
                             required
                         />
                         <div className="underline"></div>
                     </div>
                 </div>
 
+                {/* 비밀번호 */}
                 <div className="profile-container">
                     <label htmlFor="passwordInput" className="label">PW</label>
                     <div className='flex1'>
@@ -113,13 +162,14 @@ const Profile = ({ isDarkMode }) => {
                             id="passwordInput"
                             className="InputSetting"
                             value={userInfo.password}
-                            onChange={(e) => handleKeyDown(e, 'password', e.target.value)}
+                            onChange={(e) => handleInputChange(e, 'password')}
                             required
                         />
                         <div className="underline"></div>
                     </div>
                 </div>
 
+                {/* 이메일 */}
                 <div className="profile-container">
                     <label htmlFor="emailInput" className="label">Email</label>
                     <div className='flex1'>
@@ -128,50 +178,50 @@ const Profile = ({ isDarkMode }) => {
                             id="emailInput"
                             className="InputSetting"
                             value={userInfo.email}
-                            onChange={(e) => handleKeyDown(e, 'email', e.target.value)}
+                            onChange={(e) => handleInputChange(e, 'email')}
                             required
                         />
                         <div className="underline"></div>
                     </div>
                 </div>
 
+                {/* 장르1 */}
                 <div className="profile-container">
                     <label htmlFor="genre1Input" className="label">Genre1</label>
                     <div className='flex1'>
                         <select
-                            id="text"
-                            name="genre1Input"
+                            id="genre1Input"
                             className="InputSetting"
                             value={userInfo.genre1}
-                            onChange={(e) => handleKeyDown(e, 'genre1', e.target.value)}
+                            onChange={(e) => handleInputChange(e, 'genre1')}
                             required
                         >
-                            <option value=""></option>
-                            <option value="apple">Apple</option>
-                            <option value="banana">Banana</option>
-                            <option value="cherry">Cherry</option>
-                            <option value="date">Date</option>
+                            {genres.map((genre) => (
+                                <option key={genre.GNAME} value={genre.GNAME}>
+                                    {genre.GNAME}
+                                </option>
+                            ))}
                         </select>
                         <div className="underline"></div>
                     </div>
                 </div>
 
+                {/* 장르2 */}
                 <div className="profile-container">
-                    <label htmlFor="genre1Input" className="label">Genre2</label>
+                    <label htmlFor="genre2Input" className="label">Genre2</label>
                     <div className='flex1'>
                         <select
-                            id="text"
-                            name="genre1Input"
+                            id="genre2Input"
                             className="InputSetting"
                             value={userInfo.genre2}
-                            onChange={(e) => handleKeyDown(e, 'genre2', e.target.value)}
+                            onChange={(e) => handleInputChange(e, 'genre2')}
                             required
                         >
-                            <option value=""></option>
-                            <option value="apple">Apple</option>
-                            <option value="banana">Banana</option>
-                            <option value="cherry">Cherry</option>
-                            <option value="date">Date</option>
+                            {genres.map((genre) => (
+                                <option key={genre.GNAME} value={genre.GNAME}>
+                                    {genre.GNAME}
+                                </option>
+                            ))}
                         </select>
                         <div className="underline"></div>
                     </div>
@@ -179,11 +229,16 @@ const Profile = ({ isDarkMode }) => {
             </div>
 
             <div className='CancelConfirm'>
-                <button className='my-button confirm'>Confirm</button>
-                <button className='my-button cancel'>Cancel</button>
-
+                <button className='my-button confirm' onClick={handleProfileUpdate} aria-label="Confirm Profile Update">
+                    Confirm
+                </button>
+                <button className='my-button cancel' aria-label="Cancel Update">
+                    Cancel
+                </button>
+                <button className='my-button confirm' onClick={handleImageUpload} aria-label="Upload Profile Image">
+                    Upload Image
+                </button>
             </div>
-
         </div>
     );
 };
