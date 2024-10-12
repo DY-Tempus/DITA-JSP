@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 function MusicItemCon({item}){
     const [imageSrc, setImageSrc] = useState(null);
+    const [albumcheck, setAlbumCheck] = useState(false);  // 체크 상태 관리
 
     useEffect(() => {
         if (item.MIMG && item.MIMG.data) {
@@ -18,10 +19,15 @@ function MusicItemCon({item}){
         }
     }, []);
 
+    const handleCheckChange = (e) => {
+        setAlbumCheck(e.target.checked);  // 체크박스의 상태를 업데이트
+        onCheckChange(item.MID, e.target.checked);  // 부모 컴포넌트에 상태 변경 전달
+    }
+
     return(
         <div>
             <div className="album-song-element">
-                <input type='checkbox'></input>
+                <input type='checkbox' checked={albumcheck} onChange={handleCheckChange}/>
                 <img src={imageSrc} alt={item.MNAME} className="album-song-image" />
                 <div className="album-song-info">
                     <div className="album-song-detail">
