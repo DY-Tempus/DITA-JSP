@@ -7,6 +7,12 @@ import Volume from './Volume';
 
 const MusicPlayer = ({ isDarkMode,mid }) => {
     useEffect(()=>{
+        axios.post("http://localhost:3000/api/fake/view",{
+            mid:mid
+        })
+        .then((Response)=>{
+            console.log(Response.data)
+        });
         setCurrentMusicId(mid)
     },[mid])
     const [isPlaying, setIsPlaying] = useState(false); // 재생 상태 관리

@@ -7,8 +7,18 @@ import axios from 'axios';
 
 const Current = ({ isOpen,setIsOpen, isDarkMode,musicInfo,setMid }) => {
   const[currentPlaylist, setCurrentPlaylist]=useState([])
-
-  const onRemove = element => {  // onRemove 함수 생성
+  const[list,setList]=useState([])
+  
+  const onRemove = (element,idx) => {  // onRemove 함수 생성
+    
+    
+    var findidx=currentPlaylist.findIndex((item)=>item.index==idx)
+    if(currentPlaylist.length>findidx){
+      setMid(currentPlaylist[findidx+1])
+    }else{
+      setMid(null)
+    }
+      
     setCurrentPlaylist(currentPlaylist.filter(item=>item!=element))
     setMid(null)
   };

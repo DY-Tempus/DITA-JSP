@@ -48,7 +48,7 @@ function CurrentItemCon({ item, onRemove, isDarkMode }) {
                 </div>
             </div>
             <img src={isDarkMode ? '/img/move2.png' : '/img/move.png'} className='thumbs-views' onClick={handleMoveClick} />
-            <img src='./img/delete.png' className='thumbs-views' onClick={() => onRemove(item)} />
+            <img src='./img/delete.png' className='thumbs-views' onClick={() => onRemove(item,item.index)} />
 
             {/* 팝업이 열려 있을 때만 팝업 표시 */}
             {isPopupOpen && <Popup onClose={closePopup} />}

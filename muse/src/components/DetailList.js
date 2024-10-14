@@ -5,8 +5,10 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
     const [imageSrc, setImageSrc] = useState(null);
     const [isLiked, setIsLiked] = useState(false); // 좋아요 상태 관리
     const [comment,setComment]=useState('')
-
+    const[like,setLike]=useState(0)
+    console.log(item)
     useEffect(() => {
+      setLike(item.MLIKES)
       if (item.MIMG && item.MIMG.data) {
         const uint8Array = new Uint8Array(item.MIMG.data);  // Buffer 데이터를 Uint8Array로 변환
         const blob = new Blob([uint8Array]);
@@ -25,6 +27,14 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
   
     // 좋아요 버튼 클릭 시 호출되는 함수
     const handleLikeClick = () => {
+      if(!isLiked){
+        axios.post("http://localhost:3000/api/fake/like",{
+          mid:item.MID
+      })
+      .then((Response)=>{
+          setLike(like+1)
+      });
+      }
       setIsLiked(!isLiked); // 클릭할 때마다 상태를 반전시킴
     };
 
@@ -81,9 +91,9 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
             onClick={handleLikeClick} // 클릭 시 호출
             style={{ cursor: 'pointer' }} // 클릭 가능한 아이콘으로 설정
           />
-          <span>34.7K</span>
+          <span>{like}</span>
           <img src="/img/views.png" alt="Views" />
-          <span>1.23M</span>
+          <span>{item.MVIEWS}</span>
         </div>
   
         {/* 중간 영역: 가사 및 댓글 */}
