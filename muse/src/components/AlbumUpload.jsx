@@ -79,17 +79,17 @@ const AlbumUpload = () => {
             alert('로그인 정보가 없습니다.');
             return;
         }
-
+    
         const albumData = {
             title: formData.title,
             genre: formData.genre,
             detail: formData.detail,
             option: formData.option,
             image: imageFile, // base64로 변환된 이미지 데이터 전송
-            songIds: selectedSongs,
+            songIds: checkItems, // 체크된 곡 목록을 전송
             ID: obj.ID // 세션에서 가져온 사용자 ID
         };
-
+    
         try {
             const response = await axios.post('http://localhost:3000/api/album/upload', albumData);
             alert('앨범 업로드 성공!');

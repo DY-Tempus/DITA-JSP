@@ -4,7 +4,7 @@ const albumController = require('../controllers/albumController');
 
 // 앨범 업로드 라우트
 router.post('/upload', (req, res) => {
-  const { title, genre, detail, image, ID } = req.body;
+  const { title, genre, detail, image, songIds, ID } = req.body;
 
   if (!ID) {
     return res.status(400).json({ message: '사용자 ID가 필요합니다.' });
@@ -20,12 +20,13 @@ router.post('/upload', (req, res) => {
     ANAME: title,
     ADATE: new Date(),
     ATEXT: detail,
-    AIMG: imageBuffer, // 변환된 이미지 데이터를 BLOB으로 저장
+    AIMG: imageBuffer,
     AGENRE: genre,
-    ID: ID  // 사용자 ID
+    ID: ID
   };
 
-  albumController.uploadAlbum(albumData, (err, result) => {
+  // 선택된 곡들의 MID 배열 전달
+  albumController.uploadAlbum(albumData, songIds, (err, result) => {
     if (err) {
       res.status(500).json({ error: '앨범 업로드 실패' });
     } else {

@@ -1,7 +1,7 @@
 const pool = require('../db');
 
 // 앨범 업로드 함수
-const uploadAlbum = (albumData, callback) => {
+const uploadAlbum = (albumData, selectedSongs, callback) => {
   const { ANAME, ADATE, ATEXT, AIMG, AGENRE, ID } = albumData;
 
   if (!ID) {
@@ -13,13 +13,34 @@ const uploadAlbum = (albumData, callback) => {
 
     const query = 'INSERT INTO album (ANAME, ADATE, ATEXT, AIMG, AGENRE, ID) VALUES (?, ?, ?, ?, ?, ?)';
     connection.query(query, [ANAME, ADATE, ATEXT, AIMG, AGENRE, ID], (err, results) => {
-      connection.release(); // 연결 해제
       if (err) {
+        connection.release();
         console.error('앨범 업로드 실패:', err);
-        callback(err);
+        return callback(err);
+      }
+
+      const albumId = results.insertId; // 생성된 앨범의 AID
+
+      if (selectedSongs && selectedSongs.length > 0) {
+        // 선택된 곡들의 AID 업데이트
+        const placeholders = selectedSongs.map(() => '?').join(',');
+        const updateMusicQuery = `UPDATE music SET AID = ? WHERE MID IN (${placeholders})`;
+
+        connection.query(updateMusicQuery, [albumId, ...selectedSongs], (err, result) => {
+          connection.release();
+
+          if (err) {
+            console.error('곡 업데이트 실패:', err);
+            return callback(err);
+          }
+
+          console.log('앨범과 곡 업데이트 성공');
+          callback(null, { albumId, result });
+        });
       } else {
-        console.log('앨범 업로드 성공:', results);
-        callback(null, results);
+        connection.release();
+        console.log('선택된 곡이 없어 앨범만 업로드되었습니다.');
+        callback(null, { albumId });
       }
     });
   });
@@ -27,7 +48,7 @@ const uploadAlbum = (albumData, callback) => {
 
 // 앨범 조회 함수
 const getAlbum = (req, res) => {
-  const albumId = req.body.aid; // 요청 본문에서 앨범 ID 가져오기
+  const albumId = req.body.aid;
 
   if (!albumId) {
     return res.status(400).json({ message: '앨범 ID가 필요합니다.' });
@@ -104,7 +125,7 @@ const musicList = (req, res) => {
 // 함수들을 내보내기
 module.exports = { 
   uploadAlbum,
-  getAlbum,  // 앨범 조회 함수 추가
+  getAlbum,
   getMusics,
   musicList
 };
