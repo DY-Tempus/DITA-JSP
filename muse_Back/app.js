@@ -22,12 +22,13 @@ const port = 3000;
 // CORS 설정
 app.use(cors());
 
-// 파일 업로드 미들웨어 설정
-app.use(fileUpload());
-
-// JSON 데이터 처리
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// 파일 업로드 미들웨어 설정 (최대 파일 크기 50MB로 설정)
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 }, // 50MB로 파일 크기 제한
+}));
+// JSON 데이터 처리 (최대 크기 50MB로 설정)
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // 라우터 연결
 
