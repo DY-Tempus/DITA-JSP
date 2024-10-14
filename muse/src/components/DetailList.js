@@ -134,9 +134,12 @@ function DetailList({ item, comments, isDarkMode,flag,setFlag }) {
     if (!item || item.length === 0) {
         return <p>노래 정보를 찾을 수 없습니다.</p>;
     }
-
+    console.log(item)
     return (
-        <>
+      <>
+        { item==null||!item || item.length === 0 ? (<p>노래 정보를 찾을 수 없습니다.</p>
+        ):(
+          <>
             {item.map((detail, index) => {
                 if (!detail || !detail.MID) {
                     return <p key={index}>유효하지 않은 노래 정보입니다.</p>;
@@ -144,7 +147,9 @@ function DetailList({ item, comments, isDarkMode,flag,setFlag }) {
 
                 return <DetailItemCon item={detail} comments={comments} isDarkMode={isDarkMode} flag={flag} setFlag={setFlag} key={detail.mid} />;
             })}
-        </>
+          </>
+        )}
+      </>
     );
 }
 

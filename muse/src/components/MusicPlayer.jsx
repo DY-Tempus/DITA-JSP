@@ -109,10 +109,12 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
 
     // 재생/정지 토글 함수
     const togglePlayPause = () => {
-        if (isPlaying) {
-            audioElement.pause();
-        } else {
-            audioElement.play();
+        if(audioSrc!=null){
+            if (isPlaying) {
+                audioElement.pause();
+            } else {
+                audioElement.play();
+            }
         }
         setIsPlaying(!isPlaying);
     };

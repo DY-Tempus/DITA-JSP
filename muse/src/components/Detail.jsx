@@ -11,8 +11,12 @@ const Detail = ({ isOpen, setIsOpen, mid, isDarkMode }) => {
     const [errorMessage, setErrorMessage] = useState(''); // 오류 메시지 추가
     
     useEffect(() => {
-        if(!mid) return
-        if (mid) {
+        console.log(mid)
+        if(!mid) {
+            setMusicInfo([])
+        }
+
+        else if (mid) {
             axios.post(`http://localhost:3000/api/detail/music2`, {
                 responseType: 'json',
                 mid: mid
