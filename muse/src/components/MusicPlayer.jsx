@@ -56,6 +56,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
             setMusicInfo(null)
             setImageSrc(null)
             setAudioElement(null)
+            URL.revokeObjectURL(audioSrc)
             setAudioSrc(null)
             setDuration(null)
             return

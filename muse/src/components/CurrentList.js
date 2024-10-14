@@ -7,8 +7,8 @@ import {OptionList} from './optionValues'
 function CurrentItemCon({ item, onRemove, isDarkMode }) {
     const [imageSrc, setImageSrc] = useState(null);
     useEffect(() => {
-        if (item.mimg && item.mimg.data) {
-            const uint8Array = new Uint8Array(item.mimg.data);  // Buffer 데이터를 Uint8Array로 변환
+        if (item.info.mimg && item.info.mimg.data) {
+            const uint8Array = new Uint8Array(item.info.mimg.data);  // Buffer 데이터를 Uint8Array로 변환
             const blob = new Blob([uint8Array]);
             const reader = new FileReader();
     
@@ -32,19 +32,19 @@ function CurrentItemCon({ item, onRemove, isDarkMode }) {
     };
 
     return (
-        <div className="current-my-music" key={item.mid}>
+        <div className="current-my-music" key={item.info.mid}>
             <div className="current-song-item">
                 {imageSrc ? (
-                    <img src={imageSrc} className='current-song-image' alt={item.title} />
+                    <img src={imageSrc} className='current-song-image' alt={item.info.title} />
                 ) : (
                     <p className='current-song-image'>이미지 없음</p>
                 )}
                 <div className="current-song-info">
                     <div className="current-song-detail">
-                        <span className="current-song-title">{item.title}</span>
-                        <span className="current-song-writer">{item.artist}</span>
+                        <span className="current-song-title">{item.info.title}</span>
+                        <span className="current-song-writer">{item.info.artist}</span>
                     </div>
-                    <span className="current-song-duration">{item.duration}</span>
+                    <span className="current-song-duration">{item.info.duration}</span>
                 </div>
             </div>
             <img src={isDarkMode ? '/img/move2.png' : '/img/move.png'} className='thumbs-views' onClick={handleMoveClick} />
@@ -57,12 +57,12 @@ function CurrentItemCon({ item, onRemove, isDarkMode }) {
 }
 
 function CurrentItem({ item, onRemove, isDarkMode }) {
-    const listItems = item.map(item=>(<CurrentItemCon item={item} onRemove={onRemove}/>))
+    const listItems = item.map(item=>(<CurrentItemCon item={item} onRemove={onRemove} key={item.index}/>))
     return(<>{listItems}</>)
 }
 function CurrentList({ item, onRemove, isDarkMode }) {
     console.log(item)
-    return (<>{<CurrentItem item={item}  onRemove={onRemove} isDarkMode={isDarkMode} key={item.mid}/>}</>)
+    return (<>{<CurrentItem item={item}  onRemove={onRemove} isDarkMode={isDarkMode}/>}</>)
 }
 
 

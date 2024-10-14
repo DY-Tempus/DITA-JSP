@@ -4,6 +4,7 @@ import axios from 'axios';
 import './css/AlbumUpload.css';
 
 const AlbumUpload = () => {
+    const [checkItems, setCheckItems] = useState([])
     const [selectedSongs, setSelectedSongs] = useState([]);
     const [songs, setSongs] = useState([]);
     const [formData, setFormData] = useState({
@@ -16,6 +17,18 @@ const AlbumUpload = () => {
     const [imageFileName, setImageFileName] = useState(''); // 앨범 이미지 파일 이름 저장
     const [album, setAlbum] = useState([]);
     const [musics, setMusics] = useState([]);
+    
+    const checkItemHandler = (id, isChecked) => {
+        if (isChecked) {
+            checkItems.push(id)
+            setCheckItems(checkItems)
+            console.log(checkItems)
+        } else if (!isChecked) {
+            checkItems.pop(id)
+            setCheckItems(checkItems)
+            console.log(checkItems)
+        }
+      }
 
     useEffect(() => {
         let obj = sessionStorage.getItem("idKey");
@@ -51,6 +64,7 @@ const AlbumUpload = () => {
             setSelectedSongs([...selectedSongs, id]);
         }
     };
+
 
     const handleInputChange = (e) => {
         setFormData({
@@ -112,7 +126,7 @@ const AlbumUpload = () => {
                     <div className="album-upload-song-list">
                         <>
                             {
-                                <MusicList item={musics}/>
+                                <MusicList item={musics} checkItemHandler={checkItemHandler}/>
                             }
                         </>
                     </div>
