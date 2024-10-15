@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { MusicList } from './AlbumList';
 import axios from 'axios';
 import './css/AlbumUpload.css';
+import { useNavigate } from 'react-router-dom';
 
 const AlbumUpload = () => {
     const [checkItems, setCheckItems] = useState([])
     const [selectedSongs, setSelectedSongs] = useState([]);
     const [songs, setSongs] = useState([]);
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: '',
         genre: '',
@@ -94,6 +96,7 @@ const AlbumUpload = () => {
             const response = await axios.post('http://113.198.238.115:3000/api/album/upload', albumData);
             alert('앨범 업로드 성공!');
             console.log(response.data);
+            navigate('/home');
         } catch (error) {
             console.error('앨범 업로드 실패:', error.response);
             alert('앨범 업로드 실패: ' + (error.response && error.response.data && error.response.data.message ? error.response.data.message : '알 수 없는 오류'));
@@ -135,7 +138,7 @@ const AlbumUpload = () => {
 
             <div className="button-section">
                 <button className="album-upload-button" onClick={handleSubmit}>Upload</button>
-                <button className="cancel-button">Cancel</button>
+                <button className="cancel-button" onClick={() => navigate('/home')}>Cancel</button>
             </div>
         </div>
     );

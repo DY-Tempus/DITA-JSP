@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import './css/UpdateAlbum.css';
 import {MusicList,AlbumList} from './AlbumList'
@@ -50,6 +50,7 @@ const songs = [
 
 const UpdateAlbum = () => {
     const params = useParams();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: '',
         artist: '',        // DB에는 저장되지 않음
@@ -136,8 +137,8 @@ const UpdateAlbum = () => {
             </div>
 
             <div className="button-section">
-                <button className="album-upload-button">Update</button>
-                <button className="cancel-button">Cancel</button>
+                <button className="album-upload-button" onClick={() => navigate('/home')}>Update</button>
+                <button className="cancel-button" onClick={() => navigate('/home')}>Cancel</button>
             </div>
         </div>
     );

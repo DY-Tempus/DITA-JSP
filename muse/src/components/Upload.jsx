@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './css/Upload.css';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
+    const navigate = useNavigate();
     const [imageFile, setImageFile] = useState(null);  // 이미지 파일 저장
     const [musicFile, setMusicFile] = useState(null);  // 음악 파일 저장
     const [formData, setFormData] = useState({
@@ -78,10 +79,11 @@ const Upload = () => {
             })
             setImageFileName(null)
             setMusicFileName(null)
-            Navigate('/home');
+            navigate('/home');
         } catch (error) {
             console.error('업로드 실패:', error);
             alert('음악 업로드 실패');
+            navigate('/home');
         }
     };
     // if(!sessionStorage.getItem("idKey")){
@@ -144,7 +146,7 @@ const Upload = () => {
 
             <div className="button-section">
                 <button className="upload-button" onClick={handleSubmit}>Upload</button>
-                <button className="cancel-button">Cancel</button>
+                <button className="cancel-button" onClick={() => navigate('/home')}>Cancel</button>
             </div>
         </div>
     );

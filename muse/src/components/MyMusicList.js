@@ -31,21 +31,6 @@ function AlbumItemCon({item}){
                 ) : (
                     <p className="album-img">이미지 없음</p>
                 )}
-                {imageSrc ? (
-                    <img src={imageSrc} alt="Artist Image" className="album-img layer-1" />
-                ) : (
-                    <p className="album-img layer-1"></p>
-                )}
-                {imageSrc ? (
-                    <img src={imageSrc} alt="Artist Image" className="album-img layer-2" />
-                ) : (
-                    <p className="album-img layer-2"></p>
-                )}
-                {imageSrc ? (
-                    <img src={imageSrc} alt="Artist Image" className="album-img layer-3" />
-                ) : (
-                    <p className="album-img layer-3"></p>
-                )}
             </Link>
           </div>
           <p className="album-title">{item.name}</p>
