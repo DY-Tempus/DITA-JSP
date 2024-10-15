@@ -3,6 +3,7 @@ import axios from 'axios';
 import './css/UpdateMusic.css';
 
 const UpdateMusic = () => {
+    const navigate = useNavigate();
     const [imageFile, setImageFile] = useState(null);  // 이미지 파일 저장
     const [musicFile, setMusicFile] = useState(null);  // 음악 파일 저장
     const [formData, setFormData] = useState({
@@ -62,7 +63,7 @@ const UpdateMusic = () => {
             });
             alert('음악 업로드 성공!');
             console.log(response.data);
-            Navigate('/home');
+            navigate('/home');
         } catch (error) {
             console.error('업로드 실패:', error);
             alert('음악 업로드 실패');

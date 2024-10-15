@@ -233,8 +233,6 @@ const SignUp = () => {
                 <option value="트로트">트로트</option>
                 <option value="기타">기타</option>
 
-
-
               </select>
               <label htmlFor="genre1" className="label">Favorite Genre 1</label>
               <div className={`underline ${formErrors.genre1Error ? 'error' : ''}`}></div>
