@@ -63,7 +63,20 @@ const Upload = () => {
                 }
             });
             alert('음악 업로드 성공!');
-            console.log(response.data);
+            setImageFile(null)
+            setMusicFile(null)
+            setFormData({
+                title: '',
+                artist: '',        
+                producer: '',      
+                album: '',         
+                genre: '',
+                copyright: '',     
+                lyrics: '',
+                option: 'public'
+            })
+            setImageFileName(null)
+            setMusicFileName(null)
         } catch (error) {
             console.error('업로드 실패:', error);
             alert('음악 업로드 실패');
