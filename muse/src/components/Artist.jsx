@@ -3,12 +3,13 @@ import { Link,useParams } from 'react-router-dom';
 import './css/Artist.css';
 import axios from 'axios';
 import {AlbumList,TrackList} from './HomeList';
+import ArtistImage from './Artistimage';
 
 const Artist = ({mid}) => {
   const params = useParams();
   const [artist,setArtist]=useState({
     aname:'',
-    aimg:'',
+    AIMG:null,
   })
   const [album,setAlbum]=useState([])
   const [track,setTrack]=useState([])
@@ -26,7 +27,7 @@ const Artist = ({mid}) => {
 
       setArtist({
         aname:obj.NAME,
-        aimg:'',
+        AIMG:obj.IMG,
     });
     });
 
@@ -55,39 +56,23 @@ const Artist = ({mid}) => {
   }, []);
 
   const [imageSrc, setImageSrc] = useState(null);
-    var user=sessionStorage.getItem("idKey")
-    var item=JSON.parse(user)
-    
-    useEffect(() => {
-        if (item.IMG && item.IMG.data) {
-            const uint8Array = new Uint8Array(item.IMG.data);  // Buffer 데이터를 Uint8Array로 변환
-            const blob = new Blob([uint8Array]);
-            const reader = new FileReader();
-    
-            reader.onloadend = () => {
-                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
-            };
-    
-            reader.readAsDataURL(blob);
-        }
-    }, []);
 
-  // if(!sessionStorage.getItem("idKey")){
-  //   return (
-  //       <div>
-  //           <meta http-equiv="refresh" content="0;url=/signIn"></meta>
-  //       </div>
-  //   );
-  // }
+  if(!sessionStorage.getItem("idKey")){
+    return (
+        <div>
+            <meta http-equiv="refresh" content="0;url=/signIn"></meta>
+        </div>
+    );
+  }
   return (
     <div className="artist-artist-page">
       {/* 아티스트 정보 */}
       <div className="artist-artist-info">
-        {imageSrc ? (
-            <img src={imageSrc} alt="Artist" className="artist-artist-image" />
-        ) : (
-            <p className="artist-artist-image">이미지 없음</p>
-        )}
+        <>
+          {
+            <ArtistImage item={artist}/>
+          }
+        </>
         <div className="artist-artist-details">
           <div className="artist-social-icons">
             <h1>{artist.aname}</h1>
