@@ -1,62 +1,53 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'
 import './css/Home.css';
 
-import {AlbumList,ArtistList, MusicList} from './HomeList';
+import {AlbumList,ArtistList, MusicList} from './searchList';
 import axios from 'axios';
 
 
-const Search = ({ isDarkMode, setIsDarkMode }) => {
-    const [recent, setRecent]=useState([])
-    const [preferMusic,setPreferMusic]=useState([])
-    const [preferArtist,setPreferArtist]=useState([])
-    const [perferAlbum,setPerferAlbum]=useState([])
+const Search = ({ isDarkMode }) => {
+    const params = useParams();
+    const [artist, setArtist]=useState([])
+    const [album,setAlbum]=useState([])
+    const [music,setMusic]=useState([])
 
     useEffect(()=>{
-        let user=JSON.parse(sessionStorage.getItem('idKey'))
-        
+        var text=params.text
 
-        axios.post("http://113.198.238.115:3000/api/home/recent")
-        .then((Response)=>{
-            console.log(Response.data);
-            const obj=Response.data;
-            console.log(obj)
-            
-            setRecent([...recent,obj]);
-        });
-
-        axios.post("http://113.198.238.115:3000/api/home/prefermusic",{
-            uid:user.ID
+        axios.post("http://113.198.238.115:3000/api/search/name",{
+            text:text
         })
         .then((Response)=>{
             console.log(Response.data);
             const obj=Response.data;
             console.log(obj)
             
-            setPreferMusic([...preferMusic,obj]);
+            setArtist([...artist,obj]);
         });
 
-        axios.post("http://113.198.238.115:3000/api/home/preferartist",{
-            uid:user.ID
+        axios.post("http://113.198.238.115:3000/api/search/name",{
+            text:text
         })
         .then((Response)=>{
             console.log(Response.data);
             const obj=Response.data;
             console.log(obj)
             
-            setPreferArtist([...preferArtist,obj]);
+            setAlbum([...album,obj]);
         });
 
-        axios.post("http://113.198.238.115:3000/api/home/preferalbum",{
-            uid:user.ID
+        axios.post("http://113.198.238.115:3000/api/search/name",{
+            text:text
         })
         .then((Response)=>{
             console.log(Response.data);
             const obj=Response.data;
             console.log(obj)
             
-            setPerferAlbum([obj]);
+            setMusic([...music,obj]);
         });
-    }, []);
+    })
 
     if(!sessionStorage.getItem("idKey")){
         return (
@@ -70,27 +61,14 @@ const Search = ({ isDarkMode, setIsDarkMode }) => {
         <div>
             {/* 메인 콘텐츠 영역 */}
             <main className={`main-content ${isDarkMode ? 'dark-mode' : ''}`}>
-                {/* 앨범 섹션 예시 */}
-                <section className="album-section">
-                    <h2 className="section-title"></h2>
-                    <div className="album-container">
-                        
-                        <>
-                            {
-                                <MusicList item={recent}/>
-                            }
-                        </>
-                    </div>
-                </section>
 
-                {/*스크롤 시험용 */}
                 {/* 앨범 섹션 예시 */}
                 <section className="album-section">
                     <h2 className="section-title">앨범</h2>
                     <div className="album-container">
                     <>
                             {
-                                <MusicList item={preferMusic}/>
+                                <AlbumList item={album}/>
                             }
                         </>
                     </div>
@@ -102,7 +80,7 @@ const Search = ({ isDarkMode, setIsDarkMode }) => {
                     <div className="album-container">
                         <>
                         {
-                            <ArtistList item={preferArtist}/>
+                            <ArtistList item={artist}/>
                         }
                         </>
                     </div>
@@ -114,7 +92,7 @@ const Search = ({ isDarkMode, setIsDarkMode }) => {
                     <div className="album-container">
                         <>
                         {
-                            <AlbumList item={perferAlbum}/>
+                            <MusicList item={music}/>
                         }
                         </>
                     </div>

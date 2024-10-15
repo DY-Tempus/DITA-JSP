@@ -27,7 +27,7 @@ const searchName=(req,res)=>{
 
 const searchMusic=(req,res)=>{
     let str=req.body.searchstr
-    const sql=`SELECT * FROM music where mname like '${str}`;
+    const sql=`SELECT * FROM music where mname like '%${str}%`;
     pool.getConnection((error,connection)=>{
         if (error) {
             return //res.status(500).json({ error: '음악 조회 실패' });
@@ -48,7 +48,7 @@ const searchMusic=(req,res)=>{
 
 const searchAlbum=(req,res)=>{
     let str=req.body.searchstr
-    const sql=`SELECT * FROM album where aname like '${str}`;
+    const sql=`SELECT * FROM album where aname like '%${str}%`;
     pool.getConnection((error,connection)=>{
         if (error) {
             return //res.status(500).json({ error: '앨범 조회 실패' });

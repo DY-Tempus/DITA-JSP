@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Home from './components/Home';
 import Artist from './components/Artist';
 import Header from './components/Header';
@@ -20,6 +20,7 @@ import UpdateMusic from './components/UpdateMusic';
 import Search from './components/Search';
 import './css/App.css';
 
+
 function App() {
   const [mid,setMid]=useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,13 +28,23 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false); //다크모드
   const location = useLocation();
   const hideOnPaths = ['/SignIn', '/SignUp','/signup','/signin'];
+  const [searchText,setSearchText]=useState(null)
+  const navigate = useNavigate();
 
+  useEffect(()=>{
+    if(searchText==null||searchText==''){
+
+    }else{
+      navigate(`search/${searchText}`)
+    }
+    
+  },[searchText])
   return (
 
       <div className="app">
         {!hideOnPaths.includes(location.pathname) && (
           <>
-            <Header />
+            <Header setSearchText={setSearchText}/>
             <Sidebar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
           </>
         )}
@@ -55,7 +66,7 @@ function App() {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/updatealbum/:aid" element={<UpdateAlbum />} />
           <Route path="/updatemusic" element={<UpdateMusic />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search/:text" element={<Search isDarkMode={isDarkMode} />} />
         </Routes>
         {/* <MusicPlayer isCurrentOpen={isCurrentOpen} setIsCurrentOpen={setIsCurrentOpen} /> 항상 하단에 고정된 음악 플레이어 */}
         {!hideOnPaths.includes(location.pathname) && <MusicPlayer isDarkMode={isDarkMode} mid={mid}/>}
