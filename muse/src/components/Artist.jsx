@@ -54,6 +54,22 @@ const Artist = ({mid}) => {
 
   }, []);
 
+  const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        if (artist.aimg && artist.aimg.data) {
+            const uint8Array = new Uint8Array(artist.aimg.data);  // Buffer 데이터를 Uint8Array로 변환
+            const blob = new Blob([uint8Array]);
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+            };
+    
+            reader.readAsDataURL(blob);
+        }
+    }, [artist.aimg]);
+
   // if(!sessionStorage.getItem("idKey")){
   //   return (
   //       <div>
@@ -65,15 +81,17 @@ const Artist = ({mid}) => {
     <div className="artist-artist-page">
       {/* 아티스트 정보 */}
       <div className="artist-artist-info">
-        <img src={artist.aimg} alt="Artist" className="artist-artist-image" />
+        {imageSrc ? (
+            <img src={imageSrc} alt="Artist" className="artist-artist-image" />
+        ) : (
+            <p className="artist-artist-image">이미지 없음</p>
+        )}
         <div className="artist-artist-details">
           <div className="artist-social-icons">
             <h1>{artist.aname}</h1>
             <img src="/img/YouTubeLogo.png" alt="YouTube" />
             <img src="/img/XLogo.png" alt="Twitter" />
           </div>
-          <p>7,603 Subs</p>
-          <button className="artist-subscribe-btn">Subscribe</button>
         </div>
       </div>
 
