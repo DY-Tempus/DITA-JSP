@@ -55,10 +55,12 @@ const Artist = ({mid}) => {
   }, []);
 
   const [imageSrc, setImageSrc] = useState(null);
-
+    var user=sessionStorage.getItem("idKey")
+    var item=JSON.parse(user)
+    
     useEffect(() => {
-        if (artist.aimg && artist.aimg.data) {
-            const uint8Array = new Uint8Array(artist.aimg.data);  // Buffer 데이터를 Uint8Array로 변환
+        if (item.IMG && item.IMG.data) {
+            const uint8Array = new Uint8Array(item.IMG.data);  // Buffer 데이터를 Uint8Array로 변환
             const blob = new Blob([uint8Array]);
             const reader = new FileReader();
     
@@ -68,7 +70,7 @@ const Artist = ({mid}) => {
     
             reader.readAsDataURL(blob);
         }
-    }, [artist.aimg]);
+    }, []);
 
   // if(!sessionStorage.getItem("idKey")){
   //   return (
