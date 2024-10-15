@@ -100,7 +100,19 @@ const Upload = () => {
                     <div className="input-fields">
                         <div><label>Title</label><input type="text" name="title" value={formData.title} onChange={handleInputChange} /></div>
                         <div><label>Album</label><input type="text" name="album" value={formData.album} onChange={handleInputChange} /></div>
-                        <div><label>Genre</label><input type="text" name="genre" value={formData.genre} onChange={handleInputChange} /></div>
+                        <div>
+                            <label>Genre</label>
+                            <select name="option" value={formData.option} onChange={handleInputChange}>
+                                <option value="Hip-hop">Hip-hop</option>
+                                <option value="Jazz">Jazz</option>
+                                <option value="Anime">Anime</option>
+                                <option value="K-POP">K-POP</option>
+                                <option value="Rap">Rap</option>
+                                <option value="Rock">Rock</option>
+                                <option value="트로트">트로트</option>
+                                <option value="기타">기타</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
