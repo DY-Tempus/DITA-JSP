@@ -5,7 +5,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const searchName=(req,res)=>{
-    let str=req.body.searchstr
+    let str=req.body.text
     const sql=`SELECT * FROM user where name like '%${str}%'`;
     pool.getConnection((error,connection)=>{
         if (error) {
@@ -26,7 +26,7 @@ const searchName=(req,res)=>{
 }
 
 const searchMusic=(req,res)=>{
-    let str=req.body.searchstr
+    let str=req.body.text
     const sql=`SELECT * FROM music where mname like '%${str}%`;
     pool.getConnection((error,connection)=>{
         if (error) {
@@ -47,7 +47,7 @@ const searchMusic=(req,res)=>{
 }
 
 const searchAlbum=(req,res)=>{
-    let str=req.body.searchstr
+    let str=req.body.text
     const sql=`SELECT * FROM album where aname like '%${str}%`;
     pool.getConnection((error,connection)=>{
         if (error) {
