@@ -21,9 +21,11 @@ const path = require('path'); // path 모듈 추가
 const app = express();
 const port = 3000;
 
-// CORS 설정
-app.use(cors());
 
+// CORS 설정
+app.use(cors({
+    origin: '*',  // 모든 출처 허용
+  }));
 // 파일 업로드 미들웨어 설정 (최대 파일 크기 50MB로 설정)
 app.use(fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 }, // 50MB로 파일 크기 제한
@@ -48,6 +50,6 @@ app.use('/api/fake',fakeRouter);
 
 
 // 서버 실행
-app.listen(port, () => {
-    console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
-});
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running at http://0.0.0.0:${port}`);
+  });

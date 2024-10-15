@@ -67,7 +67,7 @@ const UpdateAlbum = () => {
         let aid=params.aid
         let obj = sessionStorage.getItem("idKey")
         obj = JSON.parse(obj)
-        axios.post("http://localhost:3000/api/album/detail",{
+        axios.post("http://113.198.238.115:3000/api/album/detail",{
             aid:aid
         })
         .then((Response)=>{
@@ -78,7 +78,7 @@ const UpdateAlbum = () => {
             setAlbum([...album,obj]);
         });
 
-        axios.post("http://localhost:3000/api/album/musiclist",{
+        axios.post("http://113.198.238.115:3000/api/album/musiclist",{
             uid:obj.ID
         })
         .then((Response)=>{

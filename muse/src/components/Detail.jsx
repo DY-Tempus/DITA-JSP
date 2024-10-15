@@ -17,7 +17,7 @@ const Detail = ({ isOpen, setIsOpen, mid, isDarkMode }) => {
         }
 
         else if (mid) {
-            axios.post(`http://localhost:3000/api/detail/music2`, {
+            axios.post(`http://113.198.238.115:3000/api/detail/music2`, {
                 responseType: 'json',
                 mid: mid
             })
@@ -34,7 +34,7 @@ const Detail = ({ isOpen, setIsOpen, mid, isDarkMode }) => {
         } 
     }, [mid]);
     useEffect(()=>{
-        axios.post(`http://localhost:3000/api/detail/comment`, {
+        axios.post(`http://113.198.238.115:3000/api/detail/comment`, {
             responseType: 'json',
             mid: mid
         })

@@ -69,7 +69,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
         }
         // 새 MID에 맞춰 음악 파일, 상세 정보, 이미지 다시 가져오기
         axios
-            .get(`http://localhost:3000/api/music/stream/${currentMusicId}`, {
+            .get(`http://113.198.238.115:3000/api/music/stream/${currentMusicId}`, {
                 responseType: 'blob', // BLOB 형식으로 데이터 받기
             })
             .then((response) => {
@@ -81,7 +81,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
             });
 
         axios
-            .get(`http://localhost:3000/api/music/detail/${currentMusicId}`)
+            .get(`http://113.198.238.115:3000/api/music/detail/${currentMusicId}`)
             .then((response) => {
                 setMusicInfo(response.data); // 음악 정보 업데이트
 
@@ -91,7 +91,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
             });
 
         axios
-            .get(`http://localhost:3000/api/music/image/${currentMusicId}`, {
+            .get(`http://113.198.238.115:3000/api/music/image/${currentMusicId}`, {
                 responseType: 'arraybuffer', // BLOB 데이터를 ArrayBuffer로 받음
             })
             .then((response) => {
@@ -204,7 +204,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
     // 이전 곡으로 이동하는 함수
     const handlePrevious = () => {
         axios
-            .get(`http://localhost:3000/api/music/previous/${currentMusicId}`)
+            .get(`http://113.198.238.115:3000/api/music/previous/${currentMusicId}`)
             .then((response) => {
                 const prevId = response.data.prevId;
                 setCurrentMusicId(prevId); // 이전 곡의 MID로 상태 변경
@@ -217,7 +217,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
     // 다음 곡으로 이동하는 함수
     const handleNext = () => {
         axios
-            .get(`http://localhost:3000/api/music/next/${currentMusicId}`)
+            .get(`http://113.198.238.115:3000/api/music/next/${currentMusicId}`)
             .then((response) => {
                 const nextId = response.data.nextId;
                 setCurrentMusicId(nextId); // 다음 곡의 MID로 상태 변경

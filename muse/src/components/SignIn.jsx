@@ -10,7 +10,7 @@ const SignIn = () => {
   const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleSignIn = () => {
-    axios.post("http://localhost:3000/api/user/signin", {
+    axios.post("http://113.198.238.115:3000/api/user/signin", {
       uid: id,
       upw: password,
     })

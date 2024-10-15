@@ -57,7 +57,7 @@ const Upload = () => {
         data.append('userId', userId);  // 사용자 ID 추가
 
         try {
-            const response = await axios.post('http://localhost:3000/api/music/upload', data, {
+            const response = await axios.post('http://113.198.238.115:3000/api/music/upload', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'  // 파일 전송 시 헤더 설정
                 }

@@ -47,7 +47,7 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
       let obj = sessionStorage.getItem("idKey")
       obj = JSON.parse(obj)
       
-      axios.post("http://localhost:3000/api/detail/createcomment",{
+      axios.post("http://113.198.238.115:3000/api/detail/createcomment",{
           uid:obj.ID,
           mid:item.MID,
           aid:item.AID,

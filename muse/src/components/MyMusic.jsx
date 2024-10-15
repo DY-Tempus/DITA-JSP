@@ -20,7 +20,7 @@ const MyMusic = ({ isDarkMode,mid }) => {
     let user=JSON.parse(sessionStorage.getItem('idKey'))
     
 
-    axios.post("http://localhost:3000/api/mymusic/album",{
+    axios.post("http://113.198.238.115:3000/api/mymusic/album",{
       uid:user.ID
     })
     .then((Response)=>{
@@ -29,7 +29,7 @@ const MyMusic = ({ isDarkMode,mid }) => {
         setMyAlbum([...myAlbum,obj]);
     });
 
-    axios.post("http://localhost:3000/api/mymusic/music",{
+    axios.post("http://113.198.238.115:3000/api/mymusic/music",{
         uid:user.ID
     })
     .then((Response)=>{

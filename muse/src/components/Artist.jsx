@@ -16,7 +16,7 @@ const Artist = ({mid}) => {
   useEffect(()=>{
     
     console.log(params.id)
-    axios.post(`http://localhost:3000/api/artist/user`,{
+    axios.post(`http://113.198.238.115:3000/api/artist/user`,{
       id:params.id
     })
     .then((Response)=>{
@@ -30,7 +30,7 @@ const Artist = ({mid}) => {
     });
     });
 
-    axios.post(`http://localhost:3000/api/artist/album`,{
+    axios.post(`http://113.198.238.115:3000/api/artist/album`,{
       id:params.id
     })
     .then((Response)=>{
@@ -41,7 +41,7 @@ const Artist = ({mid}) => {
       setAlbum([...album,obj]);
     });
 
-    axios.post(`http://localhost:3000/api/artist/track`,{
+    axios.post(`http://113.198.238.115:3000/api/artist/track`,{
       id:params.id
     })
     .then((Response)=>{

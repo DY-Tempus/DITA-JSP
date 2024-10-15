@@ -15,7 +15,7 @@ const Home = ({ isDarkMode, mid }) => {
         let user=JSON.parse(sessionStorage.getItem('idKey'))
         
 
-        axios.post("http://localhost:3000/api/home/recent")
+        axios.post("http://113.198.238.115:3000/api/home/recent")
         .then((Response)=>{
             console.log(Response.data);
             const obj=Response.data;
@@ -24,7 +24,7 @@ const Home = ({ isDarkMode, mid }) => {
             setRecent([...recent,obj]);
         });
 
-        axios.post("http://localhost:3000/api/home/prefermusic",{
+        axios.post("http://113.198.238.115:3000/api/home/prefermusic",{
             uid:user.ID
         })
         .then((Response)=>{
@@ -35,7 +35,7 @@ const Home = ({ isDarkMode, mid }) => {
             setPreferMusic([...preferMusic,obj]);
         });
 
-        axios.post("http://localhost:3000/api/home/preferartist",{
+        axios.post("http://113.198.238.115:3000/api/home/preferartist",{
             uid:user.ID
         })
         .then((Response)=>{
@@ -46,7 +46,7 @@ const Home = ({ isDarkMode, mid }) => {
             setPreferArtist([...preferArtist,obj]);
         });
 
-        axios.post("http://localhost:3000/api/home/preferalbum",{
+        axios.post("http://113.198.238.115:3000/api/home/preferalbum",{
             uid:user.ID
         })
         .then((Response)=>{

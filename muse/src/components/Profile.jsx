@@ -11,7 +11,7 @@ const Profile = ({ isDarkMode }) => {
     useEffect(() => {
         const fetchGenres = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/profile/genres');
+                const response = await axios.get('http://113.198.238.115:3000/api/profile/genres');
                 setGenres(response.data); // 가져온 데이터를 상태에 저장
             } catch (error) {
                 console.error('Error fetching genres:', error);
@@ -42,7 +42,7 @@ const Profile = ({ isDarkMode }) => {
         formData.append('userId', userInfo.id); // 유저 ID도 함께 전송
 
         try {
-            const response = await axios.post('http://localhost:3000/api/profile/uploadProfileImage', formData, {
+            const response = await axios.post('http://113.198.238.115:3000/api/profile/uploadProfileImage', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -96,7 +96,7 @@ const Profile = ({ isDarkMode }) => {
         };
 
         try {
-            const response = await axios.post('http://localhost:3000/api/profile/updateProfile', updatedInfo);
+            const response = await axios.post('http://113.198.238.115:3000/api/profile/updateProfile', updatedInfo);
             console.log('Profile updated successfully', response.data);
         } catch (error) {
             console.error('Error updating profile:', error);

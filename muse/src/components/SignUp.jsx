@@ -53,7 +53,7 @@ const SignUp = () => {
   const handleBlur = (e) => {
     const { name, value } = e.target;
 
-    axios.post("http://localhost:3000/api/user/idcheck", {
+    axios.post("http://113.198.238.115:3000/api/user/idcheck", {
       uid: value,
     })
       .then((Response) => {
@@ -117,7 +117,7 @@ const SignUp = () => {
 
     // 회원가입 로직 구현
 
-    axios.post("http://localhost:3000/api/user/signup", {
+    axios.post("http://113.198.238.115:3000/api/user/signup", {
       uid: formData.id,
       upw: formData.password,
       email: formData.email,
@@ -224,10 +224,17 @@ const SignUp = () => {
                 required
               >
                 <option value=""></option>
-                <option value="apple">Apple</option>
-                <option value="banana">Banana</option>
-                <option value="cherry">Cherry</option>
-                <option value="date">Date</option>
+                <option value="Hip-hop">Hip-hop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Anime">Anime</option>
+                <option value="K-POP">K-POP</option>
+                <option value="rap">rap</option>
+                <option value="Rock">Rock</option>
+                <option value="트로트">트로트</option>
+                <option value="기타">기타</option>
+
+
+
               </select>
               <label htmlFor="genre1" className="label">Favorite Genre 1</label>
               <div className={`underline ${formErrors.genre1Error ? 'error' : ''}`}></div>
@@ -244,10 +251,14 @@ const SignUp = () => {
                 required
               >
                 <option value=""></option>
-                <option value="apple">Apple</option>
-                <option value="banana">Banana</option>
-                <option value="cherry">Cherry</option>
-                <option value="date">Date</option>
+                <option value="Hip-hop">Hip-hop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Anime">Anime</option>
+                <option value="K-POP">K-POP</option>
+                <option value="rap">rap</option>
+                <option value="Rock">Rock</option>
+                <option value="트로트">트로트</option>
+                <option value="기타">기타</option>
               </select>
               <label htmlFor="genre2" className="label">Favorite Genre 2</label>
               <div className={`underline ${formErrors.genre2Error ? 'error' : ''}`}></div>
