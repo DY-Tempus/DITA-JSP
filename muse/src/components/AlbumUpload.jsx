@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { MusicList } from './AlbumList';
 import axios from 'axios';
 import './css/AlbumUpload.css';
+import { Navigate } from 'react-router-dom';
 
 const AlbumUpload = () => {
     const [checkItems, setCheckItems] = useState([])
     const [selectedSongs, setSelectedSongs] = useState([]);
     const [songs, setSongs] = useState([]);
+    const navigate = Navigate();
     const [formData, setFormData] = useState({
         title: '',
         genre: '',
@@ -135,7 +137,7 @@ const AlbumUpload = () => {
 
             <div className="button-section">
                 <button className="album-upload-button" onClick={handleSubmit}>Upload</button>
-                <button className="cancel-button">Cancel</button>
+                <button className="cancel-button" onClick={navigate('/home')}>Cancel</button>
             </div>
         </div>
     );

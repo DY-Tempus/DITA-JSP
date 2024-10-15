@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './css/Profile.css';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 const Profile = ({ isDarkMode }) => {
     const [profileImg, setProfileImg] = useState(null); // 서버에서 받은 프로필 이미지
     const [imageSrc, setImageSrc] = useState(null); // 로컬에서 업로드한 이미지 파일 미리보기용
     const [genres, setGenres] = useState([]); // 장르 데이터를 저장할 상태
-
+    const navigate = Navigate();
     // 장르 데이터를 가져오는 useEffect
     useEffect(() => {
         const fetchGenres = async () => {
@@ -129,9 +130,6 @@ const Profile = ({ isDarkMode }) => {
                         required
                     />
                     <div className="underline"></div>
-                    <div className="subs">
-                        <span>7,603 Subs</span>
-                    </div>
                 </div>
             </div>
 
@@ -232,7 +230,7 @@ const Profile = ({ isDarkMode }) => {
                 <button className='my-button confirm' onClick={handleProfileUpdate} aria-label="Confirm Profile Update">
                     Confirm
                 </button>
-                <button className='my-button cancel' aria-label="Cancel Update">
+                <button className='my-button cancel' onClick={navigate('/home')} aria-label="Cancel Update">
                     Cancel
                 </button>
                 <button className='my-button confirm' onClick={handleImageUpload} aria-label="Upload Profile Image">
