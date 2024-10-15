@@ -8,11 +8,24 @@ import axios from 'axios';
 const Album = ({mid}) => {
     const params = useParams();
     const [album,setAlbum]=useState({
-        aname:'',
-        asrc:'',
+        asrc:null,
     })
-    const [musics,setMusics]=useState([])
     
+    const [imageSrc, setImageSrc] = useState(null);
+    const [musics,setMusics]=useState([])
+    useEffect(() => {
+        if (album.asrc && album.asrc.data) {
+            const uint8Array = new Uint8Array(album.asrc.data);  // Buffer 데이터를 Uint8Array로 변환
+            const blob = new Blob([uint8Array]);
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // Base64 URL로 변환된 이미지 저장
+            };
+    
+            reader.readAsDataURL(blob);
+        }
+    }, [album]);
     useEffect(()=>{
         let id=params.id
         let aid=params.aid
@@ -26,8 +39,7 @@ const Album = ({mid}) => {
             console.log(obj)
             
             setAlbum({
-                aname:obj.ANAME,
-                asrc:obj.ASRC,
+                asrc:obj.AIMG,
             });
         });
 
@@ -54,7 +66,7 @@ const Album = ({mid}) => {
         <div className="album-page">
             <h1 className="album-section-title">{album.aname}</h1>
             <div className="album-flex-direction-row">
-                <img src={album.asrc} className="album-image"/>
+                <img src={imageSrc} className="album-image"/>
                 <div className="album-song-list">
                 <>
                 {
