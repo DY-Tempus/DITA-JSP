@@ -8,6 +8,7 @@ import axios from 'axios';
 const Album = ({mid}) => {
     const params = useParams();
     const [album,setAlbum]=useState({
+        aname:'',
         asrc:null,
     })
     
@@ -39,6 +40,7 @@ const Album = ({mid}) => {
             console.log(obj)
             
             setAlbum({
+                aname:obj.ANAME,
                 asrc:obj.AIMG,
             });
         });
