@@ -47,7 +47,7 @@ const Search = ({ isDarkMode }) => {
             
             setMusic([...music,obj]);
         });
-    })
+    },[])
 
     if(!sessionStorage.getItem("idKey")){
         return (
