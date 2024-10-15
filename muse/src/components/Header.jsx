@@ -15,7 +15,7 @@ const Header = ({ setIsCurrentOpen }) => {
             {/* 상단 배너 */}
             <header className="top-banner">
                 <Link to="/home">
-                    <img src="img/logo.png" className="logo"/>
+                    <img src={require(`./logo.png`)} className="logo"/>
                 </Link>
                 <div className="search-bar">
                     <input type="text" placeholder="Search..." />

@@ -16,7 +16,7 @@ const Album = ({mid}) => {
     useEffect(()=>{
         let id=params.id
         let aid=params.aid
-        axios.post("http://http://113.198.238.115:3000/api/album/detail",{
+        axios.post("http://113.198.238.115:3000/api/album/detail",{
             id:id,
             aid:aid
         })
@@ -31,7 +31,7 @@ const Album = ({mid}) => {
             });
         });
 
-        axios.post("http://http://113.198.238.115:3000/api/album/musics",{
+        axios.post("http://113.198.238.115:3000/api/album/musics",{
             aid:aid
         })
         .then((Response)=>{

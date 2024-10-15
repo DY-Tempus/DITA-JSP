@@ -45,7 +45,7 @@ const Profile = ({ isDarkMode }) => {
             const response = await axios.post('http://113.198.238.115:3000/api/profile/uploadProfileImage', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                },
             });
 
             if (response.data.success) {

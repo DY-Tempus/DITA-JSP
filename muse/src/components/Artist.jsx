@@ -15,8 +15,7 @@ const Artist = ({mid}) => {
   const [track,setTrack]=useState([])
 
   useEffect(()=>{
-    
-    console.log(params.id)
+
     axios.post(`http://113.198.238.115:3000/api/artist/user`,{
       id:params.id
     })

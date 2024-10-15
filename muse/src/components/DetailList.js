@@ -28,7 +28,7 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
     // 좋아요 버튼 클릭 시 호출되는 함수
     const handleLikeClick = () => {
       if(!isLiked){
-        axios.post("http://localhost:3000/api/fake/like",{
+        axios.post("http://113.198.238.115:3000/api/fake/like",{
           mid:item.MID
       })
       .then((Response)=>{

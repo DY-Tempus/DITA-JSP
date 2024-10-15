@@ -7,7 +7,7 @@ import Volume from './Volume';
 
 const MusicPlayer = ({ isDarkMode,mid }) => {
     useEffect(()=>{
-        axios.post("http://localhost:3000/api/fake/view",{
+        axios.post("http://113.198.238.115:3000/api/fake/view",{
             mid:mid
         })
         .then((Response)=>{
