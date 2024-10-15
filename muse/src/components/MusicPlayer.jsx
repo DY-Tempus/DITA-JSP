@@ -227,7 +227,7 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
             });
     };
 
-    // 다음 곡으로 이동하는 함수
+    // 반복 재생
     const handleCurrent = () => {
         axios
             .get(`http://113.198.238.115:3000/api/music/next/${currentMusicId}`)
@@ -249,20 +249,25 @@ const MusicPlayer = ({ isDarkMode,mid }) => {
     }, [volume, audioElement]);
 
     useEffect(() => {
-        if (audioElement && isRepeat === 1) {
-            audioElement.addEventListener('ended', handleCurrent);
-        }else if (audioElement) {
-            // 음악이 끝나면 자동으로 다음 곡으로 이동
-            audioElement.addEventListener('ended', handleNext);
-        }
+        if (audioElement) {
+            const handleEnd = () => {
+                if (isRepeat === 1) {
+                    // 현재 곡을 반복
+                    audioElement.currentTime = 0;
+                    audioElement.play();
+                } else if (isRepeat !== 1) {
+                    // 곡을 다음 곡으로 이동
+                    handleNext();
+                }
+            };
     
-        return () => {
-            if (audioElement) {
-                // 컴포넌트 언마운트 시 이벤트 리스너 제거
-                audioElement.removeEventListener('ended', handleNext);
-            }
-        };
-    }, [audioElement, handleNext]);
+            audioElement.addEventListener('ended', handleEnd);
+    
+            return () => {
+                audioElement.removeEventListener('ended', handleEnd); // 이벤트 리스너 해제
+            };
+        }
+    }, [audioElement, isRepeat, handleNext]);
     
     // Current 패널 상태 토글
     const toggleCurrent = () => {
