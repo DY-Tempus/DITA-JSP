@@ -27,7 +27,7 @@ const Album = ({mid}) => {
             
             setAlbum({
                 aname:obj.ANAME,
-                asrc:''
+                asrc:obj.ASRC,
             });
         });
 
@@ -54,7 +54,7 @@ const Album = ({mid}) => {
         <div className="album-page">
             <h1 className="album-section-title">{album.aname}</h1>
             <div className="album-flex-direction-row">
-                <img src='./img/main_album2.jpg' className="album-image"/>
+                <img src={album.asrc} className="album-image"/>
                 <div className="album-song-list">
                 <>
                 {
