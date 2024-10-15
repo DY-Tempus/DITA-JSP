@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './css/Upload.css';
+import { Navigate } from 'react-router-dom';
 
 const Upload = () => {
     const [imageFile, setImageFile] = useState(null);  // 이미지 파일 저장
@@ -77,6 +78,7 @@ const Upload = () => {
             })
             setImageFileName(null)
             setMusicFileName(null)
+            Navigate('/home');
         } catch (error) {
             console.error('업로드 실패:', error);
             alert('음악 업로드 실패');

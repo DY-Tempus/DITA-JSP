@@ -62,6 +62,7 @@ const UpdateMusic = () => {
             });
             alert('음악 업로드 성공!');
             console.log(response.data);
+            Navigate('/home');
         } catch (error) {
             console.error('업로드 실패:', error);
             alert('음악 업로드 실패');
@@ -97,16 +98,18 @@ const UpdateMusic = () => {
                     </div>
                     <div className="input-fields">
                         <div><label>Title</label><input type="text" name="title" value={formData.title} onChange={handleInputChange} /></div>
-                        <div><label>Artist</label><input type="text" name="artist" value={formData.artist} onChange={handleInputChange} /></div>
-                        <div><label>Producer/Remix</label><input type="text" name="producer" value={formData.producer} onChange={handleInputChange} /></div>
                         <div><label>Album</label><input type="text" name="album" value={formData.album} onChange={handleInputChange} /></div>
-                        <div><label>Genre</label><input type="text" name="genre" value={formData.genre} onChange={handleInputChange} /></div>
-                        <div><label>Copyright</label><input type="text" name="copyright" value={formData.copyright} onChange={handleInputChange} /></div>
                         <div>
-                            <label>Option</label>
+                            <label>Genre</label>
                             <select name="option" value={formData.option} onChange={handleInputChange}>
-                                <option value="public">Public</option>
-                                <option value="private">Private</option>
+                                <option value="Hip-hop">Hip-hop</option>
+                                <option value="Jazz">Jazz</option>
+                                <option value="Anime">Anime</option>
+                                <option value="K-POP">K-POP</option>
+                                <option value="Rap">Rap</option>
+                                <option value="Rock">Rock</option>
+                                <option value="트로트">트로트</option>
+                                <option value="기타">기타</option>
                             </select>
                         </div>
                     </div>
