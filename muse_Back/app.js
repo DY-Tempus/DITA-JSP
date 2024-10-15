@@ -13,6 +13,8 @@ const albumRouter = require('./routers/albumRouter');
 const mymusicRouter = require('./routers/mymusicRouter');
 const profileRouter = require('./routers/profileRouter');
 const fakeRouter = require('./routers/fakeRouter');
+const searchRouter = require('./routers/searchRouter');
+
 
 
 
@@ -46,6 +48,8 @@ app.use('/api/album',albumRouter);
 app.use('/api/mymusic',mymusicRouter);
 app.use('/api/profile', profileRouter);// 프로필 관련 라우팅 추가
 app.use('/api/fake',fakeRouter);
+app.use('/api/search',searchRouter);
+
 
 
 
