@@ -117,7 +117,7 @@ const SignUp = () => {
 
     // 회원가입 로직 구현
 
-    axios.post("http://113.198.238.115:3000/api/user/signup", {
+    axios.post("http://localhost:3000/api/user/signup", {
       uid: formData.id,
       upw: formData.password,
       email: formData.email,
@@ -228,7 +228,7 @@ const SignUp = () => {
                 <option value="Jazz">Jazz</option>
                 <option value="Anime">Anime</option>
                 <option value="K-POP">K-POP</option>
-                <option value="rap">rap</option>
+                <option value="Rap">Rap</option>
                 <option value="Rock">Rock</option>
                 <option value="트로트">트로트</option>
                 <option value="기타">기타</option>
@@ -253,7 +253,7 @@ const SignUp = () => {
                 <option value="Jazz">Jazz</option>
                 <option value="Anime">Anime</option>
                 <option value="K-POP">K-POP</option>
-                <option value="rap">rap</option>
+                <option value="Rap">Rap</option>
                 <option value="Rock">Rock</option>
                 <option value="트로트">트로트</option>
                 <option value="기타">기타</option>

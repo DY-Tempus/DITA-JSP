@@ -15,7 +15,7 @@ const Search = ({ isDarkMode }) => {
     useEffect(()=>{
         var text=params.text
 
-        axios.post("http://113.198.238.115:3000/api/search/name",{
+        axios.post("http://localhost:3000/api/search/name",{
             text:text
         })
         .then((Response)=>{
@@ -26,7 +26,7 @@ const Search = ({ isDarkMode }) => {
             setArtist([...artist,obj]);
         });
 
-        axios.post("http://113.198.238.115:3000/api/search/name",{
+        axios.post("http://localhost:3000/api/search/name",{
             text:text
         })
         .then((Response)=>{
@@ -37,7 +37,7 @@ const Search = ({ isDarkMode }) => {
             setAlbum([...album,obj]);
         });
 
-        axios.post("http://113.198.238.115:3000/api/search/name",{
+        axios.post("http://localhost:3000/api/search/name",{
             text:text
         })
         .then((Response)=>{

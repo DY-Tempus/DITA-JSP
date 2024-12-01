@@ -35,7 +35,7 @@ const AlbumUpload = () => {
     useEffect(() => {
         let obj = sessionStorage.getItem("idKey");
         obj = JSON.parse(obj);
-        axios.post("http://113.198.238.115:3000/api/album/musiclist", {
+        axios.post("http://localhost:3000/api/album/musiclist", {
             uid: obj.ID,
         })
         .then((Response) => {
@@ -93,7 +93,7 @@ const AlbumUpload = () => {
         };
     
         try {
-            const response = await axios.post('http://113.198.238.115:3000/api/album/upload', albumData);
+            const response = await axios.post('http://localhost:3000/api/album/upload', albumData);
             alert('앨범 업로드 성공!');
             console.log(response.data);
             navigate('/home');

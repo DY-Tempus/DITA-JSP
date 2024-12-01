@@ -43,6 +43,7 @@ const UpdateMusic = () => {
 
     // 입력 필드 값 변경 처리
     const handleInputChange = (e) => {
+        console.log(formData.genre);
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
@@ -59,7 +60,7 @@ const UpdateMusic = () => {
         data.append('lyrics', formData.lyrics);
 
         try {
-            const response = await axios.post('http://113.198.238.115:3000/api/music/upload', data, {
+            const response = await axios.post('http://localhost:3000/api/music/upload', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'  // 파일 전송 시 헤더 설정
                 }
@@ -105,7 +106,7 @@ const UpdateMusic = () => {
                         <div><label>Album</label><input type="text" name="album" value={formData.album} onChange={handleInputChange} /></div>
                         <div>
                             <label>Genre</label>
-                            <select name="option" value={formData.option} onChange={handleInputChange}>
+                            <select name="genre" value={formData.genre} onChange={handleInputChange}>
                                 <option value="Hip-hop">Hip-hop</option>
                                 <option value="Jazz">Jazz</option>
                                 <option value="Anime">Anime</option>

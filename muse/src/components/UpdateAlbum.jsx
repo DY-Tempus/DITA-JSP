@@ -3,50 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import './css/UpdateAlbum.css';
 import {MusicList,AlbumList} from './AlbumList'
-const songs = [
-    {
-        id: 1,
-        writer: "Getsix",
-        title: "WIP That'll Never Come Out",
-        duration: "2:48",
-        image: "./img/Getsixart1.png", // 각 곡의 이미지 경로
-    },
-    {
-        id: 2,
-        writer: "Getsix",
-        title: "The Psychedelic Experience",
-        duration: "4:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 3,
-        writer: "Getsix",
-        title: "Astral Projection",
-        duration: "5:53",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 4,
-        writer: "Getsix",
-        title: "Better Days",
-        duration: "4:17",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 5,
-        writer: "Getsix",
-        title: "Envy",
-        duration: "3:35",
-        image: "./img/Getsixart2.png",
-    },
-    {
-        id: 6,
-        writer: "Getsix",
-        title: "Diphenhydramine",
-        duration: "1:57",
-        image: "./img/Getsixart2.png",
-    },
-];
 
 const UpdateAlbum = () => {
     const params = useParams();
@@ -68,7 +24,7 @@ const UpdateAlbum = () => {
         let aid=params.aid
         let obj = sessionStorage.getItem("idKey")
         obj = JSON.parse(obj)
-        axios.post("http://113.198.238.115:3000/api/album/detail",{
+        axios.post("http://localhost:3000/api/album/detail",{
             aid:aid
         })
         .then((Response)=>{
@@ -79,7 +35,7 @@ const UpdateAlbum = () => {
             setAlbum([...album,obj]);
         });
 
-        axios.post("http://113.198.238.115:3000/api/album/musiclist",{
+        axios.post("http://localhost:3000/api/album/musiclist",{
             uid:obj.ID
         })
         .then((Response)=>{
