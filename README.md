@@ -1,5 +1,16 @@
 # DITA-JSP Main Project
 
+## 목차
+1. 개요
+2. 기술스택
+3. 주요기능
+4. 설치 방법
+5. 실행 방법
+6. 파일 구조
+7. 프로젝트 네트워크 구조
+8. 쇼케이스
+9. 데이터베이스
+
 ## 개요
 이 프로젝트는 React를 사용하여 프론트엔드를 구축하고, Node.js 및 Express를 사용하여 백엔드를 구성한 웹 애플리케이션입니다. 사용자는 이 애플리케이션을 통해 음악과 관련된 다양한 기능을 활용할 수 있습니다.
 
@@ -73,7 +84,20 @@ DITA-JSP-main/
 ## 프로젝트 네트워크 구조도
 <img width="441" alt="MUSE 구조도" src="https://github.com/user-attachments/assets/22eb5192-fa6b-42d8-9eb8-4f44ba0c3e47">
 
+## 쇼케이스
+<img width="720" alt="MUSE 사진" src="https://github.com/user-attachments/assets/96178fc1-e3d9-4211-8c61-7e4b069d2e94">
+홈 페이지
+
+![image](https://github.com/user-attachments/assets/15008b10-6fa1-4f92-8cdf-e78bc05b98f1)
+곡 디테일 페이지
+
+![image](https://github.com/user-attachments/assets/ddb1f72d-1725-4453-bd31-b960387cb16f)
+앨범 페이지
+
 ## 데이터베이스
+![image](https://github.com/user-attachments/assets/6e273950-cb97-41c6-9a90-fbdf0bfeb301)
+
+
 
 ```
 tbl_boardsCREATE TABLE GENRE
