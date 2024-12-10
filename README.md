@@ -95,7 +95,7 @@ DITA-JSP-main/
 앨범 페이지
 
 ## 데이터베이스
-![image](https://github.com/user-attachments/assets/6e273950-cb97-41c6-9a90-fbdf0bfeb301)
+![image](https://github.com/user-attachments/assets/10e31d5a-2aa5-4264-b988-a929c64aa84a)
 
 
 
