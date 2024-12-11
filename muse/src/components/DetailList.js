@@ -111,7 +111,7 @@ function DetailItemCon({ item, comments, isDarkMode, flag,setFlag }) {
             <h2>Comments</h2>
             <div className="comment">
               <input type="text" placeholder="Add a comment..." onChange={handleInputChange} value={comment} />
-              <img src="img/comment.png" alt="Comment-Button" className="comment-button" onClick={createComment} />
+              <img src="/img/comment.png" alt="Comment-Button" className="comment-button" onClick={createComment} />
             </div>
             <div className="comments-sector">
               <>
